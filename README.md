@@ -1,6 +1,6 @@
 # GloomhavenCampaignTracker
 
-I created this app to track campaign progression for the Gloomhaven.
+I have created this app to track the progression of multiple campaigns and multiple parties in the boardgame Gloomhaven.
 
 Gloomhaven is a boardgame with tactical roundbased fights wrapped in a campaign with a story and a changing world depending on your decisions. The changes in the world and the progression of the player characters are tracked with papersheets and stickers.
 
