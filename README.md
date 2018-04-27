@@ -13,6 +13,8 @@ I released the first version of my app in September 2017 and continued bugfixing
 
 It is important to me to keep the app free of spoilers. And I don't want to spoil anything for myself. So the locked content of the game will be added as I'm playing through the campaign. 
 
+My graphical skills are not very high, that's why the app doesn't have some fancy graphical effects. I focus on the functionality and will try to add some more eye candy when I find the time for it.  
+
 Here you can find the app in the play store:
 https://play.google.com/store/apps/details?id=de.timmcode.ghcampaigntracker.droid&hl=de
 
