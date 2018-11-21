@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="20dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="0dp"
+        android:layout_weight=".4"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1">
+        <Button
+            android:text="Unlocked Scenarios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/unlockedScenariosButton"
+            android:background="@drawable/borderbuttons"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="10px"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_location"
+            android:drawablePadding="10px"
+            android:textSize="20dp" />
+        <Button
+            android:text="Global Achievements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/globalachievementsButton"
+            android:background="@drawable/borderbuttons"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="10px"
+            android:gravity="center"
+            android:layout_marginTop="20px"
+            android:drawableTop="@drawable/ic_achievement"
+            android:drawablePadding="10px"
+            android:textSize="20dp" />
+        <Button
+            android:text="Road Events"
+            android:id="@+id/roadeventsButton"
+            android:drawableTop="@drawable/ic_road"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbuttons"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="10px"
+            android:gravity="center"
+            android:layout_marginTop="20px"
+            android:drawablePadding="10px"
+            android:textSize="20dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight=".6"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        android:id="@+id/dualdetaillayout">
+        <TextView
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dualdetailtitle"
+            android:gravity="center_horizontal"
+            android:background="@color/gloom_primaryLight"
+            android:textColor="@color/gloom_primaryText" />
+        <FrameLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/frame_details_world"
+            android:paddingTop="20px"
+            android:background="@drawable/border"
+            android:padding="2dp" />
+    </LinearLayout>
+</LinearLayout>

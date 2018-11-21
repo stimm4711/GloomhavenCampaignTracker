@@ -1,0 +1,213 @@
+﻿using Android.OS;
+using Android.Views;
+using Android.Widget;
+using GloomhavenCampaignTracker.Droid.Adapter;
+using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Shared.Business.Network;
+using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
+{
+    public class CampaignUnlocksFragment : CampaignFragmentBase
+    {
+        private CheckBox _checkAncientTech;
+        private CheckBox _checkdrakepartyachievementCheck;
+        private CheckBox _donationsCheck;
+        private CheckBox _partyRep10Check;
+        private CheckBox _partyRep20Check;
+        private CheckBox _partyRepMinus10Check;
+        private CheckBox _partyRepMinus20Check;
+        private CheckBox _retireCheck;
+        private TextView _checkAncientText;
+        private TextView _checkdrakepartyachievementText;
+        private TextView _donationsText;
+        private TextView _partyRep10Text;
+        private TextView _partyRep20Text;
+        private TextView _partyRepMinus10Text;
+        private TextView _partyRepMinus20Text;
+        private TextView _retireText;
+        private GridView _grid;
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {           
+            _view = inflater.Inflate(Resource.Layout.fragment_campaign_unlocks, container, false);
+
+            base.OnCreateView(inflater, container, savedInstanceState);
+
+            // get checkbox views
+            _checkAncientTech = _view.FindViewById<CheckBox>(Resource.Id.ancienttechnologyUnlockCheck);
+            _checkdrakepartyachievementCheck = _view.FindViewById<CheckBox>(Resource.Id.drakepartyachievementCheck);
+            _donationsCheck = _view.FindViewById<CheckBox>(Resource.Id.donationsCheck);
+            _partyRep10Check = _view.FindViewById<CheckBox>(Resource.Id.partyRep10Check);
+            _partyRep20Check = _view.FindViewById<CheckBox>(Resource.Id.partyRep20Check);
+            _partyRepMinus10Check = _view.FindViewById<CheckBox>(Resource.Id.partyRepMinus10Check);
+            _partyRepMinus20Check = _view.FindViewById<CheckBox>(Resource.Id.partyRepMinus20Check);
+            _retireCheck = _view.FindViewById<CheckBox>(Resource.Id.retireCheck);
+
+            // get textviews
+            _checkAncientText = _view.FindViewById<TextView>(Resource.Id.gainEnvAText);
+            _checkdrakepartyachievementText = _view.FindViewById<TextView>(Resource.Id.gainDrakeAchievementText);
+            _donationsText = _view.FindViewById<TextView>(Resource.Id.gainEnvBText);
+            _partyRep10Text = _view.FindViewById<TextView>(Resource.Id.gainSunClassText);
+            _partyRep20Text = _view.FindViewById<TextView>(Resource.Id.gainRep20Text);
+            _partyRepMinus10Text = _view.FindViewById<TextView>(Resource.Id.gainClassMoonText);
+            _partyRepMinus20Text = _view.FindViewById<TextView>(Resource.Id.gainRepMinus20Text);
+            _retireText = _view.FindViewById<TextView>(Resource.Id.gainRetireText);          
+            _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
+
+            if(!_checkAncientTech.HasOnClickListeners)
+            {
+                _checkAncientTech.Click += AncientTechCheckBoxClick;
+            }
+
+            if (!_checkdrakepartyachievementCheck.HasOnClickListeners)
+            {
+                _checkdrakepartyachievementCheck.Click += DrakesCheckBoxClick;
+            }
+
+            if (!_donationsCheck.HasOnClickListeners)
+            {
+                _donationsCheck.Click += CheckBoxClick;
+            }
+
+            if (!_partyRep10Check.HasOnClickListeners)
+            {
+                _partyRep10Check.Click += CheckBoxClick;
+            }
+
+            if (!_partyRep20Check.HasOnClickListeners)
+            {
+                _partyRep20Check.Click += CheckBoxClick;
+            }
+
+            if (!_partyRepMinus10Check.HasOnClickListeners)
+            {
+                _partyRepMinus10Check.Click += CheckBoxClick;
+            }
+
+            if (!_partyRepMinus20Check.HasOnClickListeners)
+            {
+                _partyRepMinus20Check.Click += CheckBoxClick;
+            }
+
+            if (!_retireCheck.HasOnClickListeners)
+            {
+                _retireCheck.Click += _retireCheck_Click; ;
+            }
+
+            SwitchViewStates();
+
+            return _view;
+        }
+
+        internal void Update()
+        {
+            Task.Run(async () =>
+            {
+                await GloomhavenClient.Instance.UpdateCampaignUnlocks();
+
+                Activity.RunOnUiThread(() =>
+                {
+                    SwitchViewStates();
+                });
+            });               
+        }       
+
+        private void _retireCheck_Click(object sender, System.EventArgs e)
+        {
+            if (_retireCheck.Checked)
+            {
+                if (CurrentCampaign.CampaignData.Parties.Any(x => CharacterRepository.GetPartymembers(x.Id).Any(y => y.Retired)))
+                {
+                    CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = true;
+                }
+                else
+                {
+                    _retireCheck.Checked = false;
+                    CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = false;
+                }
+            }    
+            else
+            {
+                if (!CurrentCampaign.CampaignData.Parties.Any(x => CharacterRepository.GetPartymembers(x.Id).Any(y => y.Retired)))
+                {
+                    CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = false;
+                }
+                else
+                {
+                    _retireCheck.Checked = true;
+                    CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = true;                   
+                }
+            }
+            CurrentCampaign.Save();
+        }
+
+        private void CheckBoxClick(object sender, System.EventArgs e)
+        {
+            SwitchViewStates();
+        }
+
+        private void AncientTechCheckBoxClick(object sender, System.EventArgs e)
+        {
+            if (CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeAUnlocked)
+            {
+                if (!CurrentCampaign.HasGlobalAchievement((int)GlobalAchievementsInternalNumbers.AncientTechnology_Step5))
+                {
+                    CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeAUnlocked = false;
+                    CurrentCampaign.Save();                    
+                }
+            }
+
+            SwitchViewStates();
+        }
+
+        private void DrakesCheckBoxClick(object sender, System.EventArgs e)
+        {
+            if (CurrentCampaign.CampaignData.CampaignUnlocks.TheDrakePartyAchievementsUnlocked)
+            {
+                if (!CurrentCampaign.HasTheDrakesPartyAchievements())
+                {
+                    CurrentCampaign.CampaignData.CampaignUnlocks.TheDrakePartyAchievementsUnlocked = false;
+                    CurrentCampaign.Save();
+                }
+            }
+
+            SwitchViewStates();
+        }
+
+        /// <summary>
+        /// Set checkbox checked and textview visible states and set characterclass adapter for class icons
+        /// </summary>
+        public void SwitchViewStates()
+        {
+            _grid.Adapter = new CharacterClassAdapter(Context, true);
+
+            _checkAncientTech.Checked = CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeAUnlocked;
+            _checkdrakepartyachievementCheck.Checked = CurrentCampaign.CampaignData.CampaignUnlocks.TheDrakePartyAchievementsUnlocked;
+            _donationsCheck.Checked = CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeBUnlocked;
+            _partyRep10Check.Checked = CurrentCampaign.CampaignData.CampaignUnlocks.ReputationPlus10Unlocked;
+            _partyRep20Check.Checked = CurrentCampaign.CampaignData.CampaignUnlocks.ReputationPlus20Unlocked;
+            _partyRepMinus10Check.Checked = CurrentCampaign.CampaignData.CampaignUnlocks.ReputationMinus10Unlocked;
+            _partyRepMinus20Check.Checked = CurrentCampaign.CampaignData.CampaignUnlocks.ReputationMinus20Unlocked;
+            _retireCheck.Checked = CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked;
+
+            _checkAncientText.Visibility = _checkAncientTech.Checked ? ViewStates.Visible : ViewStates.Invisible;
+
+            _checkdrakepartyachievementText.Visibility = _checkdrakepartyachievementCheck.Checked ? ViewStates.Visible : ViewStates.Invisible;
+
+            _donationsText.Visibility = _donationsCheck.Checked ? ViewStates.Visible : ViewStates.Invisible;
+
+            _partyRep10Text.Visibility = _partyRep10Check.Checked ? ViewStates.Visible : ViewStates.Invisible;
+
+            _partyRep20Text.Visibility = _partyRep20Check.Checked ? ViewStates.Visible : ViewStates.Invisible;
+
+            _partyRepMinus10Text.Visibility = _partyRepMinus10Check.Checked ? ViewStates.Visible : ViewStates.Invisible;
+
+            _partyRepMinus20Text.Visibility = _partyRepMinus20Check.Checked ? ViewStates.Visible : ViewStates.Invisible;
+
+            _retireText.Visibility = _retireCheck.Checked ? ViewStates.Visible : ViewStates.Invisible;
+        }
+    }
+}

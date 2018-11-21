@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="178dp"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@color/gloom_primaryDark">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:gravity="center"
+      android:background="@drawable/headerbg"
+      android:layout_margin="10dp">
+    <TextView
+        android:text="Gloomhaven"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:gravity="center_horizontal"
+        android:textColor="@color/gloom_primaryText"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"/>
+    <TextView
+        android:text="Campaign Tracker"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:gravity="center"
+        android:textColor="@color/gloom_primaryText" />
+  </LinearLayout>
+</RelativeLayout>

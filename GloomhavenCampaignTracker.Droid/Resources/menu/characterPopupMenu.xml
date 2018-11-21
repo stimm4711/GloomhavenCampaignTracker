@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--For all properties see: http://developer.android.com/guide/topics/resources/menu-resource.html-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">  
+  <item
+    android:id="@+id/c_popup_delete"
+    android:showAsAction="always"
+    android:text="Delete"
+    android:title="Delete"    />
+  <item
+    android:id="@+id/c_popup_remove"
+    android:showAsAction="always"
+    android:text="Remove from party"
+    android:title="Remove from party"    />
+</menu>

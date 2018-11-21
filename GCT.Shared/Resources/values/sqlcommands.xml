@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+  <string name="SelectUnlockableItems">
+    Select* from DL_Item
+    where Prosperitylevel > 9
+    Except
+    Select i.* from DL_Item i
+    inner
+    join DL_CampaignUnlockedItem ci
+    on i.Id = ci.ID_Item
+    where ci.ID_Campaign = ?
+  </string>
+
+  <string name="SelectPartyView">
+    Select
+    p.id as PartyId
+    , p.name as PartyName
+    , cc.Charactercount as CharacterCount
+    , ca.Partyachievementcount as PartyachievementCount
+    From DL_CampaignParty p
+    left join
+    (
+    Select
+    ip.id as partyID
+    , Count(c.id) As Charactercount
+    From DL_CampaignParty ip
+    left join
+    DL_Character c
+    on c.id_party = ip.id
+    group by ip.Id
+    ) as cc
+    on p.id = cc.partyid
+    left join
+    (
+    Select
+    ip.id as partyID
+    , Count(pa.id) As Partyachievementcount
+    From DL_CampaignParty ip
+    left join
+    DL_CampaignPartyAchievement pa
+    on pa.id_party = ip.id
+    group by ip.Id
+    ) as ca
+    on p.id = ca.partyid
+    Where p.ID_campaign = ?
+  </string>
+</resources>

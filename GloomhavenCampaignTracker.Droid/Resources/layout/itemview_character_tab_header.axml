@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:id="@+id/characterimageview"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:text="Charactername"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabText"
+        android:editable="false"
+        android:gravity="center"
+        android:textColor="@color/gloom_primaryText"
+        android:layout_toRightOf="@id/characterimageview"
+        android:minHeight="28dp" />
+</RelativeLayout>

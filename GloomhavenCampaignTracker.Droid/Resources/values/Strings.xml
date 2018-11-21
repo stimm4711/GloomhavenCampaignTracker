@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+  <!-- Application -->
+  <string name="ApplicationName">Gloomhaven Campaign Tracker</string>
+  <string name="open_drawer">Open</string>
+  <string name="close_drawer">Close</string>
+  
+  <!-- Links -->
+  <string name="cephalofair_web">
+    <a href="http://www.cephalofair.com/gloomhaven">Cephalofair</a>
+  </string>
+  <string name="bgg_web">
+    <a href="https://boardgamegeek.com/article/27046627#27046627">Boardgamegeeks</a>
+  </string>
+  <string name="icons8_web">
+    <a href="http://de.icons8.com">Icons8</a>
+  </string>
+  <string name="pp_web">
+    <a href="https://www.paypal.me/GHCampaignTracker">Hat</a>    
+  </string>
+  <string name="playstore_web">
+    <a href="https://play.google.com/store/apps/details?id=de.timmcode.ghcampaigntracker.droid">Google Play Store</a>
+  </string>
+  <string name="github_web">
+    <a href="https://github.com/stimm4711/GloomhavenCampaignTracker/wiki">GitHub Wiki</a>
+  </string>
+
+  <!-- Common -->
+  <string name="Assign">Assign</string>
+  <string name="Assigned">Assigned</string>
+  <string name="Add">Add</string>
+  <string name="Added">Added!</string>
+  <string name="NotSaved">Something went wrong. Data was not saved.</string>
+  <string name="Saved">Saved!</string>
+  <string name="Confirm">Confirm</string>
+  <string name="YesDelete">Delete</string>
+  <string name="NoCancel">Cancel</string>
+  <string name="OK">OK</string>
+  <string name="PartsOf">{0} / {1}</string>
+  <string name="Empty">empty</string>
+  <string name="NameValue">{0}: {1}</string>
+  <string name="Close">Close</string>
+  <string name="Save">Save</string>
+  <string name="ItemDeleted">{0} deleted.</string>
+  <string name="NotNow">Not now</string>
+  <string name="LoadingData">Loading Data</string>
+  
+  <!-- Unlocks -->
+  <string name="Congratulation">Congratulation!</string>
+  <string name="UnlockedEnvelopeA">You have unlocked Envelope A</string>
+  <string name="UnlockedTownRecordBook">Open the Town Records Book.</string>
+  <string name="UnlockedEnvelopeB">You have unlocked Envelope B</string>
+  
+  <!-- Campaign -->
+  <string name="SelectCampaign">Select Campaign</string>
+  <string name="Campaign">Campaign</string>
+  <string name="camaignSelection">Campaign Selection</string>
+  <string name="AddCampaign">Add Campaign</string>
+  <string name="StartCampaign">Start new Campaign</string>
+  <string name="CampaignNameMissing">Your campaign needs a name</string>
+  <string name="PartyNameMissing">Your party needs a name</string>
+  <string name="CampaignnameExist">Campaignname already exists</string>
+  <string name="DeleteCampaign">Delete Campaign?</string>
+  <string name="CampaignDeleted">Campaign deleted.</string>
+  
+  <!-- Events -->
+  <string name="AddEvents">Add Event</string>
+  <string name="EventAlreadyAdded">An event with the same type and number is already added.</string>
+  <string name="RoadEvents">Road Events</string>
+  <string name="RemoveAddEventTitle">Enter Eventnumber</string>
+  <string name="RemoveEvent">Remove Event</string>
+  <string name="AddEvent">Add Event</string>
+  <string name="DrawnEventNumber">Event number {0}</string>
+  <string name="DrawnEventMessage">Play the Event {0}.\nSelect what to do with the Event.</string>
+  <string name="PutEventBack">Put under the pile</string>
+  
+  <!-- Global Achievements -->
+  <string name="GlobalAchievements">Global Achievements</string>
+  <string name="AssignGlobalAchievement">Assign Global Achievement</string>
+  <string name="AchievementAlreadyAssigned">An achievement with the same type is already assigned.</string>
+  <string name="Achievementtypes">Achievement Types</string>
+  <string name="AchievementNameMissing">Achievementtype Name can\'t be empty.</string>
+  <string name="AchievementTypeExists">Achievement Type already exists.</string>
+  <string name="AddAchievement">Add Achievement</string>
+  <string name="AchievementNeedsName">Achievement needs a name.</string>
+  <string name="AchievementAdded">Achievement added</string>
+  <string name="Achievements">Achievements</string>
+  <string name="AchievementTypes">Achievement Types</string>
+  <string name="AchievementType">Achievement Type</string>
+  <string name="SelectGlobalAchievement">Select Global Achievement</string>
+  <string name="SelectedGlobalAchievement">Selected Global Achievement</string>
+  <string name="DeleteGlobalAchievement">Delete Global Achievement?</string>
+  
+  <!-- Unlocked Scenarios -->  
+  <string name="UnlockedScenarios">Unlocked Scenarios</string>  
+  <string name="AssignScenario">Assign Scenario</string>
+  <string name="ScenarioAlreadyAssigned">The scenario is already assigned.</string>
+  <string name="Scenarios">Scenarios</string>
+  <string name="Scenario">Scenario</string>
+  <string name="ScenarioNumberMissing">Scenario Number can\'t be empty.</string>
+  <string name="ScenarioNumberExists">Scenario Number already exists.</string>
+  <string name="TreasuresPartOf">Treasures: {0}/{1}</string>
+  <string name="BlockingAchievement">{0} \n is blocked by</string>
+  <string name="RequiredAchievements">{0}\n requires</string>
+  <string name="AddTreasureAlertTitle">Add Treasure</string>
+  <string name="Unlocked">Unlocked</string>
+  <string name="Blocked">Blocked</string>
+  <string name="Unavailable">Unavailable</string>
+  <string name="Completed">Completed</string>
+  <string name="DeleteTreasure">Delete Treasure?</string>
+  <string name="Treasures">{0} Treasures</string>
+  <string name="AddTreasure">Add new treasure</string>
+  <string name="DeleteUnlockedScenario">Delete {0}?</string>
+  
+  <!-- Party -->
+  <string name="Party">Party:</string>
+  <string name="PartySelection">Party Selection</string>
+  <string name="DeleteParty">Delete Party?</string>
+  <string name="PartyCantbeDeletedIsLastOfCampaign">Each Campaign needs at least one Party. Can\'t delete this party.</string>
+  <string name="AddParty">Add Party</string>
+  <string name="PartynameAlreadyExists">Party already exists</string>
+  
+  <!-- Party Achievement -->
+  <string name="PartyAchievements">Party Achievements</string>
+  <string name="DeletePartyAchievement">Delete Party Achievement?</string>
+  <string name="PartyachievementsCount">Party Achievements: {0}</string>
+  <string name="SelectPartyAchievement">Select a Party Achievement</string>
+  <string name="AssignPartyAchievement">Assign Party Achievement</string>
+  <string name="PartyAchievementsAlreadyAssigned">This party achievement is already assigned</string>
+  <string name="DrakesPartyachievementsUnlockGained">Added City Event 75 and Road Event 66 and gained The Drake: Aided (global)</string>
+
+  <!-- Party member -->
+  <string name="PartyMember">Party Member</string>
+  <string name="PartymemberCount">Characters: {0}</string>
+
+  <!-- City -->
+  <string name="CityEvents">City Events</string>
+  <string name="itemstore">Item Store</string>
+  <string name="SelectItemDesignHint">Select an Itemdesign reference number</string>
+  <string name="SelectItemDesignTitle">Add unlocked Itemdesign</string>
+  <string name="ItemDesignAlreadyAssigned">The Itemdesign is already assigned.</string>
+
+  <!-- Character -->
+  <string name="AddCharacter">Add Character</string>
+  <string name="DeleteAbility">Delete Ability?</string>
+  <string name="CharacterRetired">{0} retired.</string>
+  <string name="CharacterLeveledUpTo">{0} is now level {1}.</string>
+  <string name="NewAbilitySelectable">You can choose a new ability card.</string>
+  <string name="SetNewAbility">Set new ability</string>
+  <string name="EditCharacter">Edit Character</string>
+  <string name="CharacterNameMissing">Your character needs a name!</string>
+  <string name="CharacterDeleted">{0} deleted.</string>
+  <string name="CharacterAbilities">{0}\'s abilities</string>
+  <string name="AddAbility">Add ability</string>
+  <string name="AddAbilityAlertTitle">Add new ability</string>
+  <string name="CharacterItemsAlertTitle">{0}\'s Items</string>
+  <string name="AddItemToCharacter">Add item</string>
+  <string name="WrongAbilityLevel">The ability level must be between 2 and 9</string>
+
+</resources>

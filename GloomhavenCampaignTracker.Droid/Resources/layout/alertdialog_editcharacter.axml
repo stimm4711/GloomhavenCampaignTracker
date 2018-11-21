@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chardetails_nameInputLayout"
+        android:layout_marginTop="10px"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:theme="@style/TextLabel"
+        app:hintTextAppearance="@style/HintTextLabel"
+        android:hint="Name">
+      <android.support.design.widget.TextInputEditText
+          android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/character_name"/>
+    </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:id="@+id/chardetails_classInputLayout"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:theme="@style/TextLabel"
+            app:hintTextAppearance="@style/HintTextLabel"
+          android:hint="Class">
+          <android.support.design.widget.TextInputEditText
+              android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:layout_marginRight="40px"
+                android:enabled="false"
+                android:focusable="false" />
+        </android.support.design.widget.TextInputLayout>
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:id="@+id/characterClassSpinner" />
+    </LinearLayout>
+</LinearLayout>

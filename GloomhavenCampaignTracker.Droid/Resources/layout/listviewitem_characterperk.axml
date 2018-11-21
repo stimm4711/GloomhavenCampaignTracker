@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gloom_primaryLighter"
+    android:paddingLeft="8dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/optionsImageView"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+            android:alpha="0.7" />
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:text="This is a description text of a perk "
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/optionsImageView"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical" />
+</RelativeLayout>

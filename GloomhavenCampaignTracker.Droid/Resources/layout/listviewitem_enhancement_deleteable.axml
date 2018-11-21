@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15px"
+    android:paddingRight="15px"
+    android:paddingTop="8px"
+    android:paddingBottom="8px"
+    android:background="@color/gloom_primaryLighter">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ic_dot_black_24dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/imageView1"
+            android:layout_gravity="center_vertical" />
+        <TextView
+            android:text="2"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:id="@+id/slotnumber"
+            android:paddingLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical" />
+        <TextView
+            android:text="[+1]"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/enhacement"
+            android:gravity="center"
+            android:layout_weight="0.4" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/optionsImageView"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:layout_marginRight="5dp"
+            android:alpha="0.7" />
+    </LinearLayout>
+</LinearLayout>

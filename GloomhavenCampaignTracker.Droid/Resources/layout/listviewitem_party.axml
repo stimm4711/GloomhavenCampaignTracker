@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gloom_rowBackground">
+    <TextView
+        android:id="@+id/partyViewItem_nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="8dp"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:textStyle="bold" />
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/partyViewItem_nameTextView"
+        android:layout_marginTop="5px">
+        <TextView
+            android:id="@+id/partyViewItem_charCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="8dp"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:layout_gravity="left" />
+        <TextView
+            android:id="@+id/partyViewItem_achCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="8dp"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/partyViewItem_charCount" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/optionsImageView"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:alpha="0.7" />
+    </RelativeLayout>
+</RelativeLayout>

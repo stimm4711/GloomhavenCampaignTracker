@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3"
+        android:background="@drawable/border"
+        android:padding="5dp">
+        <TextView
+            android:text="Server"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:textColor="@color/gloom_primaryText" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <Button
+                android:text="Start Server"
+                android:id="@+id/btn_serverstart"
+                android:background="@drawable/borderbuttons"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:layout_weight="0.5" />
+            <TextView
+                android:text="Offline"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/txt_serverstatus"
+                android:textColor="@color/gloom_primaryText"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical|center_horizontal" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout2"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:text="IP address:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/txt_ipaddresslabel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/gloom_primaryText"
+                android:paddingLeft="3dp"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical|center_horizontal" />
+            <TextView
+                android:text="0.0.0.0"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/txt_serveripadress"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/gloom_primaryText" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout4"
+        android:background="@drawable/border"
+        android:layout_marginTop="10dp"
+        android:padding="5dp">
+        <TextView
+            android:text="Client"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_clientlabel"
+            android:textColor="@color/gloom_primaryText" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout5">
+            <TextView
+                android:text="Enter server IP address"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/txt_enterserveriplabel"
+                android:layout_width="0dp"
+                android:textColor="@color/gloom_primaryText"
+                android:gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:layout_height="match_parent" />
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/edit_serveripaddress"
+                android:layout_weight="0.5"
+                android:textColor="@color/gloom_primaryText"
+                android:textColorHighlight="@android:color/background_light" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout6">
+            <TextView
+                android:text="Enter your name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView3"
+                android:layout_weight="0.5"
+                android:textColor="@color/gloom_primaryText"
+                android:gravity="center_vertical" />
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/edit_username"
+                android:textColor="@color/gloom_primaryText"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+        <Button
+            android:text="Connect to Server"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbuttons"
+            android:id="@+id/btn_connect" />
+        <Button
+            android:text="Load campaign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonsborder"
+            android:id="@+id/btn_select_campaign"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+</LinearLayout>

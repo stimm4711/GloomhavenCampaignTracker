@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <group android:checkableBehavior="single">
+    <item
+      android:id="@+id/nav_campaign"
+      android:title="Campaign" 
+      android:icon="@drawable/ic_story"/>
+    <item
+      android:id="@+id/nav_characters"
+      android:title="Characters"
+      android:icon="@drawable/ic_characters"/>
+    <item
+      android:id="@+id/nav_fill1"/>
+    <item
+      android:id="@+id/nav_backup"
+      android:title="Database Backup"
+      android:icon="@drawable/ic_export"/>
+    <item
+      android:id="@+id/nav_sharewifi"
+      android:title="Share campaigns"
+      android:icon="@drawable/ic_export"
+      android:visible="false"/>
+    <item
+      android:id="@+id/nav_fill2"/>
+    <item
+      android:id="@+id/nav_settings"
+      android:title="Settings"
+      android:icon="@drawable/ic_settings_24px"/>
+    <item
+      android:id="@+id/nav_releasenotes"
+      android:title="Releasenotes"
+      android:icon="@drawable/ic_new_releases_24px"/>
+    <item
+      android:id="@+id/nav_support"
+      android:title="Support Developer"
+      android:icon="@drawable/ic_feedback_24px"/>
+    <item
+      android:id="@+id/nav_about"
+      android:title="About"
+      android:icon="@drawable/ic_about"/>
+  </group>
+</menu>

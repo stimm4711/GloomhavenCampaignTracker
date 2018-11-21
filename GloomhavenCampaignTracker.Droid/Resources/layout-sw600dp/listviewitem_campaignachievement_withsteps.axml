@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gloom_primaryLighter">
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/linearLayout1">
+        <TextView
+            android:id="@+id/campaignAchievement_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/optionsButton"
+            android:background="@drawable/ic_more_vert_black_24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:alpha="0.7" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/linearLayout2"
+        android:layout_marginBottom="2px">
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/decreaseAchStepsButton"
+            android:background="@drawable/ic_remove_circle_black_24dp"
+            android:layout_marginRight="10px"
+            android:layout_marginLeft="10px"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:alpha="0.7" />
+        <TextView
+            android:id="@+id/campaignAchievement_steps"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:layout_marginRight="20px"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@id/decreaseAchStepsButton"
+            android:text="3/5"
+            android:gravity="center_vertical" />
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/raiseAchStepsbutton"
+            android:background="@drawable/ic_add_circle_black_24dp"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/campaignAchievement_steps"
+            android:alpha="0.7" />
+    </RelativeLayout>
+</LinearLayout>

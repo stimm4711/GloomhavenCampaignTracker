@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SharedProjectFile_SccProperties">
+    <SharedProjectFile_ProjectGuid>{fdd6efa1-4b86-424e-b35f-f7f0a7a9ae93}</SharedProjectFile_ProjectGuid>
+    <SharedProjectFile_SccProjectName>SAK</SharedProjectFile_SccProjectName>
+    <SharedProjectFile_SccAuxPath>SAK</SharedProjectFile_SccAuxPath>
+    <SharedProjectFile_SccLocalPath>SAK</SharedProjectFile_SccLocalPath>
+    <SharedProjectFile_SccProvider>SAK</SharedProjectFile_SccProvider>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>27a5574a-1481-4ad8-90d0-bb037d5c3411</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" />
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Business\AchievementCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\BackupHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Campaign.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\CampaignCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\CampaignGlobalAchievement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\CampaignUnlockedScenario.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\CampaignScenarioSearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\EventDeck.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\GCTContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\ISpinneritem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Abstract\Client.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\CampaignBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\CampaignExchangeData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\CustomEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Messages\ClientConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\DataExchangeProtocoll.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\GloomhavenClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\GloomhavenServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Abstract\NetworkBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Abstract\Server.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Messages\ICampaignExchange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Messages\Request.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Messages\ServerConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\PartyAchievement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Scenario.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\ScenarioCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\CharacterQuestSearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignPartyDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\AchievementDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignEventHistoryLogItemDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignUnlockedItemsDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CharacterDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignGlobalAchievementDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignUnlocksDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\AchievementTypeDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\AbilityDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\PartyAchievementDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\GloomhavenSettingsDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignUnlockedScenariosDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CharacterPersonalQuestCounterDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\PersonalQuestCounterDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\PersonalQuestDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\EnhancementDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\ClassPerkDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\ScenarioDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\ItemDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CharacterPersonalQuestCounters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_PersonalQuestCounter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseUpdateHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\GloomhavenDBHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\IDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\PartyDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Enhancement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_AbilityEnhancement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CampaignUnlockedItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CharacterItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CharacterPerk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_ClassPerk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_PersonalQuest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Treasure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Ability.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Achievement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_AchievementType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Campaign.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CampaignEventHistoryLogItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CampaignGlobalAchievement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CampaignParty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CampaignPartyAchievement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CampaignUnlockedScenario.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CampaignUnlocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Character.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_GlommhavenSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_PartyAchievement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Perk.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_Scenario.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\IEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\ICampaignDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\EntityCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignPartyRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\AchievementRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignUnlockedScenarioRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignEventHistoryLogItemRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignGlobalAchievementRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignUnlocksRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\AchievementTypeRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignUnlockedItemRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\AbilityRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\PartyAchievementRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\GloomhavenSettingsRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CharacterPersonalQuestCountersRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\PersonalQuestCountersRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\PersonalQuestRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\EnhancementRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\ClassPerkRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\ScenarioRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\ScenarioDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\CharacterDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CharacterRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\CampaignDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\ItemRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\ItemDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\DataServiceCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\IDataService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\ViewEntities\DL_VIEW_Campaign_selectable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\ViewEntities\DL_VIEW_Campaign.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\ViewEntities\DL_VIEW_CampaignParties.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Business\Helper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Resources\values\sqlcommands.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)sqlcommands.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Business\Network\Abstract\" />
+  </ItemGroup>
+</Project>
