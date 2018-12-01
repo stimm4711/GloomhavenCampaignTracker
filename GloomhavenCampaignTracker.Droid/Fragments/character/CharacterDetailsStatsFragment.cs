@@ -11,12 +11,10 @@ using System.Collections.Generic;
 using Android.Graphics;
 using Android.Support.V4.Content;
 using GloomhavenCampaignTracker.Shared.Business;
-using Android.Util;
 using GloomhavenCampaignTracker.Shared;
 using System.Linq;
 using GloomhavenCampaignTracker.Droid.Views;
 using static GloomhavenCampaignTracker.Droid.Views.PersonalQuestCounterView;
-using static GloomhavenCampaignTracker.Droid.Views.PersonalQuestCounterBase;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.character
 {
@@ -93,8 +91,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
             if (Character != null)
             {
-                ShowPersonalQuest();
-
                 _levelEditText.Text = $"{Character.Level}";
                 _xpEditText.Text = $"{Character.Experience}";
                 _goldEditText.Text = $"{Character.Gold}";
@@ -133,6 +129,15 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             }
 
             return _view;
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            if (Character != null)
+            {
+                ShowPersonalQuest();
+            }
         }
 
         private void _donateToSactuaryButton_Click(object sender, EventArgs e)
@@ -251,9 +256,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                         if(counterForUnlockingScenario == null || counterForUnlockingScenario.Value == counterForUnlockingScenario.PersonalQuestCounter.CounterValue)
                         {
                             var cpqcLayout = new PersonalQuestCheckView(Context);
-                            cpqcLayout.SetCounter(pqc);
-
                             _linearLayoutPersonalQuest.AddView(cpqcLayout);
+                            cpqcLayout.SetCounter(pqc);                           
                         }                       
                     }                   
                 }

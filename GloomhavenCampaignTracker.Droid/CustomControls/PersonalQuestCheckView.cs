@@ -50,7 +50,7 @@ namespace GloomhavenCampaignTracker.Droid.Views
         {
             if(_counter.Value == 1 != _countervalue.Checked)
             {
-                if (_counter.Value == 0)
+                if (_countervalue.Checked)
                 {
                     _counter.Value = 1;
                 }
@@ -61,6 +61,7 @@ namespace GloomhavenCampaignTracker.Droid.Views
             }
             
             UpdateView();
+            CharacterPersonalQuestCountersRepository.InsertOrReplace(_counter);
         }
 
         public void SetCounter(DL_CharacterPersonalQuestCounter counter)
