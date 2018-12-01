@@ -12,7 +12,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 3, 16);
+        public static Version Dbversion { get; } = new Version(1, 3, 18);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
@@ -176,8 +176,62 @@ namespace Data
                     MigrateSummonerPerks(perks);
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 3, 17)) == VersionTime.Earlier)
+                {
+                    FixNameOfScenario31();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 3, 18)) == VersionTime.Earlier)
+                {
+                    FixNameOfScenario54();
+                }
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
+            }
+        }
+
+        private static void FixNameOfScenario54()
+        {
+            var scenario = ScenarioRepository.Get(false).FirstOrDefault(x => x.Scenarionumber == 54);
+
+            Connection.BeginTransaction();
+            try
+            {
+                if (scenario == null) return;
+
+                scenario.Name = "Palace of Ice";
+
+                ScenarioRepository.InsertOrReplace(scenario);
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        private static void FixNameOfScenario31()
+        {
+            var scenario = ScenarioRepository.Get(false).FirstOrDefault(x => x.Scenarionumber == 31);
+
+            Connection.BeginTransaction();
+            try
+            {
+                if (scenario == null) return;
+
+                scenario.Name = "Plane of Night";
+
+                ScenarioRepository.InsertOrReplace(scenario);
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
             }
         }
 

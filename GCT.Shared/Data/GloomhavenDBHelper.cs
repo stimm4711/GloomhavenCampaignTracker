@@ -1464,7 +1464,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 SaveScenario("Outer Ritual Chamber", 28,"29", requiredPartyAchievements: "6");
                 SaveScenario("Sanctuary of Gloom",29, requiredPartyAchievements: "4");
                 SaveScenario("Shrine of the Depths",30,"42", requiredPartyAchievements: "21");
-                SaveScenario("Plane of Nigth",31,"39,37,38,43", requiredGlobalAchievements: "8,301");
+                SaveScenario("Plane of Night",31,"39,37,38,43", requiredGlobalAchievements: "8,301");
                 SaveScenario("Decrepit Wood",32,"33,40", requiredPartyAchievements: "21");
                 SaveScenario("Savvas Armory",33, requiredPartyAchievements: "21,17"); // OR
                 SaveScenario("Scorched Summit", 34, requiredPartyAchievements: "17", blockingGlobalAchievements:"102");
@@ -1487,7 +1487,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 SaveScenario("The Void",51, requiredGlobalAchievements: "133");
                 SaveScenario("Noxious Cellar",52,"53");
                 SaveScenario("Crypt Basement", 53,"54");
-                SaveScenario("Place of Ice",54);
+                SaveScenario("Palace of Ice",54);
                 SaveScenario("Foggy Thicket",55,"56");
                 SaveScenario("Bandits Wood", 56);
                 SaveScenario("Investigation",57,"58");
