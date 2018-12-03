@@ -12,7 +12,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 3, 18);
+        public static Version Dbversion { get; } = new Version(1, 3, 20);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
@@ -186,8 +186,81 @@ namespace Data
                     FixNameOfScenario54();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 3, 19)) == VersionTime.Earlier)
+                {
+                    FixNameOfPQ533();
+                    FixNameOfGA130();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 3, 20)) == VersionTime.Earlier)
+                {
+                    FixScenarioRegionOf61();
+                }
+
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
+            }
+        }
+
+        private static void FixScenarioRegionOf61()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                var sdc = new ScenarioDataService();
+                sdc.UpdateScenarioRegion(61, 4);
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        private static void FixNameOfGA130()
+        {
+            var iten = AchievementTypeRepository.Get(false).FirstOrDefault(x => x.InternalNumber == 130);
+
+            Connection.BeginTransaction();
+            try
+            {
+                if (iten == null) return;
+
+                iten.Name = "End of Corruption";
+
+                AchievementTypeRepository.InsertOrReplace(iten);
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        private static void FixNameOfPQ533()
+        {
+            var pq = PersonalQuestRepository.Get(false).FirstOrDefault(x => x.QuestNumber == 533);
+
+            Connection.BeginTransaction();
+            try
+            {
+                if (pq == null) return;
+
+                pq.QuestName = "The Perfect Poison";
+
+                PersonalQuestRepository.InsertOrReplace(pq);
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
             }
         }
 

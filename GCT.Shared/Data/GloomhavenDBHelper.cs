@@ -187,7 +187,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 sdc.UpdateScenarioRegion(58, 1);
                 sdc.UpdateScenarioRegion(59, 2);
                 sdc.UpdateScenarioRegion(60, 1);
-                sdc.UpdateScenarioRegion(61, 7);
+                sdc.UpdateScenarioRegion(61, 4);
                 sdc.UpdateScenarioRegion(62, 0);
                 sdc.UpdateScenarioRegion(63, 6);
                 sdc.UpdateScenarioRegion(64, 7);
@@ -1395,7 +1395,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 SaveAchievementType("The Demon Dethroned",10);
                 SaveAchievementType("The Rift Neutralized",11); // The Rift Closed
                 SaveAchievementType("End of the Invasion", 12);
-                SaveAchievementType("End of Curruption", 130, 3);
+                SaveAchievementType("End of Corruption", 130, 3);
                 SaveAchievementType("End of Gloom", 14);
                 SaveAchievementType("Ancient Technology", 150,5);
                 SaveAchievementType("Annihilation of the Order", 16);
