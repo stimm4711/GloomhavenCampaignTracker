@@ -46,11 +46,9 @@ namespace Data
                 {
                     GloomhavenDbHelper.FillEnhancement();
 
-                    AddSawbonesPerks();
+                    CheckIfAllPerksExists();
 
-                    var perks = ClassPerkRepository.Get(false);
-
-                    MigrateSawbonePerks(perks);
+                    List<DL_ClassPerk> perks = ClassPerkRepository.Get(false);
 
                     FixTinkererHealPerk(perks);
 
@@ -84,24 +82,12 @@ namespace Data
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 1)) == VersionTime.Earlier)
                 {
-                    AddLightningPerks();
-                    AddSunPerks();
-
-                    var perks = ClassPerkRepository.Get(false);
-
-                    MigrateLightningPerks(perks);
-                    MigrateSunPerks(perks);
+                    CheckIfAllPerksExists();
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 3)) == VersionTime.Earlier)
                 {
-                    AddSummonerPerks();
-                    AddDoomstalkerPerks();
-
-                    var perks = ClassPerkRepository.Get(false);
-
-                    MigrateSummonerPerks(perks);
-                    MigrateDoomstalkerPerks(perks);
+                    CheckIfAllPerksExists();
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 4)) == VersionTime.Earlier)
@@ -116,25 +102,7 @@ namespace Data
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 7)) == VersionTime.Earlier)
                 {
-                    AddBeastTyrantPerks();
-                    AddElementalistPerks();
-                    AddNightShroudPerks();
-                    AddPlagueheraldPerks();
-                    AddQuatermasterPerks();
-                    AddSoothsingerPerks();
-                    AddSummonerPerks();
-                    AddDoomstalkerPerks();
-
-                    var perks = ClassPerkRepository.Get(false);
-
-                    MigrateBeastTyrantPerks(perks);
-                    MigrateElementalistPerks(perks);
-                    MigrateNightShroudPerks(perks);
-                    MigratePlagueheraldPerks(perks);
-                    MigrateQuatermasterPerks(perks);
-                    MigrateSoothsingerPerks(perks);
-                    MigrateDoomstalkerPerks(perks);
-                    MigrateSummonerPerks(perks);
+                    CheckIfAllPerksExists();
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 11)) == VersionTime.Earlier)
@@ -155,25 +123,7 @@ namespace Data
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 16)) == VersionTime.Earlier)
                 {
-                    AddQuatermasterPerks(); // 7
-                    AddSummonerPerks(); // 8
-                    AddNightShroudPerks(); // 9
-                    AddPlagueheraldPerks(); // 10
-                    AddSoothsingerPerks(); // 12
-                    AddDoomstalkerPerks(); // 13
-                    AddElementalistPerks(); // 15
-                    AddBeastTyrantPerks(); // 16                 
-
-                    var perks = ClassPerkRepository.Get(false);
-
-                    MigrateBeastTyrantPerks(perks);
-                    MigrateElementalistPerks(perks);
-                    MigrateNightShroudPerks(perks);
-                    MigratePlagueheraldPerks(perks);
-                    MigrateQuatermasterPerks(perks);
-                    MigrateSoothsingerPerks(perks);
-                    MigrateDoomstalkerPerks(perks);
-                    MigrateSummonerPerks(perks);
+                    CheckIfAllPerksExists();
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 17)) == VersionTime.Earlier)
@@ -201,6 +151,37 @@ namespace Data
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
             }
+        }
+
+        public static void CheckIfAllPerksExists()
+        {
+            List<DL_ClassPerk> perks = ClassPerkRepository.Get(false);
+
+            AddSunPerks(perks); // 6
+            AddQuatermasterPerks(perks); // 7
+            AddSummonerPerks(perks); // 8
+            AddNightShroudPerks(perks); // 9
+            AddPlagueheraldPerks(perks); // 10
+            AddLightningPerks(perks); // 11
+            AddSoothsingerPerks(perks); // 12
+            AddDoomstalkerPerks(perks); // 13
+            AddSawbonesPerks(perks); // 14
+            AddElementalistPerks(perks); // 15
+            AddBeastTyrantPerks(perks); // 16   
+                  
+            perks = ClassPerkRepository.Get(false);
+
+            MigrateSunPerks(perks);
+            MigrateQuatermasterPerks(perks);
+            MigrateSummonerPerks(perks);
+            MigrateNightShroudPerks(perks);
+            MigratePlagueheraldPerks(perks);
+            MigrateLightningPerks(perks);
+            MigrateSoothsingerPerks(perks);
+            MigrateDoomstalkerPerks(perks);
+            MigrateSawbonePerks(perks);
+            MigrateElementalistPerks(perks);
+            MigrateBeastTyrantPerks(perks);  
         }
 
         private static void FixScenarioRegionOf61()
@@ -245,16 +226,13 @@ namespace Data
         private static void FixNameOfPQ533()
         {
             var pq = PersonalQuestRepository.Get(false).FirstOrDefault(x => x.QuestNumber == 533);
+            if (pq == null) return;
 
             Connection.BeginTransaction();
             try
-            {
-                if (pq == null) return;
-
+            {              
                 pq.QuestName = "The Perfect Poison";
-
                 PersonalQuestRepository.InsertOrReplace(pq);
-
                 Connection.Commit();
             }
             catch
@@ -804,9 +782,9 @@ namespace Data
             }
         }
 
-        private static void AddSoothsingerPerks()
+        private static void AddSoothsingerPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 12))
+            if (!perks.Any(x => x.ClassId == 12))
             {
                 Connection.BeginTransaction();
                 try
@@ -838,9 +816,9 @@ namespace Data
             }
         }
 
-        private static void AddQuatermasterPerks()
+        private static void AddQuatermasterPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 7))
+            if (!perks.Any(x => x.ClassId == 7))
             {
                 Connection.BeginTransaction();
                 try
@@ -872,9 +850,9 @@ namespace Data
             }
         }
 
-        private static void AddPlagueheraldPerks()
+        private static void AddPlagueheraldPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 10))
+            if (!perks.Any(x => x.ClassId == 10))
             {
                 Connection.BeginTransaction();
                 try
@@ -906,9 +884,9 @@ namespace Data
             }
         }
 
-        private static void AddNightShroudPerks()
+        private static void AddNightShroudPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 9))
+            if (!perks.Any(x => x.ClassId == 9))
             {
                 Connection.BeginTransaction();
                 try
@@ -940,9 +918,9 @@ namespace Data
             }
         }
 
-        private static void AddElementalistPerks()
+        private static void AddElementalistPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 15))
+            if (!perks.Any(x => x.ClassId == 15))
             {
                 Connection.BeginTransaction();
                 try
@@ -974,9 +952,9 @@ namespace Data
             }
         }
 
-        private static void AddBeastTyrantPerks()
+        private static void AddBeastTyrantPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 16))
+            if (!perks.Any(x => x.ClassId == 16))
             {
                 Connection.BeginTransaction();
                 try
@@ -1089,9 +1067,9 @@ namespace Data
             }
         }
 
-        private static void AddDoomstalkerPerks()
+        private static void AddDoomstalkerPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 13))
+            if (!perks.Any(x => x.ClassId == 13))
             {
                 Connection.BeginTransaction();
                 try
@@ -1123,9 +1101,9 @@ namespace Data
             }
         }
 
-        private static void AddSummonerPerks()
+        private static void AddSummonerPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 8))
+            if (!perks.Any(x => x.ClassId == 8))
             {
                 Connection.BeginTransaction();
                 try
@@ -1199,9 +1177,9 @@ namespace Data
             }
         }
 
-        private static void AddSunPerks()
+        private static void AddSunPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 6))
+            if (!perks.Any(x => x.ClassId == 6))
             {
                 Connection.BeginTransaction();
                 try
@@ -1263,9 +1241,9 @@ namespace Data
             }
         }
 
-        private static void AddLightningPerks()
+        private static void AddLightningPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 11))
+            if (!perks.Any(x => x.ClassId == 11))
             {
                 Connection.BeginTransaction();
                 try
@@ -1456,9 +1434,9 @@ namespace Data
             }
         }
 
-        private static void AddSawbonesPerks()
+        private static void AddSawbonesPerks(List<DL_ClassPerk> perks)
         {
-            if (!ClassPerkRepository.Get(false).Any(x => x.ClassId == 14))
+            if (!perks.Any(x => x.ClassId == 14))
             {
                 Connection.BeginTransaction();
                 try

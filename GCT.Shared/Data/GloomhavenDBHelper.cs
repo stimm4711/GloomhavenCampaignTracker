@@ -52,7 +52,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
         {
             CreateTables();
 
-            var currentDbVersion = GloomhavenSettingsRepository.Get().FirstOrDefault(x => x.Name == "DBVERSION");                       
+            var currentDbVersion = GloomhavenSettingsRepository.Get().FirstOrDefault(x => x.Name == "DBVERSION");
+
+            DatabaseUpdateHelper.CheckIfAllPerksExists();
 
             if (currentDbVersion == null)
             {
@@ -63,6 +65,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);                                 
             }
         }
+
 
         private static void CreateTables()
         {
