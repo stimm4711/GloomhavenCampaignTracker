@@ -204,12 +204,11 @@ namespace Data
         private static void FixNameOfGA130()
         {
             var iten = AchievementTypeRepository.Get(false).FirstOrDefault(x => x.InternalNumber == 130);
+            if (iten == null) return;
 
             Connection.BeginTransaction();
             try
-            {
-                if (iten == null) return;
-
+            {  
                 iten.Name = "End of Corruption";
 
                 AchievementTypeRepository.InsertOrReplace(iten);
@@ -245,12 +244,11 @@ namespace Data
         private static void FixNameOfScenario54()
         {
             var scenario = ScenarioRepository.Get(false).FirstOrDefault(x => x.Scenarionumber == 54);
+            if (scenario == null) return;
 
             Connection.BeginTransaction();
             try
             {
-                if (scenario == null) return;
-
                 scenario.Name = "Palace of Ice";
 
                 ScenarioRepository.InsertOrReplace(scenario);
@@ -267,12 +265,11 @@ namespace Data
         private static void FixNameOfScenario31()
         {
             var scenario = ScenarioRepository.Get(false).FirstOrDefault(x => x.Scenarionumber == 31);
+            if (scenario == null) return;
 
             Connection.BeginTransaction();
             try
             {
-                if (scenario == null) return;
-
                 scenario.Name = "Plane of Night";
 
                 ScenarioRepository.InsertOrReplace(scenario);
@@ -600,12 +597,11 @@ namespace Data
         private static void FixNameOfScenario22()
         {
             var scenario = ScenarioRepository.Get(false).FirstOrDefault(x => x.Scenarionumber == 22);
+            if (scenario == null) return;
 
             Connection.BeginTransaction();
             try
-            {
-                if (scenario == null) return;
-
+            {      
                 scenario.Name = "Temple of the Elements";
 
                 ScenarioRepository.InsertOrReplace(scenario);
@@ -1415,12 +1411,11 @@ namespace Data
         private static void UpdateGlobalAchievementNameRiftClosed()
         {
             var ga = AchievementTypeRepository.Get(false).FirstOrDefault(x => x.Name == "The Rift Closed");
+            if (ga == null) return;
 
             Connection.BeginTransaction();
             try
-            {
-                if (ga == null) return;
-
+            {              
                 ga.Name = "The Rift Neutralized";
 
                 AchievementTypeRepository.InsertOrReplace(ga);
