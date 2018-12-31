@@ -157,6 +157,13 @@ namespace Data
         {
             List<DL_ClassPerk> perks = ClassPerkRepository.Get(false);
 
+            AddBrutePerks(perks); // 0
+            AddTinkererPerks(perks); // 1
+            AddSpellweaverPerks(perks); // 2
+            AddScoundrelPerks(perks); // 3
+            AddCragheartPerks(perks); // 4
+            AddMindthiefPerks(perks); // 5   
+  
             AddSunPerks(perks); // 6
             AddQuatermasterPerks(perks); // 7
             AddSummonerPerks(perks); // 8
@@ -182,6 +189,204 @@ namespace Data
             MigrateSawbonePerks(perks);
             MigrateElementalistPerks(perks);
             MigrateBeastTyrantPerks(perks);  
+        }
+
+        private static void AddScoundrelPerks(List<DL_ClassPerk> perks)
+        {
+            if (!perks.Any(x => x.ClassId == 3))
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertClassPerk(3, "Remove two [-1] cards", 1);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Remove two [-1] cards", 2);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Remove four [+0] cards", 3);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Replace one [-2] card with one [+0] card", 4);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Replace one [-1] card with one [+1] card", 5);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Replace one [+0] card with one [+2] card", 6);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Replace one [+0] card with one [+2] card", 7);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Add two [RM] [+1] cards", 8);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Add two [RM] [+1] cards", 9);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Add two [RM] PIERCE [PI] 3 cards", 10);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Add two [RM] POISON [PO] cards", 11);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Add two [RM] POISON [PO] cards", 12);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Add two [RM] MUDDLE [M] cards", 13);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Add one [RM] INVISIBLE [IN] card", 14);
+                    GloomhavenDbHelper.InsertClassPerk(3, "Ignore negative scenario effects", 15);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        private static void AddSpellweaverPerks(List<DL_ClassPerk> perks)
+        {
+            if (!perks.Any(x => x.ClassId == 2))
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertClassPerk(2, "Remove four [+0] cards", 1);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Replace one [-1] card with one [+1] card", 2);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Replace one [-1] card with one [+1] card", 3);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add two [+1] cards", 4);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add two [+1] cards", 5);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+0] STUN [ST] card", 6);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+1] WOUND card", 7);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+1] IMMOBILIZE [I] card", 8);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+1] CURSE [C] card", 9);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+2] [FIRE] card", 10);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+2] [FIRE] card", 11);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+2] [FROST] card", 12);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+2] [FROST] card", 13);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [RM] [EARTH] and one [RM] [WIND] card", 14);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [RM] [LIGHT] and one [RM] [DARK] card", 15);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        private static void AddMindthiefPerks(List<DL_ClassPerk> perks)
+        {
+            if (!perks.Any(x => x.ClassId == 5))
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertClassPerk(5, "Remove two [-1] cards", 1);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Remove two [-1] cards", 2);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Remove four [+0] cards", 3);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Replace two [+1] cards with two [+2] cards", 4);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Replace one [-2] card with one [+0] card", 5);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add one [+2] FROST card", 6);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add one [+2] FROST card", 7);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add two [RM] [+1] cards", 8);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add two [RM] [+1] cards", 9);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add three [RM] PULL [PUL] 1 cards", 10);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add three [RM] MUDDLE [M] cards", 11);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add two [RM] IMMOBILIZE [I] cards", 12);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add one [RM] STUN [ST] card", 13);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add one [RM] DISARM [D] card and one [RM] MUDDLE [M] card ", 14);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Ignore negative scenario effects", 15);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        private static void AddCragheartPerks(List<DL_ClassPerk> perks)
+        {
+            if (!perks.Any(x => x.ClassId == 4))
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertClassPerk(4, "Remove four [+0] cards", 1);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Replace one [-1] card with one [+1] card", 2);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Replace one [-1] card with one [+1] card", 3);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Replace one [-1] card with one [+1] card", 4);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add one [-2] card and two [+2] cards", 5);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add one [+1] IMMOBILIZE [I] card", 6);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add one [+1] IMMOBILIZE [I] card", 7);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add one [+2] MUDDLE [M] card", 8);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add one [+2] MUDDLE [M] card", 9);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add two [RM] PUSH [PU] 2 cards", 10);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add two [RM] [EARTH] cards", 11);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add two [RM] [EARTH] cards", 12);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Add two [RM] [WIND] cards", 13);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Ignore negative item effects", 14);
+                    GloomhavenDbHelper.InsertClassPerk(4, "Ignore negative scenario effects", 15);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        private static void AddTinkererPerks(List<DL_ClassPerk> perks)
+        {
+            if (!perks.Any(x => x.ClassId == 1))
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertClassPerk(1, "Remove two [-1] cards", 1);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Remove two [-1] cards", 2);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Replace one [-2] card with one [+0] card", 3);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add two [+1] cards", 4);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add one [+3] card", 5);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add two [RM] [FIRE] cards", 6);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add three [RM] MUDDLE [M] cards", 7);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add one [+1] WOUND [W] card", 8);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add one [+1] WOUND [W] card", 9);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add one [+1] IMMOBILIZE [I] card", 10);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add one [+1] IMMOBILIZE [I] card", 11);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add one [+1] Heal [H]2, self card", 12);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add one [+1] Heal [H]2, self card", 13);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Add one [+0] ADD TARGET [T] card", 14);
+                    GloomhavenDbHelper.InsertClassPerk(1, "Ignore negative scenario effects", 15);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        private static void AddBrutePerks(List<DL_ClassPerk> perks)
+        {
+            if (!perks.Any(x => x.ClassId == 0))
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertClassPerk(0, "Remove two [-1] cards", 1);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Replace one [-1] card with one [+1] card", 2);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add two [+1] cards", 3);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add two [+1] cards", 4);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add one [+3] card", 5);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add three [RM] PUSH [PU] 1 cards", 6);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add three [RM] PUSH [PU] 1 cards", 7);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add two [RM] PIERCE [PI] 3 cards", 8);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add one [RM] STUN [ST] card", 9);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add one [RM] STUN [ST] card", 10);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add one [RM] DISARM [D] card and one [RM] MUDDLE [M] card", 11);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add one [RM] ADD TARGET [T] card", 12);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add one [RM] ADD TARGET [T] card", 13);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Add one [+1] Shield [SH] 1, Self card", 14);
+                    GloomhavenDbHelper.InsertClassPerk(0, "Ignore negative item effects and add one [+1] card", 15);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }
         }
 
         private static void FixScenarioRegionOf61()

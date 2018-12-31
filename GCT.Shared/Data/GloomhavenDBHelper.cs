@@ -54,15 +54,14 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 
             var currentDbVersion = GloomhavenSettingsRepository.Get().FirstOrDefault(x => x.Name == "DBVERSION");
 
-            DatabaseUpdateHelper.CheckIfAllPerksExists();
-
             if (currentDbVersion == null)
             {
                 currentDbVersion = CreateNewDB();
             }
             else
             {
-                DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);                                 
+                DatabaseUpdateHelper.CheckIfAllPerksExists();
+                DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);               
             }
         }
 
