@@ -8,7 +8,7 @@ using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks;
 using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
@@ -112,7 +112,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                             if (string.IsNullOrEmpty(nameEdit.Text)) return;
                             GCTContext.CurrentCampaign.CampaignData.Name = nameEdit.Text;
 
-                            GCTContext.CurrentCampaign.Save();
+                            GCTContext.CurrentCampaign.Save(recursive: false);
                             ((MainActivity)Activity).SupportActionBar.Title = GCTContext.CampaignCollection.CurrentCampaign.CampaignData.Name;
                         })
                         .Show();

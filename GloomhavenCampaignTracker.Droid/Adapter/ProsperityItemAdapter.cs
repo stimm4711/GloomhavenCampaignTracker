@@ -1,7 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Android.Content;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
+using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
@@ -48,7 +54,16 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 holder.ItemPrice = convertView.FindViewById<TextView>(Resource.Id.itemcostsTextView);
                 holder.ItemCategoryImage = convertView.FindViewById<ImageView>(Resource.Id.categorieImageView);
                 convertView.Tag = holder;
-            }
+
+                // Set Item Click Event
+                convertView.Click += (sender, e) =>
+                {
+                    var v = (View)sender;
+                    var numberTxtView = v.FindViewById<TextView>(Resource.Id.itemnumber);
+                    if (numberTxtView == null) return;
+                    ItemClick((DL_Item)numberTxtView.Tag);
+                };
+            }           
 
             var item = _items[position];
 
@@ -57,8 +72,18 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             holder.ItemNumber.Text = $"# {item.Itemnumber}";
             holder.ItemPrice.Text = $"{item.Itemprice} Gold";
             holder.ItemCategoryImage.SetImageResource(ResourceHelper.GetItemCategorieIconRessourceId(item.Itemcategorie));
+            holder.ItemNumber.Tag = item;
 
             return convertView;
+        }
+
+        private void ItemClick(DL_Item item)
+        {
+            var numbertext = item.GetNumberText();
+            if (string.IsNullOrEmpty(numbertext)) return;
+            var diag = new ItemImageViewDialogBuilder(_context, Resource.Style.MyTransparentDialogTheme)
+                        .SetItemNumber(numbertext)
+                        .Show();
         }
 
         private class DL_ItemHolder : Java.Lang.Object

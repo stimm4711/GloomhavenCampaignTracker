@@ -3,7 +3,7 @@ using Android.Views;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using Android.Support.V4.App;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using System.Linq;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.character

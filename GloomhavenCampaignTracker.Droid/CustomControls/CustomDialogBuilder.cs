@@ -12,7 +12,7 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
     /// <summary>
     /// https://github.com/danoz73/QustomDialog/blob/master/src/com/qustom/dialog/QustomDialogBuilder.java
     /// </summary>
-    public sealed class CustomDialogBuilder : AlertDialog.Builder
+    public class CustomDialogBuilder : AlertDialog.Builder
     {
         /** The custom_body layout */
         private readonly View mDialogView;

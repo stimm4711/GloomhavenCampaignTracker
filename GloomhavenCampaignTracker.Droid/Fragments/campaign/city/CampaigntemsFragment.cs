@@ -4,7 +4,7 @@ using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Linq;
@@ -21,17 +21,24 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
             _prosperityLevel = prosperitylevel;
         }
 
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            _dataChanged = false;
+        }
+
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            if(_prosperityLevel >= 1 && _prosperityLevel <= 9)
+            if (_prosperityLevel >= 1 && _prosperityLevel <= 9)
             {
                 _view = inflater.Inflate(Resource.Layout.fragment_itemstore_prosperityitems, container, false);
             }
             else
             {
-                _view = inflater.Inflate(Resource.Layout.fragment_itemstore_unlockedIiems, container, false);               
+                _view = inflater.Inflate(Resource.Layout.fragment_itemstore_unlockedIiems, container, false);
             }
 
             _lv = _view.FindViewById<ListView>(Resource.Id.itemsListView);
@@ -55,21 +62,25 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
 
         private void FillListView()
         {
-            if(_prosperityLevel >= 1 && _prosperityLevel <= 9)
+            if (_prosperityLevel >= 1 && _prosperityLevel <= 9)
             {
-                var items =  DataServiceCollection.ItemDataService.GetByProsperity(_prosperityLevel);
+                var items = DataServiceCollection.ItemDataService.GetByProsperity(_prosperityLevel);
                 _lv.Adapter = new ProsperityItemAdapter(Context, items);
             }
             else
             {
                 var items = GCTContext.CurrentCampaign.CampaignData.UnlockedItems;
-                foreach(var item in items)
+                foreach (var item in items)
                 {
-                    if(item.Prosperitylevel <= GCTContext.CurrentCampaign.GetProsperityLevel()) item.IsHide = true;
-                    if(item.Prosperitylevel > GCTContext.CurrentCampaign.GetProsperityLevel() && item.IsHide) item.IsHide = false;
+                    if (item.Prosperitylevel <= GCTContext.CurrentCampaign.GetProsperityLevel()) item.IsHide = true;
+                    if (item.Prosperitylevel > GCTContext.CurrentCampaign.GetProsperityLevel() && item.IsHide) item.IsHide = false;
                 }
-                _lv.Adapter = new UnlockedItemAdapter(Context, items);
-            }           
+
+                var adapter = new UnlockedItemAdapter(Context, items);
+                adapter.DataModified += Adapter_DataModified;
+
+                _lv.Adapter = adapter;
+            }
         }
 
         /// <summary>
@@ -77,7 +88,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
         /// </summary>
         /// <param name="lv"></param>
         private void AddNewItemDialog()
-        {            
+        {
             var view = _inflater.Inflate(Resource.Layout.alertdialog_listview, null);
             var listview = view.FindViewById<ListView>(Resource.Id.listView);
             listview.ItemsCanFocus = true;
@@ -88,10 +99,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
             var itemadapter = new SelectableItemAdapter(Context, selectableItems, false);
             listview.Adapter = itemadapter;
 
-            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+            new CustomDialogBuilder(base.Context, Resource.Style.MyDialogTheme)
                 .SetCustomView(view)
                 .SetTitle($"Select unlocked items")
-                .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
+                .SetNegativeButton(base.Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
                 .SetPositiveButton("Add selected items to itemstore", (senderAlert, args) =>
                 {
                     var selectedItems = itemadapter.GetSelected();
@@ -100,11 +111,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
                         GCTContext.CurrentCampaign.CampaignData.UnlockedItems.Add(si);
                     }
 
-                    GCTContext.CurrentCampaign.Save();
+                    SetModified();
                     FillListView();
                 })
                 .Show();
-        }
+        }   
 
         public override void OnStop()
         {

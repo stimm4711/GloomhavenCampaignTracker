@@ -8,7 +8,7 @@ using Data.ViewEntities;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign;
 using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using Java.Lang;

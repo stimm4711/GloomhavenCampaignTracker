@@ -54,5 +54,12 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
             hashCode = hashCode * -1521134295 + EqualityComparer<List<DL_Campaign>>.Default.GetHashCode(Campaign);
             return hashCode;
         }
+
+        public string GetNumberText()
+        {
+            if (Itemnumber < 10) return $"00{Itemnumber}";
+            if (Itemnumber < 100) return $"0{Itemnumber}";
+            else return $"{Itemnumber}";
+        }
     }
 }

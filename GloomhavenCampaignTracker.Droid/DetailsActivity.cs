@@ -3,16 +3,15 @@ using Android.OS;
 using Android.Support.V7.App;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Fragment = Android.Support.V4.App.Fragment;
-using GloomhavenCampaignTracker.Shared;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.world;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.party;
 using Android.Views;
 using Calligraphy;
 using Android.Content;
-using Android.Preferences;
 using GloomhavenCampaignTracker.Droid.Fragments;
 using GloomhavenCampaignTracker.Droid.Fragments.character;
+using GloomhavenCampaignTracker.Business;
 
 namespace GloomhavenCampaignTracker.Droid
 {

@@ -7,7 +7,7 @@ using GloomhavenCampaignTracker.Droid.Fragments.campaign.party;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.world;
 using GloomhavenCampaignTracker.Droid.Fragments.character;
 using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
@@ -77,14 +77,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                         fragTrans.Commit();
                         break;
                     case DetailFragmentTypes.Cityevents:
-                        detailsFrag = new CampaignEventsFragment(EventTypes.CityEvent);
+                        detailsFrag = CampaignEventsFragment.NewInstance(GCTContext.CurrentCampaign.CampaignData.Id, EventTypes.CityEvent);
                         title.Text = "City Events";
                         _dualtdetailLayout.Visibility = ViewStates.Visible;
                         fragTrans = _fragmentManager.BeginTransaction().Replace(Resource.Id.frame_details_city, detailsFrag);
                         fragTrans.Commit();
                         break;
                     case DetailFragmentTypes.Roadevents:
-                        detailsFrag = new CampaignEventsFragment(EventTypes.RoadEvent);
+                        detailsFrag = CampaignEventsFragment.NewInstance(GCTContext.CurrentCampaign.CampaignData.Id, EventTypes.RoadEvent); 
                         title.Text = "Road Events";
                         _dualtdetailLayout.Visibility = ViewStates.Visible;
                         fragTrans = _fragmentManager.BeginTransaction().Replace(Resource.Id.frame_details_world, detailsFrag);
@@ -122,6 +122,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             intent.PutExtra(DetailsActivity.SelectedFragId, (int) fragType);
             StartActivity(intent);
             return null;
+        }
+
+        protected void Adapter_DataModified(object sender, System.EventArgs e)
+        {
+            SetModified();
+        }
+
+        protected void SetModified()
+        {
+            _dataChanged = true;
         }
     }
 }

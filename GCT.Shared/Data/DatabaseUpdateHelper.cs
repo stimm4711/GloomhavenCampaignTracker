@@ -6,6 +6,7 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using SQLite;
 using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using GloomhavenCampaignTracker.Shared;
+using GloomhavenCampaignTracker.Business;
 
 namespace Data
 {
@@ -429,7 +430,7 @@ namespace Data
 
         private static void FixNameOfPQ533()
         {
-            var pq = PersonalQuestRepository.Get(false).FirstOrDefault(x => x.QuestNumber == 533);
+            var pq = PersonalQuestRepository.Get(true).FirstOrDefault(x => x.QuestNumber == 533);
             if (pq == null) return;
 
             Connection.BeginTransaction();
@@ -448,7 +449,7 @@ namespace Data
 
         private static void FixNameOfScenario54()
         {
-            var scenario = ScenarioRepository.Get(false).FirstOrDefault(x => x.Scenarionumber == 54);
+            var scenario = ScenarioRepository.Get(true).FirstOrDefault(x => x.Scenarionumber == 54);
             if (scenario == null) return;
 
             Connection.BeginTransaction();
@@ -469,7 +470,7 @@ namespace Data
 
         private static void FixNameOfScenario31()
         {
-            var scenario = ScenarioRepository.Get(false).FirstOrDefault(x => x.Scenarionumber == 31);
+            var scenario = ScenarioRepository.Get(true).FirstOrDefault(x => x.Scenarionumber == 31);
             if (scenario == null) return;
 
             Connection.BeginTransaction();
@@ -1559,11 +1560,17 @@ namespace Data
             {
                 foreach (DL_Campaign c in CampaignRepository.Get())
                 {
-                    if (c != null && c.EventDeckHistory != null)
+                    if (c != null)
                     {
-                        foreach (DL_CampaignEventHistoryLogItem evl in c.EventDeckHistory)
+                        List<DL_CampaignEventHistoryLogItem> roadevents = CampaignEventHistoryLogItemRepository.GetEvents(c.Id, 1);
+                        List<DL_CampaignEventHistoryLogItem> cityevents = CampaignEventHistoryLogItemRepository.GetEvents(c.Id, 2);
+                        foreach (DL_CampaignEventHistoryLogItem evl in roadevents)
                         {
-                            evl.Position = c.EventDeckHistory.IndexOf(evl);
+                            evl.Position = roadevents.IndexOf(evl);
+                        }
+                        foreach (DL_CampaignEventHistoryLogItem evl in cityevents)
+                        {
+                            evl.Position = cityevents.IndexOf(evl);
                         }
                     }
 
@@ -1574,7 +1581,6 @@ namespace Data
             catch
             {
                 Connection.Rollback();
-                throw;
             }
         }
 

@@ -5,13 +5,11 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.Adapter;
-using GloomhavenCampaignTracker.Shared.Business;
-using GloomhavenCampaignTracker.Shared.Data;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
-using GloomhavenCampaignTracker.Shared.Business.Network;
 using System.Threading.Tasks;
+using GloomhavenCampaignTracker.Business.Network;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
 {
@@ -116,8 +114,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
                 if(!GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.TheDrakePartyAchievementsUnlocked)
                 {
                     GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.TheDrakePartyAchievementsUnlocked = true;
-                    GCTContext.CurrentCampaign.AddEventToDeck(75, EventTypes.CityEvent);
-                    GCTContext.CurrentCampaign.AddEventToDeck(66, EventTypes.RoadEvent);
+                    GCTContext.CurrentCampaign.AddEventToDeck(Context, 75, EventTypes.CityEvent);
+                    GCTContext.CurrentCampaign.AddEventToDeck(Context, 66, EventTypes.RoadEvent);
 
                     if (GCTContext.CurrentCampaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.TheDrake_Slain))
                     {

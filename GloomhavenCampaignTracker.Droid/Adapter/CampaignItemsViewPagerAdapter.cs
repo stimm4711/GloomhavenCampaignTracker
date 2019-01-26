@@ -5,7 +5,7 @@ using Android.Widget;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.city;
 using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {

@@ -3,7 +3,6 @@ using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
-using GloomhavenCampaignTracker.Shared.Business.Network;
 using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using Newtonsoft.Json;
 using System;
@@ -13,12 +12,12 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Data.ViewEntities;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using Business.Network;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Linq;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Preferences;
+using GloomhavenCampaignTracker.Business.Network;
 using Data;
 
 namespace GloomhavenCampaignTracker.Droid

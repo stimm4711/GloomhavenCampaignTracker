@@ -4,10 +4,9 @@ using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
-using GloomhavenCampaignTracker.Shared.Business.Network;
+using GloomhavenCampaignTracker.Business;
 using System.Threading.Tasks;
+using GloomhavenCampaignTracker.Business.Network;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
 {

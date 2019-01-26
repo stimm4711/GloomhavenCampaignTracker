@@ -5,14 +5,12 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.Adapter;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
-using GloomhavenCampaignTracker.Shared.Business.Network;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System;
+using GloomhavenCampaignTracker.Business.Network;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 {
@@ -32,6 +30,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             return frag;
         }
 
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            // Prepare list data
+            InitListData();
+            _dataChanged = false;
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -40,10 +46,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             _view = inflater.Inflate(Resource.Layout.fragment_campaign_unlockedscenarios_expand, container, false);
 
             _expListView = _view.FindViewById<ExpandableListView>(Resource.Id.campaignWorld_lvUnlockedLocations);
-
-            // Prepare list data
-            InitListData();
-
+          
             var fab = _view.FindViewById<FloatingActionButton>(Resource.Id.fab);
 
             if (!fab.HasOnClickListeners)
@@ -53,6 +56,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                     ShowAssignScenarioDialog(inflater);
                 };
             }
+
+            BindListToAdapter();
 
             return _view;
         }
@@ -85,15 +90,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                     Activity.RunOnUiThread(() =>
                     {
                         FillListHeaderAndChilds(scenarios);
-                        BindListToAdapter();
                     });
 
                 });
             }
             else
             {
-                FillListHeaderAndChilds(scenarios);               
-                BindListToAdapter();
+                FillListHeaderAndChilds(scenarios);      
             }            
         }        
 
@@ -143,7 +146,17 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
             try
             {
-                return GCTContext.CurrentCampaign.UnlockedScenarios;
+                var scenarios = new List<CampaignUnlockedScenario>();
+
+                if (GCTContext.CurrentCampaign != null)
+                {
+                    foreach (var sd in GCTContext.CurrentCampaign.CampaignData.UnlockedScenarios)
+                    {
+                        scenarios.Add(new CampaignUnlockedScenario(sd));
+                    }
+                }
+
+                return scenarios;
             }
             catch
             {
@@ -164,9 +177,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             IEnumerable<int> assignedScenarioIds; 
             IEnumerable<DL_Scenario> selectableScenarios = scenarios;
 
-            if (Campaign?.UnlockedScenarios != null)
+            if (Campaign != null)
             {
-                assignedScenarioIds = Campaign.UnlockedScenarios.Select(y => y.ScenarioId);
+                assignedScenarioIds = Campaign.CampaignData.UnlockedScenarios.Select(y => y.ID_Scenario);
                 selectableScenarios = selectableScenarios.Where(x => !(assignedScenarioIds.Contains(x.Id)));
             }
 
@@ -187,9 +200,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
                     if (Campaign == null) return;
 
-                    if (Campaign.UnlockedScenarios == null) return;
-
-                    if (Campaign.UnlockedScenarios.Any(x => x.ScenarioId == scenario.Id))
+                    if (Campaign.CampaignData.UnlockedScenarios.Any(x => x.ID_Scenario == scenario.Id))
                     {
                         Toast.MakeText(Context, Resources.GetString(Resource.String.ScenarioAlreadyAssigned), ToastLength.Short).Show();
                     }

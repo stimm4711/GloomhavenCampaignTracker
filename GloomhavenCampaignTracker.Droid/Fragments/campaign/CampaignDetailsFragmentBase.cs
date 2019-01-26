@@ -1,7 +1,7 @@
 ﻿using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using System.Threading.Tasks;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
@@ -38,6 +38,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             }             
 
             base.OnStop();
+        }
+
+        protected void Adapter_DataModified(object sender, System.EventArgs e)
+        {
+            SetModified();
+        }
+
+        protected void SetModified()
+        {
+            _dataChanged = true;
         }
     }
 }

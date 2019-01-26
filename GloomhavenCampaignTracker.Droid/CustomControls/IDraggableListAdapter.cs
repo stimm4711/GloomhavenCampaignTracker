@@ -1,4 +1,5 @@
 ﻿using Android.Widget;
+using GloomhavenCampaignTracker.Droid.Adapter;
 
 namespace GloomhavenCampaignTracker.Droid.CustomControls
 {

@@ -10,7 +10,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
 
         List<DL_Campaign> Get();
 
-        void InsertOrReplace(DL_Campaign item);
+        void InsertOrReplace(DL_Campaign item, bool recursive);
 
         void Delete(DL_Campaign item);
 

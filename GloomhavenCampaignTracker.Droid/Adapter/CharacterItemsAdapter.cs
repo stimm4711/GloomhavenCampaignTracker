@@ -5,10 +5,13 @@ using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Droid.Fragments.character;
 using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using Java.Lang;
+using System.Threading.Tasks;
+using Android.Graphics;
+using System.Net.Http;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
@@ -45,6 +48,15 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 holder.ItemCategoryImage = convertView.FindViewById<ImageView>(Resource.Id.categorieImageView);
                 holder.ItemPrice = convertView.FindViewById<TextView>(Resource.Id.itemcostsTextView);
                 convertView.Tag = holder;
+
+                // Set Item Click Event
+                convertView.Click += (sender, e) =>
+                {
+                    var v = (View)sender;
+                    var numberTxtView = v.FindViewById<TextView>(Resource.Id.itemnumber);
+                    if (numberTxtView == null) return;
+                    ItemClick((DL_Item)numberTxtView.Tag);
+                };
             }
 
             // Set Data
@@ -52,6 +64,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             holder.ItemNumber.Text = $"# {item.Itemnumber}";
             holder.ItemPrice.Text = $"{item.Itemprice} G";
             holder.ItemCategoryImage.SetImageResource(ResourceHelper.GetItemCategorieIconRessourceId(item.Itemcategorie));
+            holder.ItemNumber.Tag = item;
 
             if (!holder.Options.HasOnClickListeners)
             {
@@ -63,6 +76,15 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
             return convertView;
         }
+
+        private void ItemClick(DL_Item item)
+        {
+            var numbertext = item.GetNumberText();
+            if (string.IsNullOrEmpty(numbertext)) return;
+            var diag = new ItemImageViewDialogBuilder(_context, Resource.Style.MyTransparentDialogTheme)
+                        .SetItemNumber(numbertext)
+                        .Show();
+        }       
 
         private class DL_ItemHolder : Object
         {

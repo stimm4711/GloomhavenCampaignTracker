@@ -59,6 +59,15 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             }
         }
 
+        internal DL_CampaignUnlocks GetCampaignUnlocks(int id)
+        {
+            lock (locker)
+            {
+                var query = "Select * from DL_CampaignUnlocks where ID_Campaign = ?";
+                return Connection.ExecuteScalar<DL_CampaignUnlocks>(query, id);
+            }
+        }
+
         internal void Insert(IEnumerable<DL_CampaignUnlocks> items)
         {
             lock (locker)

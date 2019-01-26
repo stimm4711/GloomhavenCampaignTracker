@@ -66,16 +66,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout5"
         android:layout_marginTop="20dp">
-        <TextView
-            android:text="Copyright \u00A9 2017 \nStefan Timm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:gravity="top"
-            android:textSize="14dp"
-            android:textColor="@color/gloom_primaryText"
-            android:typeface="normal"
-            fontPath="fonts/Roboto-Regular.ttf" />
+		<TextView
+			android:text="Copyright \u00A9 2019 \nStefan Timm"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/textView3"
+			android:gravity="top"
+			android:textSize="14dp"
+			android:textColor="@color/gloom_primaryText"
+			android:typeface="normal"
+			fontPath="fonts/Roboto-Regular.ttf" />
     </LinearLayout>
     <TextView
         android:text="Created with Icons from Icons8"

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Business.Network.Messages;
+using GloomhavenCampaignTracker.Business.Network.Messages;
 using Newtonsoft.Json;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
@@ -31,14 +31,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
         public List<DL_CampaignGlobalAchievement> GlobalAchievements { get; set; }
 
-        [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
+        [OneToMany(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
         public List<DL_CampaignUnlockedScenario> UnlockedScenarios { get; set; }
 
         [OneToOne(CascadeOperations = CascadeOperation.All), JsonIgnore]
         public DL_CampaignUnlocks CampaignUnlocks { get; set; }
-
-        [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
-        public List<DL_CampaignEventHistoryLogItem> EventDeckHistory { get; set; }
 
         [ManyToMany(typeof(DL_CampaignUnlockedItem)), JsonIgnore]
         public List<DL_Item> UnlockedItems { get; set; }

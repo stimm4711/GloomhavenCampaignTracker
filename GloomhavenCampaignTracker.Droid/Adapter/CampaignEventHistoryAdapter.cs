@@ -3,8 +3,7 @@ using Android.Content;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using System.Collections.Generic;
 using GloomhavenCampaignTracker.Droid.CustomControls;
@@ -21,8 +20,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         public CampaignEventHistoryAdapter(Context context, EventTypes eventtype)
         {
             _context = context;
-            _eventDeckHistory = GCTContext.CurrentCampaign.CampaignData.EventDeckHistory.Where(x => x.EventType == (int)eventtype).OrderByDescending(x => x.Position).ToList();
-
+            _eventDeckHistory = CampaignEventHistoryLogItemRepository.GetEvents(GCTContext.CurrentCampaign.CampaignData.Id, (int)eventtype);           
             mMobileCellPosition = int.MinValue;
         }
 
@@ -67,12 +65,12 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             holder.ReferenceNumber.Text = $"# {campaignEventHistoryLogItem.ReferenceNumber}";
             holder.Action.Text = campaignEventHistoryLogItem.Action;
             
-            if (campaignEventHistoryLogItem.Action == "Drawn")
+            if (campaignEventHistoryLogItem.Action == _context.Resources.GetString(Resource.String.Drawn))
             {
                 view.FindViewById<LinearLayout>(Resource.Id.eventhistorybottom).Visibility = ViewStates.Visible;
                 holder.Outcome.Text = campaignEventHistoryLogItem.Outcome;
                 var decision = campaignEventHistoryLogItem.Decision == 1 ? "A" : "B";
-                holder.SelectedOption.Text = $"Option {decision}";
+                holder.SelectedOption.Text = $"{_context.Resources.GetString(Resource.String.Option)} {decision}";
             }
             else
             {
@@ -111,13 +109,11 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                 .SetTitle(_context.Resources.GetString(Resource.String.Confirm))
-                .SetMessage("Delete eventhistory entry?")
+                .SetMessage(_context.Resources.GetString(Resource.String.DeleteEventhistoryEntry))
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
-                {
-                    GCTContext.CurrentCampaign.CampaignData.EventDeckHistory.Remove(_eventDeckHistory[position]);
+                {                    
+                    CampaignEventHistoryLogItemRepository.Delete(_eventDeckHistory[position]);
                     _eventDeckHistory.Remove(_eventDeckHistory[position]);
-                    
-                    GCTContext.CurrentCampaign.Save();
                     NotifyDataSetChanged();
                 })
                 .SetNegativeButton(_context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
@@ -125,7 +121,6 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         }
 
         public override int mMobileCellPosition { get ; set ; }
-
 
         public override void SwapItems(int from, int to)
         {

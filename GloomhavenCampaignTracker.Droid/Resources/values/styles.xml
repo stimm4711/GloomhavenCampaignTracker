@@ -54,6 +54,16 @@
     <item name="android:windowBackground">@color/mytheme_background</item>
   </style>
 
+  <style name="MyTransparentDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <!--buttons color-->
+    <item name="colorAccent">@color/gloom_secondary</item>
+    <!--title and message color-->
+    <item name="android:textColorPrimary">@android:color/white</item>
+    <!--dialog background-->
+    <item name="android:windowBackground">@android:color/transparent</item>
+  </style>
+
+
   <style name="TextLabel" parent="">
     <!-- Hint color and label color in FALSE state -->
     <item name="android:textColorHint">@color/gloom_popupmenuBackground</item> 

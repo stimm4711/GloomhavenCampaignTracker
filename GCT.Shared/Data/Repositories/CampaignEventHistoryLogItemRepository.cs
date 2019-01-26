@@ -1,5 +1,6 @@
 ﻿using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace GloomhavenCampaignTracker.Shared.Data.Repositories
@@ -27,6 +28,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
         protected CampaignEventHistoryLogItemRepository()
         {
             _db = new CampaignEventHistoryLogItemDBAccess();
+        }
+
+        internal static List<DL_CampaignEventHistoryLogItem> GetEvents(int id, int eventtype)
+        {
+            return Me._db.GetEvents(id, eventtype);
         }
 
         public static DL_CampaignEventHistoryLogItem Get(long id, bool recursive = true)
@@ -57,6 +63,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
         public static void Delete(DL_CampaignEventHistoryLogItem item)
         {
             Me._db.Delete(item);
+        }
+
+        public static void DisableOldEvents(int campaignId, int eventType)
+        {
+            Me._db.DisableOldEvents(campaignId, eventType);
         }
     }
 }

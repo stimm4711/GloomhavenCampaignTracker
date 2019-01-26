@@ -5,13 +5,11 @@ using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.Adapter;
-using GloomhavenCampaignTracker.Shared.Data;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
-using System;
-using GloomhavenCampaignTracker.Shared.Business.Network;
 using System.Threading.Tasks;
+using GloomhavenCampaignTracker.Business.Network;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 {

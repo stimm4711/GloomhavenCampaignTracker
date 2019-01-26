@@ -6,8 +6,9 @@ using Android.Views;
 using Android.Widget;
 using Data.ViewEntities;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using Java.Lang;
+using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
@@ -93,7 +94,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                     if(p != null)
                     {
                         GCTContext.CurrentCampaign.CampaignData.Parties.Remove(p);
-                        GCTContext.CurrentCampaign.Save();
+                        CampaignPartyRepository.Delete(p);
                     }
                    
                     _parties.Remove(_parties[position]);

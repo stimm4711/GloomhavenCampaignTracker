@@ -7,7 +7,7 @@ using Android.Widget;
 using Data.ViewEntities;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Collections.Generic;

@@ -11,6 +11,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _eventitem = eventitem;
         }
 
+        public DL_CampaignEventHistoryLogItem Item => _eventitem;
+
         public int ReferenceNumber
         {
             get { return _eventitem.ReferenceNumber; }

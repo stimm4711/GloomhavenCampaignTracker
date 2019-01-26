@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Views;
+using GloomhavenCampaignTracker.Business.Network;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign;
-using GloomhavenCampaignTracker.Shared.Business.Network;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.character
 {

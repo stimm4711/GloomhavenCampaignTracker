@@ -3,9 +3,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using Java.Lang;
+using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
@@ -74,6 +75,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                         if (treasure == null || treasure.Treasure.Looted == chkBx.Checked) return;
                         treasure.Treasure.Looted = chkBx.Checked;
                         NotifyDataSetChanged();
+                        CampaignUnlockedScenarioRepository.InsertOrReplace(treasure.Treasure.UnlockedScenario);
                         _campScenarioAdapter.NotifyDataSetChanged();
                     };
 

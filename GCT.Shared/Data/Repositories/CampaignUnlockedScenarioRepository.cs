@@ -1,5 +1,6 @@
 ﻿using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace GloomhavenCampaignTracker.Shared.Data.Repositories
@@ -57,6 +58,16 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
         public static void Delete(DL_CampaignUnlockedScenario item)
         {
             Me._db.Delete(item);
+        }
+
+        internal static DL_CampaignUnlockedScenario GetUnlockedScenario(int scenarioNumber, int campaignId)
+        {
+           return Me._db.GetUnlockedScenario(scenarioNumber, campaignId);
+        }
+
+        internal static IEnumerable<DL_CampaignUnlockedScenario> GetUnlockedScenariosOfCampaign(int campaignId)
+        {
+            return Me._db.GetUnlockedScenariosOfCampaign(campaignId);
         }
     }
 }

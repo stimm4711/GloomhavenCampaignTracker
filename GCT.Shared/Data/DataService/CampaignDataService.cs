@@ -23,9 +23,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
             return CampaignRepository.Get();
         }
 
-        public void InsertOrReplace(DL_Campaign item)
+        public void InsertOrReplace(DL_Campaign item, bool recursive)
         {
-            CampaignRepository.InsertOrReplace(item);
+            CampaignRepository.InsertOrReplace(item, recursive);
         }
 
         public List<DL_Item> GetUnlockableItems(int campaignId)

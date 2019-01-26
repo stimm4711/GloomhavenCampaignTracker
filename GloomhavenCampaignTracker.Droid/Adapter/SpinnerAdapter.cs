@@ -2,7 +2,7 @@
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using Java.Lang;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter

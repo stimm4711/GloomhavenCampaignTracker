@@ -6,6 +6,7 @@ using Android.Preferences;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared;

@@ -44,6 +44,9 @@
   <string name="ItemDeleted">{0} deleted.</string>
   <string name="NotNow">Not now</string>
   <string name="LoadingData">Loading Data</string>
+  <string name="Initialize">Initialize</string>
+  <string name="Removed">Removed</string>
+  <string name="Option">Opion</string>
   
   <!-- Unlocks -->
   <string name="Congratulation">Congratulation!</string>
@@ -73,6 +76,17 @@
   <string name="DrawnEventNumber">Event number {0}</string>
   <string name="DrawnEventMessage">Play the Event {0}.\nSelect what to do with the Event.</string>
   <string name="PutEventBack">Put under the pile</string>
+  <string name="InitializeEventDeck">Initialize eventdeck for a new deck?</string>
+  <string name="AddEventToHistory">Add drawn event to history</string>
+  <string name="Drawn">Drawn</string>
+  <string name="EventNumber">Event number</string>
+  <string name="EditDrawnEvent">Edit drawn event</string>
+  <string name="EventNotPresent">Event is not present in eventdeck.</string>
+  <string name="EnterValidNumber">Enter a valid number.</string>
+  <string name="EventAlreadyInEventdeck">Event already is in eventdeck.</string>
+  <string name="EventdeckEmpty">Eventdeck is empty</string>
+  <string name="AddedShuffled">Added, Shuffled</string>
+  <string name="DeleteEventhistoryEntry">Delete eventhistory entry?</string>
   
   <!-- Global Achievements -->
   <string name="GlobalAchievements">Global Achievements</string>
@@ -156,5 +170,14 @@
   <string name="CharacterItemsAlertTitle">{0}\'s Items</string>
   <string name="AddItemToCharacter">Add item</string>
   <string name="WrongAbilityLevel">The ability level must be between 2 and 9</string>
-
+  <string name="PersonalQuest">Personal quest</string>
+  <string name="CharacterStat_DonateToTheSanctuary">Donate to the sanctuary of the great oak</string>
+  <string name="CharcaterStat_DonateAndGetBlesses">Donate 10 gold to the sanctuary of the great oak and get two blesses for the next scenario?</string>
+  <string name="CharacterStat_DonateTenGold">Donate 10 gold</string>
+  <string name="CharacterStat_UnlockedENvelopeBByDonatingHundredGold">You have unlocked Envelope B by donating a total of 100 gold. Select reveal to add its content. Cancel if you didn\'t unlock Envelope B.</string>
+  <string name="CharacterStat_DonateAndReveal">Donate and reveal</string>
+  <string name="CharacterStat_DontDonate">"Don\'t donate.</string>
+  <string name="CharacterStat_NeedsTenGold">The character needs at least 10 gold to donate.</string>
+  <string name="CharacterStat_donated">{0} donated 10 gold to the sanctuary of the great oak.</string>
+  <string name="CharacterStat_ProsperityRaised">\r\n\r\nThe city of Gloomhaven gained one prosperity point.</string>
 </resources>

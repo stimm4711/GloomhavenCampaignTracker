@@ -2,11 +2,17 @@
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.Adapter;
-using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using System.Linq;
 using Android.Support.Design.Widget;
+using System;
+using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using System.Threading.Tasks;
+using System.Net.Http;
+using Plugin.Connectivity;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Support.Percent;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
@@ -28,21 +34,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             return frag;
         }
 
-        public override void OnStop()
-        {
-            if(_dataChanged) GCTContext.CampaignCollection.CurrentCampaign.SetEventDeckString(_eventType);
-            base.OnStop();
-        }
-
-        public CampaignEventsFragment()
-        {
-        }
-
-        public CampaignEventsFragment(EventTypes eventType )
-        {
-            _eventType = eventType;            
-        }
-
         public EventTypes GetEventType
         {
             get
@@ -55,43 +46,42 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             }
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override void OnStop()
         {
+            GCTContext.CampaignCollection.CurrentCampaign.SetEventDeckString(_eventType);
+            base.OnStop();
+        }        
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            _dataChanged = false;
+
             _eventType = GetEventType;
 
-            if(GCTContext.CampaignCollection.CurrentCampaign != null)
+            if (GCTContext.CampaignCollection.CurrentCampaign != null)
             {
                 _eventDeck = _eventType == EventTypes.RoadEvent ? GCTContext.CampaignCollection.CurrentCampaign.RoadEventDeck :
                                                                 GCTContext.CampaignCollection.CurrentCampaign.CityEventDeck;
             }
-           
-            _view = inflater.Inflate(Resource.Layout.fragment_events, container, false);           
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {      
+            _view = inflater.Inflate(Resource.Layout.fragment_events, container, false);
             _draw = _view.FindViewById<Button>(Resource.Id.drawEventCardButton);
             _add = _view.FindViewById<Button>(Resource.Id.addEventCardButton);
             _remove = _view.FindViewById<Button>(Resource.Id.removeEventCardButton);
             _eventhistory = _view.FindViewById<ListView>(Resource.Id.eventhistoryListView);
-            if(_eventhistory != null) _eventhistory.Adapter = new CampaignEventHistoryAdapter(Context, _eventType);
 
             var fab = _view.FindViewById<FloatingActionButton>(Resource.Id.fab);
-            var initEventDeckButton = _view.FindViewById<ImageButton>(Resource.Id.initEventDeckButton);
-
-            _dataChanged = false;
+            var initEventDeckButton = _view.FindViewById<ImageButton>(Resource.Id.initEventDeckButton);                            
 
             if (initEventDeckButton != null && !initEventDeckButton.HasOnClickListeners)
             {
                 initEventDeckButton.Click += (sender, e) =>
-                {
-                    new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-                        .SetTitle("Initialize eventdeck for a new deck?")
-                        .SetPositiveButton("Initialize", (senderAlert, args) =>
-                        {
-                            _dataChanged = true;
-                            _eventDeck.InitializeDeck();
-                            GCTContext.CurrentCampaign.InitializeEventDeck(_eventType);
-                            _eventhistory.Adapter = new CampaignEventHistoryAdapter(Context, _eventType);
-                        })
-                        .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
-                        .Show();                   
+                {                    
+                    InitializeDeck();                       
                 };
             }
 
@@ -107,8 +97,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             {
                 _add.Click += (sender, e) =>
                 {
-                    AddEvent();                   
-                };                
+                    AddEvent();
+                };
             }
 
             if (_remove != null && !_remove.HasOnClickListeners)
@@ -119,20 +109,44 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 };
             }
 
-            if(_eventhistory != null && !_eventhistory.HasOnClickListeners)
+            if (_eventhistory != null && !_eventhistory.HasOnClickListeners)
             {
                 _eventhistory.ItemClick += _eventhistory_ItemClick;
             }
 
-            if(fab != null && !fab.HasOnClickListeners)
+            if (fab != null && !fab.HasOnClickListeners)
             {
                 fab.Click += Fab_Click;
             }
 
+            InitHistoryAdapter();
+
             return _view;
         }
 
-        private void Fab_Click(object sender, System.EventArgs e)
+        private void InitializeDeck()
+        {
+            new CustomDialogBuilder(base.Context, Resource.Style.MyDialogTheme)
+                        .SetTitle(Resources.GetString(Resource.String.InitializeEventDeck))
+                        .SetPositiveButton(Resources.GetString(Resource.String.Initialize), (senderAlert, args) =>
+                        {
+                            _eventDeck.InitializeDeck();
+                            GCTContext.CurrentCampaign.InitializeEventDeck(_eventType);
+                            InitHistoryAdapter();
+                        })
+                        .SetNegativeButton(base.Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
+                        .Show();
+        }
+
+        private void InitHistoryAdapter()
+        {
+            if (_eventhistory != null)
+            {
+                _eventhistory.Adapter = new CampaignEventHistoryAdapter(Context, _eventType);
+            }
+        }
+
+        private void Fab_Click(object sender, EventArgs e)
         {
             var convertView = Activity.LayoutInflater.Inflate(Resource.Layout.alertdialog_adddrawnevent, null);
             var outcome = convertView.FindViewById<EditText>(Resource.Id.outcome);
@@ -143,14 +157,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             eventnumbertext.Visibility = ViewStates.Gone;           
 
             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-                .SetTitle("Add drawn event to history")
+                .SetTitle(Resources.GetString(Resource.String.AddEventToHistory))
                 .SetView(convertView)
-                .SetPositiveButton("Save changes", (senderAlert, args) =>
+                .SetPositiveButton(Resources.GetString(Resource.String.Add), (senderAlert, args) =>
                 {
-                    var op = radiooptionA.Checked ? 1 : 2;
+                    var selected = radiooptionA.Checked ? 1 : 2;
                     if (int.TryParse(editText.Text, out int cardId))
                     {
-                        EventDrawn(cardId, outcome, op);
+                        EventDrawn(cardId, outcome, selected);
                     }
                 })
                 .SetNegativeButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>   {  })
@@ -159,36 +173,99 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         private void _eventhistory_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            var convertView = Activity.LayoutInflater.Inflate(Resource.Layout.alertdialog_drawnevent, null);
-            var outcome = convertView.FindViewById<EditText>(Resource.Id.outcome);
-            var eventnumbertext = convertView.FindViewById<TextView>(Resource.Id.eventnumbertext);
-            var radiooptionA = convertView.FindViewById<RadioButton>(Resource.Id.optionA);
-            var radiooptionB = convertView.FindViewById<RadioButton>(Resource.Id.optionB);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var convertView = Activity.LayoutInflater.Inflate(Resource.Layout.alertdialog_eventhistoryitem, null);
+                var outcome = convertView.FindViewById<EditText>(Resource.Id.outcome);
+                var radiooptionA = convertView.FindViewById<RadioButton>(Resource.Id.optionA);
+                var radiooptionB = convertView.FindViewById<RadioButton>(Resource.Id.optionB);
+                var pqimage = convertView.FindViewById<ImageView>(Resource.Id.itemimage);
+                var showEventButton = convertView.FindViewById<Button>(Resource.Id.show_eventcard);
+                var eventnumbertext = convertView.FindViewById<TextView>(Resource.Id.eventnumbertext);
 
-            var ev = (EventWrapper)_eventhistory.Adapter.GetItem(e.Position); 
+                var ev = (EventWrapper)_eventhistory.Adapter.GetItem(e.Position);
 
-            if (!ev.Action.Contains("Drawn")) return;
+                if (!ev.Action.Contains(Resources.GetString(Resource.String.Drawn))) return;
 
-            eventnumbertext.Text = $"Event number: {ev.ReferenceNumber}";
-            outcome.Text = ev.Outcome;
-            radiooptionA.Checked = ev.Decision == 1;
-            radiooptionB.Checked = ev.Decision != 1;
-                
-            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-                .SetTitle($"Edit drawn event {ev.ReferenceNumber}")
-                .SetView(convertView)
-                .SetPositiveButton("Save changes", (senderAlert, args) =>
+                string cardIdText = ev.ReferenceNumber.ToString();
+                if (ev.ReferenceNumber < 10)
                 {
-                    _dataChanged = true;
-                    var op = radiooptionA.Checked ? 1 : 2;
-                    ev.Outcome = outcome.Text;
-                    ev.Decision = op;
-                    _eventhistory.Adapter = new CampaignEventHistoryAdapter(Context, _eventType);
-                })                       
-                .SetNegativeButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
+                    cardIdText = $"0{ev.ReferenceNumber}";
+                }
+
+                string eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/road/re-";
+                if (_eventType == EventTypes.CityEvent)
                 {
-                })
-                .Show();
+                    eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";
+                }               
+
+                showEventButton.Click += (s, args) =>
+                {
+                    var diag = new EventFrontImageViewDialogBuilder(Context, Resource.Style.MyTransparentDialogTheme, _eventType)
+                            .SetEventNumber(cardIdText)
+                            .Show();
+                };
+
+                radiooptionA.CheckedChange += (s, args) =>
+                {
+                   var x = GetEventBackImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png", pqimage, convertView, radiooptionA);
+                };
+
+                outcome.Text = ev.Outcome;
+                radiooptionA.Checked = ev.Decision == 1;
+                radiooptionB.Checked = ev.Decision != 1;
+                eventnumbertext.Text = $"{Resources.GetString(Resource.String.EventNumber)}: {ev.ReferenceNumber}";
+                var eventback = GetEventBackImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png", pqimage, convertView, radiooptionA);
+
+                new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                    .SetTitle($"{Resources.GetString(Resource.String.EditDrawnEvent)} {ev.ReferenceNumber}")
+                    .SetView(convertView)
+                    .SetPositiveButton(Resources.GetString(Resource.String.Save), (senderAlert, args) =>
+                    {
+                        var op = radiooptionA.Checked ? 1 : 2;
+                        ev.Outcome = outcome.Text;
+                        ev.Decision = op;
+                        CampaignEventHistoryLogItemRepository.InsertOrReplace(ev.Item);
+                        InitHistoryAdapter();
+                    })
+                    .SetNegativeButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>  { })
+                    .Show();
+            }
+            else
+            {
+                var convertView = Activity.LayoutInflater.Inflate(Resource.Layout.alertdialog_drawnevent, null);
+                var outcome = convertView.FindViewById<EditText>(Resource.Id.outcome);
+                var eventnumbertext = convertView.FindViewById<TextView>(Resource.Id.eventnumbertext);
+                var radiooptionA = convertView.FindViewById<RadioButton>(Resource.Id.optionA);
+                var radiooptionB = convertView.FindViewById<RadioButton>(Resource.Id.optionB);
+
+                var ev = (EventWrapper)_eventhistory.Adapter.GetItem(e.Position);
+
+                if (!ev.Action.Contains(Resources.GetString(Resource.String.Drawn))) return;
+
+                eventnumbertext.Text = $"{Resources.GetString(Resource.String.EventNumber)}: {ev.ReferenceNumber}";
+                outcome.Text = ev.Outcome;
+                radiooptionA.Checked = ev.Decision == 1;
+                radiooptionB.Checked = ev.Decision != 1;
+
+                new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                    .SetTitle($"{Resources.GetString(Resource.String.EditDrawnEvent)} {ev.ReferenceNumber}")
+                    .SetView(convertView)
+                    .SetPositiveButton(Resources.GetString(Resource.String.Save), (senderAlert, args) =>
+                    {
+                        var op = radiooptionA.Checked ? 1 : 2;
+                        ev.Outcome = outcome.Text;
+                        ev.Decision = op;
+                        CampaignEventHistoryLogItemRepository.InsertOrReplace(ev.Item);
+                        InitHistoryAdapter();
+                    })
+                    .SetNegativeButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
+                    {
+                    })
+                    .Show();
+            }
+
+            
         }
 
         private void RemoveEvent()
@@ -209,16 +286,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                         }
                         else
                         {
-                            Toast.
-                                MakeText(Context, "Event is not present in eventdeck.", ToastLength.Short).
-                                Show();
+                            Toast.MakeText(Context,Resources.GetString(Resource.String.EventNotPresent), ToastLength.Short).Show();
                         }
                     }
                     else
                     {
-                        Toast.
-                            MakeText(Context, "Enter a valid number please.", ToastLength.Short).
-                            Show();
+                        Toast.MakeText(Context, Resources.GetString(Resource.String.EnterValidNumber), ToastLength.Short).Show();
                     }
                 })
                 .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
@@ -244,16 +317,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                         }
                         else
                         {
-                            Toast.
-                                MakeText(Context, "Event already is in eventdeck.", ToastLength.Short).
-                                Show();
+                            Toast.MakeText(Context, Resources.GetString(Resource.String.EventAlreadyInEventdeck), ToastLength.Short).Show();
                         }
                     }
                     else
                     {
-                        Toast.
-                            MakeText(Context, "Enter a valid number please.", ToastLength.Short).
-                            Show();
+                        Toast.MakeText(Context, Resources.GetString(Resource.String.EnterValidNumber), ToastLength.Short).Show();
                     }                    
                 })
                 .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
@@ -266,72 +335,204 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
             if (cardId == -1)
             {
-                Toast.
-                    MakeText(Context, "Eventdeck is empty", ToastLength.Short).
-                    Show();
+                Toast.MakeText(Context, Resources.GetString(Resource.String.EventdeckEmpty), ToastLength.Short).Show();
                 return;
             }
 
-            var convertView = Activity.LayoutInflater.Inflate(Resource.Layout.alertdialog_drawnevent, null);
-            var outcome = convertView.FindViewById<EditText>(Resource.Id.outcome);
-            var eventnumbertext = convertView.FindViewById<TextView>(Resource.Id.eventnumbertext);
-            var radiooptionA = convertView.FindViewById<RadioButton>(Resource.Id.optionA);
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                // Show eventcard if there is internet connection
+                var convertView = Activity.LayoutInflater.Inflate(Resource.Layout.alertdialog_drawnevent_withImage, null);
+                var pqimage = convertView.FindViewById<ImageView>(Resource.Id.itemimage);
+                var turnButton = convertView.FindViewById<Button>(Resource.Id.turn);
+                var deciscion_layout = convertView.FindViewById<LinearLayout>(Resource.Id.deciscion_layout);
+                var result_layout = convertView.FindViewById<LinearLayout>(Resource.Id.result_layout);
+                var removeButton = convertView.FindViewById<Button>(Resource.Id.remove_button);
+                var putUnderButton = convertView.FindViewById<Button>(Resource.Id.putunder);
+                var outcome = convertView.FindViewById<EditText>(Resource.Id.outcome);
+                var radiooptionA = convertView.FindViewById<RadioButton>(Resource.Id.optionA);
+                var eventnumbertext = convertView.FindViewById<TextView>(Resource.Id.eventnumbertext);               
 
-            eventnumbertext.Text = $"Event number: {cardId}";
+                deciscion_layout.Visibility = ViewStates.Visible;
+                result_layout.Visibility = ViewStates.Gone;                
 
-            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-                .SetTitle(string.Format(Resources.GetString(Resource.String.DrawnEventNumber), cardId))
-                .SetView(convertView)
-                .SetPositiveButton(Resources.GetString(Resource.String.PutEventBack), (senderAlert, args) =>
+                string cardIdText = cardId.ToString();
+                if(cardId < 10)
                 {
-                    _dataChanged = true;
-                    var op = radiooptionA.Checked ? 1 : 2;
+                    cardIdText = $"0{cardId}";
+                }
 
-                    EventDrawn(cardId, outcome, op);
-
-                    PutBack(cardId);                    
-                })
-                .SetNegativeButton(Resources.GetString(Resource.String.RemoveEvent), (senderAlert, args) =>
+                string eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/road/re-";
+                if (_eventType == EventTypes.CityEvent)
                 {
-                    _dataChanged = true;
+                    eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";                  
+                }
+
+                var eventFront = GetImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-f.png", pqimage, convertView);
+                eventnumbertext.Text = $"{Resources.GetString(Resource.String.EventNumber)}: {cardId}";
+
+                var alert = new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                 .SetView(convertView)
+                 .SetNeutralButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
+                 .Show();
+
+                removeButton.Click += (sender, args) =>
+                {
                     var op = radiooptionA.Checked ? 1 : 2;
                     EventDrawn(cardId, outcome, op);
-
                     RemoveCard(cardId);
-                })
-                .Show();           
+                    alert.Dismiss();
+                };
+
+                putUnderButton.Click += (sender, args) =>
+                {
+                    var op = radiooptionA.Checked ? 1 : 2;
+                    EventDrawn(cardId, outcome, op);
+                    PutBack(cardId);
+                    alert.Dismiss();
+                };
+
+                turnButton.Click += (sender, args) =>
+                {
+                    if (deciscion_layout.Visibility == ViewStates.Visible)
+                    {
+                        pqimage.SetImageDrawable(null); 
+                        convertView.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Visible;
+
+                        var eventback = GetEventBackImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png", pqimage, convertView, radiooptionA);
+
+                        deciscion_layout.Visibility = ViewStates.Gone;
+                        result_layout.Visibility = ViewStates.Visible;
+                    }
+                    else
+                    {
+                        pqimage.SetImageDrawable(null);
+                        convertView.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Visible;
+
+                        var eventimage = GetImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-f.png", pqimage, convertView);
+
+                        deciscion_layout.Visibility = ViewStates.Visible;
+                        result_layout.Visibility = ViewStates.Gone;
+                    }                   
+                };               
+            }
+            else
+            {
+                // Show eventnumber if there is no internet connection
+                var convertView = Activity.LayoutInflater.Inflate(Resource.Layout.alertdialog_drawnevent, null);
+                var eventnumbertext = convertView.FindViewById<TextView>(Resource.Id.eventnumbertext);
+                eventnumbertext.Text = $"{Resources.GetString(Resource.String.EventNumber)}: {cardId}";
+                var radiooptionA = convertView.FindViewById<RadioButton>(Resource.Id.optionA);
+                var outcome = convertView.FindViewById<EditText>(Resource.Id.outcome);
+
+                new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                   .SetTitle(string.Format(Resources.GetString(Resource.String.DrawnEventNumber), cardId))
+                   .SetView(convertView)
+                   .SetPositiveButton(Resources.GetString(Resource.String.PutEventBack), (senderAlert, args) =>
+                   {
+                       var op = radiooptionA.Checked ? 1 : 2;
+                       EventDrawn(cardId, outcome, op);
+                       PutBack(cardId);
+                   })
+                   .SetNegativeButton(Resources.GetString(Resource.String.RemoveEvent), (senderAlert, args) =>
+                   {
+                       var op = radiooptionA.Checked ? 1 : 2;
+                       EventDrawn(cardId, outcome, op);
+                       RemoveCard(cardId);
+                   })
+                   .SetNeutralButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
+                   .Show();
+            }         
+        }
+
+        private async Task<Bitmap> GetEventBackImageBitmapFromUrlAsync(string url, ImageView imagen, View view, RadioButton radiooptionA)
+        {
+            int decision = radiooptionA.Checked ? 0 : 1;
+
+            Bitmap imageBitmap = null;
+
+            using (var httpClient = new HttpClient())
+            {
+                var imageBytes = await httpClient.GetByteArrayAsync(url);
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                }
+            }       
+
+            imagen.SetImageBitmap(GetScaleBitmap(imageBitmap, decision));
+
+            view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
+
+            return imageBitmap;
+        }
+
+        private Bitmap GetScaleBitmap(Bitmap bitmap, int decision)
+        {
+            Bitmap output = Bitmap.CreateBitmap(bitmap.Width, (bitmap.Height / 2), Bitmap.Config.Argb8888);
+            Canvas canvas = new Canvas(output);
+
+            Paint paint = new Paint();
+            Rect rectS = new Rect(0, decision * (bitmap.Height / 2), bitmap.Width, bitmap.Height / 2 + (decision * (bitmap.Height / 2)));
+            Rect rectD = new Rect(0, 0, bitmap.Width, bitmap.Height / 2);
+            RectF rectF = new RectF(rectD);
+            float roundPx = 0;
+
+            paint.AntiAlias = true;
+            canvas.DrawARGB(0, 0, 0, 0);
+            canvas.DrawRoundRect(rectF, roundPx, roundPx, paint);
+            paint.SetXfermode(new PorterDuffXfermode(PorterDuff.Mode.SrcIn));
+            canvas.DrawBitmap(bitmap, rectS, rectD, paint);
+
+            return output;
+        }
+
+        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
+        {
+            Bitmap imageBitmap = null;
+
+            using (var httpClient = new HttpClient())
+            {
+                var imageBytes = await httpClient.GetByteArrayAsync(url);
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                }
+            }
+
+            imagen.SetImageBitmap(imageBitmap);
+
+            view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
+
+            return imageBitmap;
         }
 
         private void EventDrawn(int cardId, TextView outcome, int selectedOption)
         {
-            _dataChanged = true;
-            GCTContext.CurrentCampaign.DrawnEventHistory(cardId, (int) _eventType, outcome.Text, selectedOption);
-            _eventhistory.Adapter = new CampaignEventHistoryAdapter(Context, _eventType);
+            EventhistoryHelper.DrawnEventHistory(Context, cardId, (int) _eventType, outcome.Text, selectedOption);
+            InitHistoryAdapter();
         }
 
         private void AddCard(int cardId, bool doShuffle)
         {
-            _dataChanged = true;
-            _eventDeck.AddCard(cardId, doShuffle);
+            EventhistoryHelper.AddEventHistory(Context, cardId, (int)_eventType, doShuffle);
 
-            GCTContext.CurrentCampaign.AddEventHistory(cardId, (int)_eventType, doShuffle);  
-            _eventhistory.Adapter = new CampaignEventHistoryAdapter(Context, _eventType);
+            _eventDeck.AddCard(cardId, doShuffle);
+            InitHistoryAdapter();
         }
 
         private void RemoveCard(int cardId)
         {
-            _dataChanged = true;
-            _eventDeck.RemoveCard(cardId);
+            EventhistoryHelper.RemoveEventHistory(Context, cardId, (int)_eventType);
 
-            GCTContext.CurrentCampaign.RemoveEventHistory(cardId, (int)_eventType);            
-            _eventhistory.Adapter = new CampaignEventHistoryAdapter(Context, _eventType);
-        }
+            _eventDeck.RemoveCard(cardId);
+            InitHistoryAdapter();
+        }      
 
         private void PutBack(int cardId)
         {
-            _dataChanged = true;
             _eventDeck.RemoveCard(cardId);
-            _eventDeck.PutBack(cardId);           
+            _eventDeck.PutBack(cardId);
         }
     }
 }

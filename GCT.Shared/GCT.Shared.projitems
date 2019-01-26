@@ -14,33 +14,6 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration" />
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Business\AchievementCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\BackupHandler.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Campaign.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\CampaignCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\CampaignGlobalAchievement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\CampaignUnlockedScenario.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\CampaignScenarioSearch.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\EventDeck.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\GCTContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\ISpinneritem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Abstract\Client.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\CampaignBuilder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\CampaignExchangeData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\CustomEventArgs.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Messages\ClientConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\DataExchangeProtocoll.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\GloomhavenClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\GloomhavenServer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Abstract\NetworkBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Abstract\Server.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Messages\ICampaignExchange.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Messages\Request.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Network\Messages\ServerConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\PartyAchievement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Scenario.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\ScenarioCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\CharacterQuestSearch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignPartyDBAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\AchievementDBAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignEventHistoryLogItemDBAccess.cs" />
@@ -123,15 +96,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\ViewEntities\DL_VIEW_Campaign_selectable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\ViewEntities\DL_VIEW_Campaign.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\ViewEntities\DL_VIEW_CampaignParties.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Business\Helper.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Resources\values\sqlcommands.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="$(MSBuildThisFileDirectory)sqlcommands.resw" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Business\Network\Abstract\" />
   </ItemGroup>
 </Project>

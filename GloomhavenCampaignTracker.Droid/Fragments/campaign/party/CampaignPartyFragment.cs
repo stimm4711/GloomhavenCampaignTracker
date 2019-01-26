@@ -4,7 +4,7 @@ using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using System.Linq;
 using System.Collections.Generic;
@@ -261,7 +261,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
             {
                 GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.ReputationMinus10Unlocked = true;
                 GCTContext.CurrentCampaign.AddUnlockedClass(10);
-                GCTContext.CurrentCampaign.Save();
+                CampaignUnlocksRepository.InsertOrReplace(GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks);
 
                 new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                     .SetTitle(Context.Resources.GetString(Resource.String.Congratulation))
@@ -276,9 +276,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
                 GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.ReputationMinus20Unlocked) return;
             
             GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.ReputationMinus20Unlocked = true;
-            GCTContext.CurrentCampaign.AddEventToDeck(77, EventTypes.CityEvent);
-            GCTContext.CurrentCampaign.AddEventToDeck(68, EventTypes.RoadEvent);
-            GCTContext.CurrentCampaign.Save();
+            GCTContext.CurrentCampaign.AddEventToDeck(Context, 77, EventTypes.CityEvent);
+            GCTContext.CurrentCampaign.AddEventToDeck(Context, 68, EventTypes.RoadEvent);
+            CampaignUnlocksRepository.InsertOrReplace(GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks);
 
             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)                
                 .SetTitle(Context.Resources.GetString(Resource.String.Congratulation))
@@ -302,7 +302,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
             {
                 GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.ReputationPlus10Unlocked = true;
                 GCTContext.CurrentCampaign.AddUnlockedClass(7);
-                GCTContext.CurrentCampaign.Save();
+                CampaignUnlocksRepository.InsertOrReplace(GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks);
 
                 new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                     .SetTitle(Context.Resources.GetString(Resource.String.Congratulation))
@@ -316,9 +316,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
                 GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.ReputationPlus20Unlocked) return;
 
             GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.ReputationPlus20Unlocked = true;
-            GCTContext.CurrentCampaign.AddEventToDeck(76, EventTypes.CityEvent);
-            GCTContext.CurrentCampaign.AddEventToDeck(67, EventTypes.RoadEvent);
-            GCTContext.CurrentCampaign.Save();
+            GCTContext.CurrentCampaign.AddEventToDeck(Context, 76, EventTypes.CityEvent);
+            GCTContext.CurrentCampaign.AddEventToDeck(Context, 67, EventTypes.RoadEvent);
+            CampaignUnlocksRepository.InsertOrReplace(GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks);
 
             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                 .SetTitle(Context.Resources.GetString(Resource.String.Congratulation))

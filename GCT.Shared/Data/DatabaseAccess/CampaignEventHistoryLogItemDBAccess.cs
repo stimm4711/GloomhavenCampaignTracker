@@ -2,6 +2,8 @@
 using SQLiteNetExtensions.Extensions;
 using SQLite;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
+using System;
+using System.Resources;
 
 namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 {
@@ -29,7 +31,21 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             {
                 return Connection.GetWithChildren<DL_CampaignEventHistoryLogItem>(id, recursive: recursive);
             }
-        }           
+        }
+
+        internal List<DL_CampaignEventHistoryLogItem> GetEvents(int id, int eventtype)
+        {
+            lock (locker)
+            {
+                var query = "Select * " +
+                    "From DL_CampaignEventHistoryLogItem " +
+                    "where ID_Campaign = ? " +
+                    "and EventType = ? " +
+                    "order by Position desc";
+
+                return Connection.Query<DL_CampaignEventHistoryLogItem>(query, id, eventtype);
+            }
+        }
 
         public void InsertOrReplace(DL_CampaignEventHistoryLogItem item)
         {
@@ -80,6 +96,19 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             lock (locker)
             {
                 Connection.Delete(item, true);
+            }
+        }
+        
+        internal void DisableOldEvents(int campaignId, int eventtypeId)
+        {
+            lock (locker)
+            {
+                var query = "Update DL_CampaignEventHistoryLogItem " +
+                    "Set ID_Campaign = 0-ID_Campaign " +
+                    "where ID_Campaign = ? " +
+                    "and EventType = ?";
+                   
+                Connection.Query<DL_Character>(query, campaignId, eventtypeId);
             }
         }
     }

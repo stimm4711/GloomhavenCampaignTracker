@@ -6,7 +6,7 @@ using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using System.Linq;
 using System.Text;
 using ListFragment = Android.Support.V4.App.ListFragment;
@@ -141,7 +141,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                     // create new campaign and add party
                     Campaign campaign = Campaign.NewInstance(campaignNameEdit.Text);
                     campaign.AddUnlockedScenario(1);
-                    campaign.Save();
                     var messages = campaign.GetLoadingMessages();
                     if (messages.Any())
                     {

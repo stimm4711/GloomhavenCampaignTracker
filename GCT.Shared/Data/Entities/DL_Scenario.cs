@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 

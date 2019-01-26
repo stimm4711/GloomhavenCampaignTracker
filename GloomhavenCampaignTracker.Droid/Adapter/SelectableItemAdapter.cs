@@ -3,7 +3,8 @@ using System.Linq;
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
+using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
@@ -64,6 +65,15 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                     NotifyDataSetChanged();
                 };
 
+                // Set Item Click Event
+                convertView.Click += (sender, e) =>
+                {
+                    var v = (View)sender;
+                    var checkview = v.FindViewById<CheckBox>(Resource.Id.selected);
+                    if (checkview == null) return;
+                    ItemClick((DL_Item)checkview.Tag);
+                };
+
                 convertView.Tag = holder;
             }
 
@@ -78,6 +88,15 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             holder.ItemCategoryImage.SetImageResource(ResourceHelper.GetItemCategorieIconRessourceId(item.Itemcategorie));
 
             return convertView;
+        }
+
+        private void ItemClick(DL_Item item)
+        {
+            var numbertext = item.GetNumberText();
+            if (string.IsNullOrEmpty(numbertext)) return;
+            var diag = new ItemImageViewDialogBuilder(_context, Resource.Style.MyTransparentDialogTheme)
+                        .SetItemNumber(numbertext)
+                        .Show();
         }
 
         private class DL_ItemHolder : Java.Lang.Object

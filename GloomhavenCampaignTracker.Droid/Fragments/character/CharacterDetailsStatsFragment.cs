@@ -10,11 +10,13 @@ using System;
 using System.Collections.Generic;
 using Android.Graphics;
 using Android.Support.V4.Content;
-using GloomhavenCampaignTracker.Shared.Business;
-using GloomhavenCampaignTracker.Shared;
 using System.Linq;
 using GloomhavenCampaignTracker.Droid.Views;
 using static GloomhavenCampaignTracker.Droid.Views.PersonalQuestCounterView;
+using GloomhavenCampaignTracker.Business;
+using System.Threading.Tasks;
+using System.Net.Http;
+using Plugin.Connectivity;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.character
 {
@@ -147,20 +149,20 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                 if (Character.Party != null && Character.Party.ID_Campaign == GCTContext.CurrentCampaign.CampaignData.Id)
                 {
                     new CustomDialogBuilder(base.Context, Resource.Style.MyDialogTheme)
-                       .SetTitle("Donate to the sanctuary of the great oak.")
-                       .SetMessage("Donate 10 gold to the sanctuary of the great oak and get two blesses for the next scenario?")
-                       .SetPositiveButton("Donate 10 gold", (senderAlert, args) =>
+                       .SetTitle(Resources.GetString(Resource.String.CharacterStat_DonateToTheSanctuary))
+                       .SetMessage(Resources.GetString(Resource.String.CharacterStat_DonateToTheSanctuary))
+                       .SetPositiveButton(Resources.GetString(Resource.String.CharacterStat_DonateTenGold), (senderAlert, args) =>
                        {
                            if (GCTContext.CurrentCampaign.CampaignData.DonatedGold == 90 && !GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeBUnlocked)
                            {
                                new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                                    .SetTitle(Resources.GetString(Resource.String.Congratulation))
-                                   .SetMessage("You have unlocked Envelope B by donating a total of 100 gold. Select reveal to add its content. Cancel if you didn't unlock Envelope B.")
-                                   .SetPositiveButton("Donate and reveal", (s, a) => {
+                                   .SetMessage(Resources.GetString(Resource.String.CharacterStat_UnlockedENvelopeBByDonatingHundredGold))
+                                   .SetPositiveButton(Resources.GetString(Resource.String.CharacterStat_DonateAndReveal), (s, a) => {
                                        GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeBUnlocked = true;
                                        DoDonation();
                                    })
-                                   .SetNegativeButton("Don't donate.", (s, a) =>
+                                   .SetNegativeButton(Resources.GetString(Resource.String.CharacterStat_DontDonate), (s, a) =>
                                    { })
                                    .Show();
                            }
@@ -169,13 +171,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                                DoDonation();
                            }
                        })
-                       .SetNegativeButton("Close", (senderAlert, args) => { })
+                       .SetNegativeButton(Resources.GetString(Resource.String.Close), (senderAlert, args) => { })
                        .Show();                            
                 }              
             }
             else
             {
-                Toast.MakeText(Context, "The character needs at least 10 gold to donate.", ToastLength.Long).Show();
+                Toast.MakeText(Context, Resources.GetString(Resource.String.CharacterStat_NeedsTenGold), ToastLength.Long).Show();
             }
         }
 
@@ -183,18 +185,19 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         {
             Character.Gold -= 10;
 
-            var text = $"{ Character.Name} donated 10 gold to the sanctuary of the great oak.";
+            var text = String.Format(Resources.GetString(Resource.String.CharacterStat_donated), Character.Name);
 
             if (Helper.GetNextDonationValueForProsperity(GCTContext.CurrentCampaign.CampaignData.DonatedGold) == GCTContext.CurrentCampaign.CampaignData.DonatedGold + 10)
             {
-                text += "\r\n\r\nThe city of Gloomhaven gained one prosperity point.";
+                text += Resources.GetString(Resource.String.CharacterStat_ProsperityRaised);
+                GCTContext.CurrentCampaign.CityProsperity += 1;
             }
 
             Toast.MakeText(Context, text, ToastLength.Long).Show();
 
             GCTContext.CurrentCampaign.AddDonationToTheSanctuary();
 
-            GCTContext.CurrentCampaign.Save();
+            GCTContext.CurrentCampaign.Save(false);
             _goldEditText.Text = Character.Gold.ToString();
             SaveCharacter();
         }
@@ -265,13 +268,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         }
 
         private void CpqcLayout_ThresholdNotReached(object sender, ThresholdReachedEventArgs e)
-        {           
-            var us = GCTContext.CurrentCampaign.UnlockedScenarios.FirstOrDefault(x=>x.Scenarionumber == e.ScenarioUnlocked);
-            if(us != null)
+        {
+            var cus = GCTContext.CurrentCampaign.CampaignData.UnlockedScenarios.FirstOrDefault(x=>x.Scenario.Scenarionumber == e.ScenarioUnlocked);
+
+            if (cus != null)
             {
                 Toast.MakeText(Context, $"Unlocked scenario #{e.ScenarioUnlocked} is locked again.", ToastLength.Long).Show();
-                GCTContext.CurrentCampaign.RemoveUnlockedScenario(us);
-                GCTContext.CurrentCampaign.Save();
+                GCTContext.CurrentCampaign.RemoveScenario(cus);
             }
             
             ShowPersonalQuest();
@@ -281,7 +284,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         {
             Toast.MakeText(Context, $"You have unlocked scenario #{e.ScenarioUnlocked} for your personal quest.", ToastLength.Long).Show();
             GCTContext.CurrentCampaign.AddUnlockedScenario(e.ScenarioUnlocked);
-            GCTContext.CurrentCampaign.Save();
             ShowPersonalQuest();
         }
 
@@ -316,7 +318,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         private void _notes_FocusChange(object sender, View.FocusChangeEventArgs e)
         {
             if (e.HasFocus) return;
-            if (!string.IsNullOrEmpty(_notes?.Text)) Character.Notes = _notes.Text;
+            Character.Notes = _notes.Text;
             SaveCharacter();
         }
         
@@ -444,9 +446,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                         if (Character.Party != null && DataServiceCollection.CampaignDataService.GetRetiredCharacters(Character.Party.ID_Campaign).Count == 0)
                         {
                             GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = false;
-                        }
-                        
-                        GCTContext.CurrentCampaign.Save();
+                            CampaignUnlocksRepository.InsertOrReplace(GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks);
+                        }            
 
                         Toast.MakeText(Context, string.Format($"{Character.Name} is ready for new adventures"), ToastLength.Short).Show();
                         SetRetiredButton();
@@ -495,6 +496,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                     if (GCTContext.CurrentCampaign != null)
                     {
                         GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = true;
+                        CampaignUnlocksRepository.InsertOrReplace(GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks);
                     }
                 })
                 .Show();
@@ -503,20 +505,37 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         private void LgButton_Click(object sender, EventArgs e)
         {
             var inflater = LayoutInflater;
-            var view = inflater.Inflate(Resource.Layout.alertdialog_personalquest_spinner, null);            
+            var view = inflater.Inflate(Resource.Layout.alertdialog_personalquest_spinner_imageview, null);
+            var connected = CrossConnectivity.Current.IsConnected;
+
+            if (!connected)
+            {
+                // not connected to internet
+                view = inflater.Inflate(Resource.Layout.alertdialog_personalquest_spinner, null);
+            }
+
+            var showPqImage = view.FindViewById<ImageButton>(Resource.Id.showpqimagebutton);
+            var spinner = view.FindViewById<Spinner>(Resource.Id.personalquestselectionspinner);
+            var pqimage = view.FindViewById<ImageView>(Resource.Id.itemimage);
             var goalText = view.FindViewById<TextView>(Resource.Id.goaltextview);
             var rewardtext = view.FindViewById<TextView>(Resource.Id.rewardtextview);
             var classImageView = view.FindViewById<ImageView>(Resource.Id.classImageView);
-            var showPqImage = view.FindViewById<ImageButton>(Resource.Id.showpqimagebutton);
-            var spinner = view.FindViewById<Spinner>(Resource.Id.personalquestselectionspinner);
 
             SetPqSpinnerData(spinner, GCTContext.ShowPersonalQuestDetails, true);
 
             if (!GCTContext.ShowPersonalQuestDetails)
             {
-                goalText.Visibility =ViewStates.Invisible;
-                rewardtext.Visibility = ViewStates.Invisible;
-                classImageView.Visibility = ViewStates.Invisible;
+                if (connected)
+                {
+                    pqimage.Visibility = ViewStates.Invisible;
+                }
+                else
+                {
+                    goalText.Visibility = ViewStates.Invisible;
+                    rewardtext.Visibility = ViewStates.Invisible;
+                    classImageView.Visibility = ViewStates.Invisible;                   
+                }
+               
                 showPqImage.Visibility = ViewStates.Visible;
                 var color = ContextCompat.GetColor(Context, Resource.Color.gloom_invisibleBackground);
                 showPqImage.SetBackgroundColor(new Color(color));
@@ -525,23 +544,48 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                 {
                     showPqImage.Click += (s, ex) =>
                     {
-                        if(goalText.Visibility == ViewStates.Invisible)
+                        var visible = true;
+                        if (connected)
                         {
-                            goalText.Visibility = ViewStates.Visible;
-                            rewardtext.Visibility = ViewStates.Visible;
-                            classImageView.Visibility = ViewStates.Visible;
+                            if (pqimage.Visibility == ViewStates.Invisible)
+                            {                              
+                                pqimage.Visibility = ViewStates.Visible;                                
+                            }
+                            else
+                            {
+                                pqimage.Visibility = ViewStates.Invisible;
+                                visible = false;
+                            }
+                            SetPqSpinnerData(spinner, pqimage.Visibility == ViewStates.Visible, false);
+                        }
+                        else
+                        {
+                            if (goalText.Visibility == ViewStates.Invisible)
+                            {
+                                goalText.Visibility = ViewStates.Visible;
+                                rewardtext.Visibility = ViewStates.Visible;
+                                classImageView.Visibility = ViewStates.Visible;
+                            }
+                            else
+                            {
+                                goalText.Visibility = ViewStates.Invisible;
+                                rewardtext.Visibility = ViewStates.Invisible;
+                                classImageView.Visibility = ViewStates.Invisible;
+                                visible = false;
+                            }
+                            SetPqSpinnerData(spinner, goalText.Visibility == ViewStates.Visible, false);                            
+                        }    
+
+                        if(visible)
+                        {
                             color = ContextCompat.GetColor(Context, Resource.Color.gloom_secondary);
                             showPqImage.SetBackgroundColor(new Color(color));
                         }
                         else
                         {
-                            goalText.Visibility = ViewStates.Invisible;
-                            rewardtext.Visibility = ViewStates.Invisible;
-                            classImageView.Visibility = ViewStates.Invisible;
                             color = ContextCompat.GetColor(Context, Resource.Color.gloom_invisibleBackground);
                             showPqImage.SetBackgroundColor(new Color(color));
                         }
-                        SetPqSpinnerData(spinner, goalText.Visibility == ViewStates.Visible, false);
                     }; 
                 }
             }
@@ -552,9 +596,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                 .SetCustomView(view)
-                .SetTitle("Personal quest")
+                .SetTitle(Context.Resources.GetString(Resource.String.PersonalQuest))
                 .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
-                .SetPositiveButton("OK", (senderAlert, args) =>
+                .SetPositiveButton(Context.Resources.GetString(Resource.String.OK), (senderAlert, args) =>
                 {
                     var pq = (DL_PersonalQuest)((PersonalQuestAdapter)spinner.Adapter).GetItem(spinner.SelectedItemPosition);
                     if (pq == null) return;
@@ -589,8 +633,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                 })
                 .Show();
 
-            classImageView.Enabled = false;
-
             spinner.ItemSelected += (s, e2) =>
             {
                 var pq = (DL_PersonalQuest)((PersonalQuestAdapter)spinner.Adapter).GetItem(e2.Position);
@@ -598,20 +640,47 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
                 pq = PersonalQuestRepository.Get(pq.Id);
 
-                goalText.Text = pq.QuestGoal;
-                if (pq.QuestReward == "class")
+                if (connected)
                 {
-                    if(GCTContext.ShowPersonalQuestDetails) classImageView.Visibility = ViewStates.Visible;
-
-                    classImageView.SetImageResource(ResourceHelper.GetClassIconWhiteSmallRessourceId(pq.QuestRewardClassId - 1));
-                    rewardtext.Text = "Character";
+                    var imageBitmap = GetImageBitmapFromUrlAsync("https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/personal-goals/pg-" + pq.QuestNumber + ".png", pqimage, view);
                 }
                 else
                 {
-                    classImageView.Visibility = ViewStates.Gone;
-                    rewardtext.Text = $"{pq.QuestReward}";
-                }
+                    goalText.Text = pq.QuestGoal;
+                    if (pq.QuestReward == "class")
+                    {
+                        if (GCTContext.ShowPersonalQuestDetails) classImageView.Visibility = ViewStates.Visible;
+
+                        classImageView.SetImageResource(ResourceHelper.GetClassIconWhiteSmallRessourceId(pq.QuestRewardClassId - 1));
+                        rewardtext.Text = "Character";
+                    }
+                    else
+                    {
+                        classImageView.Visibility = ViewStates.Gone;
+                        rewardtext.Text = $"{pq.QuestReward}";
+                    }
+                }                    
             };    
+        }
+
+        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
+        {
+            Bitmap imageBitmap = null;
+
+            using (var httpClient = new HttpClient())
+            {
+                var imageBytes = await httpClient.GetByteArrayAsync(url);
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                }
+            }
+
+            imagen.SetImageBitmap(imageBitmap);
+
+            view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
+
+            return imageBitmap;
         }
 
         private void SetPqSpinnerData(Spinner spinner, bool showDetails, bool init)

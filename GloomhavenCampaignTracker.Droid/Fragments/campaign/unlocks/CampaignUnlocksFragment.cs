@@ -2,11 +2,11 @@
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.Adapter;
-using GloomhavenCampaignTracker.Shared.Business;
-using GloomhavenCampaignTracker.Shared.Business.Network;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Linq;
 using System.Threading.Tasks;
+using GloomhavenCampaignTracker.Business.Network;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
 {
@@ -30,8 +30,23 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
         private TextView _retireText;
         private GridView _grid;
 
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+        }
+
+        public override void OnStop()
+        {
+            if(_dataChanged)
+            {
+                CampaignUnlocksRepository.InsertOrReplace(GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks);
+                _dataChanged = false;
+            }
+            base.OnStop();
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {           
+        {
             _view = inflater.Inflate(Resource.Layout.fragment_campaign_unlocks, container, false);
 
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -54,10 +69,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
             _partyRep20Text = _view.FindViewById<TextView>(Resource.Id.gainRep20Text);
             _partyRepMinus10Text = _view.FindViewById<TextView>(Resource.Id.gainClassMoonText);
             _partyRepMinus20Text = _view.FindViewById<TextView>(Resource.Id.gainRepMinus20Text);
-            _retireText = _view.FindViewById<TextView>(Resource.Id.gainRetireText);          
+            _retireText = _view.FindViewById<TextView>(Resource.Id.gainRetireText);
             _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
 
-            if(!_checkAncientTech.HasOnClickListeners)
+            if (!_checkAncientTech.HasOnClickListeners)
             {
                 _checkAncientTech.Click += AncientTechCheckBoxClick;
             }
@@ -112,8 +127,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
                 {
                     SwitchViewStates();
                 });
-            });               
-        }       
+            });
+        }
 
         private void _retireCheck_Click(object sender, System.EventArgs e)
         {
@@ -121,27 +136,42 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
             {
                 if (CurrentCampaign.CampaignData.Parties.Any(x => CharacterRepository.GetPartymembers(x.Id).Any(y => y.Retired)))
                 {
-                    CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = true;
+                    if (CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked != true)
+                    {
+                        CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = true;
+                        _dataChanged = true;
+                    }
                 }
                 else
                 {
                     _retireCheck.Checked = false;
-                    CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = false;
+                    if (CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked != false)
+                    {
+                        CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = false;
+                        _dataChanged = true;
+                    }
                 }
-            }    
+            }
             else
             {
                 if (!CurrentCampaign.CampaignData.Parties.Any(x => CharacterRepository.GetPartymembers(x.Id).Any(y => y.Retired)))
                 {
-                    CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = false;
+                    if (CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked != false)
+                    {
+                        CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = false;
+                        _dataChanged = true;
+                    }
                 }
                 else
                 {
                     _retireCheck.Checked = true;
-                    CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = true;                   
+                    if (CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked != true)
+                    {
+                        CurrentCampaign.CampaignData.CampaignUnlocks.TownRecordsBookUnlocked = true;
+                        _dataChanged = true;
+                    }
                 }
             }
-            CurrentCampaign.Save();
         }
 
         private void CheckBoxClick(object sender, System.EventArgs e)
@@ -156,7 +186,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
                 if (!CurrentCampaign.HasGlobalAchievement((int)GlobalAchievementsInternalNumbers.AncientTechnology_Step5))
                 {
                     CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeAUnlocked = false;
-                    CurrentCampaign.Save();                    
+                    _dataChanged = true;
                 }
             }
 
@@ -170,7 +200,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
                 if (!CurrentCampaign.HasTheDrakesPartyAchievements())
                 {
                     CurrentCampaign.CampaignData.CampaignUnlocks.TheDrakePartyAchievementsUnlocked = false;
-                    CurrentCampaign.Save();
+                    _dataChanged = true;
                 }
             }
 

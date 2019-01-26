@@ -1,4 +1,4 @@
-﻿using Business.Network.Messages;
+﻿using GloomhavenCampaignTracker.Business.Network.Messages;
 using Newtonsoft.Json;
 using SQLite;
 using SQLiteNetExtensions.Attributes;

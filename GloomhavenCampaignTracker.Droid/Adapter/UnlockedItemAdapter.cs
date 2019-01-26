@@ -4,36 +4,36 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
-    internal class UnlockedItemAdapter : BaseAdapter
+    internal class UnlockedItemAdapter : ChangeAwareAdapter
     {
         private readonly Context _context;
         private readonly List<DL_Item> _items;
 
         public override int Count => _items.Count;
 
-        public UnlockedItemAdapter(Context context, List<DL_Item> items) 
+        public UnlockedItemAdapter(Context context, List<DL_Item> items)
         {
             _context = context;
-            _items = items.Where(x=>!x.IsHide).ToList();
+            _items = items.Where(x => !x.IsHide).ToList();
         }
 
         public override long GetItemId(int position)
         {
             return position;
         }
-         
+
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             return GetItemView(position, convertView, parent);
         }
 
         private View GetItemView(int position, View convertView, ViewGroup parent)
-        {           
+        {
             DL_ItemHolder holder = null;
 
             if (convertView != null)
@@ -52,6 +52,15 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 holder.Options = convertView.FindViewById<ImageView>(Resource.Id.optionsImageView);
                 holder.ItemCategoryImage = convertView.FindViewById<ImageView>(Resource.Id.categorieImageView);
                 convertView.Tag = holder;
+
+                // Set Item Click Event
+                convertView.Click += (sender, e) =>
+                {
+                    var v = (View)sender;
+                    var numberTxtView = v.FindViewById<TextView>(Resource.Id.itemnumber);
+                    if (numberTxtView == null) return;
+                    ItemClick((DL_Item)numberTxtView.Tag);
+                };
             }
 
             var item = _items[position];
@@ -61,6 +70,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             holder.ItemNumber.Text = $"# {item.Itemnumber}";
             holder.ItemPrice.Text = $"{item.Itemprice} Gold";
             holder.ItemCategoryImage.SetImageResource(ResourceHelper.GetItemCategorieIconRessourceId(item.Itemcategorie));
+            holder.ItemNumber.Tag = item;
 
             if (!holder.Options.HasOnClickListeners)
             {
@@ -72,6 +82,15 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
             return convertView;
         }
+
+        private void ItemClick(DL_Item item)
+        {
+            var numbertext = item.GetNumberText();
+            if (string.IsNullOrEmpty(numbertext)) return;
+            var diag = new ItemImageViewDialogBuilder(_context, Resource.Style.MyTransparentDialogTheme)
+                        .SetItemNumber(numbertext)
+                        .Show();           
+        }       
 
         /// <summary>
         /// Confirm delete
@@ -85,8 +104,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 {
                     if (position >= Count) return;
                     GCTContext.CurrentCampaign.CampaignData.UnlockedItems.Remove(_items[position]);
-                    GCTContext.CurrentCampaign.Save();
-
+                    OnDataModified();
                     _items.Remove(_items[position]);
                     NotifyDataSetChanged();
                 })

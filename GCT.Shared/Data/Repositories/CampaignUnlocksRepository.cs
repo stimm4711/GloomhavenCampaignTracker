@@ -1,5 +1,6 @@
 ﻿using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace GloomhavenCampaignTracker.Shared.Data.Repositories
@@ -52,6 +53,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
         internal static void InsertOrReplace(IEnumerable<DL_CampaignUnlocks> items)
         {
             Me._db.InsertOrReplace(items);
+        }
+
+        internal static DL_CampaignUnlocks GetCampaignUnlocks(int id)
+        {
+            return Me._db.GetCampaignUnlocks(id);
         }
 
         public static void Delete(DL_CampaignUnlocks item)

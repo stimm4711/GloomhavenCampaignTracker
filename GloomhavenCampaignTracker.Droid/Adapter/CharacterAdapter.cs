@@ -5,7 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using Java.Lang;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using GloomhavenCampaignTracker.Shared.Data.Entities;

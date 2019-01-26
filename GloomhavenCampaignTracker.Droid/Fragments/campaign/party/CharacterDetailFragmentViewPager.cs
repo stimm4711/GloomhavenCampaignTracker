@@ -1,6 +1,6 @@
 ﻿using Android.OS;
 using Android.Views;
-using GloomhavenCampaignTracker.Shared.Business;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using Android.Support.V4.View;
 using System.Collections.Generic;

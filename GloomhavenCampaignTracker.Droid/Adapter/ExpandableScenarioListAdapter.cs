@@ -10,10 +10,9 @@ using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared;
-using GloomhavenCampaignTracker.Shared.Business;
-using GloomhavenCampaignTracker.Shared.Data.Entities;
+using GloomhavenCampaignTracker.Business;
 using Object = Java.Lang.Object;
+using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
@@ -39,7 +38,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         /// </summary>
         private readonly Dictionary<string, List<CampaignUnlockedScenario>> _listDataChild;
 
-        public ExpandableScenarioListAdapter(Activity context, List<string> listDataHeader, Dictionary<String, List<CampaignUnlockedScenario>> listChildData)
+        public ExpandableScenarioListAdapter(Activity context, List<string> listDataHeader, Dictionary<string, List<CampaignUnlockedScenario>> listChildData)
         {
             _context = context;
             _listDataHeader = listDataHeader;
@@ -236,92 +235,84 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             if (status)
             {
                 _isCompleting = true;
+                               
+                List<CampaignUnlockedScenario> unlockedScenarios = new List<CampaignUnlockedScenario>();
+                if (campScenario.Completed) return;
 
-                new Thread(new ThreadStart(delegate
+                campScenario.Completed = true;
+
+                var unlockedScenarioNumbers = campScenario.GetUnlockedScenarios();
+                var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;                                               
+
+                if (campScenario.Scenario.ScenarioNumber == 13)
                 {
-                    _context.RunOnUiThread(() =>
-                    {
-                        List<CampaignUnlockedScenario> unlockedScenarios = new List<CampaignUnlockedScenario>();
-                        if (campScenario.Completed) return;
+                    // Choose the Scenario to unlock
 
-                        campScenario.Completed = true;
+                    // Show dialog with selectable scenarios and radio buttons
+                    var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                    var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                    listview.ItemsCanFocus = true;
+                    listview.ChoiceMode = ChoiceMode.Single;
 
-                        var unlockedScenarioNumbers = campScenario.GetUnlockedScenarios(); ;
-                        var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;
-                                               
+                    IEnumerable<Scenario> selectableScenarios = GCTContext.ScenarioCollection.Items.Where(x=> unlockedScenarioNumbers.Contains(x.ScenarioNumber));
 
-                        if (campScenario.Scenario.ScenarioNumber == 13)
+                    var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableScenarios.Select(x => $"# {x.ScenarioNumber}   {x.ScenarioName}").ToArray());
+                    listview.Adapter = adapter;
+
+                    new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                        .SetCustomView(view)
+                        .SetTitle("Select unlocked scenario")
+                        .SetMessage($"Choose the scenario you want to unlock.")
+                        .SetPositiveButton("Unlock scenario", (senderAlert, args) =>
                         {
-                            // Choose the Scenario to unlock
+                            if (listview.CheckedItemPosition == -1) return;
 
-                            // Show dialog with selectable scenarios and radio buttons
-                            var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
-                            var listview = view.FindViewById<ListView>(Resource.Id.listView);
-                            listview.ItemsCanFocus = true;
-                            listview.ChoiceMode = ChoiceMode.Single;
+                            var scenario = selectableScenarios.ElementAt(listview.CheckedItemPosition);
 
-                            IEnumerable<Scenario> selectableScenarios = GCTContext.ScenarioCollection.Items.Where(x=> unlockedScenarioNumbers.Contains(x.ScenarioNumber));
+                            if (scenario == null) return;
 
-                            var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableScenarios.Select(x => $"# {x.ScenarioNumber}   {x.ScenarioName}").ToArray());
-                            listview.Adapter = adapter;
+                            if (_listDataChild.Values.Any(x =>x.Any(y=>y.Scenarionumber == scenario.ScenarioNumber))) return;
 
-                            new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                                .SetCustomView(view)
-                                .SetTitle("Select unlocked scenario")
-                                .SetMessage($"Choose the scenario you want to unlock.")
-                                .SetPositiveButton("Unlock scenario", (senderAlert, args) =>
-                                {
-                                    if (listview.CheckedItemPosition == -1) return;
-                                    var scenario = selectableScenarios.ElementAt(listview.CheckedItemPosition);
-
-                                    if (scenario == null) return;
-
-                                    if (GCTContext.CurrentCampaign.UnlockedScenarios.Any(x => x.Scenarionumber == scenario.ScenarioNumber)) return;
-
-                                    var unlockedcampscenario = currentCampaign.AddUnlockedScenario(scenario.ScenarioNumber);
-
-                                    campScenario.Save();
-
-                                    _listDataChild[_unlocked].Remove(campScenario);
-                                    _listDataChild[_completed].Add(campScenario);
-
-                                    Add(unlockedcampscenario);
-
-                                    NotifyDataSetChanged();
-
-                                    _isCompleting = false;
-                                })
-                                .Show();
-                        }
-                        else
-                        {
-                            foreach (var scenarioNumber in unlockedScenarioNumbers)
-                            {
-                                if (GCTContext.CurrentCampaign.UnlockedScenarios.Any(x => x.Scenarionumber == scenarioNumber)) continue;
-                                unlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenarioNumber));
-                            }
-
-                            campScenario.Save();
+                            var unlockedcampscenario = currentCampaign.AddUnlockedScenario(scenario.ScenarioNumber);                                   
 
                             _listDataChild[_unlocked].Remove(campScenario);
                             _listDataChild[_completed].Add(campScenario);
 
-                            // add unlocked scenarios
-                            foreach (var s in unlockedScenarios)
-                            {
-                                Add(s);
-                            }
+                            Add(unlockedcampscenario);
 
                             NotifyDataSetChanged();
 
                             _isCompleting = false;
-                        }                       
-                    });
-                })).Start();
+                        })
+                        .Show();
+                }
+                else
+                {
+                    foreach (var scenarioNumber in unlockedScenarioNumbers)
+                    {
+                        if (_listDataChild.Values.Any(x => x.Any(y => y.Scenarionumber == scenarioNumber))) continue;
+                        unlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenarioNumber));
+                    }
+
+                    _listDataChild[_unlocked].Remove(campScenario);
+                    _listDataChild[_completed].Add(campScenario);
+
+                    // add unlocked scenarios
+                    foreach (var s in unlockedScenarios)
+                    {
+                        Add(s);
+                    }
+
+                    NotifyDataSetChanged();
+
+                    _isCompleting = false;
+                }
+
+                campScenario.Save();
             }
             else
             {
-                var removecampScenarios = campScenario.SetIncomplete();
+                var removecampScenarios = SetIncomplete(campScenario);
 
                 var alertView = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
                 var lv = alertView.FindViewById<ListView>(Resource.Id.listView);
@@ -347,11 +338,48 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                         _listDataChild[_completed].Remove(campScenario);
                         _listDataChild[_unlocked].Add(campScenario);
 
-                        GCTContext.CurrentCampaign.Save();
+                        campScenario.Save();
                         NotifyDataSetChanged();
                     })
                     .Show();
             }            
+        }
+
+        internal HashSet<CampaignUnlockedScenario> SetIncomplete(CampaignUnlockedScenario cs, HashSet<CampaignUnlockedScenario> removededScenarios = null)
+        {
+            if (removededScenarios == null) removededScenarios = new HashSet<CampaignUnlockedScenario>();
+
+            if (!cs.Completed) return removededScenarios;
+
+            var unlockedScenarioNumbers = cs.GetUnlockedScenarios();
+            var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;
+
+            var followingScenarios = new List<CampaignUnlockedScenario>();
+            foreach (var scenarioNumber in unlockedScenarioNumbers)
+            {
+                // Check if the scenario was unlocked by any other completed scenario
+                if (_listDataChild[_completed].Any(x => x.Scenarionumber != cs.Scenarionumber && 
+                                                        !removededScenarios.Contains(x) && 
+                                                        x.GetUnlockedScenarios().Contains(scenarioNumber))) continue;
+
+                var campScenarioList = _listDataChild.Values.FirstOrDefault(x=>x.Any(y=>y.Scenarionumber == scenarioNumber));
+                if(campScenarioList != null)
+                {
+                    var campScenario = campScenarioList.FirstOrDefault(y => y.Scenarionumber == scenarioNumber);
+
+                    if (campScenario != null)
+                    {
+                        removededScenarios.Add(campScenario);
+
+                        foreach (var cus in SetIncomplete(campScenario, removededScenarios))
+                        {
+                            removededScenarios.Add(cus);
+                        }
+                    }
+                }               
+            }
+
+            return removededScenarios;
         }
 
         /// <summary>
@@ -506,7 +534,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 .SetMessage(string.Format(_context.Resources.GetString(Resource.String.DeleteUnlockedScenario), campscenario.ScenarioName))
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {
-                    GCTContext.CurrentCampaign.RemoveScenario(campscenario);                    
+                    GCTContext.CurrentCampaign.RemoveUnlockedScenario(campscenario);                    
                     Remove(campscenario);
                     NotifyDataSetChanged();
                 })

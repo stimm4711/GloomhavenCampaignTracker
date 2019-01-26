@@ -1,4 +1,4 @@
-﻿using Business.Network.Messages;
+﻿using GloomhavenCampaignTracker.Business.Network.Messages;
 using Newtonsoft.Json;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
@@ -23,7 +23,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         public DateTime LastSync { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.All), JsonIgnore]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
         public DL_Campaign Campaign { get; set; }
 
         [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]

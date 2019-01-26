@@ -77,6 +77,37 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             }
         }
 
+        internal IEnumerable<DL_CampaignUnlockedScenario> GetUnlockedScenariosOfCampaign(int campaignId)
+        {
+            lock (locker)
+            {
+                try
+                {
+                    return Get().Where(x => x.ID_Campaign == campaignId);
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+        }
+
+        internal DL_CampaignUnlockedScenario GetUnlockedScenario(int scenarioNumber, int campaignId)
+        {
+            lock(locker)
+            {
+                try
+                {
+                    var query = "Select * From DL_CampaignUnlockedScenario cus Inner join DL_Scenario s On s.Id = cus.ID_Scenario Where cus.ID_Campaign = ? and s.Scenarionumber = ?";
+                    return Connection.ExecuteScalar<DL_CampaignUnlockedScenario>(query, campaignId, scenarioNumber);
+                } 
+                catch
+                {
+                    throw;
+                }              
+            }
+        }
+
         public void Delete(DL_CampaignUnlockedScenario item)
         {
             lock (locker)

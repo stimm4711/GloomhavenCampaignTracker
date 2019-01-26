@@ -2,11 +2,11 @@
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
+using GloomhavenCampaignTracker.Business.Network;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.city;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.party;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.world;
-using GloomhavenCampaignTracker.Shared.Business.Network;
 using Java.Lang;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter

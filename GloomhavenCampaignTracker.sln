@@ -49,7 +49,7 @@ Global
 		SolutionGuid = {1F5044CA-74D5-4165-B500-6590D4A915ED}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://timmcode.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -66,8 +66,5 @@ Global
 		SccProjectTopLevelParentUniqueName4 = GCT.Shared\\GCT.Shared.shproj
 		SccProjectName4 = GCT.Shared
 		SccLocalPath4 = GCT.Shared
-		SccProjectUniqueName5 = UnitTestProject1\\GloomhavenCampaignTracker.RealUnitTests.csproj
-		SccProjectName5 = UnitTestProject1
-		SccLocalPath5 = UnitTestProject1
 	EndGlobalSection
 EndGlobal
