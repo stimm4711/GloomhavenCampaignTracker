@@ -108,6 +108,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
                     var selectedItems = itemadapter.GetSelected();
                     foreach (DL_Item si in selectedItems)
                     {
+                        var item = new DL_CampaignUnlockedItem()
+                        {
+                            Campaign = GCTContext.CurrentCampaign.CampaignData,
+                            ID_Campaign = GCTContext.CurrentCampaign.CampaignData.Id,
+                            ID_Item = si.Id,
+                            Item = si
+                        };
+
+                        CampaignUnlockedItemRepository.InsertOrReplace(item);
+
                         GCTContext.CurrentCampaign.CampaignData.UnlockedItems.Add(si);
                     }
 

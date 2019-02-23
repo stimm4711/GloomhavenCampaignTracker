@@ -59,6 +59,26 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             }
         }
 
+        internal void UpdatePerkText(DL_ClassPerk item)
+        {
+            lock (locker)
+            {
+                var query = "Update DL_ClassPerk SET Perktext = ? WHERE ID = ?";
+                var perks = Connection.Query<DL_ClassPerk>(query, item.Perktext, item.Id);
+            }
+        }
+
+        internal List<DL_ClassPerk> GetClassPerks(int classid)
+        {
+            lock (locker)
+            {
+                var query = "Select * from DL_ClassPerk where classId = ? ";
+
+                var perks = Connection.Query<DL_ClassPerk>(query, classid);
+                return perks;
+            }
+        }
+
         internal void Insert(IEnumerable<DL_ClassPerk> items)
         {
             lock (locker)

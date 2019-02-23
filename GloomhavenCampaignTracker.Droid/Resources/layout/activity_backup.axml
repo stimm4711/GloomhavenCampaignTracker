@@ -5,7 +5,8 @@
     android:minHeight="25px"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/linearLayout1">
+    android:id="@+id/linearLayout1"
+	android:focusableInTouchMode="true">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />

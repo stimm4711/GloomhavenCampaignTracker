@@ -69,5 +69,10 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
         {
             return Me._db.GetUnlockedScenariosOfCampaign(campaignId);
         }
+
+        internal static IEnumerable<DL_CampaignUnlockedScenario> CompletedScenario39AndScenario15NotUnlocked()
+        {
+            return Me._db.CompletedScenario39AndScenario15NotUnlocked();
+        }
     }
 }

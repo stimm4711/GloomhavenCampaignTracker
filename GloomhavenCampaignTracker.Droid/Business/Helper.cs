@@ -33,7 +33,8 @@ namespace GloomhavenCampaignTracker.Business
         Characters = 13,
         Settings = 14,
         Support = 15,
-        Releasenotes = 16
+        Releasenotes = 16,
+        EnvelopeXUnlock = 17
     }
     
     public class Helper

@@ -34,6 +34,14 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         public bool TheDrakePartyAchievementsUnlocked { get; set; }
 
+        public bool EnvelopeXUnlocked { get; set; }
+
+        public bool EnvelopeXEncrypted { get; set; }
+
+        public string EnvelopeXSolution { get; set; } 
+
+        public bool HiddenClassUnlocked { get; set; }
+
         [OneToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
         public DL_Campaign Campaign { get; set; }
     }

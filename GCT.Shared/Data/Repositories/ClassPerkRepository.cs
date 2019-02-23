@@ -44,9 +44,19 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
             return Me._db.Get(recursive);
         }
 
+        public static List<DL_ClassPerk> GetClassPerks(int classid)
+        {
+            return Me._db.GetClassPerks(classid);
+        }
+
         public static void InsertOrReplace(DL_ClassPerk item)
         {
             Me._db.InsertOrReplace(item);
+        }
+
+        public static void UpdatePerkText(DL_ClassPerk item)
+        {
+            Me._db.UpdatePerkText(item);
         }
 
         internal static void InsertOrReplace(IEnumerable<DL_ClassPerk> items)

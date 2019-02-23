@@ -246,6 +246,7 @@
     <Compile Include="Fragments\campaign\PartySelectionFragment.cs" />
     <Compile Include="Fragments\campaign\CampaignSelectionFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyAchievementsFragment.cs" />
+    <Compile Include="Fragments\campaign\unlocks\CampaignUnlocksEnvelopeXFragment.cs" />
     <Compile Include="Fragments\character\CharacterDetailFragmentBase.cs" />
     <Compile Include="Fragments\character\CharacterDetailPerks2Fragment.cs" />
     <Compile Include="Fragments\character\CharacterDetailPerksFragment.cs" />
@@ -2619,6 +2620,18 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_envelopeXUnlock.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_class18icon_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_class18icon_b.png" />
   </ItemGroup>
   <Import Project="..\GCT.Shared\GCT.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

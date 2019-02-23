@@ -24,7 +24,10 @@
   <string name="github_web">
     <a href="https://github.com/stimm4711/GloomhavenCampaignTracker/wiki">GitHub Wiki</a>
   </string>
-
+  <string name="Bladeswarm_web">
+    <a href="http://www.cephalofair.com/bladeswarm">http://www.cephalofair.com/bladeswarm</a>
+  </string>
+  
   <!-- Common -->
   <string name="Assign">Assign</string>
   <string name="Assigned">Assigned</string>
@@ -53,6 +56,22 @@
   <string name="UnlockedEnvelopeA">You have unlocked Envelope A</string>
   <string name="UnlockedTownRecordBook">Open the Town Records Book.</string>
   <string name="UnlockedEnvelopeB">You have unlocked Envelope B</string>
+  <string name="WarningSpoilersAhead">Warning! Spoilers ahead!</string>
+  <string name="SpoilerWarningMessage">The following contains heavy spoilers! Just proceed if you unlocked and opened envelope X!</string>
+  <string name="Proceed">Proceed</string>
+  <string name="ShowEnvelopeXProgress">Show Envelope X progress</string>
+  
+  <!-- Unlocks - Envelope X-->
+  <string name="unlocks_envelopex_majorspoilers">WARNING! MAJOR SPOILERS!</string>
+  <string name="unlocks_envelopex_decrypted">We call from the dust-from the aged bones of those you have killed. Speak our name into his web and we will be free. 10 clues you must find/ 10 letters to our name. Here is our first: B</string>
+  <string name="unlocks_envelopex_openanddecryptedcommitment">We have opened envelope X and decrypted the message</string>
+  <string name="unlocks_envelopex_theirname">Enter the letters of their name</string>
+  <string name="classes_bladeswarmname">Bladeswarm</string>
+  <string name="unlocks_envelopex_congratulations">Congratulations!\nYou have unlocked the content of envelope X!</string>
+  <string name="unlocks_envelopex_completeddialogmessage">Select Reward to open a website with your reward for completing the quest!</string>
+  <string name="Reward">Reward</string>
+  <string name="unlocks_envelopex_speakthenamebutton">Speak the name</string>
+  <string name="unlocks_envelopex_nothinghappens">You speak out the name but nothing happens.</string>
   
   <!-- Campaign -->
   <string name="SelectCampaign">Select Campaign</string>

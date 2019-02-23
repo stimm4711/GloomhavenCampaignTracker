@@ -5,7 +5,6 @@ using System.Linq;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using SQLite;
 using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
-using GloomhavenCampaignTracker.Shared;
 using GloomhavenCampaignTracker.Business;
 
 namespace Data
@@ -13,84 +12,14 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 3, 20);
+        public static Version Dbversion { get; } = new Version(1, 4, 4);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
         {
             var old = Version.Parse(currentDbVersion.Value);
             if ((VersionTime)old.CompareTo(Dbversion) == VersionTime.Earlier)
-            {
-                if ((VersionTime)old.CompareTo(new Version(1, 1, 0)) == VersionTime.Earlier)
-                {
-                    GloomhavenDbHelper.FillClassPerks();
-                    MigratePerks();
-
-                    // Fix item 90 name
-                    var item90 = ItemRepository.Get().FirstOrDefault(x => x.Itemnumber == 90 && x.Itemname == "Major Cure Postion");
-                    if (item90 != null)
-                    {
-                        item90.Itemname = "Major Cure Potion";
-                        ItemRepository.InsertOrReplace(item90);
-                    }
-
-                    // Fix item 89 name
-                    var item89 = ItemRepository.Get().FirstOrDefault(x => x.Itemnumber == 89 && x.Itemname == "Minure Cure Postion");
-                    if (item89 != null)
-                    {
-                        item89.Itemname = "Minure Cure Potion";
-                        ItemRepository.InsertOrReplace(item89);
-                    }
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 2, 2)) == VersionTime.Earlier)
-                {
-                    GloomhavenDbHelper.FillEnhancement();
-
-                    CheckIfAllPerksExists();
-
-                    List<DL_ClassPerk> perks = ClassPerkRepository.Get(false);
-
-                    FixTinkererHealPerk(perks);
-
-                    FixNameOfScenario22();
-
-                    GloomhavenDbHelper.AddRegionsToScenarios();
-
-                    UpdateGlobalAchievementNameRiftClosed();
-
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 2, 3)) == VersionTime.Earlier)
-                {
-                    UpdateEventHistoryPositions();
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 2, 4)) == VersionTime.Earlier)
-                {
-                    FixScoundrelPerkTypo();
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 2, 5)) == VersionTime.Earlier)
-                {
-                    FixMindthiefPerkTypo();
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 2, 6)) == VersionTime.Earlier)
-                {
-                    FixScenarioRegions();
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 3, 1)) == VersionTime.Earlier)
-                {
-                    CheckIfAllPerksExists();
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 3, 3)) == VersionTime.Earlier)
-                {
-                    CheckIfAllPerksExists();
-                }
-
+            {              
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 4)) == VersionTime.Earlier)
                 {
                     FixItem33ItemCategorie();
@@ -99,11 +28,6 @@ namespace Data
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 5)) == VersionTime.Earlier)
                 {
                     AddPartyAchievementSunblessed();
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 3, 7)) == VersionTime.Earlier)
-                {
-                    CheckIfAllPerksExists();
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 11)) == VersionTime.Earlier)
@@ -120,11 +44,6 @@ namespace Data
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 15)) == VersionTime.Earlier)
                 {
                     UpdatePersonalQuestCountersFor520();
-                }
-
-                if ((VersionTime)old.CompareTo(new Version(1, 3, 16)) == VersionTime.Earlier)
-                {
-                    CheckIfAllPerksExists();
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 17)) == VersionTime.Earlier)
@@ -148,9 +67,58 @@ namespace Data
                     FixScenarioRegionOf61();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 1)) == VersionTime.Earlier)
+                {
+                    FixScenarioUnlockedScenariosOf39();
+                }
 
+                // 1.4.2 = Added Bladeswarm perks
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 4)) == VersionTime.Earlier)
+                { 
+                    FixScenario39unlockedScenarios();
+                }
+                
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
+            }
+        }
+
+        private static void FixScenario39unlockedScenarios()
+        {
+            ScenarioRepository.UpdateScenarioUnlockedScenarios(39, "46,15");
+
+            var s39 = ScenarioRepository.GetScenarioByScenarioNumber(39);
+            var s15 = ScenarioRepository.GetScenarioByScenarioNumber(15);
+
+            var campaignIDs = CampaignUnlockedScenarioRepository.CompletedScenario39AndScenario15NotUnlocked();
+
+            foreach (var camapignId in campaignIDs)
+            {
+                var campaign = CampaignRepository.Get(camapignId.ID_Campaign);
+                var newScenario = new DL_CampaignUnlockedScenario()
+                {
+                    Completed = false,
+                    Campaign = campaign,
+                    ID_Campaign = camapignId.ID_Campaign,
+                    ID_Scenario = s15.Id,
+                    Scenario = s15,
+                    ScenarioTreasures = new List<DL_Treasure>()
+                };
+
+                 CampaignUnlockedScenarioRepository.InsertOrReplace(newScenario);
+            }            
+        }
+
+        private static void FixSpellweaverWoundPerk()
+        {
+            DL_ClassPerk perk = ClassPerkRepository.GetClassPerks(2).FirstOrDefault(x=>x.Checkboxnumber == 7);
+
+            if(perk != null)
+            {
+                perk.Perktext = "Add one [+1] WOUND [W] card";
+
+                ClassPerkRepository.UpdatePerkText(perk);
             }
         }
 
@@ -176,6 +144,8 @@ namespace Data
             AddSawbonesPerks(perks); // 14
             AddElementalistPerks(perks); // 15
             AddBeastTyrantPerks(perks); // 16   
+
+            AddBladeswarmPerks(perks); // 17
                   
             perks = ClassPerkRepository.Get(false);
 
@@ -190,6 +160,39 @@ namespace Data
             MigrateSawbonePerks(perks);
             MigrateElementalistPerks(perks);
             MigrateBeastTyrantPerks(perks);  
+        }
+
+        private static void AddBladeswarmPerks(List<DL_ClassPerk> perks)
+        {
+            if (!perks.Any(x => x.ClassId == 17))
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertClassPerk(17, "Remove one [-2] card", 1);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Remove four [+0] cards", 2);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Replace one [-1] card with one [+1][WIND] card", 3);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Replace one [-1] card with one [+1][EARTH] card", 4);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Replace one [-1] card with one [+1][LIGHT] card", 5);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Replace one [-1] card with one [+1][DARK] card", 6);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Add two [RM] Heal [H]1 cards", 7);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Add two [RM] Heal [H]1 cards", 8);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Add one [+1] WOUND [W] card", 9);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Add one [+1] WOUND [W] card", 10);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Add one [+1] POISON [PO] card", 11);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Add one [+1] POISON [PO] card", 12);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Add one [+2] MUDDLE [M] card", 13);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Ignore negative item effects and add one [+1] card", 14);
+                    GloomhavenDbHelper.InsertClassPerk(17, "Ignore negative scenario effects and add one [+1] card", 15);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }
         }
 
         private static void AddScoundrelPerks(List<DL_ClassPerk> perks)
@@ -238,7 +241,7 @@ namespace Data
                     GloomhavenDbHelper.InsertClassPerk(2, "Add two [+1] cards", 4);
                     GloomhavenDbHelper.InsertClassPerk(2, "Add two [+1] cards", 5);
                     GloomhavenDbHelper.InsertClassPerk(2, "Add one [+0] STUN [ST] card", 6);
-                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+1] WOUND card", 7);
+                    GloomhavenDbHelper.InsertClassPerk(2, "Add one [+1] WOUND [W] card", 7);
                     GloomhavenDbHelper.InsertClassPerk(2, "Add one [+1] IMMOBILIZE [I] card", 8);
                     GloomhavenDbHelper.InsertClassPerk(2, "Add one [+1] CURSE [C] card", 9);
                     GloomhavenDbHelper.InsertClassPerk(2, "Add one [+2] [FIRE] card", 10);
@@ -270,8 +273,8 @@ namespace Data
                     GloomhavenDbHelper.InsertClassPerk(5, "Remove four [+0] cards", 3);
                     GloomhavenDbHelper.InsertClassPerk(5, "Replace two [+1] cards with two [+2] cards", 4);
                     GloomhavenDbHelper.InsertClassPerk(5, "Replace one [-2] card with one [+0] card", 5);
-                    GloomhavenDbHelper.InsertClassPerk(5, "Add one [+2] FROST card", 6);
-                    GloomhavenDbHelper.InsertClassPerk(5, "Add one [+2] FROST card", 7);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add one [+2] [FROST] card", 6);
+                    GloomhavenDbHelper.InsertClassPerk(5, "Add one [+2] [FROST] card", 7);
                     GloomhavenDbHelper.InsertClassPerk(5, "Add two [RM] [+1] cards", 8);
                     GloomhavenDbHelper.InsertClassPerk(5, "Add two [RM] [+1] cards", 9);
                     GloomhavenDbHelper.InsertClassPerk(5, "Add three [RM] PULL [PUL] 1 cards", 10);
@@ -397,6 +400,23 @@ namespace Data
             {
                 var sdc = new ScenarioDataService();
                 sdc.UpdateScenarioRegion(61, 4);
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        private static void FixScenarioUnlockedScenariosOf39()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                var sdc = new ScenarioDataService();
+                sdc.UpdateUnlockedScenarios(39, "46,15");
 
                 Connection.Commit();
             }
@@ -841,40 +861,7 @@ namespace Data
                 Connection.Rollback();
                 throw;
             }
-        }
-
-        private static void MigratePerks()
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var perks = ClassPerkRepository.Get();
-                var characters = CharacterRepository.Get();
-                foreach (DL_Character c in characters.Where(x => x.ClassId < 7))
-                {
-                    if (c.Perks.Any())
-                    {
-                        foreach (DL_Perk oldperk in c.Perks.Where(x => x.Checkboxnumber > 0 && x.Checkboxnumber < 16))
-                        {
-                            var newPerk = perks.FirstOrDefault(x => x.ClassId == c.ClassId - 1 && x.Checkboxnumber == oldperk.Checkboxnumber);
-
-                            if (newPerk != null)
-                            {
-                                c.CharacterPerks.Add(newPerk);
-                                CharacterRepository.InsertOrReplace(c);
-                            }
-                        }
-                    }
-                }
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
+        }        
 
         private static void MigrateSoothsingerPerks(List<DL_ClassPerk> perks)
         {
@@ -1474,7 +1461,7 @@ namespace Data
                     GloomhavenDbHelper.InsertClassPerk(11, "Add one [RM] STUN [ST] card", 9);
                     GloomhavenDbHelper.InsertClassPerk(11, "Add one [RM] STUN [ST] card", 10);
                     GloomhavenDbHelper.InsertClassPerk(11, "Add one [RM] [+1] DISARM [D] card", 11);
-                    GloomhavenDbHelper.InsertClassPerk(11, "Add two [RM] HEAL SELF [H] 1 cards", 12);
+                    GloomhavenDbHelper.InsertClassPerk(11, "Add two [RM] HEAL [H] 1 SELF cards", 12);
                     GloomhavenDbHelper.InsertClassPerk(11, "Add one [+2] [FIRE] card", 13);
                     GloomhavenDbHelper.InsertClassPerk(11, "Add one [+2] [FIRE] card", 14);
                     GloomhavenDbHelper.InsertClassPerk(11, "Ignore negative item effects", 15);
@@ -1672,8 +1659,8 @@ namespace Data
                     GloomhavenDbHelper.InsertClassPerk(14, "Add two [RM] WOUND [W] cards", 10);
                     GloomhavenDbHelper.InsertClassPerk(14, "Add two [RM] WOUND [W] cards", 11);
                     GloomhavenDbHelper.InsertClassPerk(14, "Add one [RM] STUN [ST] card", 12);
-                    GloomhavenDbHelper.InsertClassPerk(14, "Add one [RM] HEAL SELF [H] card", 13);
-                    GloomhavenDbHelper.InsertClassPerk(14, "Add one [RM] HEAL SELF [H] card", 14);
+                    GloomhavenDbHelper.InsertClassPerk(14, "Add one [RM] HEAL [H] 1 SELF card", 13);
+                    GloomhavenDbHelper.InsertClassPerk(14, "Add one [RM] HEAL [H] 1 SELF card", 14);
                     GloomhavenDbHelper.InsertClassPerk(14, "Add one [+0] Refresh an item card", 15);
 
                     Connection.Commit();

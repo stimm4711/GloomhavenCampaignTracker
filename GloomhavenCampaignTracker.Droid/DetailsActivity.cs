@@ -12,6 +12,7 @@ using Android.Content;
 using GloomhavenCampaignTracker.Droid.Fragments;
 using GloomhavenCampaignTracker.Droid.Fragments.character;
 using GloomhavenCampaignTracker.Business;
+using GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks;
 
 namespace GloomhavenCampaignTracker.Droid
 {
@@ -114,6 +115,10 @@ namespace GloomhavenCampaignTracker.Droid
                 case (int)DetailFragmentTypes.Releasenotes:
                     SupportActionBar.Title = "Releasenotes";
                     _detailsFrag = ReleasenoteFragment.NewInstance();
+                    break;
+                case (int)DetailFragmentTypes.EnvelopeXUnlock:
+                    SupportActionBar.Title = "Envelope X";
+                    _detailsFrag = CampaignUnlocksEnvelopeXFragment.NewInstance();
                     break;
             }
 

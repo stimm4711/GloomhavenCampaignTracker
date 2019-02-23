@@ -7,6 +7,8 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Linq;
 using System.Threading.Tasks;
 using GloomhavenCampaignTracker.Business.Network;
+using GloomhavenCampaignTracker.Droid.CustomControls;
+using Android.Content;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
 {
@@ -29,6 +31,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
         private TextView _partyRepMinus20Text;
         private TextView _retireText;
         private GridView _grid;
+        private Button _unlockEnvelopeXButton;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -71,6 +74,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
             _partyRepMinus20Text = _view.FindViewById<TextView>(Resource.Id.gainRepMinus20Text);
             _retireText = _view.FindViewById<TextView>(Resource.Id.gainRetireText);
             _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
+            _unlockEnvelopeXButton = _view.FindViewById<Button>(Resource.Id.openEnvelopeXButton);
+
+            if (CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeXUnlocked)
+            {
+                _unlockEnvelopeXButton.Text = Resources.GetString(Resource.String.ShowEnvelopeXProgress);
+            }
 
             if (!_checkAncientTech.HasOnClickListeners)
             {
@@ -112,9 +121,38 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
                 _retireCheck.Click += _retireCheck_Click; ;
             }
 
+            if(!_unlockEnvelopeXButton.HasOnClickListeners)
+            {
+                _unlockEnvelopeXButton.Click += _unlockEnvelopeXButton_Click;
+            }
+
             SwitchViewStates();
 
             return _view;
+        }
+
+        private void _unlockEnvelopeXButton_Click(object sender, System.EventArgs e)
+        {
+            if(!CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeXUnlocked)
+            {
+                new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                  .SetTitle(Resources.GetString(Resource.String.WarningSpoilersAhead))
+                  .SetMessage(Resources.GetString(Resource.String.SpoilerWarningMessage))
+                  .SetPositiveButton(Resources.GetString(Resource.String.Proceed), (senderAlert, args) => { ShowEnvelopeXProgress(); })
+                  .SetNegativeButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
+                  .Show();
+            }
+            else
+            {
+                ShowEnvelopeXProgress();
+            }
+        }
+
+        private void ShowEnvelopeXProgress()
+        {
+            CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeXUnlocked = true;
+            CampaignUnlocksRepository.InsertOrReplace(CurrentCampaign.CampaignData.CampaignUnlocks);
+            ShowDetail(DetailFragmentTypes.EnvelopeXUnlock);            
         }
 
         internal void Update()

@@ -33,7 +33,7 @@
             android:id="@+id/InputLayout1"
             android:theme="@style/TextLabel"
             app:hintTextAppearance="@style/HintTextLabel"
-            android:hint="Reference number">
+            android:hint="Ref. nr. (opt)">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

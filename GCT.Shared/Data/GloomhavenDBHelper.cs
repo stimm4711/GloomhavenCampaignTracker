@@ -634,6 +634,40 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     InsertClassPerk(1, "Add one [+0] ADD TARGET [T] card", 14);
                     InsertClassPerk(1, "Ignore negative scenario effects", 15);
 
+                    // Orchid Spellweaver
+                    InsertClassPerk(2, "Remove four [+0] cards", 1);
+                    InsertClassPerk(2, "Replace one [-1] card with one [+1] card", 2);
+                    InsertClassPerk(2, "Replace one [-1] card with one [+1] card", 3);
+                    InsertClassPerk(2, "Add two [+1] cards", 4);
+                    InsertClassPerk(2, "Add two [+1] cards", 5);
+                    InsertClassPerk(2, "Add one [+0] STUN [ST] card", 6);
+                    InsertClassPerk(2, "Add one [+1] WOUND [W] card", 7);
+                    InsertClassPerk(2, "Add one [+1] IMMOBILIZE [I] card", 8);
+                    InsertClassPerk(2, "Add one [+1] CURSE [C] card", 9);
+                    InsertClassPerk(2, "Add one [+2] [FIRE] card", 10);
+                    InsertClassPerk(2, "Add one [+2] [FIRE] card", 11);
+                    InsertClassPerk(2, "Add one [+2] [FROST] card", 12);
+                    InsertClassPerk(2, "Add one [+2] [FROST] card", 13);
+                    InsertClassPerk(2, "Add one [RM] [EARTH] and one [RM] [WIND] card", 14);
+                    InsertClassPerk(2, "Add one [RM] [LIGHT] and one [RM] [DARK] card", 15);
+
+                    // Human Scoundrel
+                    InsertClassPerk(3, "Remove two [-1] cards", 1);
+                    InsertClassPerk(3, "Remove two [-1] cards", 2);
+                    InsertClassPerk(3, "Remove four [+0] cards", 3);
+                    InsertClassPerk(3, "Replace one [-2] card with one [+0] card", 4);
+                    InsertClassPerk(3, "Replace one [-1] card with one [+1] card", 5);
+                    InsertClassPerk(3, "Replace one [+0] card with one [+2] card", 6);
+                    InsertClassPerk(3, "Replace one [+0] card with one [+2] card", 7);
+                    InsertClassPerk(3, "Add two [RM] [+1] cards", 8);
+                    InsertClassPerk(3, "Add two [RM] [+1] cards", 9);
+                    InsertClassPerk(3, "Add two [RM] PIERCE [PI] 3 cards", 10);
+                    InsertClassPerk(3, "Add two [RM] POISON [PO] cards", 11);
+                    InsertClassPerk(3, "Add two [RM] POISON [PO] cards", 12);
+                    InsertClassPerk(3, "Add two [RM] MUDDLE [M] cards", 13);
+                    InsertClassPerk(3, "Add one [RM] INVISIBLE [IN] card", 14);
+                    InsertClassPerk(3, "Ignore negative scenario effects", 15);
+
                     // Savvas Cragheart
                     InsertClassPerk(4, "Remove four [+0] cards", 1);
                     InsertClassPerk(4, "Replace one [-1] card with one [+1] card", 2);
@@ -668,40 +702,6 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     InsertClassPerk(5, "Add one [RM] DISARM [D] card and one [RM] MUDDLE [M] card ", 14);
                     InsertClassPerk(5, "Ignore negative scenario effects", 15);
 
-                    // Orchid Spellweaver
-                    InsertClassPerk(2, "Remove four [+0] cards", 1);
-                    InsertClassPerk(2, "Replace one [-1] card with one [+1] card", 2);
-                    InsertClassPerk(2, "Replace one [-1] card with one [+1] card", 3);
-                    InsertClassPerk(2, "Add two [+1] cards", 4);
-                    InsertClassPerk(2, "Add two [+1] cards", 5);
-                    InsertClassPerk(2, "Add one [+0] STUN [ST] card", 6);
-                    InsertClassPerk(2, "Add one [+1] WOUND card", 7);
-                    InsertClassPerk(2, "Add one [+1] IMMOBILIZE [I] card", 8);
-                    InsertClassPerk(2, "Add one [+1] CURSE [C] card", 9);
-                    InsertClassPerk(2, "Add one [+2] [FIRE] card", 10);
-                    InsertClassPerk(2, "Add one [+2] [FIRE] card", 11);
-                    InsertClassPerk(2, "Add one [+2] [FROST] card", 12);
-                    InsertClassPerk(2, "Add one [+2] [FROST] card", 13);
-                    InsertClassPerk(2, "Add one [RM] [EARTH] and one [RM] [WIND] card", 14);
-                    InsertClassPerk(2, "Add one [RM] [LIGHT] and one [RM] [DARK] card", 15);
-
-                    // Human Scoundrel
-                    InsertClassPerk(3, "Remove two [-1] cards", 1);
-                    InsertClassPerk(3, "Remove two [-1] cards", 2);
-                    InsertClassPerk(3, "Remove four [+0] cards", 3);
-                    InsertClassPerk(3, "Replace one [-2] card with one [+0] card", 4);
-                    InsertClassPerk(3, "Replace one [-1] card with one [+1] card", 5);
-                    InsertClassPerk(3, "Replace one [+0] card with one [+2] card", 6);
-                    InsertClassPerk(3, "Replace one [+0] card with one [+2] card", 7);
-                    InsertClassPerk(3, "Add two [RM] [+1] cards", 8);
-                    InsertClassPerk(3, "Add two [RM] [+1] cards", 9);
-                    InsertClassPerk(3, "Add two [RM] PIERCE [PI] 3 cards", 10);
-                    InsertClassPerk(3, "Add two [RM] POISON [PO] cards", 11);
-                    InsertClassPerk(3, "Add two [RM] POISON [PO] cards", 12);
-                    InsertClassPerk(3, "Add two [RM] MUDDLE [M] cards", 13);
-                    InsertClassPerk(3, "Add one [RM] INVISIBLE [IN] card", 14);
-                    InsertClassPerk(3, "Ignore negative scenario effects", 15);
-
                     // Sun
                     InsertClassPerk(6, "Remove two [-1] cards", 1);
                     InsertClassPerk(6, "Remove two [-1] cards", 2);
@@ -719,6 +719,73 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     InsertClassPerk(6, "Ignore negative item effects and add two [+1] cards", 14);
                     InsertClassPerk(6, "Ignore negative scenario effects", 15);
 
+                    // Quatermaster
+                    InsertClassPerk(7, "Remove two [-1] cards", 1);
+                    InsertClassPerk(7, "Remove two [-1] cards", 2);
+                    InsertClassPerk(7, "Remove four [+0] cards", 3);
+                    InsertClassPerk(7, "Replace one [+0] card with one [+2] card", 4);
+                    InsertClassPerk(7, "Replace one [+0] card with one [+2] card", 5);
+                    InsertClassPerk(7, "Add two [RM] [+1] cards", 6);
+                    InsertClassPerk(7, "Add two [RM] [+1] cards", 7);
+                    InsertClassPerk(7, "Add three [RM] MUDDLE [M] cards", 8);
+                    InsertClassPerk(7, "Add two [RM] PIERCE [PI] 3 cards", 9);
+                    InsertClassPerk(7, "Add one [RM] STUND [ST] card", 10);
+                    InsertClassPerk(7, "Add one [RM] ADD TARGET [T] card", 11);
+                    InsertClassPerk(7, "Add one [+0] Refresh an item card", 12);
+                    InsertClassPerk(7, "Add one [+0] Refresh an item card", 13);
+                    InsertClassPerk(7, "Add one [+0] Refresh an item card", 14);
+                    InsertClassPerk(7, "Ignore negative item effects and add two [+1] cards", 15);
+
+                    // Summoner
+                    InsertClassPerk(8, "Remove two [-1] cards", 1);
+                    InsertClassPerk(8, "Replace one [-2] card with one [+0] card", 2);
+                    InsertClassPerk(8, "Replace one [-1] card with one [+1] card", 3);
+                    InsertClassPerk(8, "Replace one [-1] card with one [+1] card", 4);
+                    InsertClassPerk(8, "Replace one [-1] card with one [+1] card", 5);
+                    InsertClassPerk(8, "Add one [+2] card", 6);
+                    InsertClassPerk(8, "Add one [+2] card", 7);
+                    InsertClassPerk(8, "Add two [RM] WOUND [W] cards", 8);
+                    InsertClassPerk(8, "Add two [RM] POISON [PO] cards", 9);
+                    InsertClassPerk(8, "Add two [RM] HEAL [H] 1, Self cards", 10);
+                    InsertClassPerk(8, "Add two [RM] HEAL [H] 1, Self cards", 11);
+                    InsertClassPerk(8, "Add two [RM] HEAL [H] 1, Self cards", 12);
+                    InsertClassPerk(8, "Add one [RM] [FIRE] and one [RM] [WIND] card", 13);
+                    InsertClassPerk(8, "Add one [RM] [DARK] and one [RM] [EARTH] card", 14);
+                    InsertClassPerk(8, "Ignore negative scenario effects and add two [+1] cards", 15);
+
+                    // Nightshroud
+                    InsertClassPerk(9, "Remove two [-1] cards", 1);
+                    InsertClassPerk(9, "Remove two [-1] cards", 2);
+                    InsertClassPerk(9, "Remove four [+0] cards", 3);
+                    InsertClassPerk(9, "Add one [-1] [DARK] card", 4);
+                    InsertClassPerk(9, "Add one [-1] [DARK] card", 5);
+                    InsertClassPerk(9, "Replace one [-1] [DARK] card with one [+1] [DARK] card", 6);
+                    InsertClassPerk(9, "Replace one [-1] [DARK] card with one [+1] [DARK] card", 7);
+                    InsertClassPerk(9, "Add one [+1] INVISIBLE [IN] cards", 8);
+                    InsertClassPerk(9, "Add one [+1] INVISIBLE [IN] cards", 9);
+                    InsertClassPerk(9, "Add three [RM] MUDDLE [M] cards", 10);
+                    InsertClassPerk(9, "Add three [RM] MUDDLE [M] cards", 11);
+                    InsertClassPerk(9, "Add two [RM] HEAL [H] 1, Self cards", 12);
+                    InsertClassPerk(9, "Add two [RM] CURSE [C] cards", 13);
+                    InsertClassPerk(9, "Add one [RM] ADD TARGET [T] card", 14);
+                    InsertClassPerk(9, "Ignore negative scenario effects and add two [+1] cards", 15);
+
+                    // Plagueherald
+                    InsertClassPerk(10, "Replace one [-2] card with one [+0] card", 1);
+                    InsertClassPerk(10, "Replace one [-1] card with one [+1] card", 2);
+                    InsertClassPerk(10, "Replace one [-1] card with one [+1] card", 3);
+                    InsertClassPerk(10, "Replace one [+0] card with one [+2] card", 4);
+                    InsertClassPerk(10, "Replace one [+0] card with one [+2] card", 5);
+                    InsertClassPerk(10, "Add two [+1] cards", 6);
+                    InsertClassPerk(10, "Add one [+1] [WIND] card", 7);
+                    InsertClassPerk(10, "Add one [+1] [WIND] card", 8);
+                    InsertClassPerk(10, "Add one [+1] [WIND] card", 9);
+                    InsertClassPerk(10, "Add three [RM] POISON [PO] cards", 10);
+                    InsertClassPerk(10, "Add two [RM] CURSE [C] cards", 11);
+                    InsertClassPerk(10, "Add two [RM] IMMOBILIZE [I] cards", 12);
+                    InsertClassPerk(10, "Add one [RM] STUN [ST] card", 13);
+                    InsertClassPerk(10, "Add one [RM] STUN [ST] card", 14);
+                    InsertClassPerk(10, "Ignore negative scenario effects and add one [+1] card", 15);
 
                     // Lightning
                     InsertClassPerk(11, "Remove two [-1] cards", 1);
@@ -732,11 +799,44 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     InsertClassPerk(11, "Add one [RM] STUN [ST] card", 9);
                     InsertClassPerk(11, "Add one [RM] STUN [ST] card", 10);
                     InsertClassPerk(11, "Add one [RM] [+1] DISARM [D] card", 11);
-                    InsertClassPerk(11, "Add two [RM] HEAL SELF [H] 1 cards", 12);
+                    InsertClassPerk(11, "Add two [RM] HEAL [H] 1, SELF cards", 12);
                     InsertClassPerk(11, "Add one [+2] [FIRE] card", 13);
                     InsertClassPerk(11, "Add one [+2] [FIRE] card", 14);
                     InsertClassPerk(11, "Ignore negative item effects", 15);
 
+                    // Soothsinger
+                    InsertClassPerk(12, "Remove two [-1] cards", 1);
+                    InsertClassPerk(12, "Remove two [-1] cards", 2);
+                    InsertClassPerk(12, "Remove one [-2] card", 3);
+                    InsertClassPerk(12, "Replace two [+1] cards with one [+4] card", 4);
+                    InsertClassPerk(12, "Replace two [+1] cards with one [+4] card", 5);
+                    InsertClassPerk(12, "Replace one [+0] card with one [+1] IMMOBILIZE [I] card", 6);
+                    InsertClassPerk(12, "Replace one [+0] card with one [+1] DISARM [D] card", 7);
+                    InsertClassPerk(12, "Replace one [+0] card with one [+2] WOUND [W] card", 8);
+                    InsertClassPerk(12, "Replace one [+0] card with one [+2] POISON [PO] card", 9);
+                    InsertClassPerk(12, "Replace one [+0] card with one [+2] CURSE [C] card", 10);
+                    InsertClassPerk(12, "Replace one [+0] card with one [+3] MUDDLE [M] card", 11);
+                    InsertClassPerk(12, "Replace one [-1] card with one [+0] STUN [ST] card", 12);
+                    InsertClassPerk(12, "Add three [RM] [+1] cards", 13);
+                    InsertClassPerk(12, "Add two [RM] CURSE [C] cards", 14);
+                    InsertClassPerk(12, "Add two [RM] CURSE [C] cards", 15);
+
+                    // Doomstalker
+                    InsertClassPerk(13, "Remove two [-1] cards", 1);
+                    InsertClassPerk(13, "Remove two [-1] cards", 2);
+                    InsertClassPerk(13, "Replace two [+0] cards with two [+1] cards", 3);
+                    InsertClassPerk(13, "Replace two [+0] cards with two [+1] cards", 4);
+                    InsertClassPerk(13, "Replace two [+0] cards with two [+1] cards", 5);
+                    InsertClassPerk(13, "Add two [RM] [+1] cards", 6);
+                    InsertClassPerk(13, "Add two [RM] [+1] cards", 7);
+                    InsertClassPerk(13, "Add one [+2] MUDDLE [M] card", 8);
+                    InsertClassPerk(13, "Add one [+1] POISON [PO] card", 9);
+                    InsertClassPerk(13, "Add one [+1] WOUND [W] card", 10);
+                    InsertClassPerk(13, "Add one [+1] IMMOBILIZE [I] card", 11);
+                    InsertClassPerk(13, "Add one [+0] STUN [ST] card", 12);
+                    InsertClassPerk(13, "Add one [RM] ADD TARGET [T] card", 13);
+                    InsertClassPerk(13, "Add one [RM] ADD TARGET [T] card", 14);
+                    InsertClassPerk(13, "Ignore negative scenario effects", 15);
 
                     // Sawbones
                     InsertClassPerk(14, "Remove two [-1] cards", 1);
@@ -751,9 +851,61 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     InsertClassPerk(14, "Add two [RM] WOUND [W] cards", 10);
                     InsertClassPerk(14, "Add two [RM] WOUND [W] cards", 11);
                     InsertClassPerk(14, "Add one [RM] STUN [ST] card", 12);
-                    InsertClassPerk(14, "Add one [RM] HEAL SELF [H] card", 13);
-                    InsertClassPerk(14, "Add one [RM] HEAL SELF [H] card", 14);
+                    InsertClassPerk(14, "Add one [RM] HEAL [H] 1, SELF card", 13);
+                    InsertClassPerk(14, "Add one [RM] HEAL [H] 1, SELF card", 14);
                     InsertClassPerk(14, "Add one [+0] Refresh an item card", 15);
+
+                    // Elementalist
+                    InsertClassPerk(15, "Remove two [-1] cards", 1);
+                    InsertClassPerk(15, "Remove two [-1] cards", 2);
+                    InsertClassPerk(15, "Replace one [-1] card with one [+1] card", 3);
+                    InsertClassPerk(15, "Replace one [+0] card with one [+2] card", 4);
+                    InsertClassPerk(15, "Replace one [+0] card with one [+2] card", 5);
+                    InsertClassPerk(15, "Add three [+0] [FIRE] cards", 6);
+                    InsertClassPerk(15, "Add three [+0] [FROST] cards", 7);
+                    InsertClassPerk(15, "Add three [+0] [WIND] cards", 8);
+                    InsertClassPerk(15, "Add three [+0] [EARTH] cards", 9);
+                    InsertClassPerk(15, "Replace two [+0] cards with one [+0] [FIRE] and one [+0] [EARTH] card", 10);
+                    InsertClassPerk(15, "Replace two [+0] cards with one [+0] [FROST] and one [+0] [WIND] card", 11);
+                    InsertClassPerk(15, "Add two [+1] PUSH [PU] 1 cards", 12);
+                    InsertClassPerk(15, "Add one [+1] WOUND [W] card", 13);
+                    InsertClassPerk(15, "Add one [+0] STUND [ST] card", 14);
+                    InsertClassPerk(15, "Add one [+0] ADD TARGET [T] card", 15);
+                    
+                    // BeastTyrant
+                    InsertClassPerk(16, "Remove two [-1] cards", 1);
+                    InsertClassPerk(16, "Replace one [-1] card with one [+1] card", 2);
+                    InsertClassPerk(16, "Replace one [-1] card with one [+1] card", 3);
+                    InsertClassPerk(16, "Replace one [-1] card with one [+1] card", 4);
+                    InsertClassPerk(16, "Replace one [+0] card with one [+2] card", 5);
+                    InsertClassPerk(16, "Replace one [+0] card with one [+2] card", 6);
+                    InsertClassPerk(16, "Add one [+1] WOUND [W] card", 7);
+                    InsertClassPerk(16, "Add one [+1] WOUND [W] card", 8);
+                    InsertClassPerk(16, "Add one [+1] IMMOBILIZE [I] card", 9);
+                    InsertClassPerk(16, "Add one [+1] IMMOBILIZE [I] card", 10);
+                    InsertClassPerk(16, "Add two [RM] HEAL [H] 1, Self cards", 11);
+                    InsertClassPerk(16, "Add two [RM] HEAL [H] 1, Self cards", 12);
+                    InsertClassPerk(16, "Add two [RM] HEAL [H] 1, Self cards", 13);
+                    InsertClassPerk(16, "Add two [RM] [EARTH] cards", 14);
+                    InsertClassPerk(16, "Ignore negative scenario effects", 15);
+
+                    // Bladeswarm
+                    InsertClassPerk(17, "Remove one [-2] card", 1);
+                    InsertClassPerk(17, "Remove four [+0] cards", 2);
+                    InsertClassPerk(17, "Replace one [-1] card with one [+1][WIND] card", 3);
+                    InsertClassPerk(17, "Replace one [-1] card with one [+1][EARTH] card", 4);
+                    InsertClassPerk(17, "Replace one [-1] card with one [+1][LIGHT] card", 5);
+                    InsertClassPerk(17, "Replace one [-1] card with one [+1][DARK] card", 6);
+                    InsertClassPerk(17, "Add two [RM] Heal [H]1 cards", 7);
+                    InsertClassPerk(17, "Add two [RM] Heal [H]1 cards", 8);
+                    InsertClassPerk(17, "Add one [+1] WOUND [W] card", 9);
+                    InsertClassPerk(17, "Add one [+1] WOUND [W] card", 10);
+                    InsertClassPerk(17, "Add one [+1] POISON [PO] card", 11);
+                    InsertClassPerk(17, "Add one [+1] POISON [PO] card", 12);
+                    InsertClassPerk(17, "Add one [+2] MUDDLE [M] card", 13);
+                    InsertClassPerk(17, "Ignore negative item effects and add one [+1] card", 14);
+                    InsertClassPerk(17, "Ignore negative scenario effects and add one [+1] card", 15);
+
 
                     Connection.Commit();
                 }
@@ -1474,7 +1626,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 SaveScenario("Battlements (b)",36, requiredPartyAchievements: "1", blockingGlobalAchievements: "11");
                 SaveScenario("Doom Trench",37,"47", requiredGlobalAchievements: "9");
                 SaveScenario("Slave Pens", 38,"48,44");
-                SaveScenario("Treacherous Divide",39,"46");
+                SaveScenario("Treacherous Divide",39,"46,15");
                 SaveScenario("Ancient Defense Network",40,"41", requiredPartyAchievements: "21,22");
                 SaveScenario("Timeworn Tomb", 41, requiredPartyAchievements: "21");
                 SaveScenario("Realm of the Voice",42, requiredPartyAchievements: "20", blockingGlobalAchievements:"402");

@@ -116,13 +116,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
                     if (!string.IsNullOrEmpty(levelText.Text))
                     {
-                        int.TryParse(refNumberText.Text, out int number);
-                        if (number < 1 || number > 505)
+                        if (int.TryParse(refNumberText.Text, out int number))
                         {
-                            Toast.MakeText(Context, "Abilitiy Card number must be between 1 and 505", ToastLength.Short).Show();
+                            ability.ReferenceNumber = number;
                         }
-
-                        ability.ReferenceNumber = number;
+                        else
+                        {
+                            ability.ReferenceNumber = 0;
+                        }
                     }
 
                     SaveCharacter();
@@ -248,13 +249,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
                     if (!string.IsNullOrEmpty(levelText.Text))
                     {
-                        int.TryParse(refNumberText.Text, out int number);
-                        if (number < 1 || number > 505)
+                        if(int.TryParse(refNumberText.Text, out int number))
                         {
-                            Toast.MakeText(Context, "Abilitiy Card number must be between 1 and 505", ToastLength.Short).Show();
+                            newAbility.ReferenceNumber = number;
                         }
-
-                        newAbility.ReferenceNumber = number;
+                        else
+                        {
+                            newAbility.ReferenceNumber = 0;
+                        }                        
                     }
 
                     Character.Abilities.Add(newAbility);

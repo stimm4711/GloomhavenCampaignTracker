@@ -75,7 +75,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     throw;
                 }
             }
-        }
+        }      
 
         internal void Insert(IEnumerable<DL_Scenario> items)
         {
@@ -109,6 +109,15 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             {
                 var query = "UPDATE DL_Scenario SET Region_ID = ? WHERE Id = ?";
                 Connection.Query<DL_Scenario>(query, regionId, scenarioID);
+            }
+        }
+
+        internal void UpdateScenarioUnlockedScenarios(int scenarioNumber, string commaSeparatedScenarioNumbers)
+        {
+            lock (locker)
+            {
+                var query = "UPDATE DL_Scenario SET UnlockedScenarios = ? WHERE Scenarionumber = ?";
+                Connection.Query<DL_Scenario>(query, commaSeparatedScenarioNumbers, scenarioNumber);
             }
         }
     }
