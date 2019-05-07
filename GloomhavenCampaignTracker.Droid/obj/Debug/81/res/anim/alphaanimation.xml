@@ -1,0 +1,1 @@
+<alpha android:fromAlpha="1.0" android:toAlpha="0.0" android:duration="750" android:repeatCount="3" android:repeatMode="reverse" xmlns:android="http://schemas.android.com/apk/res/android" />
