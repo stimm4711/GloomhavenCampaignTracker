@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "Plugin.Connectivity/3.2.0": {
+        "dependencies": {
+          "Plugin.Connectivity.Abstractions": "3.2.0"
+        },
+        "runtime": {
+          "Plugin.Connectivity.dll": {}
+        }
+      },
+      "Plugin.Connectivity.Abstractions/3.2.0": {
+        "runtime": {
+          "Plugin.Connectivity.Abstractions.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Plugin.Connectivity/3.2.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Plugin.Connectivity.Abstractions/3.2.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
