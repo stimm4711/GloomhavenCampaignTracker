@@ -5,3 +5,6 @@
 /GloomhavenCampaignTracker.Droid/bin/Debug
 /.vs
 /GloomhavenCampaignTracker.Droid/obj
+bin
+obj
+packages

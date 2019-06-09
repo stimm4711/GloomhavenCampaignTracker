@@ -1,2 +1,5 @@
 \packages
 !\packages\repositories.config
+\GloomhavenCampaignTracker.Droid\bin\Debug
+\.vs
+\GloomhavenCampaignTracker.Droid\obj
