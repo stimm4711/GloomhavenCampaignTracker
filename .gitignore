@@ -3,3 +3,5 @@
 ################################################################################
 
 /GloomhavenCampaignTracker.Droid/bin/Debug
+/.vs
+/GloomhavenCampaignTracker.Droid/obj

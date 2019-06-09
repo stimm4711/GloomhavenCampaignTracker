@@ -97,4 +97,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\ViewEntities\DL_VIEW_Campaign.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\ViewEntities\DL_VIEW_CampaignParties.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)GCT.Shared.projitems.vspscc" />
+    <None Include="$(MSBuildThisFileDirectory)GCT.Shared.shproj.vspscc" />
+  </ItemGroup>
 </Project>

@@ -282,6 +282,7 @@
     <AndroidAsset Include="Assets\fonts\PirataOne_Gloomhaven.ttf" />
     <None Include="app.config" />
     <AndroidAsset Include="Assets\fonts\Roboto-Regular.ttf" />
+    <None Include="GloomhavenCampaignTracker.Droid.csproj.vspscc" />
     <None Include="packages.config" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_unlocks.axml">

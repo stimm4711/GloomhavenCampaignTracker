@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SelectedDevice>LGE LG-H930</SelectedDevice>
-    <DefaultDevice>tab</DefaultDevice>
+    <SelectedDevice>pixel_p9</SelectedDevice>
+    <DefaultDevice>pixel_p9</DefaultDevice>
+    <AndroidDesignerPreferredTheme>MyTheme</AndroidDesignerPreferredTheme>
+    <AndroidDesignerPreferredDevice>Nexus 4</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>
