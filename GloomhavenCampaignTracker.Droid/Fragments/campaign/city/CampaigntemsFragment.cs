@@ -98,6 +98,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
 
             var selectableItems = DataServiceCollection.CampaignDataService.GetUnlockableItems(GCTContext.CurrentCampaign.CampaignData.Id);
 
+            if (!GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
+            {
+                var item151 = selectableItems.FirstOrDefault(x => x.Itemnumber == 151);
+                selectableItems.Remove(item151);
+            }
+
             var itemadapter = new SelectableItemAdapter(Context, selectableItems, false);
             listview.Adapter = itemadapter;
 

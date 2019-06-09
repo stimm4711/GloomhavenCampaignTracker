@@ -21,7 +21,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             _context = context;
             _items = items;
-            _isCharacterDetailView = isCharacterDetailView;
+            _isCharacterDetailView = isCharacterDetailView;  
         }
 
         public override long GetItemId(int position)
