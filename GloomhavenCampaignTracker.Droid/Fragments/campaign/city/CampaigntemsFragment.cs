@@ -74,6 +74,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
                 {
                     if (item.Prosperitylevel <= GCTContext.CurrentCampaign.GetProsperityLevel()) item.IsHide = true;
                     if (item.Prosperitylevel > GCTContext.CurrentCampaign.GetProsperityLevel() && item.IsHide) item.IsHide = false;
+
+                    if (item.Itemnumber == 151 && !GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked) item.IsHide = true;
                 }
 
                 var adapter = new UnlockedItemAdapter(Context, items);
@@ -125,7 +127,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
                     FillListView();
                 })
                 .Show();
-        }   
+        }
 
         public override void OnStop()
         {

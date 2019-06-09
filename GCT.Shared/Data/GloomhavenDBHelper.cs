@@ -16,7 +16,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
         // Database Info
         internal const string DatabaseName = "GloomhavenCampaignTracker.db3";
         private static SQLiteConnection _conn;
-        private enum VersionTime { Earlier = -1}
+        private enum VersionTime { Earlier = -1 }
 
         internal static string DatabaseFilePath
         {
@@ -34,7 +34,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             get
             {
 #if __ANDROID__
-                return _conn ?? (_conn = new SQLiteConnection(DatabaseFilePath)); 
+                return _conn ?? (_conn = new SQLiteConnection(DatabaseFilePath));
 #endif
 
 #if __IOS__
@@ -61,7 +61,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             else
             {
                 DatabaseUpdateHelper.CheckIfAllPerksExists();
-                DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);               
+                DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);
             }
         }
 
@@ -109,11 +109,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 
             FillDb();
             return currentDbVersion;
-        }       
-                
+        }
+
         internal static void AddRegionsToScenarios()
         {
-            var scenarios =  ScenarioRepository.Get(false);
+            var scenarios = ScenarioRepository.Get(false);
             if (scenarios == null || scenarios.Count == 0) return;
 
             Connection.BeginTransaction();
@@ -224,7 +224,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 sdc.UpdateScenarioRegion(93, 7);
                 sdc.UpdateScenarioRegion(94, 5);
                 sdc.UpdateScenarioRegion(95, 0);
-                
+
                 Connection.Commit();
             }
             catch
@@ -232,7 +232,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Connection.Rollback();
                 throw;
             }
-        }               
+        }
 
         private static void CreateTableCharacterPersonalQuestCounter()
         {
@@ -387,7 +387,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 {
                     var pqs = PersonalQuestRepository.Get(false);
 
-                    foreach(var pq in pqs)
+                    foreach (var pq in pqs)
                     {
                         switch (pq.QuestNumber)
                         {
@@ -485,7 +485,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                                 InsertPQCounter(pq, "Spitting Drakes", 3, 0);
                                 break;
                         }
-                    }   
+                    }
 
                     Connection.Commit();
                 }
@@ -495,7 +495,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     throw;
                 }
             }
-        }       
+        }
 
         internal static DL_PersonalQuestCounter InsertPQCounter(DL_PersonalQuest pq, string countername, int counter, int scenario)
         {
@@ -512,7 +512,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 
             return item;
         }
-                
+
         internal static void FillEnhancement()
         {
             if (!EnhancementRepository.Get(false).Any())
@@ -579,7 +579,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             };
 
             EnhancementRepository.InsertOrReplace(item);
-        }             
+        }
 
         internal static void FillClassPerks()
         {
@@ -729,7 +729,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     InsertClassPerk(7, "Add two [RM] [+1] cards", 7);
                     InsertClassPerk(7, "Add three [RM] MUDDLE [M] cards", 8);
                     InsertClassPerk(7, "Add two [RM] PIERCE [PI] 3 cards", 9);
-                    InsertClassPerk(7, "Add one [RM] STUND [ST] card", 10);
+                    InsertClassPerk(7, "Add one [RM] STUN [ST] card", 10);
                     InsertClassPerk(7, "Add one [RM] ADD TARGET [T] card", 11);
                     InsertClassPerk(7, "Add one [+0] Refresh an item card", 12);
                     InsertClassPerk(7, "Add one [+0] Refresh an item card", 13);
@@ -869,9 +869,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     InsertClassPerk(15, "Replace two [+0] cards with one [+0] [FROST] and one [+0] [WIND] card", 11);
                     InsertClassPerk(15, "Add two [+1] PUSH [PU] 1 cards", 12);
                     InsertClassPerk(15, "Add one [+1] WOUND [W] card", 13);
-                    InsertClassPerk(15, "Add one [+0] STUND [ST] card", 14);
+                    InsertClassPerk(15, "Add one [+0] STUN [ST] card", 14);
                     InsertClassPerk(15, "Add one [+0] ADD TARGET [T] card", 15);
-                    
+
                     // BeastTyrant
                     InsertClassPerk(16, "Remove two [-1] cards", 1);
                     InsertClassPerk(16, "Replace one [-1] card with one [+1] card", 2);
@@ -931,7 +931,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 
         private static void FillItems()
         {
-            if(!ItemRepository.Get().Any())
+            if (!ItemRepository.Get().Any())
             {
                 Connection.BeginTransaction();
                 try
@@ -1112,6 +1112,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     SaveItem(itemnumber: 148, itemname: "Doctor's Coat", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
                     SaveItem(itemnumber: 149, itemname: "Elemental Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
                     SaveItem(itemnumber: 150, itemname: "Staff of Command", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
+                    SaveItem(itemnumber: 151, itemname: "Blade of the Sands", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
 
                     Connection.Commit();
                 }
@@ -1141,7 +1142,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 
         private static void FillPersonalQuests()
         {
-            if(!PersonalQuestRepository.Get().Any())
+            if (!PersonalQuestRepository.Get().Any())
             {
                 Connection.BeginTransaction();
                 try
@@ -1299,7 +1300,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     throw;
                 }
             }
-           
+
         }
 
         private static void SavePersonalQuest(int questnumber, string questname, string questgoal, string questreward, int questrewardclassid)
@@ -1389,7 +1390,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     "Stonebreaker's Censer"
                     );
                 SavePartyAchievement(
-                    17, 
+                    17,
                     "The Drake's Command"
                      );
                 SavePartyAchievement(
@@ -1450,11 +1451,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
         {
             var achievement = new DL_PartyAchievement
             {
-                Name = name ,
+                Name = name,
                 InternalNumber = number
             };
 
-           PartyAchievementRepository.InsertOrReplace(achievement);
+            PartyAchievementRepository.InsertOrReplace(achievement);
         }
 
         private static void FillAchievements()
@@ -1482,7 +1483,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     }
                 };
 
-                SaveAchievementType("The Drake",100, achievements: achievements);
+                SaveAchievementType("The Drake", 100, achievements: achievements);
 
                 achievements = new List<DL_Achievement>
                 {
@@ -1503,7 +1504,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     }
                 };
 
-                SaveAchievementType("City Rule",200,achievements: achievements);
+                SaveAchievementType("City Rule", 200, achievements: achievements);
 
                 achievements = new List<DL_Achievement>
                 {
@@ -1524,7 +1525,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     }
                 };
 
-                SaveAchievementType("Artifact",300,achievements: achievements);
+                SaveAchievementType("Artifact", 300, achievements: achievements);
 
                 achievements = new List<DL_Achievement>
                 {
@@ -1540,18 +1541,18 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     }
                 };
 
-                SaveAchievementType("The Voice",400,achievements: achievements);
-                SaveAchievementType("The Merchant flees",5);
-                SaveAchievementType("The Dead Invade",6);
-                SaveAchievementType("The Edge of Darkness",7);
+                SaveAchievementType("The Voice", 400, achievements: achievements);
+                SaveAchievementType("The Merchant flees", 5);
+                SaveAchievementType("The Dead Invade", 6);
+                SaveAchievementType("The Edge of Darkness", 7);
                 SaveAchievementType("The Power of Enhancement", 8);
-                SaveAchievementType("Water-Breathing",9);
-                SaveAchievementType("The Demon Dethroned",10);
-                SaveAchievementType("The Rift Neutralized",11); // The Rift Closed
+                SaveAchievementType("Water-Breathing", 9);
+                SaveAchievementType("The Demon Dethroned", 10);
+                SaveAchievementType("The Rift Neutralized", 11); // The Rift Closed
                 SaveAchievementType("End of the Invasion", 12);
                 SaveAchievementType("End of Corruption", 130, 3);
                 SaveAchievementType("End of Gloom", 14);
-                SaveAchievementType("Ancient Technology", 150,5);
+                SaveAchievementType("Ancient Technology", 150, 5);
                 SaveAchievementType("Annihilation of the Order", 16);
                 Connection.Commit();
             }
@@ -1559,12 +1560,12 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             {
                 Connection.Rollback();
                 throw;
-            }            
+            }
         }
 
-        private static void SaveAchievementType(string name,int internalNumber, int steps = 1,  List<DL_Achievement> achievements = null)
+        private static void SaveAchievementType(string name, int internalNumber, int steps = 1, List<DL_Achievement> achievements = null)
         {
-            if(achievements == null)
+            if (achievements == null)
             {
                 achievements = new List<DL_Achievement>();
             }
@@ -1577,7 +1578,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Achievements = achievements
             };
 
-           AchievementTypeRepository.InsertOrReplace(achievement);          
+            AchievementTypeRepository.InsertOrReplace(achievement);
         }
 
         private static void FillScenarios()
@@ -1588,114 +1589,114 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Connection.DropTable<DL_Scenario>();
                 Connection.CreateTable<DL_Scenario>();
 
-                SaveScenario("Black Barrow",  1, "2");
-                SaveScenario("Barrow Lair", 2, "3,4",requiredPartyAchievements: "8");
-                SaveScenario("Inox Encampment", 3,"8,9",blockingGlobalAchievements: "5");
+                SaveScenario("Black Barrow", 1, "2");
+                SaveScenario("Barrow Lair", 2, "3,4", requiredPartyAchievements: "8");
+                SaveScenario("Inox Encampment", 3, "8,9", blockingGlobalAchievements: "5");
                 SaveScenario("Crypt of the Damned", 4, "5,6");
-                SaveScenario("Ruinous Crypt",5,"10,19,14");
-                SaveScenario("Decaying Crypt",6,"8");
-                SaveScenario("Vibrant Grotto",7,"20",requiredGlobalAchievements: "5,8");
-                SaveScenario("Gloomhaven Warehouse", 8, "14,13,7",requiredPartyAchievements: "13", blockingGlobalAchievements:"6");
-                SaveScenario("Diamond Mine",9, "11,12", blockingGlobalAchievements: "5");
-                SaveScenario("Plane of Elemental Power", 10, "21,22",blockingGlobalAchievements: "11");
-                SaveScenario("Square (a)",  11,"16,18", blockingGlobalAchievements: "12");
-                SaveScenario("Square (b)", 12,"16,18,28", blockingGlobalAchievements: "12");
-                SaveScenario("Temple of the Seer",13,"15,17,20");
-                SaveScenario("Frozen Hollow",  14);
-                SaveScenario("Shrine of Strength",15);
-                SaveScenario("Mountain Pass", 16,"24,25");
-                SaveScenario("Lost Island",17);
-                SaveScenario("Abandoned Sewers", 18,"23,43,26,14");
-                SaveScenario("Forgotten Crypt", 19,"27", requiredGlobalAchievements: "8");
-                SaveScenario("Necromancer's Sanctum", 20,"18,16,28", requiredGlobalAchievements: "5");
+                SaveScenario("Ruinous Crypt", 5, "10,19,14");
+                SaveScenario("Decaying Crypt", 6, "8");
+                SaveScenario("Vibrant Grotto", 7, "20", requiredGlobalAchievements: "5,8");
+                SaveScenario("Gloomhaven Warehouse", 8, "14,13,7", requiredPartyAchievements: "13", blockingGlobalAchievements: "6");
+                SaveScenario("Diamond Mine", 9, "11,12", blockingGlobalAchievements: "5");
+                SaveScenario("Plane of Elemental Power", 10, "21,22", blockingGlobalAchievements: "11");
+                SaveScenario("Square (a)", 11, "16,18", blockingGlobalAchievements: "12");
+                SaveScenario("Square (b)", 12, "16,18,28", blockingGlobalAchievements: "12");
+                SaveScenario("Temple of the Seer", 13, "15,17,20");
+                SaveScenario("Frozen Hollow", 14);
+                SaveScenario("Shrine of Strength", 15);
+                SaveScenario("Mountain Pass", 16, "24,25");
+                SaveScenario("Lost Island", 17);
+                SaveScenario("Abandoned Sewers", 18, "23,43,26,14");
+                SaveScenario("Forgotten Crypt", 19, "27", requiredGlobalAchievements: "8");
+                SaveScenario("Necromancer's Sanctum", 20, "18,16,28", requiredGlobalAchievements: "5");
                 SaveScenario("Infernal Throne", 21, blockingGlobalAchievements: "11");
-                SaveScenario("Temple of the Elements", 22,"36,35,31", requiredPartyAchievements: "1,10"); // OR
-                SaveScenario("Deep Ruins",23);
-                SaveScenario("Echo Chamber", 24,"30,32");
-                SaveScenario("Icecrag Ascent",25,"33,34");
-                SaveScenario("Ancient Cistern", 26,"22", requiredGlobalAchievements: "9" , requiredPartyAchievements: "24"); //OR
-                SaveScenario("Ruinous Rift",27,blockingGlobalAchievements: "302", requiredPartyAchievements:"16");
-                SaveScenario("Outer Ritual Chamber", 28,"29", requiredPartyAchievements: "6");
-                SaveScenario("Sanctuary of Gloom",29, requiredPartyAchievements: "4");
-                SaveScenario("Shrine of the Depths",30,"42", requiredPartyAchievements: "21");
-                SaveScenario("Plane of Night",31,"39,37,38,43", requiredGlobalAchievements: "8,301");
-                SaveScenario("Decrepit Wood",32,"33,40", requiredPartyAchievements: "21");
-                SaveScenario("Savvas Armory",33, requiredPartyAchievements: "21,17"); // OR
-                SaveScenario("Scorched Summit", 34, requiredPartyAchievements: "17", blockingGlobalAchievements:"102");
-                SaveScenario("Battlements (a)",35,"45", requiredPartyAchievements: "1",blockingGlobalAchievements:"11");
-                SaveScenario("Battlements (b)",36, requiredPartyAchievements: "1", blockingGlobalAchievements: "11");
-                SaveScenario("Doom Trench",37,"47", requiredGlobalAchievements: "9");
-                SaveScenario("Slave Pens", 38,"48,44");
-                SaveScenario("Treacherous Divide",39,"46,15");
-                SaveScenario("Ancient Defense Network",40,"41", requiredPartyAchievements: "21,22");
+                SaveScenario("Temple of the Elements", 22, "36,35,31", requiredPartyAchievements: "1,10"); // OR
+                SaveScenario("Deep Ruins", 23);
+                SaveScenario("Echo Chamber", 24, "30,32");
+                SaveScenario("Icecrag Ascent", 25, "33,34");
+                SaveScenario("Ancient Cistern", 26, "22", requiredGlobalAchievements: "9", requiredPartyAchievements: "24"); //OR
+                SaveScenario("Ruinous Rift", 27, blockingGlobalAchievements: "302", requiredPartyAchievements: "16");
+                SaveScenario("Outer Ritual Chamber", 28, "29", requiredPartyAchievements: "6");
+                SaveScenario("Sanctuary of Gloom", 29, requiredPartyAchievements: "4");
+                SaveScenario("Shrine of the Depths", 30, "42", requiredPartyAchievements: "21");
+                SaveScenario("Plane of Night", 31, "39,37,38,43", requiredGlobalAchievements: "8,301");
+                SaveScenario("Decrepit Wood", 32, "33,40", requiredPartyAchievements: "21");
+                SaveScenario("Savvas Armory", 33, requiredPartyAchievements: "21,17"); // OR
+                SaveScenario("Scorched Summit", 34, requiredPartyAchievements: "17", blockingGlobalAchievements: "102");
+                SaveScenario("Battlements (a)", 35, "45", requiredPartyAchievements: "1", blockingGlobalAchievements: "11");
+                SaveScenario("Battlements (b)", 36, requiredPartyAchievements: "1", blockingGlobalAchievements: "11");
+                SaveScenario("Doom Trench", 37, "47", requiredGlobalAchievements: "9");
+                SaveScenario("Slave Pens", 38, "48,44");
+                SaveScenario("Treacherous Divide", 39, "46,15");
+                SaveScenario("Ancient Defense Network", 40, "41", requiredPartyAchievements: "21,22");
                 SaveScenario("Timeworn Tomb", 41, requiredPartyAchievements: "21");
-                SaveScenario("Realm of the Voice",42, requiredPartyAchievements: "20", blockingGlobalAchievements:"402");
+                SaveScenario("Realm of the Voice", 42, requiredPartyAchievements: "20", blockingGlobalAchievements: "402");
                 SaveScenario("Drake Nest", 43, requiredGlobalAchievements: "8");
                 SaveScenario("Tribal Assault", 44, requiredPartyAchievements: "14");
-                SaveScenario("Rebel Swamp",45,"49,50", requiredGlobalAchievements: "203");
-                SaveScenario("Nigthmare Peak",46,"51", requiredPartyAchievements: "3");
-                SaveScenario("Lair of the Unseeing Eye",47,"51", requiredPartyAchievements: "25");
-                SaveScenario("Shadow Weald",48,"51", requiredPartyAchievements: "14");
-                SaveScenario("Rebel's Stand",49, requiredGlobalAchievements: "203");
-                SaveScenario("Ghost Fortress",50, requiredGlobalAchievements: "203",blockingGlobalAchievements:"16");
-                SaveScenario("The Void",51, requiredGlobalAchievements: "133");
-                SaveScenario("Noxious Cellar",52,"53");
-                SaveScenario("Crypt Basement", 53,"54");
-                SaveScenario("Palace of Ice",54);
-                SaveScenario("Foggy Thicket",55,"56");
+                SaveScenario("Rebel Swamp", 45, "49,50", requiredGlobalAchievements: "203");
+                SaveScenario("Nigthmare Peak", 46, "51", requiredPartyAchievements: "3");
+                SaveScenario("Lair of the Unseeing Eye", 47, "51", requiredPartyAchievements: "25");
+                SaveScenario("Shadow Weald", 48, "51", requiredPartyAchievements: "14");
+                SaveScenario("Rebel's Stand", 49, requiredGlobalAchievements: "203");
+                SaveScenario("Ghost Fortress", 50, requiredGlobalAchievements: "203", blockingGlobalAchievements: "16");
+                SaveScenario("The Void", 51, requiredGlobalAchievements: "133");
+                SaveScenario("Noxious Cellar", 52, "53");
+                SaveScenario("Crypt Basement", 53, "54");
+                SaveScenario("Palace of Ice", 54);
+                SaveScenario("Foggy Thicket", 55, "56");
                 SaveScenario("Bandits Wood", 56);
-                SaveScenario("Investigation",57,"58");
-                SaveScenario("Bloody Shack",58);
-                SaveScenario("Forgotton Grove", 59,"60");
-                SaveScenario("Alchemy Lab",60);
-                SaveScenario("Fading Lighthouse",61,"62");
-                SaveScenario("Pit of Souls",62);
-                SaveScenario("Magma Pit",63);
-                SaveScenario("Underwater Lagoon",64, requiredGlobalAchievements: "9");
-                SaveScenario("Sulfur Mine",65);
-                SaveScenario("Clockwork Cove",66);
+                SaveScenario("Investigation", 57, "58");
+                SaveScenario("Bloody Shack", 58);
+                SaveScenario("Forgotton Grove", 59, "60");
+                SaveScenario("Alchemy Lab", 60);
+                SaveScenario("Fading Lighthouse", 61, "62");
+                SaveScenario("Pit of Souls", 62);
+                SaveScenario("Magma Pit", 63);
+                SaveScenario("Underwater Lagoon", 64, requiredGlobalAchievements: "9");
+                SaveScenario("Sulfur Mine", 65);
+                SaveScenario("Clockwork Cove", 66);
                 SaveScenario("Arcane Library", 67);
-                SaveScenario("Toxic Moor",68);
+                SaveScenario("Toxic Moor", 68);
                 SaveScenario("Well of the Unfortunate", 69);
-                SaveScenario("Chained Isle",70);
-                SaveScenario("Windswept Highlands",71);
+                SaveScenario("Chained Isle", 70);
+                SaveScenario("Windswept Highlands", 71);
                 SaveScenario("Oozing Grove", 72);
                 SaveScenario("Rockslide Ridge", 73);
-                SaveScenario("Merchant Ship",74, requiredPartyAchievements: "12");
+                SaveScenario("Merchant Ship", 74, requiredPartyAchievements: "12");
                 SaveScenario("Overgrown Graveyard", 75, requiredPartyAchievements: "11");
-                SaveScenario("Harrower Hive",76);
+                SaveScenario("Harrower Hive", 76);
                 SaveScenario("Vault of Secrets", 77);
-                SaveScenario("Sacrifice Pit",78);
-                SaveScenario("Lost Temple",79, requiredPartyAchievements: "9");
+                SaveScenario("Sacrifice Pit", 78);
+                SaveScenario("Lost Temple", 79, requiredPartyAchievements: "9");
                 SaveScenario("Vigil Keep", 80);
-                SaveScenario("Temple of the Eclipse",81);
-                SaveScenario("Burning Mountain",82);
-                SaveScenario("Shadow Within", 83, requiredPartyAchievements: "5");
-                SaveScenario("Crystalline Cave",84, requiredPartyAchievements: "26");
-                SaveScenario("Sun Temple",85);
-                SaveScenario("Harried Village",86,"87");
-                SaveScenario("Corrupted Cove",87, requiredPartyAchievements: "19");
-                SaveScenario("Plane of Water",88, requiredPartyAchievements: "27",requiredGlobalAchievements:"9");
-                SaveScenario("Syndicate Hideout",89, requiredPartyAchievements: "15");
+                SaveScenario("Temple of the Eclipse", 81);
+                SaveScenario("Burning Mountain", 82);
+                SaveScenario("Shadows Within", 83, requiredPartyAchievements: "5");
+                SaveScenario("Crystalline Cave", 84, requiredPartyAchievements: "26");
+                SaveScenario("Sun Temple", 85);
+                SaveScenario("Harried Village", 86, "87");
+                SaveScenario("Corrupted Cove", 87, requiredPartyAchievements: "19");
+                SaveScenario("Plane of Water", 88, requiredPartyAchievements: "27", requiredGlobalAchievements: "9");
+                SaveScenario("Syndicate Hideout", 89, requiredPartyAchievements: "15");
                 SaveScenario("Demonic Rift", 90);
-                SaveScenario("Wild Melee",91);
-                SaveScenario("Back Alley Brawl",92, requiredPartyAchievements: "7");
+                SaveScenario("Wild Melee", 91);
+                SaveScenario("Back Alley Brawl", 92, requiredPartyAchievements: "7");
                 SaveScenario("Sunken Vessel", 93, requiredPartyAchievements: "2");
-                SaveScenario("Vermling Nest",94,"95");
-                SaveScenario("Payment Due",95, requiredPartyAchievements: "23");
+                SaveScenario("Vermling Nest", 94, "95");
+                SaveScenario("Payment Due", 95, requiredPartyAchievements: "23");
                 Connection.Commit();
             }
             catch
             {
                 Connection.Rollback();
                 throw;
-            }    
+            }
         }
 
         private static void SaveScenario(string name, int scenarionumber,
                                          string unlockedScenarioIdsCommaSeparated = "",
                                          string requiredGlobalAchievements = "",
-                                         string requiredPartyAchievements="",
+                                         string requiredPartyAchievements = "",
                                          string blockingGlobalAchievements = "",
                                          string blockingPartyAchievements = "")
         {
@@ -1711,7 +1712,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             };
 
             ScenarioRepository.InsertOrReplace(scenario);
-        }   
-              
+        }
+
     }
 }

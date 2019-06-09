@@ -12,14 +12,14 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 4);
+        public static Version Dbversion { get; } = new Version(1, 4, 6);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
         {
             var old = Version.Parse(currentDbVersion.Value);
             if ((VersionTime)old.CompareTo(Dbversion) == VersionTime.Earlier)
-            {              
+            {
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 4)) == VersionTime.Earlier)
                 {
                     FixItem33ItemCategorie();
@@ -75,12 +75,87 @@ namespace Data
                 // 1.4.2 = Added Bladeswarm perks
 
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 4)) == VersionTime.Earlier)
-                { 
+                {
                     FixScenario39unlockedScenarios();
                 }
-                
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 6)) == VersionTime.Earlier)
+                {
+                    FixQuatermasterStunPerk();
+                    FixElementalistStunPerk();
+                    FixNameOfScenario83();
+                    AddItem151();
+                }
+
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
+            }
+        }
+
+        private static void AddItem151()
+        {
+            SaveItem(itemnumber: 151, itemname: "Blade of the Sands", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
+        }
+
+        private static void SaveItem(int itemnumber, string itemname, int itemcategorie, int itemcount, string itemtext, int itemprice, int prosperitylevel)
+        {
+            var item = new DL_Item
+            {
+                Itemcategorie = itemcategorie,
+                Itemcount = itemcount,
+                Itemname = itemname,
+                Itemnumber = itemnumber,
+                Itemprice = itemprice,
+                Itemtext = itemtext,
+                Prosperitylevel = prosperitylevel
+            };
+
+            ItemRepository.InsertOrReplace(item);
+        }
+
+        private static void FixNameOfScenario83()
+        {
+            var scenario = ScenarioRepository.Get(true).FirstOrDefault(x => x.Scenarionumber == 83);
+            if (scenario == null) return;
+
+            Connection.BeginTransaction();
+            try
+            {
+                scenario.Name = "Shadows Within";
+
+                ScenarioRepository.InsertOrReplace(scenario);
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        private static void FixQuatermasterStunPerk()
+        {
+            DL_ClassPerk perk = ClassPerkRepository.GetClassPerks(7).FirstOrDefault(x => x.Checkboxnumber == 10);
+
+            if (perk != null)
+            {
+                perk.Perktext = "Add one [RM] STUN [ST] card";
+
+                ClassPerkRepository.UpdatePerkText(perk);
+            }
+        }
+
+        private static void FixElementalistStunPerk()
+        {
+            DL_ClassPerk perk = ClassPerkRepository.GetClassPerks(15).FirstOrDefault(x => x.Checkboxnumber == 14);
+
+            if (perk != null)
+            {
+                perk.Perktext = "Add one [+0] STUN [ST] card";
+
+                ClassPerkRepository.UpdatePerkText(perk);
             }
         }
 
@@ -106,15 +181,15 @@ namespace Data
                     ScenarioTreasures = new List<DL_Treasure>()
                 };
 
-                 CampaignUnlockedScenarioRepository.InsertOrReplace(newScenario);
-            }            
+                CampaignUnlockedScenarioRepository.InsertOrReplace(newScenario);
+            }
         }
 
         private static void FixSpellweaverWoundPerk()
         {
-            DL_ClassPerk perk = ClassPerkRepository.GetClassPerks(2).FirstOrDefault(x=>x.Checkboxnumber == 7);
+            DL_ClassPerk perk = ClassPerkRepository.GetClassPerks(2).FirstOrDefault(x => x.Checkboxnumber == 7);
 
-            if(perk != null)
+            if (perk != null)
             {
                 perk.Perktext = "Add one [+1] WOUND [W] card";
 
@@ -132,7 +207,7 @@ namespace Data
             AddScoundrelPerks(perks); // 3
             AddCragheartPerks(perks); // 4
             AddMindthiefPerks(perks); // 5   
-  
+
             AddSunPerks(perks); // 6
             AddQuatermasterPerks(perks); // 7
             AddSummonerPerks(perks); // 8
@@ -146,7 +221,7 @@ namespace Data
             AddBeastTyrantPerks(perks); // 16   
 
             AddBladeswarmPerks(perks); // 17
-                  
+
             perks = ClassPerkRepository.Get(false);
 
             MigrateSunPerks(perks);
@@ -159,7 +234,7 @@ namespace Data
             MigrateDoomstalkerPerks(perks);
             MigrateSawbonePerks(perks);
             MigrateElementalistPerks(perks);
-            MigrateBeastTyrantPerks(perks);  
+            MigrateBeastTyrantPerks(perks);
         }
 
         private static void AddBladeswarmPerks(List<DL_ClassPerk> perks)
@@ -434,7 +509,7 @@ namespace Data
 
             Connection.BeginTransaction();
             try
-            {  
+            {
                 iten.Name = "End of Corruption";
 
                 AchievementTypeRepository.InsertOrReplace(iten);
@@ -455,7 +530,7 @@ namespace Data
 
             Connection.BeginTransaction();
             try
-            {              
+            {
                 pq.QuestName = "The Perfect Poison";
                 PersonalQuestRepository.InsertOrReplace(pq);
                 Connection.Commit();
@@ -827,7 +902,7 @@ namespace Data
 
             Connection.BeginTransaction();
             try
-            {      
+            {
                 scenario.Name = "Temple of the Elements";
 
                 ScenarioRepository.InsertOrReplace(scenario);
@@ -861,7 +936,7 @@ namespace Data
                 Connection.Rollback();
                 throw;
             }
-        }        
+        }
 
         private static void MigrateSoothsingerPerks(List<DL_ClassPerk> perks)
         {
@@ -1022,7 +1097,7 @@ namespace Data
                     GloomhavenDbHelper.InsertClassPerk(7, "Add two [RM] [+1] cards", 7);
                     GloomhavenDbHelper.InsertClassPerk(7, "Add three [RM] MUDDLE [M] cards", 8);
                     GloomhavenDbHelper.InsertClassPerk(7, "Add two [RM] PIERCE [PI] 3 cards", 9);
-                    GloomhavenDbHelper.InsertClassPerk(7, "Add one [RM] STUND [ST] card", 10);
+                    GloomhavenDbHelper.InsertClassPerk(7, "Add one [RM] STUN [ST] card", 10);
                     GloomhavenDbHelper.InsertClassPerk(7, "Add one [RM] ADD TARGET [T] card", 11);
                     GloomhavenDbHelper.InsertClassPerk(7, "Add one [+0] Refresh an item card", 12);
                     GloomhavenDbHelper.InsertClassPerk(7, "Add one [+0] Refresh an item card", 13);
@@ -1128,7 +1203,7 @@ namespace Data
                     GloomhavenDbHelper.InsertClassPerk(15, "Replace two [+0] cards with one [+0] [FROST] and one [+0] [WIND] card", 11);
                     GloomhavenDbHelper.InsertClassPerk(15, "Add two [+1] PUSH [PU] 1 cards", 12);
                     GloomhavenDbHelper.InsertClassPerk(15, "Add one [+1] WOUND [W] card", 13);
-                    GloomhavenDbHelper.InsertClassPerk(15, "Add one [+0] STUND [ST] card", 14);
+                    GloomhavenDbHelper.InsertClassPerk(15, "Add one [+0] STUN [ST] card", 14);
                     GloomhavenDbHelper.InsertClassPerk(15, "Add one [+0] ADD TARGET [T] card", 15);
 
                     Connection.Commit();
@@ -1613,7 +1688,7 @@ namespace Data
 
             Connection.BeginTransaction();
             try
-            {              
+            {
                 ga.Name = "The Rift Neutralized";
 
                 AchievementTypeRepository.InsertOrReplace(ga);
