@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -100,19 +101,26 @@
         android:paddingTop="5dp"
         android:layout_marginTop="10dp">
         <TextView
-            android:text="Perk settings (1.1.0)"
+            android:text="Check items"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/spoilertitle"
+            android:id="@+id/checkitemstitle"
             android:textColor="@color/gloom_primaryText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
-        <CheckBox
-            android:text="Show old (pre 1.1.0) character perk sheet"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/showoldperksheet"
+        <TextView
+            android:text="If you have problems adding items to a character by the 123 button, tap the button below to check the items in the database."
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/checkitemsDescription"
             android:textColor="@color/gloom_primaryText"
-            app:buttonTint="#ffffffff" 
-            fontPath="fonts/Roboto-Regular.ttf"/>
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <Button
+            android:text="Check items"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkitemsButton" 
+            android:background="@drawable/borderbuttons"
+            android:textColor="@color/gloom_primaryText"/>
+
     </LinearLayout>
 </LinearLayout>

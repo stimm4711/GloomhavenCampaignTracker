@@ -929,215 +929,225 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             ClassPerkRepository.InsertOrReplace(item);
         }
 
+        public static void UpdateMissingItems()
+        {
+            FillItems();
+        }
+
         private static void FillItems()
         {
-            if (!ItemRepository.Get().Any())
+            var items = ItemRepository.Get();
+
+            Connection.BeginTransaction();
+            try
             {
-                Connection.BeginTransaction();
-                try
-                {
-                    /* Categories
-                     * 
-                     * 0 = helmet
-                     * 1= armor
-                     * 2= one hand
-                     * 3= two hand
-                     * 4= boots
-                     * 5= small
-                     * 
-                     */
+                /* Categories
+                    * 
+                    * 0 = helmet
+                    * 1= armor
+                    * 2= one hand
+                    * 3= two hand
+                    * 4= boots
+                    * 5= small
+                    * 
+                    */
 
-                    // Prosperity
-                    SaveItem(itemnumber: 1, itemname: "Boots of Striding", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1);
-                    SaveItem(itemnumber: 2, itemname: "Winged Shoes", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1);
-                    SaveItem(itemnumber: 3, itemname: "Hide Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 1);
-                    SaveItem(itemnumber: 4, itemname: "Leather Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1);
-                    SaveItem(itemnumber: 5, itemname: "Cloak of Invisibility", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1);
-                    SaveItem(itemnumber: 6, itemname: "Eagle-Eye Goggles", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1);
-                    SaveItem(itemnumber: 7, itemname: "Iron Helmet", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 1);
-                    SaveItem(itemnumber: 8, itemname: "Heater Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1);
-                    SaveItem(itemnumber: 9, itemname: "Piercing Bow", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1);
-                    SaveItem(itemnumber: 10, itemname: "War Hammer", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1);
-                    SaveItem(itemnumber: 11, itemname: "Poison Dagger", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1);
-                    SaveItem(itemnumber: 12, itemname: "Minor Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1);
-                    SaveItem(itemnumber: 13, itemname: "Minor Stamina Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1);
-                    SaveItem(itemnumber: 14, itemname: "Minor Power Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1);
+                // Prosperity
+                
+                SaveItem(itemnumber: 1, itemname: "Boots of Striding", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 2, itemname: "Winged Shoes", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 3, itemname: "Hide Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 4, itemname: "Leather Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 5, itemname: "Cloak of Invisibility", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 6, itemname: "Eagle-Eye Goggles", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 7, itemname: "Iron Helmet", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 8, itemname: "Heater Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 9, itemname: "Piercing Bow", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 10, itemname: "War Hammer", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 11, itemname: "Poison Dagger", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 12, itemname: "Minor Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 13, itemname: "Minor Stamina Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                SaveItem(itemnumber: 14, itemname: "Minor Power Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
 
-                    SaveItem(itemnumber: 15, itemname: "Boots of Speed", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 2);
-                    SaveItem(itemnumber: 16, itemname: "Cloak of Pockets", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2);
-                    SaveItem(itemnumber: 17, itemname: "Empowering Talisman", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 45, prosperitylevel: 2);
-                    SaveItem(itemnumber: 18, itemname: "Battle-Axe", itemcategorie: 2, itemcount: 18, itemtext: "", itemprice: 20, prosperitylevel: 2);
-                    SaveItem(itemnumber: 19, itemname: "Weighted Net", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2);
-                    SaveItem(itemnumber: 20, itemname: "Minor Mana Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 2);
-                    SaveItem(itemnumber: 21, itemname: "Stun Powder", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2);
+                SaveItem(itemnumber: 15, itemname: "Boots of Speed", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 2, items);
+                SaveItem(itemnumber: 16, itemname: "Cloak of Pockets", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
+                SaveItem(itemnumber: 17, itemname: "Empowering Talisman", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 45, prosperitylevel: 2, items);
+                SaveItem(itemnumber: 18, itemname: "Battle-Axe", itemcategorie: 2, itemcount: 18, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
+                SaveItem(itemnumber: 19, itemname: "Weighted Net", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
+                SaveItem(itemnumber: 20, itemname: "Minor Mana Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 2, items);
+                SaveItem(itemnumber: 21, itemname: "Stun Powder", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
 
-                    SaveItem(itemnumber: 22, itemname: "Heavy Greaves", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3);
-                    SaveItem(itemnumber: 23, itemname: "Chainmail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3);
-                    SaveItem(itemnumber: 24, itemname: "Amulet of Life", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3);
-                    SaveItem(itemnumber: 25, itemname: "Jagged Sword", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 3);
-                    SaveItem(itemnumber: 26, itemname: "Long Spear", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 3);
-                    SaveItem(itemnumber: 27, itemname: "Major Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 3);
-                    SaveItem(itemnumber: 28, itemname: "Moon Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3);
+                SaveItem(itemnumber: 22, itemname: "Heavy Greaves", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
+                SaveItem(itemnumber: 23, itemname: "Chainmail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
+                SaveItem(itemnumber: 24, itemname: "Amulet of Life", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
+                SaveItem(itemnumber: 25, itemname: "Jagged Sword", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
+                SaveItem(itemnumber: 26, itemname: "Long Spear", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
+                SaveItem(itemnumber: 27, itemname: "Major Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
+                SaveItem(itemnumber: 28, itemname: "Moon Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
 
-                    SaveItem(itemnumber: 29, itemname: "Comfortable Shoes", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4);
-                    SaveItem(itemnumber: 30, itemname: "Studded Leather", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4);
-                    SaveItem(itemnumber: 31, itemname: "Hawk Helm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 4);
-                    SaveItem(itemnumber: 32, itemname: "Tower Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 4);
-                    SaveItem(itemnumber: 33, itemname: "Volatile Bomb", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4);
-                    SaveItem(itemnumber: 34, itemname: "Major Stamina Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 4);
-                    SaveItem(itemnumber: 35, itemname: "Falcon Figurine", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 4);
+                SaveItem(itemnumber: 29, itemname: "Comfortable Shoes", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
+                SaveItem(itemnumber: 30, itemname: "Studded Leather", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
+                SaveItem(itemnumber: 31, itemname: "Hawk Helm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 4, items);
+                SaveItem(itemnumber: 32, itemname: "Tower Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 4, items);
+                SaveItem(itemnumber: 33, itemname: "Volatile Bomb", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
+                SaveItem(itemnumber: 34, itemname: "Major Stamina Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
+                SaveItem(itemnumber: 35, itemname: "Falcon Figurine", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 4, items);
 
-                    SaveItem(itemnumber: 36, itemname: "Boots of Dashing", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5);
-                    SaveItem(itemnumber: 37, itemname: "Robes of Evocation", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5);
-                    SaveItem(itemnumber: 38, itemname: "Heavy Basinet", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 5);
-                    SaveItem(itemnumber: 39, itemname: "Hooked Chain", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5);
-                    SaveItem(itemnumber: 40, itemname: "Versatile Dagger", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 5);
-                    SaveItem(itemnumber: 41, itemname: "Major Power Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 40, prosperitylevel: 5);
-                    SaveItem(itemnumber: 42, itemname: "Ring of Haste", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 5);
+                SaveItem(itemnumber: 36, itemname: "Boots of Dashing", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
+                SaveItem(itemnumber: 37, itemname: "Robes of Evocation", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
+                SaveItem(itemnumber: 38, itemname: "Heavy Basinet", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 5, items);
+                SaveItem(itemnumber: 39, itemname: "Hooked Chain", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
+                SaveItem(itemnumber: 40, itemname: "Versatile Dagger", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 5, items);
+                SaveItem(itemnumber: 41, itemname: "Major Power Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
+                SaveItem(itemnumber: 42, itemname: "Ring of Haste", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 5, items);
 
-                    SaveItem(itemnumber: 43, itemname: "Boots of Quickness", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 6);
-                    SaveItem(itemnumber: 44, itemname: "Splintmail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 35, prosperitylevel: 6);
-                    SaveItem(itemnumber: 45, itemname: "Pendant of Dark Pacts", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 6);
-                    SaveItem(itemnumber: 46, itemname: "Spiked Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6);
-                    SaveItem(itemnumber: 47, itemname: "Reaping Scythe", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6);
-                    SaveItem(itemnumber: 48, itemname: "Major Mana Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 6);
-                    SaveItem(itemnumber: 49, itemname: "Sun Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6);
+                SaveItem(itemnumber: 43, itemname: "Boots of Quickness", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 6, items);
+                SaveItem(itemnumber: 44, itemname: "Splintmail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 35, prosperitylevel: 6, items);
+                SaveItem(itemnumber: 45, itemname: "Pendant of Dark Pacts", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 6, items);
+                SaveItem(itemnumber: 46, itemname: "Spiked Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
+                SaveItem(itemnumber: 47, itemname: "Reaping Scythe", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
+                SaveItem(itemnumber: 48, itemname: "Major Mana Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 6, items);
+                SaveItem(itemnumber: 49, itemname: "Sun Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
 
-                    SaveItem(itemnumber: 50, itemname: "Steel Sabatons", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7);
-                    SaveItem(itemnumber: 51, itemname: "Shadow Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 7);
-                    SaveItem(itemnumber: 52, itemname: "Protective Charm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7);
-                    SaveItem(itemnumber: 53, itemname: "Black Knife", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 7);
-                    SaveItem(itemnumber: 54, itemname: "Staff of Eminence", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7);
-                    SaveItem(itemnumber: 55, itemname: "Super Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 50, prosperitylevel: 7);
-                    SaveItem(itemnumber: 56, itemname: "Ring of Brutality", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 7);
+                SaveItem(itemnumber: 50, itemname: "Steel Sabatons", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
+                SaveItem(itemnumber: 51, itemname: "Shadow Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 7, items);
+                SaveItem(itemnumber: 52, itemname: "Protective Charm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
+                SaveItem(itemnumber: 53, itemname: "Black Knife", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 7, items);
+                SaveItem(itemnumber: 54, itemname: "Staff of Eminence", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
+                SaveItem(itemnumber: 55, itemname: "Super Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 50, prosperitylevel: 7, items);
+                SaveItem(itemnumber: 56, itemname: "Ring of Brutality", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 7, items);
 
-                    SaveItem(itemnumber: 57, itemname: "Serene Sandals", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 8);
-                    SaveItem(itemnumber: 58, itemname: "Cloak of Phasing", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 8);
-                    SaveItem(itemnumber: 59, itemname: "Telescopic Lens", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 8);
-                    SaveItem(itemnumber: 60, itemname: "Unstable Explosives", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 45, prosperitylevel: 8);
-                    SaveItem(itemnumber: 61, itemname: "Wall Shield", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 8);
-                    SaveItem(itemnumber: 62, itemname: "Doom Powder", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 8);
-                    SaveItem(itemnumber: 63, itemname: "Luckey Eye", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 8);
+                SaveItem(itemnumber: 57, itemname: "Serene Sandals", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 8, items);
+                SaveItem(itemnumber: 58, itemname: "Cloak of Phasing", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 8, items);
+                SaveItem(itemnumber: 59, itemname: "Telescopic Lens", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 8, items);
+                SaveItem(itemnumber: 60, itemname: "Unstable Explosives", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 45, prosperitylevel: 8, items);
+                SaveItem(itemnumber: 61, itemname: "Wall Shield", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 8, items);
+                SaveItem(itemnumber: 62, itemname: "Doom Powder", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 8, items);
+                SaveItem(itemnumber: 63, itemname: "Luckey Eye", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 8, items);
 
-                    SaveItem(itemnumber: 64, itemname: "Boots of Sprinting", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9);
-                    SaveItem(itemnumber: 65, itemname: "Platemail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 9);
-                    SaveItem(itemnumber: 66, itemname: "Mask of Terror", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 9);
-                    SaveItem(itemnumber: 67, itemname: "Balanced Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 9);
-                    SaveItem(itemnumber: 68, itemname: "Halberd", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9);
-                    SaveItem(itemnumber: 69, itemname: "Star Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 70, prosperitylevel: 9);
-                    SaveItem(itemnumber: 70, itemname: "Second Chance Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9);
+                SaveItem(itemnumber: 64, itemname: "Boots of Sprinting", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
+                SaveItem(itemnumber: 65, itemname: "Platemail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 9, items);
+                SaveItem(itemnumber: 66, itemname: "Mask of Terror", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 9, items);
+                SaveItem(itemnumber: 67, itemname: "Balanced Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 9, items);
+                SaveItem(itemnumber: 68, itemname: "Halberd", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
+                SaveItem(itemnumber: 69, itemname: "Star Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 70, prosperitylevel: 9, items);
+                SaveItem(itemnumber: 70, itemname: "Second Chance Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
 
-                    // Designs
-                    SaveItem(itemnumber: 71, itemname: "Boots of Levitation", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100);
-                    SaveItem(itemnumber: 72, itemname: "Shoes of Happiness", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100);
-                    SaveItem(itemnumber: 73, itemname: "Blinking Cape", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100);
-                    SaveItem(itemnumber: 74, itemname: "Swordedge Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 100);
-                    SaveItem(itemnumber: 75, itemname: "Circle of Elements", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 100);
-                    SaveItem(itemnumber: 76, itemname: "Chain Hood", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 100);
-                    SaveItem(itemnumber: 77, itemname: "Frigid Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 78, itemname: "Storm Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 79, itemname: "Inferno Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 80, itemname: "Tremor Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 81, itemname: "Brilliant Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 82, itemname: "Night Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 83, itemname: "Wand of Frost", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 84, itemname: "Wand of Storms", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 85, itemname: "Wand of Infernos", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 86, itemname: "Wand of Tremors", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 87, itemname: "Wand of Brilliance", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 88, itemname: "Wand of Darkness", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 89, itemname: "Minure Cure Potion", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 100);
-                    SaveItem(itemnumber: 90, itemname: "Major Cure Potion", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 91, itemname: "Steel Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 100);
-                    SaveItem(itemnumber: 92, itemname: "Dampening Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 100);
-                    SaveItem(itemnumber: 93, itemname: "Scroll of Power", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 94, itemname: "Scroll of Healing", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100);
-                    SaveItem(itemnumber: 95, itemname: "Scroll of Stamina", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100);
+                // Designs
+                SaveItem(itemnumber: 71, itemname: "Boots of Levitation", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 72, itemname: "Shoes of Happiness", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 73, itemname: "Blinking Cape", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 74, itemname: "Swordedge Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 75, itemname: "Circle of Elements", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 76, itemname: "Chain Hood", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 77, itemname: "Frigid Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 78, itemname: "Storm Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 79, itemname: "Inferno Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 80, itemname: "Tremor Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 81, itemname: "Brilliant Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 82, itemname: "Night Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 83, itemname: "Wand of Frost", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 84, itemname: "Wand of Storms", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 85, itemname: "Wand of Infernos", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 86, itemname: "Wand of Tremors", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 87, itemname: "Wand of Brilliance", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 88, itemname: "Wand of Darkness", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 89, itemname: "Minure Cure Potion", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 90, itemname: "Major Cure Potion", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 91, itemname: "Steel Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 92, itemname: "Dampening Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 93, itemname: "Scroll of Power", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 94, itemname: "Scroll of Healing", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                SaveItem(itemnumber: 95, itemname: "Scroll of Stamina", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
 
-                    // Items
-                    SaveItem(itemnumber: 96, itemname: "Rocket Boots", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 80, prosperitylevel: 150);
-                    SaveItem(itemnumber: 97, itemname: "Endurance Footwraps", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150);
-                    SaveItem(itemnumber: 98, itemname: "Drakescale Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 99, itemname: "Magma Waders", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 100, itemname: "Robes of Summoning", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150);
-                    SaveItem(itemnumber: 101, itemname: "Second Skin", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 30, prosperitylevel: 150);
-                    SaveItem(itemnumber: 102, itemname: "Sacrificial Robes", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 103, itemname: "Drakescale Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 104, itemname: "Steam Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 105, itemname: "Flea-Bitten Shawl", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 10, prosperitylevel: 150);
-                    SaveItem(itemnumber: 106, itemname: "Necklace of Teeth", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150);
-                    SaveItem(itemnumber: 107, itemname: "Horned Helm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150);
-                    SaveItem(itemnumber: 108, itemname: "Drakescale Helm", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 109, itemname: "Thief's Hood", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 20, prosperitylevel: 150);
-                    SaveItem(itemnumber: 110, itemname: "Helm of the Mountain", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 111, itemname: "Wave Crest", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 112, itemname: "Ancient Drill", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150);
-                    SaveItem(itemnumber: 113, itemname: "Skullbane Axe", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 114, itemname: "Staff of Xorn", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 115, itemname: "Mountain Hammer", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 116, itemname: "Fueled Falchion", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 150);
-                    SaveItem(itemnumber: 117, itemname: "Bloody Axe", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 150);
-                    SaveItem(itemnumber: 118, itemname: "Staff of Elements", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 119, itemname: "Skull of Hatred", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 120, itemname: "Staff of Summoning", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150);
-                    SaveItem(itemnumber: 121, itemname: "Orb of Dawn", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 122, itemname: "Orb of Twilight", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 123, itemname: "Ring of Skulls", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 124, itemname: "Doomed Compass", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 125, itemname: "Curious Gear", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 126, itemname: "Remote Spider", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150);
-                    SaveItem(itemnumber: 127, itemname: "GiantRemote Spider", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150);
-                    SaveItem(itemnumber: 128, itemname: "Black Censer", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 129, itemname: "Black Card", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150);
-                    SaveItem(itemnumber: 130, itemname: "Helix Ring", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150);
-                    SaveItem(itemnumber: 131, itemname: "Heart of the Betrayer", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150);
-                    SaveItem(itemnumber: 132, itemname: "Power Core", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150);
-                    SaveItem(itemnumber: 133, itemname: "Resonant Crystal", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 20, prosperitylevel: 150);
+                // Items
+                SaveItem(itemnumber: 96, itemname: "Rocket Boots", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 80, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 97, itemname: "Endurance Footwraps", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 98, itemname: "Drakescale Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 99, itemname: "Magma Waders", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 100, itemname: "Robes of Summoning", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 101, itemname: "Second Skin", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 102, itemname: "Sacrificial Robes", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 103, itemname: "Drakescale Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 104, itemname: "Steam Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 105, itemname: "Flea-Bitten Shawl", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 10, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 106, itemname: "Necklace of Teeth", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 107, itemname: "Horned Helm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 108, itemname: "Drakescale Helm", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 109, itemname: "Thief's Hood", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 110, itemname: "Helm of the Mountain", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 111, itemname: "Wave Crest", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 112, itemname: "Ancient Drill", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 113, itemname: "Skullbane Axe", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 114, itemname: "Staff of Xorn", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 115, itemname: "Mountain Hammer", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 116, itemname: "Fueled Falchion", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 117, itemname: "Bloody Axe", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 118, itemname: "Staff of Elements", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 119, itemname: "Skull of Hatred", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 120, itemname: "Staff of Summoning", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 121, itemname: "Orb of Dawn", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 122, itemname: "Orb of Twilight", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 123, itemname: "Ring of Skulls", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 124, itemname: "Doomed Compass", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 125, itemname: "Curious Gear", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 126, itemname: "Remote Spider", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 127, itemname: "GiantRemote Spider", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 128, itemname: "Black Censer", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 129, itemname: "Black Card", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 130, itemname: "Helix Ring", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 131, itemname: "Heart of the Betrayer", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 132, itemname: "Power Core", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150, items);
+                SaveItem(itemnumber: 133, itemname: "Resonant Crystal", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
 
-                    // Soloscenario rewards
-                    SaveItem(itemnumber: 134, itemname: "Imposing Blade", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 135, itemname: "Focusing Ray", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 136, itemname: "Volatile Elixir", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 137, itemname: "Silent Stiletto", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 138, itemname: "Stone Charm", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 139, itemname: "Psychic Knife", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 140, itemname: "Sun Shield", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 141, itemname: "Utility Belt", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 142, itemname: "Phasing Idol", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 143, itemname: "Smoke Elixir", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 144, itemname: "Pendant of the Plague", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 145, itemname: "Mask of Death", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 146, itemname: "Master's Lute", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 147, itemname: "Cloak of the Hunter", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 148, itemname: "Doctor's Coat", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 149, itemname: "Elemental Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 150, itemname: "Staff of Command", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
-                    SaveItem(itemnumber: 151, itemname: "Blade of the Sands", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
+                // Soloscenario rewards
+                SaveItem(itemnumber: 134, itemname: "Imposing Blade", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 135, itemname: "Focusing Ray", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 136, itemname: "Volatile Elixir", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 137, itemname: "Silent Stiletto", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 138, itemname: "Stone Charm", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 139, itemname: "Psychic Knife", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 140, itemname: "Sun Shield", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 141, itemname: "Utility Belt", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 142, itemname: "Phasing Idol", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 143, itemname: "Smoke Elixir", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 144, itemname: "Pendant of the Plague", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 145, itemname: "Mask of Death", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 146, itemname: "Master's Lute", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 147, itemname: "Cloak of the Hunter", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 148, itemname: "Doctor's Coat", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 149, itemname: "Elemental Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 150, itemname: "Staff of Command", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                SaveItem(itemnumber: 151, itemname: "Blade of the Sands", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
 
-                    Connection.Commit();
-                }
-                catch
-                {
-                    Connection.Rollback();
-                    throw;
-                }
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
             }
         }
 
-        private static void SaveItem(int itemnumber, string itemname, int itemcategorie, int itemcount, string itemtext, int itemprice, int prosperitylevel)
+        private static void SaveItem(int itemnumber, string itemname, int itemcategorie, int itemcount, string itemtext, int itemprice, int prosperitylevel, List<DL_Item> items)
         {
-            var item = new DL_Item
+            if (!items.Any(x=> x.Itemnumber == itemnumber))
             {
-                Itemcategorie = itemcategorie,
-                Itemcount = itemcount,
-                Itemname = itemname,
-                Itemnumber = itemnumber,
-                Itemprice = itemprice,
-                Itemtext = itemtext,
-                Prosperitylevel = prosperitylevel
-            };
+                var item = new DL_Item
+                {
+                    Itemcategorie = itemcategorie,
+                    Itemcount = itemcount,
+                    Itemname = itemname,
+                    Itemnumber = itemnumber,
+                    Itemprice = itemprice,
+                    Itemtext = itemtext,
+                    Prosperitylevel = prosperitylevel
+                };
 
-            ItemRepository.InsertOrReplace(item);
+                ItemRepository.InsertOrReplace(item);
+
+                items.Add(item);
+            }           
         }
 
         private static void FillPersonalQuests()

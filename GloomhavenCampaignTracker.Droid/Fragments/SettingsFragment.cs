@@ -4,6 +4,8 @@ using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Business;
 using Android.Preferences;
+using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments
 {
@@ -32,7 +34,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             var checkItems = view.FindViewById<CheckBox>(Resource.Id.chkShowItemnames);
             var checkpq = view.FindViewById<CheckBox>(Resource.Id.chkpersonalquest);
             var checkscenarios = view.FindViewById<CheckBox>(Resource.Id.chkunlockedscenarioname);
-            var checkShowoldperksheet = view.FindViewById<CheckBox>(Resource.Id.showoldperksheet);
+            var btnCheckItems = view.FindViewById<Button>(Resource.Id.checkitemsButton);
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var isShowItems = prefs.GetBoolean(_showItemnames, true);
@@ -43,14 +45,34 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             checkItems.Checked = isShowItems;
             checkpq.Checked = isShowPQ;
             checkscenarios.Checked = isShowScenarios;
-            checkShowoldperksheet.Checked = isShowOldPerkSheet;
+           
 
             checkItems.CheckedChange += CheckItems_CheckedChange;
             checkpq.CheckedChange += Checkpq_CheckedChange;
             checkscenarios.CheckedChange += Checkscenarios_CheckedChange;
-            checkShowoldperksheet.CheckedChange += CheckShowoldperksheet_CheckedChange;
-
+            
+            if (!btnCheckItems.HasOnClickListeners)
+                btnCheckItems.Click += BtnCheckItems_Click;
             return view;
+        }
+
+        private void BtnCheckItems_Click(object sender, System.EventArgs e)
+        {
+            var items = ItemRepository.Get();
+
+            if (items.Count < 151)
+            {
+                var countBefore = items.Count;
+                GloomhavenDbHelper.UpdateMissingItems();
+
+                items = ItemRepository.Get();
+                var countAfter = items.Count;
+                Toast.MakeText(Context, $"Updated items. Added {countAfter - countBefore} items.", ToastLength.Short).Show();
+            }   
+            else
+            {
+                Toast.MakeText(Context, "All items checked. No missing items found.", ToastLength.Short).Show();
+            }
         }
 
         private void CheckShowoldperksheet_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)

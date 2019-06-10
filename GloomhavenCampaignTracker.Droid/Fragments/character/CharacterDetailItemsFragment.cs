@@ -77,6 +77,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                     {
                         Character.Items.Add(item);
                     }
+                    else
+                    {
+                        Toast.MakeText(Context, $"Couldn't find item with number {refNumber}.", ToastLength.Short).Show();
+                    }
 
                     SaveCharacter();
                     lv.Adapter = new CharacterItemsAdapter(Context, Character, this);
