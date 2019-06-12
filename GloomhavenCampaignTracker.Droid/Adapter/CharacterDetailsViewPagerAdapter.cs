@@ -6,13 +6,11 @@ using GloomhavenCampaignTracker.Droid.Fragments.character;
 using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using Java.Lang;
-using System.Collections.Generic;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
     internal class CharacterDetailsViewPagerAdapter : FragmentStatePagerAdapter
     {
-        private readonly FragmentManager _fragManager;
         private readonly Context _context;
         private readonly int PageCount = 4;
         private readonly Fragment[] frags;
@@ -21,7 +19,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         public CharacterDetailsViewPagerAdapter(Context context, FragmentManager fm, DL_Character character) : base(fm)
         {
             _context = context;
-            _fragManager = fm;
+            FragManager = fm;
             if (GCTContext.ShowOldPerkSheet) PageCount = 5;
             frags = new Fragment[PageCount];
             _character = character;
@@ -29,6 +27,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
         public override int Count => PageCount;
 
+        public FragmentManager FragManager { get; }
+        
         public override ICharSequence GetPageTitleFormatted(int position)
         {
             var title = GetTitle(position);

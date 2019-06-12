@@ -100,10 +100,19 @@ namespace Data
                     AddDivinerClass();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 9)) == VersionTime.Earlier)
+                {
+                    AddDivinerClassPerks();
+                }
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
             }
+        }
+
+        private static void AddDivinerClassPerks()
+        {
+           
         }
 
         private static void FixSawHealPerk()
@@ -591,6 +600,7 @@ namespace Data
             AddBeastTyrantPerks(perks); // 16   
 
             AddBladeswarmPerks(perks); // 17
+            AddDivinerClassPerks(perks); // 18
 
             perks = ClassPerkRepository.Get(false);
 
@@ -605,6 +615,39 @@ namespace Data
             MigrateSawbonePerks(perks);
             MigrateElementalistPerks(perks);
             MigrateBeastTyrantPerks(perks);
+        }
+
+        private static void AddDivinerClassPerks(List<DL_ClassPerk> perks)
+        {
+            if (!perks.Any(x => x.ClassId == 18))
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertClassPerk(18, "Remove two [-1] cards", 1);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Remove two [-1] cards", 2);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Remove one [-2] cards", 3);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace two [+1] card with one [+3] SHIELD [SH] 1, Self card", 4);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace two [+1] card with one [+3] SHIELD [SH] 1, Self card", 5);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace one [+0] card with one [+1] SHIELD [SH] 1, Affect any ally card", 6);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace one [+0] card with one [+2] [DARK] card", 7);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace one [+0] card with one [+2] [LIGHT] card", 8);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace one [+0] card with one [+3] MUDDLE [M] card", 9);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace one [+0] card with one [+2] CURSE [C] card", 10);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace one [+0] card with one [+2] REGENERATE [RE], Self card", 11);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Replace one [-1] card with one [+1] Heal [H] 2, Affect any ally card", 12);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Add two [RM] Heal [H] 1, Self cards", 13);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Add two [RM] CURSE [C] cards", 14);
+                    GloomhavenDbHelper.InsertClassPerk(18, "Ignore negative scenario effects and add two [+1] cards", 15);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }
         }
 
         private static void AddBladeswarmPerks(List<DL_ClassPerk> perks)

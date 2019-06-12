@@ -952,3 +952,9 @@ F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\dra
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-xxhdpi\ic_divinericon.png
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-xxxhdpi\ic_diviner_white_48.png
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-xxxhdpi\ic_divinericon.png
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-hdpi\ic_regenerate.png
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-mdpi\ic_regenerate.png
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-xhdpi\ic_regenerate.png
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-xxhdpi\ic_regenerate.png
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\ic_regenerate.png
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-xxxhdpi\ic_regenerate.png
