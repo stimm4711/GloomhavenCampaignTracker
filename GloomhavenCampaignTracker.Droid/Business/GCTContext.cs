@@ -31,6 +31,8 @@ namespace GloomhavenCampaignTracker.Business
         public static int LastSelectedCampaignTab { get; set; } = -1;
         public static bool ShowOldPerkSheet { get; internal set; }
 
+        public static bool ActivateForgottenCiclesContent { get; set; } = false;
+
         public static void Clear()
         {
             m_campaignCollection = null;

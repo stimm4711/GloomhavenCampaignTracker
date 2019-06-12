@@ -243,7 +243,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
         {
             if (_isDualPane)
             {
-                //var detailsFrag = CharacterExpandableListFragment.NewInstance(true);
                 var detailsFrag = CharacterListFragment.NewInstance(true);
                 detailsFrag.SetPartyFrag(this);
                 var title = _view.FindViewById<TextView>(Resource.Id.dualdetailtitle);

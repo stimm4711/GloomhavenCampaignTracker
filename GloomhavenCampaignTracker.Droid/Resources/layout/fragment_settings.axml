@@ -89,6 +89,34 @@
     </RelativeLayout>
     <LinearLayout
         android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/forgottenCircles"
+        android:background="@drawable/borderwhite"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Activate Forgotten Circles"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/enableFCtext"
+            android:textColor="@color/gloom_primaryText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <CheckBox
+            android:text="Activates the content of the expansion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activateFCCheck"
+            android:textColor="@color/gloom_primaryText"
+            app:buttonTint="#ffffffff"
+            android:checked="false"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
@@ -99,7 +127,8 @@
         android:paddingLeft="8dp"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
         <TextView
             android:text="Check items"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -118,9 +147,10 @@
             android:text="Check items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/checkitemsButton" 
+            android:id="@+id/checkitemsButton"
             android:background="@drawable/borderbuttons"
             android:textColor="@color/gloom_primaryText"/>
 
     </LinearLayout>
+
 </LinearLayout>

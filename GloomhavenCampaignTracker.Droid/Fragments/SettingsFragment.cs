@@ -15,6 +15,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
         private const string _showPQNames = "showPQDetails";
         private const string _showScenarioNames = "showScenarioNames";
         private const string _showOldPerkSheet = "showOldPerkSheet";
+        private const string _activateFC = "activateFC";
 
         public static SettingsFragment NewInstance()
         {
@@ -35,25 +36,40 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             var checkpq = view.FindViewById<CheckBox>(Resource.Id.chkpersonalquest);
             var checkscenarios = view.FindViewById<CheckBox>(Resource.Id.chkunlockedscenarioname);
             var btnCheckItems = view.FindViewById<Button>(Resource.Id.checkitemsButton);
+            var activateFCCheck = view.FindViewById<CheckBox>(Resource.Id.activateFCCheck);
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var isShowItems = prefs.GetBoolean(_showItemnames, true);
             var isShowPQ = prefs.GetBoolean(_showPQNames, true);
             var isShowScenarios = prefs.GetBoolean(_showScenarioNames, false);
             var isShowOldPerkSheet = prefs.GetBoolean(_showOldPerkSheet, false);
-
+            var isFCActivated = prefs.GetBoolean(_activateFC, false);
+            
             checkItems.Checked = isShowItems;
             checkpq.Checked = isShowPQ;
             checkscenarios.Checked = isShowScenarios;
-           
+            activateFCCheck.Checked = isFCActivated;
 
             checkItems.CheckedChange += CheckItems_CheckedChange;
             checkpq.CheckedChange += Checkpq_CheckedChange;
             checkscenarios.CheckedChange += Checkscenarios_CheckedChange;
-            
+            activateFCCheck.CheckedChange += ActivateFCCheck_CheckedChange;
+
             if (!btnCheckItems.HasOnClickListeners)
                 btnCheckItems.Click += BtnCheckItems_Click;
             return view;
+        }
+
+        private void ActivateFCCheck_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            if (e.IsChecked == GCTContext.ActivateForgottenCiclesContent) return;
+
+            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
+            var editor = prefs.Edit();
+            editor.PutBoolean(_activateFC, e.IsChecked);
+            editor.Apply();
+
+            GCTContext.ActivateForgottenCiclesContent = e.IsChecked;
         }
 
         private void BtnCheckItems_Click(object sender, System.EventArgs e)

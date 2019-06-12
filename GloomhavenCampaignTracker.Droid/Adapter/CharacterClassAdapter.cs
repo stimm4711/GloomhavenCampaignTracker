@@ -38,7 +38,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             Resource.Drawable.ic_class15icon_white_48,
             Resource.Drawable.ic_class16icon_white_48,
             Resource.Drawable.ic_class17icon_white_48,
-            Resource.Drawable.ic_class18icon_white
+            Resource.Drawable.ic_class18icon_white,
+            Resource.Drawable.ic_diviner_white_48
         };
 
         public CharacterClassAdapter(Context context, bool showAll = false)
@@ -46,6 +47,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             _context = context;
             _availableClassIds = (GCTContext.CurrentCampaign == null || showAll) ? new List<int>(new []{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}) : GCTContext.CurrentCampaign.UnlockedClassesIds;
             if (GCTContext.CurrentCampaign != null && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked && !_availableClassIds.Contains(18)) _availableClassIds.Add(18);
+            if (GCTContext.ActivateForgottenCiclesContent && !_availableClassIds.Contains(19)) _availableClassIds.Add(19);
         }
 
         public override Java.Lang.Object GetItem(int position)

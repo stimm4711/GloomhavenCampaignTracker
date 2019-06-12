@@ -2571,250 +2571,256 @@ namespace GloomhavenCampaignTracker.Droid
 			public const int ic_delete_black_24dp = 2130837619;
 			
 			// aapt resource value: 0x7F020074
-			public const int ic_dot_black_24dp = 2130837620;
+			public const int ic_divinericon = 2130837620;
 			
 			// aapt resource value: 0x7F020075
-			public const int ic_doubletick = 2130837621;
+			public const int ic_diviner_white_48 = 2130837621;
 			
 			// aapt resource value: 0x7F020076
-			public const int ic_edit_white_24dp = 2130837622;
+			public const int ic_dot_black_24dp = 2130837622;
 			
 			// aapt resource value: 0x7F020077
-			public const int ic_edit_white_24px = 2130837623;
+			public const int ic_doubletick = 2130837623;
 			
 			// aapt resource value: 0x7F020078
-			public const int ic_effect_addTarget = 2130837624;
+			public const int ic_edit_white_24dp = 2130837624;
 			
 			// aapt resource value: 0x7F020079
-			public const int ic_effect_heal = 2130837625;
+			public const int ic_edit_white_24px = 2130837625;
 			
 			// aapt resource value: 0x7F020080
-			public const int ic_effect_minus_one = 2130837632;
+			public const int ic_effect_addTarget = 2130837632;
 			
 			// aapt resource value: 0x7F020081
-			public const int ic_effect_minus_two = 2130837633;
+			public const int ic_effect_heal = 2130837633;
 			
 			// aapt resource value: 0x7F020082
-			public const int ic_effect_pierce = 2130837634;
+			public const int ic_effect_minus_one = 2130837634;
 			
 			// aapt resource value: 0x7F020083
-			public const int ic_effect_plus_four = 2130837635;
+			public const int ic_effect_minus_two = 2130837635;
 			
 			// aapt resource value: 0x7F020084
-			public const int ic_effect_plus_one = 2130837636;
+			public const int ic_effect_pierce = 2130837636;
 			
 			// aapt resource value: 0x7F020085
-			public const int ic_effect_plus_three = 2130837637;
+			public const int ic_effect_plus_four = 2130837637;
 			
 			// aapt resource value: 0x7F020086
-			public const int ic_effect_plus_two = 2130837638;
+			public const int ic_effect_plus_one = 2130837638;
 			
 			// aapt resource value: 0x7F020087
-			public const int ic_effect_plus_zero = 2130837639;
+			public const int ic_effect_plus_three = 2130837639;
 			
 			// aapt resource value: 0x7F020088
-			public const int ic_effect_pull = 2130837640;
+			public const int ic_effect_plus_two = 2130837640;
 			
 			// aapt resource value: 0x7F020089
-			public const int ic_effect_push = 2130837641;
+			public const int ic_effect_plus_zero = 2130837641;
 			
 			// aapt resource value: 0x7F020090
-			public const int ic_effect_shield = 2130837648;
+			public const int ic_effect_pull = 2130837648;
 			
 			// aapt resource value: 0x7F020091
-			public const int ic_element_any = 2130837649;
+			public const int ic_effect_push = 2130837649;
 			
 			// aapt resource value: 0x7F020092
-			public const int ic_element_dark = 2130837650;
+			public const int ic_effect_shield = 2130837650;
 			
 			// aapt resource value: 0x7F020093
-			public const int ic_element_earth = 2130837651;
+			public const int ic_element_any = 2130837651;
 			
 			// aapt resource value: 0x7F020094
-			public const int ic_element_fire = 2130837652;
+			public const int ic_element_dark = 2130837652;
 			
 			// aapt resource value: 0x7F020095
-			public const int ic_element_frost = 2130837653;
+			public const int ic_element_earth = 2130837653;
 			
 			// aapt resource value: 0x7F020096
-			public const int ic_element_light = 2130837654;
+			public const int ic_element_fire = 2130837654;
 			
 			// aapt resource value: 0x7F020097
-			public const int ic_element_wind = 2130837655;
+			public const int ic_element_frost = 2130837655;
 			
 			// aapt resource value: 0x7F020098
-			public const int ic_export = 2130837656;
+			public const int ic_element_light = 2130837656;
 			
 			// aapt resource value: 0x7F020099
-			public const int ic_feedback_24px = 2130837657;
+			public const int ic_element_wind = 2130837657;
 			
 			// aapt resource value: 0x7F020100
-			public const int ic_filter_retired = 2130837760;
+			public const int ic_export = 2130837760;
 			
 			// aapt resource value: 0x7F020101
-			public const int ic_flag_white_24dp = 2130837761;
+			public const int ic_feedback_24px = 2130837761;
 			
 			// aapt resource value: 0x7F020102
-			public const int ic_gloom_item_armor = 2130837762;
+			public const int ic_filter_retired = 2130837762;
 			
 			// aapt resource value: 0x7F020103
-			public const int ic_gloom_item_boots = 2130837763;
+			public const int ic_flag_white_24dp = 2130837763;
 			
 			// aapt resource value: 0x7F020104
-			public const int ic_gloom_item_helmet = 2130837764;
+			public const int ic_gloom_item_armor = 2130837764;
 			
 			// aapt resource value: 0x7F020105
-			public const int ic_gloom_item_onehand = 2130837765;
+			public const int ic_gloom_item_boots = 2130837765;
 			
 			// aapt resource value: 0x7F020106
-			public const int ic_gloom_item_small = 2130837766;
+			public const int ic_gloom_item_helmet = 2130837766;
 			
 			// aapt resource value: 0x7F020107
-			public const int ic_gloom_item_twohand = 2130837767;
+			public const int ic_gloom_item_onehand = 2130837767;
 			
 			// aapt resource value: 0x7F020108
-			public const int ic_gloom_sell = 2130837768;
+			public const int ic_gloom_item_small = 2130837768;
 			
 			// aapt resource value: 0x7F020109
-			public const int ic_group_black_24dp = 2130837769;
+			public const int ic_gloom_item_twohand = 2130837769;
 			
 			// aapt resource value: 0x7F020110
-			public const int ic_group_white_24dp = 2130837776;
+			public const int ic_gloom_sell = 2130837776;
 			
 			// aapt resource value: 0x7F020111
-			public const int ic_helmet = 2130837777;
+			public const int ic_group_black_24dp = 2130837777;
 			
 			// aapt resource value: 0x7F020112
-			public const int ic_import = 2130837778;
+			public const int ic_group_white_24dp = 2130837778;
 			
 			// aapt resource value: 0x7F020113
-			public const int ic_item = 2130837779;
+			public const int ic_helmet = 2130837779;
 			
 			// aapt resource value: 0x7F020114
-			public const int ic_keyboard_arrow_down_white_18dp = 2130837780;
+			public const int ic_import = 2130837780;
 			
 			// aapt resource value: 0x7F020115
-			public const int ic_keyboard_arrow_up_white_18dp = 2130837781;
+			public const int ic_item = 2130837781;
 			
 			// aapt resource value: 0x7F020116
-			public const int ic_launcher = 2130837782;
+			public const int ic_keyboard_arrow_down_white_18dp = 2130837782;
 			
 			// aapt resource value: 0x7F020117
-			public const int ic_leveliconWhite_48dp = 2130837783;
+			public const int ic_keyboard_arrow_up_white_18dp = 2130837783;
 			
 			// aapt resource value: 0x7F020118
-			public const int ic_levelicon_small_black = 2130837784;
+			public const int ic_launcher = 2130837784;
 			
 			// aapt resource value: 0x7F020119
-			public const int ic_location = 2130837785;
+			public const int ic_leveliconWhite_48dp = 2130837785;
 			
 			// aapt resource value: 0x7F020120
-			public const int ic_lock_open_white_24dp = 2130837792;
+			public const int ic_levelicon_small_black = 2130837792;
 			
 			// aapt resource value: 0x7F020121
-			public const int ic_mode_edit_white_24px = 2130837793;
+			public const int ic_location = 2130837793;
 			
 			// aapt resource value: 0x7F020122
-			public const int ic_moneybag = 2130837794;
+			public const int ic_lock_open_white_24dp = 2130837794;
 			
 			// aapt resource value: 0x7F020123
-			public const int ic_more_vert_black_24dp = 2130837795;
+			public const int ic_mode_edit_white_24px = 2130837795;
 			
 			// aapt resource value: 0x7F020124
-			public const int ic_new_releases_24px = 2130837796;
+			public const int ic_moneybag = 2130837796;
 			
 			// aapt resource value: 0x7F020125
-			public const int ic_onetwothree_white_24px = 2130837797;
+			public const int ic_more_vert_black_24dp = 2130837797;
 			
 			// aapt resource value: 0x7F020126
-			public const int ic_party_black = 2130837798;
+			public const int ic_new_releases_24px = 2130837798;
 			
 			// aapt resource value: 0x7F020127
-			public const int ic_remove_circle_black_24dp = 2130837799;
+			public const int ic_onetwothree_white_24px = 2130837799;
 			
 			// aapt resource value: 0x7F020128
-			public const int ic_remove_circle_white_24dp = 2130837800;
+			public const int ic_party_black = 2130837800;
 			
 			// aapt resource value: 0x7F020129
-			public const int ic_remove_red_eye_white_24dp = 2130837801;
+			public const int ic_remove_circle_black_24dp = 2130837801;
 			
 			// aapt resource value: 0x7F020130
-			public const int ic_retired = 2130837808;
+			public const int ic_remove_circle_white_24dp = 2130837808;
 			
 			// aapt resource value: 0x7F020131
-			public const int ic_retired_black = 2130837809;
+			public const int ic_remove_red_eye_white_24dp = 2130837809;
 			
 			// aapt resource value: 0x7F020132
-			public const int ic_road = 2130837810;
+			public const int ic_retired = 2130837810;
 			
 			// aapt resource value: 0x7F020133
-			public const int ic_save_white_24dp = 2130837811;
+			public const int ic_retired_black = 2130837811;
 			
 			// aapt resource value: 0x7F020134
-			public const int ic_settings_24px = 2130837812;
+			public const int ic_road = 2130837812;
 			
 			// aapt resource value: 0x7F020135
-			public const int ic_show_retired = 2130837813;
+			public const int ic_save_white_24dp = 2130837813;
 			
 			// aapt resource value: 0x7F020136
-			public const int ic_shuffle = 2130837814;
+			public const int ic_settings_24px = 2130837814;
 			
 			// aapt resource value: 0x7F020137
-			public const int ic_status_bless = 2130837815;
+			public const int ic_show_retired = 2130837815;
 			
 			// aapt resource value: 0x7F020138
-			public const int ic_status_curse = 2130837816;
+			public const int ic_shuffle = 2130837816;
 			
 			// aapt resource value: 0x7F020139
-			public const int ic_status_disarm = 2130837817;
+			public const int ic_status_bless = 2130837817;
 			
 			// aapt resource value: 0x7F020140
-			public const int ic_status_immobilized = 2130837824;
+			public const int ic_status_curse = 2130837824;
 			
 			// aapt resource value: 0x7F020141
-			public const int ic_status_invisible = 2130837825;
+			public const int ic_status_disarm = 2130837825;
 			
 			// aapt resource value: 0x7F020142
-			public const int ic_status_muddle = 2130837826;
+			public const int ic_status_immobilized = 2130837826;
 			
 			// aapt resource value: 0x7F020143
-			public const int ic_status_poisen = 2130837827;
+			public const int ic_status_invisible = 2130837827;
 			
 			// aapt resource value: 0x7F020144
-			public const int ic_status_strengthen = 2130837828;
+			public const int ic_status_muddle = 2130837828;
 			
 			// aapt resource value: 0x7F020145
-			public const int ic_status_stun = 2130837829;
+			public const int ic_status_poisen = 2130837829;
 			
 			// aapt resource value: 0x7F020146
-			public const int ic_status_wound = 2130837830;
+			public const int ic_status_strengthen = 2130837830;
 			
 			// aapt resource value: 0x7F020147
-			public const int ic_store_white_24dp = 2130837831;
+			public const int ic_status_stun = 2130837831;
 			
 			// aapt resource value: 0x7F020148
-			public const int ic_story = 2130837832;
+			public const int ic_status_wound = 2130837832;
 			
 			// aapt resource value: 0x7F020149
-			public const int ic_supportdev_24px = 2130837833;
+			public const int ic_store_white_24dp = 2130837833;
 			
 			// aapt resource value: 0x7F020150
-			public const int ic_treasurechest = 2130837840;
+			public const int ic_story = 2130837840;
 			
 			// aapt resource value: 0x7F020151
-			public const int ic_user = 2130837841;
+			public const int ic_supportdev_24px = 2130837841;
 			
 			// aapt resource value: 0x7F020152
-			public const int ic_view_list_white_24dp = 2130837842;
+			public const int ic_treasurechest = 2130837842;
 			
 			// aapt resource value: 0x7F020153
-			public const int ic_xpiconWhite = 2130837843;
+			public const int ic_user = 2130837843;
 			
 			// aapt resource value: 0x7F020154
-			public const int ic_xpicon_black = 2130837844;
+			public const int ic_view_list_white_24dp = 2130837844;
 			
 			// aapt resource value: 0x7F020155
-			public const int MonsterLevel = 2130837845;
+			public const int ic_xpiconWhite = 2130837845;
+			
+			// aapt resource value: 0x7F020156
+			public const int ic_xpicon_black = 2130837846;
+			
+			// aapt resource value: 0x7F020157
+			public const int MonsterLevel = 2130837847;
 			
 			// aapt resource value: 0x7F09005C
 			public const int navigation_empty_icon = 2131296348;
@@ -2855,29 +2861,29 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F02005C
 			public const int notify_panel_notification_icon_bg = 2130837596;
 			
-			// aapt resource value: 0x7F020156
-			public const int prosperity = 2130837846;
-			
-			// aapt resource value: 0x7F020157
-			public const int RollingModifier = 2130837847;
-			
 			// aapt resource value: 0x7F020158
-			public const int roundborder = 2130837848;
+			public const int prosperity = 2130837848;
 			
 			// aapt resource value: 0x7F020159
-			public const int sheet = 2130837849;
+			public const int RollingModifier = 2130837849;
 			
 			// aapt resource value: 0x7F020160
-			public const int sheetBorder = 2130837856;
+			public const int roundborder = 2130837856;
 			
 			// aapt resource value: 0x7F020161
-			public const int sheetdark = 2130837857;
+			public const int sheet = 2130837857;
 			
 			// aapt resource value: 0x7F020162
-			public const int sheetdark2 = 2130837858;
+			public const int sheetBorder = 2130837858;
 			
 			// aapt resource value: 0x7F020163
-			public const int SpikeTrap = 2130837859;
+			public const int sheetdark = 2130837859;
+			
+			// aapt resource value: 0x7F020164
+			public const int sheetdark2 = 2130837860;
+			
+			// aapt resource value: 0x7F020165
+			public const int SpikeTrap = 2130837861;
 			
 			// aapt resource value: 0x7F090069
 			public const int tooltip_frame_dark = 2131296361;
@@ -2901,8 +2907,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030033
 			public const int abilityName = 2130903091;
 			
-			// aapt resource value: 0x7F030314
-			public const int abilityNameText = 2130903828;
+			// aapt resource value: 0x7F030317
+			public const int abilityNameText = 2130903831;
 			
 			// aapt resource value: 0x7F0A005A
 			public const int action0 = 2131361882;
@@ -2940,8 +2946,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A005E
 			public const int action_divider = 2131361886;
 			
-			// aapt resource value: 0x7F030387
-			public const int action_filter_retired = 2130903943;
+			// aapt resource value: 0x7F030391
+			public const int action_filter_retired = 2130903953;
 			
 			// aapt resource value: 0x7F0A0058
 			public const int action_image = 2131361880;
@@ -2964,6 +2970,9 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A0059
 			public const int action_text = 2131361881;
 			
+			// aapt resource value: 0x7F030288
+			public const int activateFCCheck = 2130903688;
+			
 			// aapt resource value: 0x7F0A0028
 			public const int activity_chooser_view_content = 2131361832;
 			
@@ -2976,8 +2985,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030181
 			public const int addscenariolevelButton = 2130903425;
 			
-			// aapt resource value: 0x7F030368
-			public const int alertTitle = 2130903912;
+			// aapt resource value: 0x7F030371
+			public const int alertTitle = 2130903921;
 			
 			// aapt resource value: 0x7F0A001E
 			public const int always = 2131361822;
@@ -2997,8 +3006,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A001B
 			public const int beginning = 2131361819;
 			
-			// aapt resource value: 0x7F030291
-			public const int bggtext = 2130903697;
+			// aapt resource value: 0x7F030294
+			public const int bggtext = 2130903700;
 			
 			// aapt resource value: 0x7F0C0007
 			public const int blocking = 2131492871;
@@ -3039,14 +3048,14 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030090
 			public const int camnpaignname = 2130903184;
 			
-			// aapt resource value: 0x7F030327
-			public const int campaignAchievement_achievementSpinner = 2130903847;
-			
-			// aapt resource value: 0x7F030322
-			public const int campaignAchievement_name = 2130903842;
+			// aapt resource value: 0x7F030330
+			public const int campaignAchievement_achievementSpinner = 2130903856;
 			
 			// aapt resource value: 0x7F030325
-			public const int campaignAchievement_steps = 2130903845;
+			public const int campaignAchievement_name = 2130903845;
+			
+			// aapt resource value: 0x7F030328
+			public const int campaignAchievement_steps = 2130903848;
 			
 			// aapt resource value: 0x7F030039
 			public const int campaigname = 2130903097;
@@ -3060,20 +3069,20 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030089
 			public const int campaignname_nameInputLayout = 2130903177;
 			
-			// aapt resource value: 0x7F030330
-			public const int campaignScenarioRegion = 2130903856;
+			// aapt resource value: 0x7F030333
+			public const int campaignScenarioRegion = 2130903859;
 			
-			// aapt resource value: 0x7F030383
-			public const int campaignSelection = 2130903939;
+			// aapt resource value: 0x7F030387
+			public const int campaignSelection = 2130903943;
 			
-			// aapt resource value: 0x7F030320
-			public const int campaignViewItem_achCount = 2130903840;
+			// aapt resource value: 0x7F030323
+			public const int campaignViewItem_achCount = 2130903843;
 			
-			// aapt resource value: 0x7F030319
-			public const int campaignViewItem_nameTextView = 2130903833;
+			// aapt resource value: 0x7F030322
+			public const int campaignViewItem_nameTextView = 2130903842;
 			
-			// aapt resource value: 0x7F030321
-			public const int campaignViewItem_scenCount = 2130903841;
+			// aapt resource value: 0x7F030324
+			public const int campaignViewItem_scenCount = 2130903844;
 			
 			// aapt resource value: 0x7F030134
 			public const int campaignWorld_gaListViewListView = 2130903348;
@@ -3087,8 +3096,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A005B
 			public const int cancel_action = 2131361883;
 			
-			// aapt resource value: 0x7F030353
-			public const int categorieImageView = 2130903891;
+			// aapt resource value: 0x7F030356
+			public const int categorieImageView = 2130903894;
 			
 			// aapt resource value: 0x7F0C001D
 			public const int center = 2131492893;
@@ -3096,8 +3105,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030106
 			public const int cephalofairTxt = 2130903302;
 			
-			// aapt resource value: 0x7F030334
-			public const int chaclassImage = 2130903860;
+			// aapt resource value: 0x7F030337
+			public const int chaclassImage = 2130903863;
 			
 			// aapt resource value: 0x7F030254
 			public const int characterclassicon = 2130903636;
@@ -3117,8 +3126,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030256
 			public const int characterfrag_charactername = 2130903638;
 			
-			// aapt resource value: 0x7F030304
-			public const int characterimageview = 2130903812;
+			// aapt resource value: 0x7F030307
+			public const int characterimageview = 2130903815;
 			
 			// aapt resource value: 0x7F030067
 			public const int characterisretired = 2130903143;
@@ -3147,11 +3156,11 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030052
 			public const int chardetails_nameInputLayout = 2130903122;
 			
-			// aapt resource value: 0x7F030336
-			public const int charLevelText = 2130903862;
+			// aapt resource value: 0x7F030339
+			public const int charLevelText = 2130903865;
 			
-			// aapt resource value: 0x7F030333
-			public const int charnameTextView = 2130903859;
+			// aapt resource value: 0x7F030336
+			public const int charnameTextView = 2130903862;
 			
 			// aapt resource value: 0x7F0A003F
 			public const int checkbox = 2131361855;
@@ -3159,14 +3168,14 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030056
 			public const int checkboxnumber = 2130903126;
 			
-			// aapt resource value: 0x7F030288
-			public const int checkitemsButton = 2130903688;
+			// aapt resource value: 0x7F030291
+			public const int checkitemsButton = 2130903697;
 			
-			// aapt resource value: 0x7F030287
-			public const int checkitemsDescription = 2130903687;
+			// aapt resource value: 0x7F030290
+			public const int checkitemsDescription = 2130903696;
 			
-			// aapt resource value: 0x7F030286
-			public const int checkitemstitle = 2130903686;
+			// aapt resource value: 0x7F030289
+			public const int checkitemstitle = 2130903689;
 			
 			// aapt resource value: 0x7F030214
 			public const int checkMark1 = 2130903572;
@@ -3267,17 +3276,17 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0C0020
 			public const int container = 2131492896;
 			
-			// aapt resource value: 0x7F030369
-			public const int contentPanel = 2130903913;
+			// aapt resource value: 0x7F030372
+			public const int contentPanel = 2130903922;
 			
 			// aapt resource value: 0x7F0C0022
 			public const int coordinator = 2131492898;
 			
-			// aapt resource value: 0x7F030374
-			public const int counter = 2130903924;
+			// aapt resource value: 0x7F030377
+			public const int counter = 2130903927;
 			
-			// aapt resource value: 0x7F030373
-			public const int countername = 2130903923;
+			// aapt resource value: 0x7F030376
+			public const int countername = 2130903926;
 			
 			// aapt resource value: 0x7F030152
 			public const int currentLocationSpinner = 2130903378;
@@ -3285,14 +3294,14 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A0039
 			public const int custom = 2131361849;
 			
-			// aapt resource value: 0x7F030371
-			public const int customPanel = 2130903921;
+			// aapt resource value: 0x7F030374
+			public const int customPanel = 2130903924;
 			
-			// aapt resource value: 0x7F030388
-			public const int c_popup_delete = 2130903944;
+			// aapt resource value: 0x7F030392
+			public const int c_popup_delete = 2130903954;
 			
-			// aapt resource value: 0x7F030389
-			public const int c_popup_remove = 2130903945;
+			// aapt resource value: 0x7F030393
+			public const int c_popup_remove = 2130903955;
 			
 			// aapt resource value: 0x7F030077
 			public const int deciscion_layout = 2130903159;
@@ -3300,11 +3309,11 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A0046
 			public const int decor_content_parent = 2131361862;
 			
-			// aapt resource value: 0x7F030324
-			public const int decreaseAchStepsButton = 2130903844;
+			// aapt resource value: 0x7F030327
+			public const int decreaseAchStepsButton = 2130903847;
 			
-			// aapt resource value: 0x7F030375
-			public const int decreasecounterButton = 2130903925;
+			// aapt resource value: 0x7F030378
+			public const int decreasecounterButton = 2130903928;
 			
 			// aapt resource value: 0x7F030123
 			public const int decreasedonationbutton = 2130903331;
@@ -3318,8 +3327,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A002B
 			public const int default_activity_button = 2131361835;
 			
-			// aapt resource value: 0x7F030344
-			public const int descriptionTextView = 2130903876;
+			// aapt resource value: 0x7F030347
+			public const int descriptionTextView = 2130903879;
 			
 			// aapt resource value: 0x7F0C0027
 			public const int design_bottom_sheet = 2131492903;
@@ -3354,8 +3363,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030122
 			public const int donationsText = 2130903330;
 			
-			// aapt resource value: 0x7F030317
-			public const int dotimageview = 2130903831;
+			// aapt resource value: 0x7F030320
+			public const int dotimageview = 2130903840;
 			
 			// aapt resource value: 0x7F030160
 			public const int drakepartyachievementCheck = 2130903392;
@@ -3369,14 +3378,14 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030044
 			public const int drawnevent = 2130903108;
 			
-			// aapt resource value: 0x7F030377
-			public const int dualdetaillayout = 2130903927;
+			// aapt resource value: 0x7F030380
+			public const int dualdetaillayout = 2130903936;
 			
-			// aapt resource value: 0x7F030378
-			public const int dualdetailtitle = 2130903928;
+			// aapt resource value: 0x7F030381
+			public const int dualdetailtitle = 2130903937;
 			
-			// aapt resource value: 0x7F030382
-			public const int editcampaignname = 2130903938;
+			// aapt resource value: 0x7F030386
+			public const int editcampaignname = 2130903942;
 			
 			// aapt resource value: 0x7F030043
 			public const int edittext = 2130903107;
@@ -3390,20 +3399,23 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030029
 			public const int edit_username = 2130903081;
 			
+			// aapt resource value: 0x7F030287
+			public const int enableFCtext = 2130903687;
+			
 			// aapt resource value: 0x7F0A001C
 			public const int end = 2131361820;
 			
 			// aapt resource value: 0x7F0A006D
 			public const int end_padder = 2131361901;
 			
-			// aapt resource value: 0x7F030351
-			public const int enhacement = 2130903889;
+			// aapt resource value: 0x7F030354
+			public const int enhacement = 2130903892;
 			
 			// aapt resource value: 0x7F030046
 			public const int enhancementEditText1 = 2130903110;
 			
-			// aapt resource value: 0x7F030352
-			public const int enhancementtext = 2130903890;
+			// aapt resource value: 0x7F030355
+			public const int enhancementtext = 2130903893;
 			
 			// aapt resource value: 0x7F030133
 			public const int envelopex_congratulationsText = 2130903347;
@@ -3411,29 +3423,29 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030130
 			public const int envelopex_decryptedText = 2130903344;
 			
-			// aapt resource value: 0x7F030308
-			public const int eventaction = 2130903816;
+			// aapt resource value: 0x7F030311
+			public const int eventaction = 2130903825;
 			
 			// aapt resource value: 0x7F030272
 			public const int eventdeckhistoryTextView = 2130903666;
 			
-			// aapt resource value: 0x7F030310
-			public const int eventhistorybottom = 2130903824;
+			// aapt resource value: 0x7F030313
+			public const int eventhistorybottom = 2130903827;
 			
 			// aapt resource value: 0x7F030274
 			public const int eventhistoryListView = 2130903668;
 			
-			// aapt resource value: 0x7F030306
-			public const int eventhistorytop = 2130903814;
+			// aapt resource value: 0x7F030309
+			public const int eventhistorytop = 2130903817;
 			
 			// aapt resource value: 0x7F030068
 			public const int eventnumbertext = 2130903144;
 			
-			// aapt resource value: 0x7F030307
-			public const int eventnumberTextView = 2130903815;
+			// aapt resource value: 0x7F030310
+			public const int eventnumberTextView = 2130903824;
 			
-			// aapt resource value: 0x7F030312
-			public const int eventresult = 2130903826;
+			// aapt resource value: 0x7F030315
+			public const int eventresult = 2130903829;
 			
 			// aapt resource value: 0x7F030074
 			public const int event_layout = 2130903156;
@@ -3468,8 +3480,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030085
 			public const int fabtop = 2130903173;
 			
-			// aapt resource value: 0x7F030290
-			public const int feedbackText = 2130903696;
+			// aapt resource value: 0x7F030293
+			public const int feedbackText = 2130903699;
 			
 			// aapt resource value: 0x7F0C0031
 			public const int fill = 2131492913;
@@ -3480,17 +3492,20 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0C0009
 			public const int forever = 2131492873;
 			
+			// aapt resource value: 0x7F030286
+			public const int forgottenCircles = 2130903686;
+			
 			// aapt resource value: 0x7F030012
 			public const int frame_container = 2130903058;
 			
-			// aapt resource value: 0x7F030379
-			public const int frame_details_city = 2130903929;
+			// aapt resource value: 0x7F030382
+			public const int frame_details_city = 2130903938;
 			
-			// aapt resource value: 0x7F030380
-			public const int frame_details_party = 2130903936;
+			// aapt resource value: 0x7F030383
+			public const int frame_details_party = 2130903939;
 			
-			// aapt resource value: 0x7F030381
-			public const int frame_details_world = 2130903937;
+			// aapt resource value: 0x7F030384
+			public const int frame_details_world = 2130903940;
 			
 			// aapt resource value: 0x7F030169
 			public const int gainClassMoonText = 2130903401;
@@ -3534,11 +3549,11 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030209
 			public const int goldicon = 2130903561;
 			
-			// aapt resource value: 0x7F030339
-			public const int goldImage = 2130903865;
-			
 			// aapt resource value: 0x7F030185
 			public const int goldimage = 2130903429;
+			
+			// aapt resource value: 0x7F030342
+			public const int goldImage = 2130903874;
 			
 			// aapt resource value: 0x7F030208
 			public const int goldlayout = 2130903560;
@@ -3546,17 +3561,17 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030264
 			public const int goldLayout = 2130903652;
 			
-			// aapt resource value: 0x7F030340
-			public const int goldText = 2130903872;
-			
 			// aapt resource value: 0x7F030186
 			public const int goldtext = 2130903430;
+			
+			// aapt resource value: 0x7F030343
+			public const int goldText = 2130903875;
 			
 			// aapt resource value: 0x7F030210
 			public const int goldtextinputlayout = 2130903568;
 			
-			// aapt resource value: 0x7F030299
-			public const int helmetimage = 2130903705;
+			// aapt resource value: 0x7F030302
+			public const int helmetimage = 2130903810;
 			
 			// aapt resource value: 0x7F030281
 			public const int hideitemnamestext = 2130903681;
@@ -3570,8 +3585,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A000E
 			public const int homeAsUp = 2131361806;
 			
-			// aapt resource value: 0x7F030367
-			public const int icon = 2130903911;
+			// aapt resource value: 0x7F030370
+			public const int icon = 2130903920;
 			
 			// aapt resource value: 0x7F030109
 			public const int icons8Txt = 2130903305;
@@ -3582,8 +3597,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A0020
 			public const int ifRoom = 2131361824;
 			
-			// aapt resource value: 0x7F030313
-			public const int image = 2130903827;
+			// aapt resource value: 0x7F030316
+			public const int image = 2130903830;
 			
 			// aapt resource value: 0x7F030156
 			public const int imagesGridView = 2130903382;
@@ -3618,8 +3633,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0C000D
 			public const int italic = 2131492877;
 			
-			// aapt resource value: 0x7F030354
-			public const int itemcostsTextView = 2130903892;
+			// aapt resource value: 0x7F030357
+			public const int itemcostsTextView = 2130903895;
 			
 			// aapt resource value: 0x7F030076
 			public const int itemimage = 2130903158;
@@ -3627,20 +3642,20 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030050
 			public const int itemInputLayout = 2130903120;
 			
-			// aapt resource value: 0x7F030316
-			public const int itemLevelTextView = 2130903830;
+			// aapt resource value: 0x7F030319
+			public const int itemLevelTextView = 2130903833;
 			
-			// aapt resource value: 0x7F030342
-			public const int itemnameTextView = 2130903874;
-			
-			// aapt resource value: 0x7F030343
-			public const int itemnumber = 2130903875;
-			
-			// aapt resource value: 0x7F030315
-			public const int itemNumberTextView = 2130903829;
+			// aapt resource value: 0x7F030345
+			public const int itemnameTextView = 2130903877;
 			
 			// aapt resource value: 0x7F030346
-			public const int items = 2130903878;
+			public const int itemnumber = 2130903878;
+			
+			// aapt resource value: 0x7F030318
+			public const int itemNumberTextView = 2130903832;
+			
+			// aapt resource value: 0x7F030349
+			public const int items = 2130903881;
 			
 			// aapt resource value: 0x7F030275
 			public const int itemsListView = 2130903669;
@@ -3666,8 +3681,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030137
 			public const int itemStore_UnlocksTB = 2130903351;
 			
-			// aapt resource value: 0x7F030303
-			public const int itemTextView = 2130903811;
+			// aapt resource value: 0x7F030306
+			public const int itemTextView = 2130903814;
 			
 			// aapt resource value: 0x7F030051
 			public const int item_ref_number = 2130903121;
@@ -3681,8 +3696,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0C003C
 			public const int largeLabel = 2131492924;
 			
-			// aapt resource value: 0x7F030363
-			public const int lblListHeader = 2130903907;
+			// aapt resource value: 0x7F030366
+			public const int lblListHeader = 2130903910;
 			
 			// aapt resource value: 0x7F0C003D
 			public const int left = 2131492925;
@@ -3696,17 +3711,17 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030199
 			public const int levelicon = 2130903449;
 			
-			// aapt resource value: 0x7F030335
-			public const int leveliconImage = 2130903861;
+			// aapt resource value: 0x7F030338
+			public const int leveliconImage = 2130903864;
 			
 			// aapt resource value: 0x7F030200
 			public const int levelinputlayout = 2130903552;
 			
-			// aapt resource value: 0x7F030198
-			public const int levellayout = 2130903448;
-			
 			// aapt resource value: 0x7F030258
 			public const int levelLayout = 2130903640;
+			
+			// aapt resource value: 0x7F030198
+			public const int levellayout = 2130903448;
 			
 			// aapt resource value: 0x7F030202
 			public const int levelupimage = 2130903554;
@@ -3720,8 +3735,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030002
 			public const int linearLayout1 = 2130903042;
 			
-			// aapt resource value: 0x7F030300
-			public const int linearLayout10 = 2130903808;
+			// aapt resource value: 0x7F030303
+			public const int linearLayout10 = 2130903811;
 			
 			// aapt resource value: 0x7F030019
 			public const int linearLayout2 = 2130903065;
@@ -3738,14 +3753,14 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030027
 			public const int linearLayout6 = 2130903079;
 			
-			// aapt resource value: 0x7F030289
-			public const int linearLayout7 = 2130903689;
+			// aapt resource value: 0x7F030292
+			public const int linearLayout7 = 2130903698;
+			
+			// aapt resource value: 0x7F030299
+			public const int linearLayout8 = 2130903705;
 			
 			// aapt resource value: 0x7F030296
-			public const int linearLayout8 = 2130903702;
-			
-			// aapt resource value: 0x7F030293
-			public const int linearLayout9 = 2130903699;
+			public const int linearLayout9 = 2130903702;
 			
 			// aapt resource value: 0x7F030243
 			public const int linearLayoutPersonalQuest = 2130903619;
@@ -3810,8 +3825,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A005D
 			public const int media_actions = 2131361885;
 			
-			// aapt resource value: 0x7F030370
-			public const int message = 2130903920;
+			// aapt resource value: 0x7F030373
+			public const int message = 2130903923;
 			
 			// aapt resource value: 0x7F0A001D
 			public const int middle = 2131361821;
@@ -3831,35 +3846,35 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0C0047
 			public const int navigation_header_container = 2131492935;
 			
-			// aapt resource value: 0x7F030399
-			public const int nav_about = 2130903961;
-			
-			// aapt resource value: 0x7F030393
-			public const int nav_backup = 2130903955;
-			
-			// aapt resource value: 0x7F030390
-			public const int nav_campaign = 2130903952;
-			
-			// aapt resource value: 0x7F030391
-			public const int nav_characters = 2130903953;
-			
-			// aapt resource value: 0x7F030392
-			public const int nav_fill1 = 2130903954;
-			
-			// aapt resource value: 0x7F030395
-			public const int nav_fill2 = 2130903957;
+			// aapt resource value: 0x7F030403
+			public const int nav_about = 2130904067;
 			
 			// aapt resource value: 0x7F030397
-			public const int nav_releasenotes = 2130903959;
-			
-			// aapt resource value: 0x7F030396
-			public const int nav_settings = 2130903958;
+			public const int nav_backup = 2130903959;
 			
 			// aapt resource value: 0x7F030394
-			public const int nav_sharewifi = 2130903956;
+			public const int nav_campaign = 2130903956;
+			
+			// aapt resource value: 0x7F030395
+			public const int nav_characters = 2130903957;
+			
+			// aapt resource value: 0x7F030396
+			public const int nav_fill1 = 2130903958;
+			
+			// aapt resource value: 0x7F030399
+			public const int nav_fill2 = 2130903961;
+			
+			// aapt resource value: 0x7F030401
+			public const int nav_releasenotes = 2130904065;
+			
+			// aapt resource value: 0x7F030400
+			public const int nav_settings = 2130904064;
 			
 			// aapt resource value: 0x7F030398
-			public const int nav_support = 2130903960;
+			public const int nav_sharewifi = 2130903960;
+			
+			// aapt resource value: 0x7F030402
+			public const int nav_support = 2130904066;
 			
 			// aapt resource value: 0x7F030014
 			public const int nav_view = 2130903060;
@@ -3885,8 +3900,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A005F
 			public const int notification_main_column_container = 2131361887;
 			
-			// aapt resource value: 0x7F030318
-			public const int numberofenhancements = 2130903832;
+			// aapt resource value: 0x7F030321
+			public const int numberofenhancements = 2130903841;
 			
 			// aapt resource value: 0x7F030157
 			public const int openEnvelopeXButton = 2130903383;
@@ -3897,14 +3912,14 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030071
 			public const int optionB = 2130903153;
 			
-			// aapt resource value: 0x7F030323
-			public const int optionsButton = 2130903843;
+			// aapt resource value: 0x7F030326
+			public const int optionsButton = 2130903846;
 			
 			// aapt resource value: 0x7F030069
 			public const int optionsgroup = 2130903145;
 			
-			// aapt resource value: 0x7F030309
-			public const int optionsImageView = 2130903817;
+			// aapt resource value: 0x7F030312
+			public const int optionsImageView = 2130903826;
 			
 			// aapt resource value: 0x7F030073
 			public const int outcome = 2130903155;
@@ -3912,8 +3927,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0C004D
 			public const int parallax = 2131492941;
 			
-			// aapt resource value: 0x7F030364
-			public const int parentPanel = 2130903908;
+			// aapt resource value: 0x7F030367
+			public const int parentPanel = 2130903911;
 			
 			// aapt resource value: 0x7F0C004F
 			public const int parent_matrix = 2131492943;
@@ -3939,8 +3954,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030151
 			public const int partyfrag_shopPriceModText = 2130903377;
 			
-			// aapt resource value: 0x7F030341
-			public const int partyImage = 2130903873;
+			// aapt resource value: 0x7F030344
+			public const int partyImage = 2130903876;
 			
 			// aapt resource value: 0x7F030250
 			public const int partyimgview = 2130903632;
@@ -3960,6 +3975,9 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030142
 			public const int partynameTextView = 2130903362;
 			
+			// aapt resource value: 0x7F030385
+			public const int partyNotesButton = 2130903941;
+			
 			// aapt resource value: 0x7F030153
 			public const int partynotestext = 2130903379;
 			
@@ -3975,32 +3993,32 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030170
 			public const int partyRepMinus20Check = 2130903408;
 			
-			// aapt resource value: 0x7F030384
-			public const int partySelection = 2130903940;
+			// aapt resource value: 0x7F030388
+			public const int partySelection = 2130903944;
 			
-			// aapt resource value: 0x7F030358
-			public const int partyViewItem_achCount = 2130903896;
+			// aapt resource value: 0x7F030361
+			public const int partyViewItem_achCount = 2130903905;
 			
-			// aapt resource value: 0x7F030357
-			public const int partyViewItem_charCount = 2130903895;
+			// aapt resource value: 0x7F030360
+			public const int partyViewItem_charCount = 2130903904;
 			
-			// aapt resource value: 0x7F030356
-			public const int partyViewItem_nameTextView = 2130903894;
+			// aapt resource value: 0x7F030359
+			public const int partyViewItem_nameTextView = 2130903897;
 			
 			// aapt resource value: 0x7F030092
 			public const int party_name = 2130903186;
 			
-			// aapt resource value: 0x7F030302
-			public const int patronsButton = 2130903810;
+			// aapt resource value: 0x7F030305
+			public const int patronsButton = 2130903813;
 			
-			// aapt resource value: 0x7F030359
-			public const int perkcheckboxnumber = 2130903897;
+			// aapt resource value: 0x7F030362
+			public const int perkcheckboxnumber = 2130903906;
 			
 			// aapt resource value: 0x7F030057
 			public const int perkcomment = 2130903127;
 			
-			// aapt resource value: 0x7F030360
-			public const int perktext = 2130903904;
+			// aapt resource value: 0x7F030363
+			public const int perktext = 2130903907;
 			
 			// aapt resource value: 0x7F030105
 			public const int permissionText = 2130903301;
@@ -4023,20 +4041,20 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030093
 			public const int player_name = 2130903187;
 			
-			// aapt resource value: 0x7F030295
-			public const int playstorelink = 2130903701;
+			// aapt resource value: 0x7F030298
+			public const int playstorelink = 2130903704;
 			
 			// aapt resource value: 0x7F030121
 			public const int plusprosperity = 2130903329;
 			
-			// aapt resource value: 0x7F030386
-			public const int popup_delete = 2130903942;
+			// aapt resource value: 0x7F030390
+			public const int popup_delete = 2130903952;
 			
-			// aapt resource value: 0x7F030385
-			public const int popup_sell = 2130903941;
+			// aapt resource value: 0x7F030389
+			public const int popup_sell = 2130903945;
 			
-			// aapt resource value: 0x7F030372
-			public const int pqcheck = 2130903922;
+			// aapt resource value: 0x7F030375
+			public const int pqcheck = 2130903925;
 			
 			// aapt resource value: 0x7F030120
 			public const int progessTextView = 2130903328;
@@ -4062,20 +4080,20 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030080
 			public const int putunder = 2130903168;
 			
-			// aapt resource value: 0x7F030362
-			public const int questnameTextView = 2130903906;
+			// aapt resource value: 0x7F030365
+			public const int questnameTextView = 2130903909;
 			
-			// aapt resource value: 0x7F030361
-			public const int questnumber = 2130903905;
+			// aapt resource value: 0x7F030364
+			public const int questnumber = 2130903908;
 			
 			// aapt resource value: 0x7F0A0041
 			public const int radio = 2131361857;
 			
-			// aapt resource value: 0x7F030326
-			public const int raiseAchStepsbutton = 2130903846;
+			// aapt resource value: 0x7F030329
+			public const int raiseAchStepsbutton = 2130903849;
 			
-			// aapt resource value: 0x7F030376
-			public const int raisecounterbutton = 2130903926;
+			// aapt resource value: 0x7F030379
+			public const int raisecounterbutton = 2130903929;
 			
 			// aapt resource value: 0x7F030124
 			public const int raisedonationbutton = 2130903332;
@@ -4104,8 +4122,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030172
 			public const int retireCheck = 2130903410;
 			
-			// aapt resource value: 0x7F030337
-			public const int retiredImage = 2130903863;
+			// aapt resource value: 0x7F030340
+			public const int retiredImage = 2130903872;
 			
 			// aapt resource value: 0x7F030099
 			public const int rewardtextview = 2130903193;
@@ -4134,8 +4152,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0C0059
 			public const int save_scale_type = 2131492953;
 			
-			// aapt resource value: 0x7F030331
-			public const int scenarioItemView_completedCheckBox = 2130903857;
+			// aapt resource value: 0x7F030334
+			public const int scenarioItemView_completedCheckBox = 2130903860;
 			
 			// aapt resource value: 0x7F030177
 			public const int scenariolevelcap = 2130903415;
@@ -4149,14 +4167,14 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030062
 			public const int scenariorequirementsListView = 2130903138;
 			
+			// aapt resource value: 0x7F030335
+			public const int scenarioTreasureStatus = 2130903861;
+			
 			// aapt resource value: 0x7F030332
-			public const int scenarioTreasureStatus = 2130903858;
+			public const int scenariViewItem_nameTextView = 2130903858;
 			
-			// aapt resource value: 0x7F030329
-			public const int scenariViewItem_nameTextView = 2130903849;
-			
-			// aapt resource value: 0x7F030328
-			public const int scenariViewItem_numberTextView = 2130903848;
+			// aapt resource value: 0x7F030331
+			public const int scenariViewItem_numberTextView = 2130903857;
 			
 			// aapt resource value: 0x7F0A0016
 			public const int screen = 2131361814;
@@ -4176,17 +4194,17 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A0034
 			public const int scrollView = 2131361844;
 			
-			// aapt resource value: 0x7F030400
-			public const int sc_popup_completed = 2130904064;
+			// aapt resource value: 0x7F030404
+			public const int sc_popup_completed = 2130904068;
 			
-			// aapt resource value: 0x7F030403
-			public const int sc_popup_delete = 2130904067;
+			// aapt resource value: 0x7F030407
+			public const int sc_popup_delete = 2130904071;
 			
-			// aapt resource value: 0x7F030402
-			public const int sc_popup_treasures = 2130904066;
+			// aapt resource value: 0x7F030406
+			public const int sc_popup_treasures = 2130904070;
 			
-			// aapt resource value: 0x7F030401
-			public const int sc_popup_undo_completed = 2130904065;
+			// aapt resource value: 0x7F030405
+			public const int sc_popup_undo_completed = 2130904069;
 			
 			// aapt resource value: 0x7F0A004C
 			public const int search_badge = 2131361868;
@@ -4218,11 +4236,11 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A0055
 			public const int search_voice_btn = 2131361877;
 			
-			// aapt resource value: 0x7F030345
-			public const int selected = 2130903877;
+			// aapt resource value: 0x7F030348
+			public const int selected = 2130903880;
 			
-			// aapt resource value: 0x7F030311
-			public const int selectedoption = 2130903825;
+			// aapt resource value: 0x7F030314
+			public const int selectedoption = 2130903828;
 			
 			// aapt resource value: 0x7F030102
 			public const int selectInputLayout = 2130903298;
@@ -4260,8 +4278,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030110
 			public const int sliding_tabs = 2130903312;
 			
-			// aapt resource value: 0x7F030350
-			public const int slotnumber = 2130903888;
+			// aapt resource value: 0x7F030353
+			public const int slotnumber = 2130903891;
 			
 			// aapt resource value: 0x7F030047
 			public const int slotnumberInputLayout1 = 2130903111;
@@ -4278,8 +4296,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030179
 			public const int solocheckbox = 2130903417;
 			
-			// aapt resource value: 0x7F030301
-			public const int space1 = 2130903809;
+			// aapt resource value: 0x7F030304
+			public const int space1 = 2130903812;
 			
 			// aapt resource value: 0x7F0A0030
 			public const int spacer = 2131361840;
@@ -4323,8 +4341,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A000C
 			public const int tabMode = 2131361804;
 			
-			// aapt resource value: 0x7F030305
-			public const int tabText = 2130903813;
+			// aapt resource value: 0x7F030308
+			public const int tabText = 2130903816;
 			
 			// aapt resource value: 0x7F0C0016
 			public const int tag_transition_group = 2131492886;
@@ -4365,23 +4383,23 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030028
 			public const int textView3 = 2130903080;
 			
-			// aapt resource value: 0x7F030298
-			public const int textView4 = 2130903704;
+			// aapt resource value: 0x7F030301
+			public const int textView4 = 2130903809;
 			
 			// aapt resource value: 0x7F030108
 			public const int textView5 = 2130903304;
 			
-			// aapt resource value: 0x7F030297
-			public const int textView6 = 2130903703;
+			// aapt resource value: 0x7F030300
+			public const int textView6 = 2130903808;
 			
-			// aapt resource value: 0x7F030292
-			public const int textView7 = 2130903698;
+			// aapt resource value: 0x7F030295
+			public const int textView7 = 2130903701;
 			
 			// aapt resource value: 0x7F030277
 			public const int textView8 = 2130903671;
 			
-			// aapt resource value: 0x7F030294
-			public const int textView9 = 2130903700;
+			// aapt resource value: 0x7F030297
+			public const int textView9 = 2130903703;
 			
 			// aapt resource value: 0x7F030005
 			public const int textViewbackuppath = 2130903045;
@@ -4401,8 +4419,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0A003D
 			public const int titleDividerNoCustom = 2131361853;
 			
-			// aapt resource value: 0x7F030366
-			public const int title_template = 2130903910;
+			// aapt resource value: 0x7F030369
+			public const int title_template = 2130903913;
 			
 			// aapt resource value: 0x7F030003
 			public const int toolbar = 2130903043;
@@ -4416,8 +4434,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030083
 			public const int topenhancementstext = 2130903171;
 			
-			// aapt resource value: 0x7F030365
-			public const int topPanel = 2130903909;
+			// aapt resource value: 0x7F030368
+			public const int topPanel = 2130903912;
 			
 			// aapt resource value: 0x7F0C0086
 			public const int touch_outside = 2131492998;
@@ -4443,20 +4461,20 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030187
 			public const int trapimage = 2130903431;
 			
-			// aapt resource value: 0x7F030349
-			public const int treasureContent = 2130903881;
+			// aapt resource value: 0x7F030352
+			public const int treasureContent = 2130903890;
 			
 			// aapt resource value: 0x7F030060
 			public const int treasurecontentinput = 2130903136;
 			
-			// aapt resource value: 0x7F030348
-			public const int treasureLootedCheck = 2130903880;
+			// aapt resource value: 0x7F030351
+			public const int treasureLootedCheck = 2130903889;
 			
 			// aapt resource value: 0x7F030058
 			public const int treasurenumberinput = 2130903128;
 			
-			// aapt resource value: 0x7F030347
-			public const int treasureTileTextView = 2130903879;
+			// aapt resource value: 0x7F030350
+			public const int treasureTileTextView = 2130903888;
 			
 			// aapt resource value: 0x7F030061
 			public const int treasure_content = 2130903137;
@@ -4491,8 +4509,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F0C008C
 			public const int uniform = 2131493004;
 			
-			// aapt resource value: 0x7F030355
-			public const int unlockedItemDesign_ReferenceNumber = 2130903893;
+			// aapt resource value: 0x7F030358
+			public const int unlockedItemDesign_ReferenceNumber = 2130903896;
 			
 			// aapt resource value: 0x7F030174
 			public const int unlockedScenariosButton = 2130903412;
@@ -4527,8 +4545,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030206
 			public const int xp = 2130903558;
 			
-			// aapt resource value: 0x7F030338
-			public const int xpIconImage = 2130903864;
+			// aapt resource value: 0x7F030341
+			public const int xpIconImage = 2130903873;
 			
 			// aapt resource value: 0x7F030189
 			public const int xpimage = 2130903433;
@@ -4539,11 +4557,11 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030205
 			public const int xpinputlayout = 2130903557;
 			
-			// aapt resource value: 0x7F030261
-			public const int xpLayout = 2130903649;
-			
 			// aapt resource value: 0x7F030203
 			public const int xplayout = 2130903555;
+			
+			// aapt resource value: 0x7F030261
+			public const int xpLayout = 2130903649;
 			
 			// aapt resource value: 0x7F030190
 			public const int xptext = 2130903440;
