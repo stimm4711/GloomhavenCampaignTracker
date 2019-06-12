@@ -9,15 +9,11 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="20dp">
+    android:paddingTop="10dp">
     <LinearLayout
         android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="0dp"
         android:layout_weight=".4"
         android:layout_height="wrap_content"
@@ -29,11 +25,11 @@
             android:id="@+id/unlockedScenariosButton"
             android:background="@drawable/borderbuttons"
             android:textColor="@color/gloom_primaryText"
-            android:padding="10px"
+            android:padding="5px"
             android:gravity="center"
             android:drawableTop="@drawable/ic_location"
-            android:drawablePadding="10px"
-            android:textSize="20dp" />
+            android:drawablePadding="5px"
+            android:textSize="18dp" />
         <Button
             android:text="Global Achievements"
             android:layout_width="match_parent"
@@ -41,12 +37,12 @@
             android:id="@+id/globalachievementsButton"
             android:background="@drawable/borderbuttons"
             android:textColor="@color/gloom_primaryText"
-            android:padding="10px"
+            android:padding="5px"
             android:gravity="center"
-            android:layout_marginTop="20px"
+            android:layout_marginTop="15px"
             android:drawableTop="@drawable/ic_achievement"
-            android:drawablePadding="10px"
-            android:textSize="20dp" />
+            android:drawablePadding="5px"
+            android:textSize="18dp" />
         <Button
             android:text="Road Events"
             android:id="@+id/roadeventsButton"
@@ -55,18 +51,16 @@
             android:layout_height="wrap_content"
             android:background="@drawable/borderbuttons"
             android:textColor="@color/gloom_primaryText"
-            android:padding="10px"
+            android:padding="5px"
             android:gravity="center"
-            android:layout_marginTop="20px"
-            android:drawablePadding="10px"
-            android:textSize="20dp" />
+            android:layout_marginTop="15px"
+            android:drawablePadding="5px"
+            android:textSize="18dp" />
         <RelativeLayout
-            android:minWidth="25px"
-            android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/borderSheet"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:paddingBottom="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
@@ -82,15 +76,13 @@
                 android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/calcscenariolevelbutton"
                 android:layout_below="@id/scenariolevelcap"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
                 android:text="Select Characters"
                 android:background="@drawable/borderbuttons"
                 android:paddingLeft="8dp"
@@ -98,11 +90,10 @@
             <CheckBox
                 android:text="Solo"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="34dp"
                 android:layout_below="@id/scenariolevelcap"
                 android:layout_toRightOf="@id/calcscenariolevelbutton"
                 android:layout_marginTop="3dp"
-                android:layout_marginBottom="3dp"
                 android:id="@+id/solocheckbox" />
             <RelativeLayout
                 android:layout_below="@id/scenariolevelcap"

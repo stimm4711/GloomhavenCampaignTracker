@@ -4845,169 +4845,172 @@ namespace GloomhavenCampaignTracker.Droid
 			public const int fragment_campaign_party = 2130968633;
 			
 			// aapt resource value: 0x7F040040
-			public const int fragment_campaign_unlockedscenarios_expand = 2130968640;
+			public const int fragment_campaign_party_notes = 2130968640;
 			
 			// aapt resource value: 0x7F040041
-			public const int fragment_campaign_unlocks = 2130968641;
+			public const int fragment_campaign_unlockedscenarios_expand = 2130968641;
 			
 			// aapt resource value: 0x7F040042
-			public const int fragment_campaign_world = 2130968642;
+			public const int fragment_campaign_unlocks = 2130968642;
 			
 			// aapt resource value: 0x7F040043
-			public const int fragment_characterdetails_items = 2130968643;
+			public const int fragment_campaign_world = 2130968643;
 			
 			// aapt resource value: 0x7F040044
-			public const int fragment_characterdetails_listwithfab = 2130968644;
+			public const int fragment_characterdetails_items = 2130968644;
 			
 			// aapt resource value: 0x7F040045
-			public const int fragment_characterdetail_detail = 2130968645;
+			public const int fragment_characterdetails_listwithfab = 2130968645;
 			
 			// aapt resource value: 0x7F040046
-			public const int fragment_charactersviewpager = 2130968646;
+			public const int fragment_characterdetail_detail = 2130968646;
 			
 			// aapt resource value: 0x7F040047
-			public const int fragment_character_detail_tabbed = 2130968647;
+			public const int fragment_charactersviewpager = 2130968647;
 			
 			// aapt resource value: 0x7F040048
-			public const int fragment_character_standalone_detaill = 2130968648;
+			public const int fragment_character_detail_tabbed = 2130968648;
 			
 			// aapt resource value: 0x7F040049
-			public const int fragment_details_container = 2130968649;
+			public const int fragment_character_standalone_detaill = 2130968649;
 			
 			// aapt resource value: 0x7F040050
-			public const int fragment_events = 2130968656;
+			public const int fragment_details_container = 2130968656;
 			
 			// aapt resource value: 0x7F040051
-			public const int fragment_itemstore_prosperityitems = 2130968657;
+			public const int fragment_events = 2130968657;
 			
 			// aapt resource value: 0x7F040052
-			public const int fragment_itemstore_unlockedIiems = 2130968658;
+			public const int fragment_itemstore_prosperityitems = 2130968658;
 			
 			// aapt resource value: 0x7F040053
-			public const int fragment_releasenotes = 2130968659;
+			public const int fragment_itemstore_unlockedIiems = 2130968659;
 			
 			// aapt resource value: 0x7F040054
-			public const int fragment_settings = 2130968660;
+			public const int fragment_releasenotes = 2130968660;
 			
 			// aapt resource value: 0x7F040055
-			public const int fragment_support_developer = 2130968661;
+			public const int fragment_settings = 2130968661;
 			
 			// aapt resource value: 0x7F040056
-			public const int headerdrawerlayout = 2130968662;
+			public const int fragment_support_developer = 2130968662;
 			
 			// aapt resource value: 0x7F040057
-			public const int itemview = 2130968663;
+			public const int headerdrawerlayout = 2130968663;
 			
 			// aapt resource value: 0x7F040058
-			public const int itemviewDark = 2130968664;
+			public const int itemview = 2130968664;
 			
 			// aapt resource value: 0x7F040059
-			public const int itemviewLight = 2130968665;
+			public const int itemviewDark = 2130968665;
 			
 			// aapt resource value: 0x7F040060
-			public const int itemview_character_tab_header = 2130968672;
+			public const int itemviewLight = 2130968672;
 			
 			// aapt resource value: 0x7F040061
-			public const int itemview_custom_tab_header = 2130968673;
+			public const int itemview_character_tab_header = 2130968673;
 			
 			// aapt resource value: 0x7F040062
-			public const int itemview_eventdeckhistoryitem = 2130968674;
+			public const int itemview_custom_tab_header = 2130968674;
 			
 			// aapt resource value: 0x7F040063
-			public const int itemview_imagespinner = 2130968675;
+			public const int itemview_eventdeckhistoryitem = 2130968675;
 			
 			// aapt resource value: 0x7F040064
-			public const int itemview_spinnerAchievement = 2130968676;
+			public const int itemview_imagespinner = 2130968676;
 			
 			// aapt resource value: 0x7F040065
-			public const int item_view = 2130968677;
+			public const int itemview_spinnerAchievement = 2130968677;
 			
 			// aapt resource value: 0x7F040066
-			public const int listviewitem_ability = 2130968678;
+			public const int item_view = 2130968678;
 			
 			// aapt resource value: 0x7F040067
-			public const int listviewitem_campaign = 2130968679;
+			public const int listviewitem_ability = 2130968679;
 			
 			// aapt resource value: 0x7F040068
-			public const int listviewitem_campaignachievement = 2130968680;
+			public const int listviewitem_campaign = 2130968680;
 			
 			// aapt resource value: 0x7F040069
-			public const int listviewitem_campaignachievement_withsteps = 2130968681;
+			public const int listviewitem_campaignachievement = 2130968681;
 			
 			// aapt resource value: 0x7F040070
-			public const int listviewitem_campaignachievement_with_achievements = 2130968688;
+			public const int listviewitem_campaignachievement_withsteps = 2130968688;
 			
 			// aapt resource value: 0x7F040071
-			public const int listviewitem_campaignscenario = 2130968689;
+			public const int listviewitem_campaignachievement_with_achievements = 2130968689;
 			
 			// aapt resource value: 0x7F040072
-			public const int listviewitem_character = 2130968690;
+			public const int listviewitem_campaignscenario = 2130968690;
 			
 			// aapt resource value: 0x7F040073
-			public const int listviewitem_characteritem = 2130968691;
+			public const int listviewitem_character = 2130968691;
 			
 			// aapt resource value: 0x7F040074
-			public const int listviewitem_characterperk = 2130968692;
+			public const int listviewitem_characteritem = 2130968692;
 			
 			// aapt resource value: 0x7F040075
-			public const int listviewitem_character_selectable = 2130968693;
+			public const int listviewitem_characterperk = 2130968693;
 			
 			// aapt resource value: 0x7F040076
-			public const int listviewitem_character_small = 2130968694;
+			public const int listviewitem_character_selectable = 2130968694;
 			
 			// aapt resource value: 0x7F040077
-			public const int listviewitem_checkbox = 2130968695;
+			public const int listviewitem_character_small = 2130968695;
 			
 			// aapt resource value: 0x7F040078
-			public const int listviewitem_enhancement_deleteable = 2130968696;
+			public const int listviewitem_checkbox = 2130968696;
 			
 			// aapt resource value: 0x7F040079
-			public const int listviewitem_enhancement_selectable = 2130968697;
+			public const int listviewitem_enhancement_deleteable = 2130968697;
 			
 			// aapt resource value: 0x7F040080
-			public const int listviewitem_item = 2130968704;
+			public const int listviewitem_enhancement_selectable = 2130968704;
 			
 			// aapt resource value: 0x7F040081
-			public const int listviewitem_item_deleteable = 2130968705;
+			public const int listviewitem_item = 2130968705;
 			
 			// aapt resource value: 0x7F040082
-			public const int listviewitem_item_selectable = 2130968706;
+			public const int listviewitem_item_deleteable = 2130968706;
 			
 			// aapt resource value: 0x7F040083
-			public const int listviewitem_item_withprice = 2130968707;
+			public const int listviewitem_item_selectable = 2130968707;
 			
 			// aapt resource value: 0x7F040084
-			public const int listviewitem_item_withprice_deleteable = 2130968708;
+			public const int listviewitem_item_withprice = 2130968708;
 			
 			// aapt resource value: 0x7F040085
-			public const int listviewitem_item_withprice_selectable = 2130968709;
+			public const int listviewitem_item_withprice_deleteable = 2130968709;
 			
 			// aapt resource value: 0x7F040086
-			public const int listviewitem_optionsbutton = 2130968710;
+			public const int listviewitem_item_withprice_selectable = 2130968710;
 			
 			// aapt resource value: 0x7F040087
-			public const int listviewitem_party = 2130968711;
+			public const int listviewitem_optionsbutton = 2130968711;
 			
 			// aapt resource value: 0x7F040088
-			public const int listviewitem_perk = 2130968712;
+			public const int listviewitem_party = 2130968712;
 			
 			// aapt resource value: 0x7F040089
-			public const int listviewitem_perk_deleteable = 2130968713;
+			public const int listviewitem_perk = 2130968713;
 			
 			// aapt resource value: 0x7F040090
-			public const int listviewitem_perk_selectable = 2130968720;
+			public const int listviewitem_perk_deleteable = 2130968720;
 			
 			// aapt resource value: 0x7F040091
-			public const int listviewitem_personalquest = 2130968721;
+			public const int listviewitem_perk_selectable = 2130968721;
 			
 			// aapt resource value: 0x7F040092
-			public const int listviewitem_selectable_campaign = 2130968722;
+			public const int listviewitem_personalquest = 2130968722;
 			
 			// aapt resource value: 0x7F040093
-			public const int listview_expandable_groupheader_customlayout = 2130968723;
+			public const int listviewitem_selectable_campaign = 2130968723;
 			
 			// aapt resource value: 0x7F040094
-			public const int listview_floatingactionbutton = 2130968724;
+			public const int listview_expandable_groupheader_customlayout = 2130968724;
+			
+			// aapt resource value: 0x7F040095
+			public const int listview_floatingactionbutton = 2130968725;
 			
 			// aapt resource value: 0x7F03001B
 			public const int notification_action = 2130903067;
@@ -5054,14 +5057,14 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F030029
 			public const int notification_template_part_time = 2130903081;
 			
-			// aapt resource value: 0x7F040095
-			public const int qustom_dialog_layout = 2130968725;
-			
 			// aapt resource value: 0x7F040096
-			public const int qustom_transparent_dialog_layout = 2130968726;
+			public const int qustom_dialog_layout = 2130968726;
 			
 			// aapt resource value: 0x7F040097
-			public const int rounded_border_edittext = 2130968727;
+			public const int qustom_transparent_dialog_layout = 2130968727;
+			
+			// aapt resource value: 0x7F040098
+			public const int rounded_border_edittext = 2130968728;
 			
 			// aapt resource value: 0x7F03002A
 			public const int select_dialog_item_material = 2130903082;
@@ -5072,26 +5075,26 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F03002C
 			public const int select_dialog_singlechoice_material = 2130903084;
 			
-			// aapt resource value: 0x7F040098
-			public const int spinnerviewitem_item = 2130968728;
+			// aapt resource value: 0x7F040099
+			public const int spinnerviewitem_item = 2130968729;
 			
 			// aapt resource value: 0x7F03002D
 			public const int support_simple_spinner_dropdown_item = 2130903085;
 			
-			// aapt resource value: 0x7F040099
-			public const int toolbar = 2130968729;
-			
 			// aapt resource value: 0x7F040100
-			public const int toolbarDetails = 2130968832;
+			public const int toolbar = 2130968832;
+			
+			// aapt resource value: 0x7F040101
+			public const int toolbarDetails = 2130968833;
 			
 			// aapt resource value: 0x7F0F003C
 			public const int tooltip = 2131689532;
 			
-			// aapt resource value: 0x7F040101
-			public const int view_personalquestcheck = 2130968833;
-			
 			// aapt resource value: 0x7F040102
-			public const int view_personalquestcounter = 2130968834;
+			public const int view_personalquestcheck = 2130968834;
+			
+			// aapt resource value: 0x7F040103
+			public const int view_personalquestcounter = 2130968835;
 			
 			static Layout()
 			{

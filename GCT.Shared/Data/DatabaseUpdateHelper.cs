@@ -6,6 +6,7 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using SQLite;
 using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using GloomhavenCampaignTracker.Business;
+using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 
 namespace Data
 {
@@ -87,10 +88,51 @@ namespace Data
                     AddItem151();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 7)) == VersionTime.Earlier)
+                {
+                    AddClasses();
+                    AddDivinerClass();
+                }
+
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
             }
+        }
+
+        private static void AddClasses()
+        {
+            var classes = ClassRepository.Get();          
+
+            Connection.BeginTransaction();
+            try
+            {
+                if (!classes.Any(x=>x.ClassId == 0))
+                {
+                    // add Brute
+                    var cl = new DL_Class
+                    {
+                        Abilities = new List<DL_ClassAbility>(),
+                        Characters = new List<DL_Character>(),
+                        ClassIcon = "",
+                        ClassId = 0,
+                        ClassName = "Inox Brute",
+                        Perks = new List<DL_ClassPerks>()
+                    };
+                }
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        private static void AddDivinerClass()
+        {
+            throw new NotImplementedException();
         }
 
         private static void AddItem151()

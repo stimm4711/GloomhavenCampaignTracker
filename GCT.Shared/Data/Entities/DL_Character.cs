@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GloomhavenCampaignTracker.Business.Network.Messages;
+using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 using Newtonsoft.Json;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
@@ -14,6 +15,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         [MaxLength(250), NotNull]
         public string Name { get; set; }
+
+        [ForeignKey(typeof(DL_Class))]
+        public int ID_Class { get; set; }
 
         [Column("Class")]
         public int ClassId { get; set; }
@@ -63,6 +67,8 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
         public List<DL_CharacterPersonalQuestCounter> CharacterQuestCounters { get; set; }
 
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
+        public DL_Class DL_Class { get; set; }
 
         public override bool Equals(object obj)
         {

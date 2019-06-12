@@ -161,12 +161,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GCT.Shared\Data\ViewEntities\DL_VIEW_Campaign.cs">
-      <Link>Views\DL_VIEW_Campaign.cs</Link>
-    </Compile>
-    <Compile Include="..\GCT.Shared\Data\ViewEntities\DL_VIEW_CampaignParties.cs">
-      <Link>Views\DL_VIEW_CampaignParties.cs</Link>
-    </Compile>
     <Compile Include="Adapter\AbilitiesEnhancementDeleteableAdapter.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementSelectableAdapter.cs" />
     <Compile Include="Adapter\ChangeAwareAdapter.cs" />
@@ -237,6 +231,96 @@
     <Compile Include="CustomControls\PersonalQuestCheckView.cs" />
     <Compile Include="CustomControls\PersonalQuestCounterBase.cs" />
     <Compile Include="CustomControls\ProsperityMeter.cs" />
+    <Compile Include="Data\DatabaseAccess\AbilityDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\AchievementDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\AchievementTypeDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignEventHistoryLogItemDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignGlobalAchievementDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignPartyDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignUnlockedItemsDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignUnlockedScenariosDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignUnlocksDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CharacterDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CharacterPersonalQuestCounterDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\ClassDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\ClassPerkDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\EnhancementDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\GloomhavenSettingsDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\IDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\ItemDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\PartyAchievementDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\PersonalQuestCounterDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\PersonalQuestDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\ScenarioDBAccess.cs" />
+    <Compile Include="Data\DatabaseUpdateHelper.cs" />
+    <Compile Include="Data\DataService\CampaignDataService.cs" />
+    <Compile Include="Data\DataService\CharacterDataService.cs" />
+    <Compile Include="Data\DataService\DataServiceCollection.cs" />
+    <Compile Include="Data\DataService\ICampaignDataService.cs" />
+    <Compile Include="Data\DataService\IDataService.cs" />
+    <Compile Include="Data\DataService\ItemDataService.cs" />
+    <Compile Include="Data\DataService\PartyDataService.cs" />
+    <Compile Include="Data\DataService\ScenarioDataService.cs" />
+    <Compile Include="Data\Entities\Classdesign\DL_CharacterAbility.cs" />
+    <Compile Include="Data\Entities\Classdesign\DL_CharacterAbilityEnhancement.cs" />
+    <Compile Include="Data\Entities\Classdesign\DL_CharacterPerks.cs" />
+    <Compile Include="Data\Entities\Classdesign\DL_Class.cs" />
+    <Compile Include="Data\Entities\Classdesign\DL_ClassAbility.cs" />
+    <Compile Include="Data\Entities\Classdesign\DL_ClassPerks.cs" />
+    <Compile Include="Data\Entities\DL_Ability.cs" />
+    <Compile Include="Data\Entities\DL_AbilityEnhancement.cs" />
+    <Compile Include="Data\Entities\DL_Achievement.cs" />
+    <Compile Include="Data\Entities\DL_AchievementType.cs" />
+    <Compile Include="Data\Entities\DL_Campaign.cs" />
+    <Compile Include="Data\Entities\DL_CampaignEventHistoryLogItem.cs" />
+    <Compile Include="Data\Entities\DL_CampaignGlobalAchievement.cs" />
+    <Compile Include="Data\Entities\DL_CampaignParty.cs" />
+    <Compile Include="Data\Entities\DL_CampaignPartyAchievement.cs" />
+    <Compile Include="Data\Entities\DL_CampaignUnlockedItem.cs" />
+    <Compile Include="Data\Entities\DL_CampaignUnlockedScenario.cs" />
+    <Compile Include="Data\Entities\DL_CampaignUnlocks.cs" />
+    <Compile Include="Data\Entities\DL_Character.cs" />
+    <Compile Include="Data\Entities\DL_CharacterItem.cs" />
+    <Compile Include="Data\Entities\DL_CharacterPerk.cs" />
+    <Compile Include="Data\Entities\DL_CharacterPersonalQuestCounters.cs" />
+    <Compile Include="Data\Entities\DL_ClassPerk.cs" />
+    <Compile Include="Data\Entities\DL_Enhancement.cs" />
+    <Compile Include="Data\Entities\DL_GlommhavenSettings.cs" />
+    <Compile Include="Data\Entities\DL_Item.cs" />
+    <Compile Include="Data\Entities\DL_PartyAchievement.cs" />
+    <Compile Include="Data\Entities\DL_Perk.cs" />
+    <Compile Include="Data\Entities\DL_PersonalQuest.cs" />
+    <Compile Include="Data\Entities\DL_PersonalQuestCounter.cs" />
+    <Compile Include="Data\Entities\DL_Scenario.cs" />
+    <Compile Include="Data\Entities\DL_Treasure.cs" />
+    <Compile Include="Data\Entities\IEntity.cs" />
+    <Compile Include="Data\EntityCollection.cs" />
+    <Compile Include="Data\GloomhavenDBHelper.cs" />
+    <Compile Include="Data\Repositories\AbilityRepository.cs" />
+    <Compile Include="Data\Repositories\AchievementRepository.cs" />
+    <Compile Include="Data\Repositories\AchievementTypeRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignEventHistoryLogItemRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignGlobalAchievementRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignPartyRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignUnlockedItemRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignUnlockedScenarioRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignUnlocksRepository.cs" />
+    <Compile Include="Data\Repositories\CharacterPersonalQuestCountersRepository.cs" />
+    <Compile Include="Data\Repositories\CharacterRepository.cs" />
+    <Compile Include="Data\Repositories\ClassPerkRepository.cs" />
+    <Compile Include="Data\Repositories\ClassRepository.cs" />
+    <Compile Include="Data\Repositories\EnhancementRepository.cs" />
+    <Compile Include="Data\Repositories\GloomhavenSettingsRepository.cs" />
+    <Compile Include="Data\Repositories\ItemRepository.cs" />
+    <Compile Include="Data\Repositories\PartyAchievementRepository.cs" />
+    <Compile Include="Data\Repositories\PersonalQuestCountersRepository.cs" />
+    <Compile Include="Data\Repositories\PersonalQuestRepository.cs" />
+    <Compile Include="Data\Repositories\ScenarioRepository.cs" />
+    <Compile Include="Data\ViewEntities\DL_VIEW_Campaign.cs" />
+    <Compile Include="Data\ViewEntities\DL_VIEW_CampaignParties.cs" />
+    <Compile Include="Data\ViewEntities\DL_VIEW_Campaign_selectable.cs" />
     <Compile Include="DetailsActivity.cs" />
     <Compile Include="EventhistoryHelper.cs" />
     <Compile Include="Exceptions\CampaignLoadingException.cs" />
@@ -245,6 +329,7 @@
     <Compile Include="Fragments\campaign\EventWrapper.cs" />
     <Compile Include="Fragments\campaign\PartySelectionFragment.cs" />
     <Compile Include="Fragments\campaign\CampaignSelectionFragment.cs" />
+    <Compile Include="Fragments\campaign\party\CampaignPartyNotesFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyAchievementsFragment.cs" />
     <Compile Include="Fragments\campaign\unlocks\CampaignUnlocksEnvelopeXFragment.cs" />
     <Compile Include="Fragments\character\CharacterDetailFragmentBase.cs" />
@@ -285,7 +370,23 @@
     <None Include="GloomhavenCampaignTracker.Droid.csproj.vspscc" />
     <None Include="packages.config" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_unlocks.axml">
+    <AndroidResource Include="Resources\layout-sw600dp\alertdialog_listview_floatingactionbutton.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_city.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_party.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_world.axml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout-sw600dp\listviewitem_campaignachievement_withsteps.axml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
@@ -2489,24 +2590,6 @@
     <AndroidResource Include="Resources\drawable\prosperity.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout-sw600dp\alertdialog_listview_floatingactionbutton.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_city.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_party.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_unlocks.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout-sw600dp\fragment_campaign_world.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout-sw600dp\listviewitem_campaignachievement_withsteps.axml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\rounded_border_edittext.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -2634,7 +2717,48 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_class18icon_b.png" />
   </ItemGroup>
-  <Import Project="..\GCT.Shared\GCT.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-sw720dp\alertdialog_listview_floatingactionbutton.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-sw720dp\fragment_campaign_city.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-sw720dp\fragment_campaign_party.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-sw720dp\fragment_campaign_unlocks.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-sw720dp\listviewitem_campaignachievement_withsteps.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout-sw720dp\fragment_campaign_world.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_party_notes.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

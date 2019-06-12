@@ -79,8 +79,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
             _partyMemberButton = _view.FindViewById<Button>(Resource.Id.partyMembersButton);
             _currentLocationSpinner = _view.FindViewById<Spinner>(Resource.Id.currentLocationSpinner);
             _partynotes = _view.FindViewById<EditText>(Resource.Id.partynotestext);
+            var _partyNotesButton = _view.FindViewById<Button>(Resource.Id.partyNotesButton);
 
-            _partynotes.AfterTextChanged += _partynotes_AfterTextChanged;
+            if (_partynotes != null)
+                _partynotes.AfterTextChanged += _partynotes_AfterTextChanged;
 
             if (_isDualPane)
             {
@@ -129,6 +131,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
                 }                
             }
 
+            if (_partyNotesButton != null && !_partyNotesButton.HasOnClickListeners)
+            {
+                _partyNotesButton.Click += _partyNotesButton_Click;
+            }
+
             if (!_raiseRepButton.HasOnClickListeners)
             {
                 _raiseRepButton.Click += RaiseRepButton_Click;
@@ -163,6 +170,19 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
             _currentLocationSpinner.ItemSelected += _currentLocationSpinner_ItemSelected;
 
             return _view;
+        }
+
+        private void _partyNotesButton_Click(object sender, EventArgs e)
+        {
+            if (_isDualPane)
+            {     
+                var detailsFrag = CampaignPartyNotesFragment.NewInstance();
+                var title = _view.FindViewById<TextView>(Resource.Id.dualdetailtitle);
+                title.Text = "Party Notes";
+                _dualtdetailLayout.Visibility = ViewStates.Visible;
+                var fragTrans = _fragmentManager.BeginTransaction().Replace(Resource.Id.frame_details_party, detailsFrag);
+                fragTrans.Commit();
+            }
         }
 
         private void _partynotes_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
@@ -344,11 +364,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
         }              
 
         internal void UpdateView()
-        {
+        { 
             if (CurrentCampaign.CurrentParty == null) return;
 
             UpdateReputation();
-            _partynotes.Text = CurrentCampaign.CurrentParty.Notes ;            
+            if (_partynotes != null)
+                _partynotes.Text = CurrentCampaign.CurrentParty.Notes ;            
         }        
     }
 }

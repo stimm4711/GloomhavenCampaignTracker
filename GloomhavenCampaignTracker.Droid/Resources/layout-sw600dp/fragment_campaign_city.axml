@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="20dp">
+    android:paddingTop="10dp">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="0dp"
@@ -24,10 +24,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/borderbuttons"
             android:textColor="@color/gloom_primaryText"
-            android:padding="10px"
+            android:padding="5dp"
             android:gravity="center"
-            android:drawablePadding="5px"
-            android:textSize="20dp"
+            android:drawablePadding="5dp"
+            android:textSize="18dp"
             android:drawableTop="@drawable/ic_moneybag" />
         <Button
             android:text="City Events"
@@ -37,19 +37,17 @@
             android:layout_height="wrap_content"
             android:background="@drawable/borderbuttons"
             android:textColor="@color/gloom_primaryText"
-            android:padding="10px"
+            android:padding="5dp"
             android:gravity="center"
-            android:layout_marginTop="20px"
-            android:drawablePadding="10px"
-            android:textSize="20dp" />
+            android:layout_marginTop="10dp"
+            android:drawablePadding="5dp"
+            android:textSize="18dp" />
         <LinearLayout
-            android:minWidth="25px"
-            android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/borderSheet"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:paddingBottom="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
@@ -129,13 +127,11 @@
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
-            android:minWidth="25px"
-            android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/borderSheet"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:paddingBottom="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"

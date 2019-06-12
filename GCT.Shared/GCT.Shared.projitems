@@ -14,6 +14,7 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration" />
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\ClassDBAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignPartyDBAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\AchievementDBAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\CampaignEventHistoryLogItemDBAccess.cs" />
@@ -34,7 +35,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\ClassPerkDBAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\ScenarioDBAccess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseAccess\ItemDBAccess.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\Classdesign\DL_CharacterAbilityEnhancement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\Classdesign\DL_CharacterAbility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\Classdesign\DL_ClassAbility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\Classdesign\DL_CharacterPerks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_CharacterPersonalQuestCounters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\Classdesign\DL_Class.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\Classdesign\DL_ClassPerks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\DL_PersonalQuestCounter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseUpdateHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\GloomhavenDBHelper.cs" />
@@ -67,6 +74,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\Entities\IEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataService\ICampaignDataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\EntityCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\ClassRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignPartyRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\AchievementRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Repositories\CampaignUnlockedScenarioRepository.cs" />
