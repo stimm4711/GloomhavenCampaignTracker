@@ -10,6 +10,7 @@ using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Threading.Tasks;
 using GloomhavenCampaignTracker.Business.Network;
+using GloomhavenCampaignTracker.Business;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 {
@@ -77,6 +78,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             var spinner = convertView.FindViewById<Spinner>(Resource.Id.spinner);
 
             IEnumerable<DL_AchievementType> selectableAchievements = DataServiceCollection.CampaignDataService.GetAchievementTypesFlat();
+
+            if (!Campaign.CampaignData.CampaignUnlocks.CampaignCompleted || !GCTContext.ActivateForgottenCiclesContent)
+                selectableAchievements = selectableAchievements.Where(x => x.ContentOfPack == 1);
+
             if (Campaign.GlobalAchievements != null)
             {
                 var assignedAchievementIds = Campaign.GlobalAchievements.Select(y => y.AchievementType.Id);
@@ -108,6 +113,18 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                     {
                         _dataChanged = true;
                         Campaign.AddGlobalAchievement(achType);
+
+                        if (achType.InternalNumber == (int)GlobalAchievementsInternalNumbers.EndOfGloom)
+                        {
+                            Campaign.CampaignData.CampaignUnlocks.CampaignCompleted = true;
+
+                            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                                .SetMessage("Congratulatios! You have finished the campaign. Now you can play the expansion Forgotten Circles. Go to Settings to activate the content of the expansion.")
+                                .SetTitle("Campaign Finished!")
+                                .SetPositiveButton(Resources.GetString(Resource.String.OK), (s, a) => { })
+                                .Show();
+                        }
+                       
                         _listViewAdapter.NotifyDataSetChanged();
                     }
                 })

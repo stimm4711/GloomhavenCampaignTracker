@@ -62,6 +62,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
             return Me._db.Get();
         }
 
+        public static List<DL_Item> GetAllWithChildren()
+        {
+            return Me._db.GetAllWithChildren();
+        }
+
         public static void InsertOrReplace(DL_Item item)
         {
             Me._db.InsertOrReplace(item);

@@ -75,5 +75,10 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
         {
             Me._db.UpdateScenarioUnlockedScenarios(scenarioNumber, commaSeparatedScenarioNumbers);
         }
+
+        internal static void UpdateScenarioContentOf(int scenarioNumber, int contentOf)
+        {
+            Me._db.UpdateScenarioContentOf(scenarioNumber, contentOf);
+        }
     }
 }

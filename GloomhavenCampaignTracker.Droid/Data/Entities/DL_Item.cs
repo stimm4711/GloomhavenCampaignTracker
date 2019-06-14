@@ -24,7 +24,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         public int Itemprice { get; set; }
 
-        public int Prosperitylevel { get; set; } 
+        public int Prosperitylevel { get; set; }
+
+        public int ContentOfPack { get; set; } // 1 = gloomhaven, 2 = forgotten circles
 
         [ManyToMany(typeof(DL_CharacterItem))]
         public List<DL_Character> Characters { get; set; }

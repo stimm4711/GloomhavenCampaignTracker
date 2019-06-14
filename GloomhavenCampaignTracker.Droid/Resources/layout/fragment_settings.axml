@@ -5,8 +5,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px"
     android:paddingRight="8dp"
     android:paddingLeft="8dp"
     android:paddingTop="10dp">
@@ -99,7 +97,7 @@
         android:paddingTop="5dp"
         android:layout_marginTop="10dp">
         <TextView
-            android:text="Activate Forgotten Circles"
+            android:text="Activate Forgotten Circles (Beta)"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/enableFCtext"
             android:textColor="@color/gloom_primaryText"
@@ -113,6 +111,16 @@
             android:textColor="@color/gloom_primaryText"
             app:buttonTint="#ffffffff"
             android:checked="false"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion. It is still a work in progress"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hideitemnamestext"
+            android:layout_below="@+id/chkShowItemnames"
+            android:textColor="@color/gloom_secondaryLight"
+            android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         </LinearLayout>
     <LinearLayout

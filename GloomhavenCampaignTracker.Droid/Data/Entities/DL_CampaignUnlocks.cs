@@ -42,6 +42,8 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         public bool HiddenClassUnlocked { get; set; }
 
+        public bool CampaignCompleted { get; set; }
+
         [OneToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
         public DL_Campaign Campaign { get; set; }
     }

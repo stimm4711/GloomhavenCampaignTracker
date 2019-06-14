@@ -35,7 +35,15 @@ namespace GloomhavenCampaignTracker.Business
         AncientTechnology_Step3 = 153,
         AncientTechnology_Step4 = 154,
         AncientTechnology_Step5 = 155,
-        AnnihilationOfTheOrder = 16
+        AnnihilationOfTheOrder = 16,
+        ThroughThePortal = 17,
+        KnowledgeIsPowerStep1 = 181,
+        KnowledgeIsPowerStep2 = 182,
+        PiecesOfAnArtifact = 19,
+        APerilAvertedStep1 = 2001,
+        APerilAvertedStep2 = 2002,
+        MechanicalSplendor = 21,
+        SeveredTies = 22 
     }
 
     /// <summary>
@@ -70,7 +78,13 @@ namespace GloomhavenCampaignTracker.Business
         ThroughtheTrench = 25,
         Tremors = 26,
         WaterStaff = 27,
-        SunBlessed = 28
+        SunBlessed = 28,
+        HuntingTheHunter = 29,
+        GuardDetail = 30,
+        DimensionalEquilibrium = 31,
+        AngelsOfDeath = 32,
+        DiamarasAid = 33,
+        HuntedPrey = 34
     }
 
     public class AchievementCollection
@@ -157,6 +171,22 @@ namespace GloomhavenCampaignTracker.Business
                     return "The Voice: Silenced";
                 case (int)GlobalAchievementsInternalNumbers.WaterBreathing:
                     return "Water Breathing";
+                case (int)GlobalAchievementsInternalNumbers.APerilAvertedStep1:
+                    return "A Peril Averted: 1/2";
+                case (int)GlobalAchievementsInternalNumbers.APerilAvertedStep2:
+                    return "A Peril Averted: 2/2";
+                case (int)GlobalAchievementsInternalNumbers.KnowledgeIsPowerStep1:
+                    return "Knowledge is Power: 1/2";
+                case (int)GlobalAchievementsInternalNumbers.KnowledgeIsPowerStep2:
+                    return "Knowledge is Power: 2/2";
+                case (int)GlobalAchievementsInternalNumbers.MechanicalSplendor:
+                    return "Mechanical Splendor";
+                case (int)GlobalAchievementsInternalNumbers.PiecesOfAnArtifact:
+                    return "Pieces Of An Artifact";
+                case (int)GlobalAchievementsInternalNumbers.SeveredTies:
+                    return "Severed Ties";
+                case (int)GlobalAchievementsInternalNumbers.ThroughThePortal:
+                    return "Through the Portal";
                 default:
                     return "Unknown";
             }

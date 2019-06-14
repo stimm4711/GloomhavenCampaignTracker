@@ -942,7 +942,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             FillItems();
         }
 
-        private static void FillItems()
+        internal static void FillItems()
         {
             var items = ItemRepository.Get();
 
@@ -962,171 +962,173 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 
                 // Prosperity
                 
-                SaveItem(itemnumber: 1, itemname: "Boots of Striding", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 2, itemname: "Winged Shoes", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 3, itemname: "Hide Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 4, itemname: "Leather Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 5, itemname: "Cloak of Invisibility", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 6, itemname: "Eagle-Eye Goggles", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 7, itemname: "Iron Helmet", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 8, itemname: "Heater Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 9, itemname: "Piercing Bow", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 10, itemname: "War Hammer", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 11, itemname: "Poison Dagger", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 12, itemname: "Minor Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 13, itemname: "Minor Stamina Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
-                SaveItem(itemnumber: 14, itemname: "Minor Power Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 1, itemname: "Boots of Striding", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 2, itemname: "Winged Shoes", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 3, itemname: "Hide Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 4, itemname: "Leather Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 5, itemname: "Cloak of Invisibility", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 6, itemname: "Eagle-Eye Goggles", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 7, itemname: "Iron Helmet", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 8, itemname: "Heater Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 9, itemname: "Piercing Bow", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 10, itemname: "War Hammer", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 11, itemname: "Poison Dagger", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 12, itemname: "Minor Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 13, itemname: "Minor Stamina Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 14, itemname: "Minor Power Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 1, items);
 
-                SaveItem(itemnumber: 15, itemname: "Boots of Speed", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 2, items);
-                SaveItem(itemnumber: 16, itemname: "Cloak of Pockets", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
-                SaveItem(itemnumber: 17, itemname: "Empowering Talisman", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 45, prosperitylevel: 2, items);
-                SaveItem(itemnumber: 18, itemname: "Battle-Axe", itemcategorie: 2, itemcount: 18, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
-                SaveItem(itemnumber: 19, itemname: "Weighted Net", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
-                SaveItem(itemnumber: 20, itemname: "Minor Mana Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 2, items);
-                SaveItem(itemnumber: 21, itemname: "Stun Powder", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 15, itemname: "Boots of Speed", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 2, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 16, itemname: "Cloak of Pockets", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 17, itemname: "Empowering Talisman", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 45, prosperitylevel: 2, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 18, itemname: "Battle-Axe", itemcategorie: 2, itemcount: 18, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 19, itemname: "Weighted Net", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 20, itemname: "Minor Mana Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 10, prosperitylevel: 2, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 21, itemname: "Stun Powder", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 2, items);
 
-                SaveItem(itemnumber: 22, itemname: "Heavy Greaves", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
-                SaveItem(itemnumber: 23, itemname: "Chainmail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
-                SaveItem(itemnumber: 24, itemname: "Amulet of Life", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
-                SaveItem(itemnumber: 25, itemname: "Jagged Sword", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
-                SaveItem(itemnumber: 26, itemname: "Long Spear", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
-                SaveItem(itemnumber: 27, itemname: "Major Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
-                SaveItem(itemnumber: 28, itemname: "Moon Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 22, itemname: "Heavy Greaves", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 23, itemname: "Chainmail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 24, itemname: "Amulet of Life", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 25, itemname: "Jagged Sword", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 26, itemname: "Long Spear", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 27, itemname: "Major Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 3, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 28, itemname: "Moon Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 3, items);
 
-                SaveItem(itemnumber: 29, itemname: "Comfortable Shoes", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
-                SaveItem(itemnumber: 30, itemname: "Studded Leather", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
-                SaveItem(itemnumber: 31, itemname: "Hawk Helm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 4, items);
-                SaveItem(itemnumber: 32, itemname: "Tower Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 4, items);
-                SaveItem(itemnumber: 33, itemname: "Volatile Bomb", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
-                SaveItem(itemnumber: 34, itemname: "Major Stamina Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
-                SaveItem(itemnumber: 35, itemname: "Falcon Figurine", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 4, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 29, itemname: "Comfortable Shoes", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 30, itemname: "Studded Leather", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 31, itemname: "Hawk Helm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 4, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 32, itemname: "Tower Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 4, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 33, itemname: "Volatile Bomb", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 34, itemname: "Major Stamina Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 4, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 35, itemname: "Falcon Figurine", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 4, items);
 
-                SaveItem(itemnumber: 36, itemname: "Boots of Dashing", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
-                SaveItem(itemnumber: 37, itemname: "Robes of Evocation", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
-                SaveItem(itemnumber: 38, itemname: "Heavy Basinet", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 5, items);
-                SaveItem(itemnumber: 39, itemname: "Hooked Chain", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
-                SaveItem(itemnumber: 40, itemname: "Versatile Dagger", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 5, items);
-                SaveItem(itemnumber: 41, itemname: "Major Power Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
-                SaveItem(itemnumber: 42, itemname: "Ring of Haste", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 5, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 36, itemname: "Boots of Dashing", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 37, itemname: "Robes of Evocation", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 38, itemname: "Heavy Basinet", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 5, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 39, itemname: "Hooked Chain", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 40, itemname: "Versatile Dagger", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 5, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 41, itemname: "Major Power Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 40, prosperitylevel: 5, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 42, itemname: "Ring of Haste", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 5, items);
 
-                SaveItem(itemnumber: 43, itemname: "Boots of Quickness", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 6, items);
-                SaveItem(itemnumber: 44, itemname: "Splintmail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 35, prosperitylevel: 6, items);
-                SaveItem(itemnumber: 45, itemname: "Pendant of Dark Pacts", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 6, items);
-                SaveItem(itemnumber: 46, itemname: "Spiked Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
-                SaveItem(itemnumber: 47, itemname: "Reaping Scythe", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
-                SaveItem(itemnumber: 48, itemname: "Major Mana Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 6, items);
-                SaveItem(itemnumber: 49, itemname: "Sun Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 43, itemname: "Boots of Quickness", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 6, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 44, itemname: "Splintmail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 35, prosperitylevel: 6, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 45, itemname: "Pendant of Dark Pacts", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 6, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 46, itemname: "Spiked Shield", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 47, itemname: "Reaping Scythe", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 48, itemname: "Major Mana Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 30, prosperitylevel: 6, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 49, itemname: "Sun Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 6, items);
 
-                SaveItem(itemnumber: 50, itemname: "Steel Sabatons", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
-                SaveItem(itemnumber: 51, itemname: "Shadow Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 7, items);
-                SaveItem(itemnumber: 52, itemname: "Protective Charm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
-                SaveItem(itemnumber: 53, itemname: "Black Knife", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 7, items);
-                SaveItem(itemnumber: 54, itemname: "Staff of Eminence", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
-                SaveItem(itemnumber: 55, itemname: "Super Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 50, prosperitylevel: 7, items);
-                SaveItem(itemnumber: 56, itemname: "Ring of Brutality", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 7, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 50, itemname: "Steel Sabatons", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 51, itemname: "Shadow Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 7, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 52, itemname: "Protective Charm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 53, itemname: "Black Knife", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 7, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 54, itemname: "Staff of Eminence", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 7, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 55, itemname: "Super Healing Potion", itemcategorie: 5, itemcount: 4, itemtext: "", itemprice: 50, prosperitylevel: 7, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 56, itemname: "Ring of Brutality", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 7, items);
 
-                SaveItem(itemnumber: 57, itemname: "Serene Sandals", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 8, items);
-                SaveItem(itemnumber: 58, itemname: "Cloak of Phasing", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 8, items);
-                SaveItem(itemnumber: 59, itemname: "Telescopic Lens", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 8, items);
-                SaveItem(itemnumber: 60, itemname: "Unstable Explosives", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 45, prosperitylevel: 8, items);
-                SaveItem(itemnumber: 61, itemname: "Wall Shield", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 8, items);
-                SaveItem(itemnumber: 62, itemname: "Doom Powder", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 8, items);
-                SaveItem(itemnumber: 63, itemname: "Luckey Eye", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 8, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 57, itemname: "Serene Sandals", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 8, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 58, itemname: "Cloak of Phasing", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 8, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 59, itemname: "Telescopic Lens", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 8, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 60, itemname: "Unstable Explosives", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 45, prosperitylevel: 8, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 61, itemname: "Wall Shield", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 8, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 62, itemname: "Doom Powder", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 8, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 63, itemname: "Luckey Eye", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 8, items);
 
-                SaveItem(itemnumber: 64, itemname: "Boots of Sprinting", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
-                SaveItem(itemnumber: 65, itemname: "Platemail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 9, items);
-                SaveItem(itemnumber: 66, itemname: "Mask of Terror", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 9, items);
-                SaveItem(itemnumber: 67, itemname: "Balanced Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 9, items);
-                SaveItem(itemnumber: 68, itemname: "Halberd", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
-                SaveItem(itemnumber: 69, itemname: "Star Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 70, prosperitylevel: 9, items);
-                SaveItem(itemnumber: 70, itemname: "Second Chance Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 64, itemname: "Boots of Sprinting", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 65, itemname: "Platemail", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 9, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 66, itemname: "Mask of Terror", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 9, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 67, itemname: "Balanced Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 60, prosperitylevel: 9, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 68, itemname: "Halberd", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 69, itemname: "Star Earring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 70, prosperitylevel: 9, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 70, itemname: "Second Chance Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 75, prosperitylevel: 9, items);
 
                 // Designs
-                SaveItem(itemnumber: 71, itemname: "Boots of Levitation", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 72, itemname: "Shoes of Happiness", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 73, itemname: "Blinking Cape", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 74, itemname: "Swordedge Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 75, itemname: "Circle of Elements", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 76, itemname: "Chain Hood", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 77, itemname: "Frigid Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 78, itemname: "Storm Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 79, itemname: "Inferno Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 80, itemname: "Tremor Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 81, itemname: "Brilliant Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 82, itemname: "Night Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 83, itemname: "Wand of Frost", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 84, itemname: "Wand of Storms", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 85, itemname: "Wand of Infernos", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 86, itemname: "Wand of Tremors", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 87, itemname: "Wand of Brilliance", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 88, itemname: "Wand of Darkness", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 89, itemname: "Minure Cure Potion", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 90, itemname: "Major Cure Potion", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 91, itemname: "Steel Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 92, itemname: "Dampening Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 93, itemname: "Scroll of Power", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 94, itemname: "Scroll of Healing", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
-                SaveItem(itemnumber: 95, itemname: "Scroll of Stamina", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 71, itemname: "Boots of Levitation", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 72, itemname: "Shoes of Happiness", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 73, itemname: "Blinking Cape", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 74, itemname: "Swordedge Armor", itemcategorie: 1, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 75, itemname: "Circle of Elements", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 76, itemname: "Chain Hood", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 77, itemname: "Frigid Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 78, itemname: "Storm Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 79, itemname: "Inferno Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 80, itemname: "Tremor Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 81, itemname: "Brilliant Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 82, itemname: "Night Blade", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 83, itemname: "Wand of Frost", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 84, itemname: "Wand of Storms", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 85, itemname: "Wand of Infernos", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 86, itemname: "Wand of Tremors", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 87, itemname: "Wand of Brilliance", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 88, itemname: "Wand of Darkness", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 89, itemname: "Minure Cure Potion", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 10, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 90, itemname: "Major Cure Potion", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 91, itemname: "Steel Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 92, itemname: "Dampening Ring", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 93, itemname: "Scroll of Power", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 94, itemname: "Scroll of Healing", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 100, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 95, itemname: "Scroll of Stamina", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 100, items);
 
                 // Items
-                SaveItem(itemnumber: 96, itemname: "Rocket Boots", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 80, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 97, itemname: "Endurance Footwraps", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 98, itemname: "Drakescale Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 99, itemname: "Magma Waders", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 100, itemname: "Robes of Summoning", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 101, itemname: "Second Skin", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 102, itemname: "Sacrificial Robes", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 103, itemname: "Drakescale Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 104, itemname: "Steam Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 105, itemname: "Flea-Bitten Shawl", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 10, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 106, itemname: "Necklace of Teeth", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 107, itemname: "Horned Helm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 108, itemname: "Drakescale Helm", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 109, itemname: "Thief's Hood", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 110, itemname: "Helm of the Mountain", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 111, itemname: "Wave Crest", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 112, itemname: "Ancient Drill", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 113, itemname: "Skullbane Axe", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 114, itemname: "Staff of Xorn", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 115, itemname: "Mountain Hammer", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 116, itemname: "Fueled Falchion", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 117, itemname: "Bloody Axe", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 118, itemname: "Staff of Elements", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 119, itemname: "Skull of Hatred", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 120, itemname: "Staff of Summoning", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 121, itemname: "Orb of Dawn", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 122, itemname: "Orb of Twilight", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 123, itemname: "Ring of Skulls", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 124, itemname: "Doomed Compass", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 125, itemname: "Curious Gear", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 126, itemname: "Remote Spider", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 127, itemname: "GiantRemote Spider", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 128, itemname: "Black Censer", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 129, itemname: "Black Card", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 130, itemname: "Helix Ring", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 131, itemname: "Heart of the Betrayer", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 132, itemname: "Power Core", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150, items);
-                SaveItem(itemnumber: 133, itemname: "Resonant Crystal", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 96, itemname: "Rocket Boots", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 80, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 97, itemname: "Endurance Footwraps", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 98, itemname: "Drakescale Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 99, itemname: "Magma Waders", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 100, itemname: "Robes of Summoning", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 101, itemname: "Second Skin", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 102, itemname: "Sacrificial Robes", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 103, itemname: "Drakescale Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 104, itemname: "Steam Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 105, itemname: "Flea-Bitten Shawl", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 10, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 106, itemname: "Necklace of Teeth", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 107, itemname: "Horned Helm", itemcategorie: 0, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 108, itemname: "Drakescale Helm", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 109, itemname: "Thief's Hood", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 110, itemname: "Helm of the Mountain", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 111, itemname: "Wave Crest", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 112, itemname: "Ancient Drill", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 113, itemname: "Skullbane Axe", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 114, itemname: "Staff of Xorn", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 115, itemname: "Mountain Hammer", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 116, itemname: "Fueled Falchion", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 117, itemname: "Bloody Axe", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 118, itemname: "Staff of Elements", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 119, itemname: "Skull of Hatred", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 120, itemname: "Staff of Summoning", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 121, itemname: "Orb of Dawn", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 122, itemname: "Orb of Twilight", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 123, itemname: "Ring of Skulls", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 124, itemname: "Doomed Compass", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 125, itemname: "Curious Gear", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 126, itemname: "Remote Spider", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 40, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 127, itemname: "GiantRemote Spider", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 128, itemname: "Black Censer", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 129, itemname: "Black Card", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 130, itemname: "Helix Ring", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 131, itemname: "Heart of the Betrayer", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 60, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 132, itemname: "Power Core", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 133, itemname: "Resonant Crystal", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 20, prosperitylevel: 150, items);
 
                 // Soloscenario rewards
-                SaveItem(itemnumber: 134, itemname: "Imposing Blade", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 135, itemname: "Focusing Ray", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 136, itemname: "Volatile Elixir", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 137, itemname: "Silent Stiletto", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 138, itemname: "Stone Charm", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 139, itemname: "Psychic Knife", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 140, itemname: "Sun Shield", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 141, itemname: "Utility Belt", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 142, itemname: "Phasing Idol", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 143, itemname: "Smoke Elixir", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 144, itemname: "Pendant of the Plague", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 145, itemname: "Mask of Death", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 146, itemname: "Master's Lute", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 147, itemname: "Cloak of the Hunter", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 148, itemname: "Doctor's Coat", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 149, itemname: "Elemental Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 150, itemname: "Staff of Command", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
-                SaveItem(itemnumber: 151, itemname: "Blade of the Sands", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 134, itemname: "Imposing Blade", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 135, itemname: "Focusing Ray", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 136, itemname: "Volatile Elixir", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 137, itemname: "Silent Stiletto", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 138, itemname: "Stone Charm", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 139, itemname: "Psychic Knife", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 140, itemname: "Sun Shield", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 141, itemname: "Utility Belt", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 142, itemname: "Phasing Idol", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 143, itemname: "Smoke Elixir", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 144, itemname: "Pendant of the Plague", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 145, itemname: "Mask of Death", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 146, itemname: "Master's Lute", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 147, itemname: "Cloak of the Hunter", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 148, itemname: "Doctor's Coat", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 149, itemname: "Elemental Boots", itemcategorie: 4, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 150, itemname: "Staff of Command", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+                DatabaseUpdateHelper.SaveItem(itemnumber: 151, itemname: "Blade of the Sands", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
+
+                DatabaseUpdateHelper.SaveFCItems(items);
 
                 Connection.Commit();
             }
@@ -1135,27 +1137,6 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Connection.Rollback();
                 throw;
             }
-        }
-
-        private static void SaveItem(int itemnumber, string itemname, int itemcategorie, int itemcount, string itemtext, int itemprice, int prosperitylevel, List<DL_Item> items)
-        {
-            if (!items.Any(x=> x.Itemnumber == itemnumber))
-            {
-                var item = new DL_Item
-                {
-                    Itemcategorie = itemcategorie,
-                    Itemcount = itemcount,
-                    Itemname = itemname,
-                    Itemnumber = itemnumber,
-                    Itemprice = itemprice,
-                    Itemtext = itemtext,
-                    Prosperitylevel = prosperitylevel
-                };
-
-                ItemRepository.InsertOrReplace(item);
-
-                items.Add(item);
-            }           
         }
 
         private static void FillPersonalQuests()
@@ -1343,118 +1324,120 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Connection.DropTable<DL_PartyAchievement>();
                 Connection.CreateTable<DL_PartyAchievement>();
 
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     1,
                     "A Demon's Errand"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     2,
                     "A Map to Treasure"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     3,
                     "Across the Divide"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     4,
                     "An Invitation"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     5,
                     "Bad Business"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     6,
                     "Dark Bounty"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     7,
                     "Debt Collection"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     8,
                     "First Steps"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     9,
                     "Fish's Aid"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     10,
                     "Following Clues"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     11,
                     "Grave Job"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     12,
                     "High Sea Escort"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     13,
                      "Jekserah's Plans"
                      );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     14,
                     "Redthorn's Aid"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     15,
                      "Sin-Ra"
                      );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     16,
                     "Stonebreaker's Censer"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     17,
                     "The Drake's Command"
                      );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     18,
                     "The Drake's Treasure"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     19,
                      "The Poison's Source"
                      );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     20,
                     "The Scepter and the Voice"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     21,
                      "The Voice's Command"
                      );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     22,
                     "The Voice's Treasure"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     23,
                      "Through the Nest"
                      );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     24,
                     "Through the Ruins"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     25,
                     "Through the Trench"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     26,
                     "Tremors"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     27,
                     "Water Staff"
                     );
-                SavePartyAchievement(
+                DatabaseUpdateHelper.SavePartyAchievement(
                     28,
                     "Sun Blessed"
                     );
+
+                DatabaseUpdateHelper.SaveFCPartyAchievements();
 
                 Connection.Commit();
             }
@@ -1465,16 +1448,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             }
         }
 
-        internal static void SavePartyAchievement(int number, string name)
-        {
-            var achievement = new DL_PartyAchievement
-            {
-                Name = name,
-                InternalNumber = number
-            };
-
-            PartyAchievementRepository.InsertOrReplace(achievement);
-        }
+       
 
         private static void FillAchievements()
         {
@@ -1501,7 +1475,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     }
                 };
 
-                SaveAchievementType("The Drake", 100, achievements: achievements);
+                DatabaseUpdateHelper.SaveAchievementType("The Drake", 100, achievements: achievements);
 
                 achievements = new List<DL_Achievement>
                 {
@@ -1522,7 +1496,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     }
                 };
 
-                SaveAchievementType("City Rule", 200, achievements: achievements);
+                DatabaseUpdateHelper.SaveAchievementType("City Rule", 200, achievements: achievements);
 
                 achievements = new List<DL_Achievement>
                 {
@@ -1543,7 +1517,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     }
                 };
 
-                SaveAchievementType("Artifact", 300, achievements: achievements);
+                DatabaseUpdateHelper.SaveAchievementType("Artifact", 300, achievements: achievements);
 
                 achievements = new List<DL_Achievement>
                 {
@@ -1559,19 +1533,22 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                     }
                 };
 
-                SaveAchievementType("The Voice", 400, achievements: achievements);
-                SaveAchievementType("The Merchant flees", 5);
-                SaveAchievementType("The Dead Invade", 6);
-                SaveAchievementType("The Edge of Darkness", 7);
-                SaveAchievementType("The Power of Enhancement", 8);
-                SaveAchievementType("Water-Breathing", 9);
-                SaveAchievementType("The Demon Dethroned", 10);
-                SaveAchievementType("The Rift Neutralized", 11); // The Rift Closed
-                SaveAchievementType("End of the Invasion", 12);
-                SaveAchievementType("End of Corruption", 130, 3);
-                SaveAchievementType("End of Gloom", 14);
-                SaveAchievementType("Ancient Technology", 150, 5);
-                SaveAchievementType("Annihilation of the Order", 16);
+                DatabaseUpdateHelper.SaveAchievementType("The Voice", 400, achievements: achievements);
+                DatabaseUpdateHelper.SaveAchievementType("The Merchant flees", 5);
+                DatabaseUpdateHelper.SaveAchievementType("The Dead Invade", 6);
+                DatabaseUpdateHelper.SaveAchievementType("The Edge of Darkness", 7);
+                DatabaseUpdateHelper.SaveAchievementType("The Power of Enhancement", 8);
+                DatabaseUpdateHelper.SaveAchievementType("Water-Breathing", 9);
+                DatabaseUpdateHelper.SaveAchievementType("The Demon Dethroned", 10);
+                DatabaseUpdateHelper.SaveAchievementType("The Rift Neutralized", 11); // The Rift Closed
+                DatabaseUpdateHelper.SaveAchievementType("End of the Invasion", 12);
+                DatabaseUpdateHelper.SaveAchievementType("End of Corruption", 130, 3);
+                DatabaseUpdateHelper.SaveAchievementType("End of Gloom", 14);
+                DatabaseUpdateHelper.SaveAchievementType("Ancient Technology", 150, 5);
+                DatabaseUpdateHelper.SaveAchievementType("Annihilation of the Order", 16);
+
+                DatabaseUpdateHelper.SaveFCGlobalAchievements();
+
                 Connection.Commit();
             }
             catch
@@ -1579,25 +1556,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Connection.Rollback();
                 throw;
             }
-        }
-
-        private static void SaveAchievementType(string name, int internalNumber, int steps = 1, List<DL_Achievement> achievements = null)
-        {
-            if (achievements == null)
-            {
-                achievements = new List<DL_Achievement>();
-            }
-
-            var achievement = new DL_AchievementType
-            {
-                Name = name,
-                InternalNumber = internalNumber,
-                Steps = steps,
-                Achievements = achievements
-            };
-
-            AchievementTypeRepository.InsertOrReplace(achievement);
-        }
+        }       
 
         private static void FillScenarios()
         {
@@ -1607,101 +1566,104 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Connection.DropTable<DL_Scenario>();
                 Connection.CreateTable<DL_Scenario>();
 
-                SaveScenario("Black Barrow", 1, "2");
-                SaveScenario("Barrow Lair", 2, "3,4", requiredPartyAchievements: "8");
-                SaveScenario("Inox Encampment", 3, "8,9", blockingGlobalAchievements: "5");
-                SaveScenario("Crypt of the Damned", 4, "5,6");
-                SaveScenario("Ruinous Crypt", 5, "10,19,14");
-                SaveScenario("Decaying Crypt", 6, "8");
-                SaveScenario("Vibrant Grotto", 7, "20", requiredGlobalAchievements: "5,8");
-                SaveScenario("Gloomhaven Warehouse", 8, "14,13,7", requiredPartyAchievements: "13", blockingGlobalAchievements: "6");
-                SaveScenario("Diamond Mine", 9, "11,12", blockingGlobalAchievements: "5");
-                SaveScenario("Plane of Elemental Power", 10, "21,22", blockingGlobalAchievements: "11");
-                SaveScenario("Square (a)", 11, "16,18", blockingGlobalAchievements: "12");
-                SaveScenario("Square (b)", 12, "16,18,28", blockingGlobalAchievements: "12");
-                SaveScenario("Temple of the Seer", 13, "15,17,20");
-                SaveScenario("Frozen Hollow", 14);
-                SaveScenario("Shrine of Strength", 15);
-                SaveScenario("Mountain Pass", 16, "24,25");
-                SaveScenario("Lost Island", 17);
-                SaveScenario("Abandoned Sewers", 18, "23,43,26,14");
-                SaveScenario("Forgotten Crypt", 19, "27", requiredGlobalAchievements: "8");
-                SaveScenario("Necromancer's Sanctum", 20, "18,16,28", requiredGlobalAchievements: "5");
-                SaveScenario("Infernal Throne", 21, blockingGlobalAchievements: "11");
-                SaveScenario("Temple of the Elements", 22, "36,35,31", requiredPartyAchievements: "1,10"); // OR
-                SaveScenario("Deep Ruins", 23);
-                SaveScenario("Echo Chamber", 24, "30,32");
-                SaveScenario("Icecrag Ascent", 25, "33,34");
-                SaveScenario("Ancient Cistern", 26, "22", requiredGlobalAchievements: "9", requiredPartyAchievements: "24"); //OR
-                SaveScenario("Ruinous Rift", 27, blockingGlobalAchievements: "302", requiredPartyAchievements: "16");
-                SaveScenario("Outer Ritual Chamber", 28, "29", requiredPartyAchievements: "6");
-                SaveScenario("Sanctuary of Gloom", 29, requiredPartyAchievements: "4");
-                SaveScenario("Shrine of the Depths", 30, "42", requiredPartyAchievements: "21");
-                SaveScenario("Plane of Night", 31, "39,37,38,43", requiredGlobalAchievements: "8,301");
-                SaveScenario("Decrepit Wood", 32, "33,40", requiredPartyAchievements: "21");
-                SaveScenario("Savvas Armory", 33, requiredPartyAchievements: "21,17"); // OR
-                SaveScenario("Scorched Summit", 34, requiredPartyAchievements: "17", blockingGlobalAchievements: "102");
-                SaveScenario("Battlements (a)", 35, "45", requiredPartyAchievements: "1", blockingGlobalAchievements: "11");
-                SaveScenario("Battlements (b)", 36, requiredPartyAchievements: "1", blockingGlobalAchievements: "11");
-                SaveScenario("Doom Trench", 37, "47", requiredGlobalAchievements: "9");
-                SaveScenario("Slave Pens", 38, "48,44");
-                SaveScenario("Treacherous Divide", 39, "46,15");
-                SaveScenario("Ancient Defense Network", 40, "41", requiredPartyAchievements: "21,22");
-                SaveScenario("Timeworn Tomb", 41, requiredPartyAchievements: "21");
-                SaveScenario("Realm of the Voice", 42, requiredPartyAchievements: "20", blockingGlobalAchievements: "402");
-                SaveScenario("Drake Nest", 43, requiredGlobalAchievements: "8");
-                SaveScenario("Tribal Assault", 44, requiredPartyAchievements: "14");
-                SaveScenario("Rebel Swamp", 45, "49,50", requiredGlobalAchievements: "203");
-                SaveScenario("Nigthmare Peak", 46, "51", requiredPartyAchievements: "3");
-                SaveScenario("Lair of the Unseeing Eye", 47, "51", requiredPartyAchievements: "25");
-                SaveScenario("Shadow Weald", 48, "51", requiredPartyAchievements: "14");
-                SaveScenario("Rebel's Stand", 49, requiredGlobalAchievements: "203");
-                SaveScenario("Ghost Fortress", 50, requiredGlobalAchievements: "203", blockingGlobalAchievements: "16");
-                SaveScenario("The Void", 51, requiredGlobalAchievements: "133");
-                SaveScenario("Noxious Cellar", 52, "53");
-                SaveScenario("Crypt Basement", 53, "54");
-                SaveScenario("Palace of Ice", 54);
-                SaveScenario("Foggy Thicket", 55, "56");
-                SaveScenario("Bandits Wood", 56);
-                SaveScenario("Investigation", 57, "58");
-                SaveScenario("Bloody Shack", 58);
-                SaveScenario("Forgotton Grove", 59, "60");
-                SaveScenario("Alchemy Lab", 60);
-                SaveScenario("Fading Lighthouse", 61, "62");
-                SaveScenario("Pit of Souls", 62);
-                SaveScenario("Magma Pit", 63);
-                SaveScenario("Underwater Lagoon", 64, requiredGlobalAchievements: "9");
-                SaveScenario("Sulfur Mine", 65);
-                SaveScenario("Clockwork Cove", 66);
-                SaveScenario("Arcane Library", 67);
-                SaveScenario("Toxic Moor", 68);
-                SaveScenario("Well of the Unfortunate", 69);
-                SaveScenario("Chained Isle", 70);
-                SaveScenario("Windswept Highlands", 71);
-                SaveScenario("Oozing Grove", 72);
-                SaveScenario("Rockslide Ridge", 73);
-                SaveScenario("Merchant Ship", 74, requiredPartyAchievements: "12");
-                SaveScenario("Overgrown Graveyard", 75, requiredPartyAchievements: "11");
-                SaveScenario("Harrower Hive", 76);
-                SaveScenario("Vault of Secrets", 77);
-                SaveScenario("Sacrifice Pit", 78);
-                SaveScenario("Lost Temple", 79, requiredPartyAchievements: "9");
-                SaveScenario("Vigil Keep", 80);
-                SaveScenario("Temple of the Eclipse", 81);
-                SaveScenario("Burning Mountain", 82);
-                SaveScenario("Shadows Within", 83, requiredPartyAchievements: "5");
-                SaveScenario("Crystalline Cave", 84, requiredPartyAchievements: "26");
-                SaveScenario("Sun Temple", 85);
-                SaveScenario("Harried Village", 86, "87");
-                SaveScenario("Corrupted Cove", 87, requiredPartyAchievements: "19");
-                SaveScenario("Plane of Water", 88, requiredPartyAchievements: "27", requiredGlobalAchievements: "9");
-                SaveScenario("Syndicate Hideout", 89, requiredPartyAchievements: "15");
-                SaveScenario("Demonic Rift", 90);
-                SaveScenario("Wild Melee", 91);
-                SaveScenario("Back Alley Brawl", 92, requiredPartyAchievements: "7");
-                SaveScenario("Sunken Vessel", 93, requiredPartyAchievements: "2");
-                SaveScenario("Vermling Nest", 94, "95");
-                SaveScenario("Payment Due", 95, requiredPartyAchievements: "23");
+                DatabaseUpdateHelper.SaveScenario("Black Barrow", 1, "2");
+                DatabaseUpdateHelper.SaveScenario("Barrow Lair", 2, "3,4", requiredPartyAchievements: "8");
+                DatabaseUpdateHelper.SaveScenario("Inox Encampment", 3, "8,9", blockingGlobalAchievements: "5");
+                DatabaseUpdateHelper.SaveScenario("Crypt of the Damned", 4, "5,6");
+                DatabaseUpdateHelper.SaveScenario("Ruinous Crypt", 5, "10,19,14");
+                DatabaseUpdateHelper.SaveScenario("Decaying Crypt", 6, "8");
+                DatabaseUpdateHelper.SaveScenario("Vibrant Grotto", 7, "20", requiredGlobalAchievements: "5,8");
+                DatabaseUpdateHelper.SaveScenario("Gloomhaven Warehouse", 8, "14,13,7", requiredPartyAchievements: "13", blockingGlobalAchievements: "6");
+                DatabaseUpdateHelper.SaveScenario("Diamond Mine", 9, "11,12", blockingGlobalAchievements: "5");
+                DatabaseUpdateHelper.SaveScenario("Plane of Elemental Power", 10, "21,22", blockingGlobalAchievements: "11");
+                DatabaseUpdateHelper.SaveScenario("Square (a)", 11, "16,18", blockingGlobalAchievements: "12");
+                DatabaseUpdateHelper.SaveScenario("Square (b)", 12, "16,18,28", blockingGlobalAchievements: "12");
+                DatabaseUpdateHelper.SaveScenario("Temple of the Seer", 13, "15,17,20");
+                DatabaseUpdateHelper.SaveScenario("Frozen Hollow", 14);
+                DatabaseUpdateHelper.SaveScenario("Shrine of Strength", 15);
+                DatabaseUpdateHelper.SaveScenario("Mountain Pass", 16, "24,25");
+                DatabaseUpdateHelper.SaveScenario("Lost Island", 17);
+                DatabaseUpdateHelper.SaveScenario("Abandoned Sewers", 18, "23,43,26,14");
+                DatabaseUpdateHelper.SaveScenario("Forgotten Crypt", 19, "27", requiredGlobalAchievements: "8");
+                DatabaseUpdateHelper.SaveScenario("Necromancer's Sanctum", 20, "18,16,28", requiredGlobalAchievements: "5");
+                DatabaseUpdateHelper.SaveScenario("Infernal Throne", 21, blockingGlobalAchievements: "11");
+                DatabaseUpdateHelper.SaveScenario("Temple of the Elements", 22, "36,35,31", requiredPartyAchievements: "1,10"); // OR
+                DatabaseUpdateHelper.SaveScenario("Deep Ruins", 23);
+                DatabaseUpdateHelper.SaveScenario("Echo Chamber", 24, "30,32");
+                DatabaseUpdateHelper.SaveScenario("Icecrag Ascent", 25, "33,34");
+                DatabaseUpdateHelper.SaveScenario("Ancient Cistern", 26, "22", requiredGlobalAchievements: "9", requiredPartyAchievements: "24"); //OR
+                DatabaseUpdateHelper.SaveScenario("Ruinous Rift", 27, blockingGlobalAchievements: "302", requiredPartyAchievements: "16");
+                DatabaseUpdateHelper.SaveScenario("Outer Ritual Chamber", 28, "29", requiredPartyAchievements: "6");
+                DatabaseUpdateHelper.SaveScenario("Sanctuary of Gloom", 29, requiredPartyAchievements: "4");
+                DatabaseUpdateHelper.SaveScenario("Shrine of the Depths", 30, "42", requiredPartyAchievements: "21");
+                DatabaseUpdateHelper.SaveScenario("Plane of Night", 31, "39,37,38,43", requiredGlobalAchievements: "8,301");
+                DatabaseUpdateHelper.SaveScenario("Decrepit Wood", 32, "33,40", requiredPartyAchievements: "21");
+                DatabaseUpdateHelper.SaveScenario("Savvas Armory", 33, requiredPartyAchievements: "21,17"); // OR
+                DatabaseUpdateHelper.SaveScenario("Scorched Summit", 34, requiredPartyAchievements: "17", blockingGlobalAchievements: "102");
+                DatabaseUpdateHelper.SaveScenario("Battlements (a)", 35, "45", requiredPartyAchievements: "1", blockingGlobalAchievements: "11");
+                DatabaseUpdateHelper.SaveScenario("Battlements (b)", 36, requiredPartyAchievements: "1", blockingGlobalAchievements: "11");
+                DatabaseUpdateHelper.SaveScenario("Doom Trench", 37, "47", requiredGlobalAchievements: "9");
+                DatabaseUpdateHelper.SaveScenario("Slave Pens", 38, "48,44");
+                DatabaseUpdateHelper.SaveScenario("Treacherous Divide", 39, "46,15");
+                DatabaseUpdateHelper.SaveScenario("Ancient Defense Network", 40, "41", requiredPartyAchievements: "21,22");
+                DatabaseUpdateHelper.SaveScenario("Timeworn Tomb", 41, requiredPartyAchievements: "21");
+                DatabaseUpdateHelper.SaveScenario("Realm of the Voice", 42, requiredPartyAchievements: "20", blockingGlobalAchievements: "402");
+                DatabaseUpdateHelper.SaveScenario("Drake Nest", 43, requiredGlobalAchievements: "8");
+                DatabaseUpdateHelper.SaveScenario("Tribal Assault", 44, requiredPartyAchievements: "14");
+                DatabaseUpdateHelper.SaveScenario("Rebel Swamp", 45, "49,50", requiredGlobalAchievements: "203");
+                DatabaseUpdateHelper.SaveScenario("Nigthmare Peak", 46, "51", requiredPartyAchievements: "3");
+                DatabaseUpdateHelper.SaveScenario("Lair of the Unseeing Eye", 47, "51", requiredPartyAchievements: "25");
+                DatabaseUpdateHelper.SaveScenario("Shadow Weald", 48, "51", requiredPartyAchievements: "14");
+                DatabaseUpdateHelper.SaveScenario("Rebel's Stand", 49, requiredGlobalAchievements: "203");
+                DatabaseUpdateHelper.SaveScenario("Ghost Fortress", 50, requiredGlobalAchievements: "203", blockingGlobalAchievements: "16");
+                DatabaseUpdateHelper.SaveScenario("The Void", 51, requiredGlobalAchievements: "133");
+                DatabaseUpdateHelper.SaveScenario("Noxious Cellar", 52, "53");
+                DatabaseUpdateHelper.SaveScenario("Crypt Basement", 53, "54");
+                DatabaseUpdateHelper.SaveScenario("Palace of Ice", 54);
+                DatabaseUpdateHelper.SaveScenario("Foggy Thicket", 55, "56");
+                DatabaseUpdateHelper.SaveScenario("Bandits Wood", 56);
+                DatabaseUpdateHelper.SaveScenario("Investigation", 57, "58");
+                DatabaseUpdateHelper.SaveScenario("Bloody Shack", 58);
+                DatabaseUpdateHelper.SaveScenario("Forgotton Grove", 59, "60");
+                DatabaseUpdateHelper.SaveScenario("Alchemy Lab", 60);
+                DatabaseUpdateHelper.SaveScenario("Fading Lighthouse", 61, "62");
+                DatabaseUpdateHelper.SaveScenario("Pit of Souls", 62);
+                DatabaseUpdateHelper.SaveScenario("Magma Pit", 63);
+                DatabaseUpdateHelper.SaveScenario("Underwater Lagoon", 64, requiredGlobalAchievements: "9");
+                DatabaseUpdateHelper.SaveScenario("Sulfur Mine", 65);
+                DatabaseUpdateHelper.SaveScenario("Clockwork Cove", 66);
+                DatabaseUpdateHelper.SaveScenario("Arcane Library", 67);
+                DatabaseUpdateHelper.SaveScenario("Toxic Moor", 68);
+                DatabaseUpdateHelper.SaveScenario("Well of the Unfortunate", 69);
+                DatabaseUpdateHelper.SaveScenario("Chained Isle", 70);
+                DatabaseUpdateHelper.SaveScenario("Windswept Highlands", 71);
+                DatabaseUpdateHelper.SaveScenario("Oozing Grove", 72);
+                DatabaseUpdateHelper.SaveScenario("Rockslide Ridge", 73);
+                DatabaseUpdateHelper.SaveScenario("Merchant Ship", 74, requiredPartyAchievements: "12");
+                DatabaseUpdateHelper.SaveScenario("Overgrown Graveyard", 75, requiredPartyAchievements: "11");
+                DatabaseUpdateHelper.SaveScenario("Harrower Hive", 76);
+                DatabaseUpdateHelper.SaveScenario("Vault of Secrets", 77);
+                DatabaseUpdateHelper.SaveScenario("Sacrifice Pit", 78);
+                DatabaseUpdateHelper.SaveScenario("Lost Temple", 79, requiredPartyAchievements: "9");
+                DatabaseUpdateHelper.SaveScenario("Vigil Keep", 80);
+                DatabaseUpdateHelper.SaveScenario("Temple of the Eclipse", 81);
+                DatabaseUpdateHelper.SaveScenario("Burning Mountain", 82);
+                DatabaseUpdateHelper.SaveScenario("Shadows Within", 83, requiredPartyAchievements: "5");
+                DatabaseUpdateHelper.SaveScenario("Crystalline Cave", 84, requiredPartyAchievements: "26");
+                DatabaseUpdateHelper.SaveScenario("Sun Temple", 85);
+                DatabaseUpdateHelper.SaveScenario("Harried Village", 86, "87");
+                DatabaseUpdateHelper.SaveScenario("CorruptDatabaseUpdateHelper.ed Cove", 87, requiredPartyAchievements: "19");
+                DatabaseUpdateHelper.SaveScenario("Plane of Water", 88, requiredPartyAchievements: "27", requiredGlobalAchievements: "9");
+                DatabaseUpdateHelper.SaveScenario("Syndicate Hideout", 89, requiredPartyAchievements: "15");
+                DatabaseUpdateHelper.SaveScenario("Demonic Rift", 90);
+                DatabaseUpdateHelper.SaveScenario("Wild Melee", 91);
+                DatabaseUpdateHelper.SaveScenario("Back Alley Brawl", 92, requiredPartyAchievements: "7");
+                DatabaseUpdateHelper.SaveScenario("Sunken Vessel", 93, requiredPartyAchievements: "2");
+                DatabaseUpdateHelper.SaveScenario("Vermling Nest", 94, "95");
+                DatabaseUpdateHelper.SaveScenario("Payment Due", 95, requiredPartyAchievements: "23");
+
+                DatabaseUpdateHelper.SaveFCScenarios();
+
                 Connection.Commit();
             }
             catch
@@ -1709,28 +1671,6 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Connection.Rollback();
                 throw;
             }
-        }
-
-        private static void SaveScenario(string name, int scenarionumber,
-                                         string unlockedScenarioIdsCommaSeparated = "",
-                                         string requiredGlobalAchievements = "",
-                                         string requiredPartyAchievements = "",
-                                         string blockingGlobalAchievements = "",
-                                         string blockingPartyAchievements = "")
-        {
-            var scenario = new DL_Scenario
-            {
-                Name = name,
-                Scenarionumber = scenarionumber,
-                UnlockedScenarios = unlockedScenarioIdsCommaSeparated,
-                RequiredGlobalAchievements = requiredGlobalAchievements,
-                RequiredPartyAchievements = requiredPartyAchievements,
-                BlockingGlobalAchievements = blockingGlobalAchievements,
-                BlockingPartyAchievements = blockingPartyAchievements
-            };
-
-            ScenarioRepository.InsertOrReplace(scenario);
-        }
-
+        }     
     }
 }

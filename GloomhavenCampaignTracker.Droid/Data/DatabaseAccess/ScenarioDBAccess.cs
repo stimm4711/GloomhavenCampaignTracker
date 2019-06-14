@@ -120,5 +120,14 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 Connection.Query<DL_Scenario>(query, commaSeparatedScenarioNumbers, scenarioNumber);
             }
         }
+
+        internal void UpdateScenarioContentOf(int scenarioNumber, int contentOf)
+        {
+            lock (locker)
+            {
+                var query = "UPDATE DL_Scenario SET ContentOfPack = ? WHERE Scenarionumber = ?";
+                Connection.Query<DL_Scenario>(query, contentOf, scenarioNumber);
+            }
+        }
     }
 }

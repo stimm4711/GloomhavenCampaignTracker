@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace GloomhavenCampaignTracker.Shared.Data.Entities
 {
@@ -12,5 +13,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         [MaxLength(250), Unique]
         public string Name { get; set; }
+
+        public int ContentOfPack { get; set; } // 1 = gloomhaven, 2 = forgotten circles
     }
 }

@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 7);
+        public static Version Dbversion { get; } = new Version(1, 4, 10);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
@@ -100,9 +100,13 @@ namespace Data
                     AddDivinerClass();
                 }
 
-                if ((VersionTime)old.CompareTo(new Version(1, 4, 9)) == VersionTime.Earlier)
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 10)) == VersionTime.Earlier)
                 {
-                    AddDivinerClassPerks();
+                    AddContentOfID();
+                    AddFCGlobalAchievements();
+                    AddFCPartyAchievements();
+                    AddFCScenarios();
+                    AddFCItems();
                 }
 
                 currentDbVersion.Value = Dbversion.ToString();
@@ -110,27 +114,299 @@ namespace Data
             }
         }
 
-        private static void AddDivinerClassPerks()
+        private static void AddFCItems()
+        {           
+            Connection.BeginTransaction();
+            try
+            {       
+                var items = ItemRepository.Get();
+                SaveFCItems(items);
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        internal static void SaveFCItems(List<DL_Item> items)
         {
-           
+            /* Categories
+             * 
+             * 0 = helmet
+             * 1= armor
+             * 2= one hand
+             * 3= two hand
+             * 4= boots
+             * 5= small
+             * 
+             */
+
+            SaveItem(itemnumber: 152, itemname: "Ring of Duality", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 153, itemname: "Minor Antidote", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 25, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 154, itemname: "Major Antidote", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 155, itemname: "Curseward Armor", itemcategorie: 1, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 156, itemname: "Elemental Claymore", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 50, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 157, itemname: "Ancient Bow", itemcategorie: 3, itemcount: 2, itemtext: "", itemprice: 40, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 158, itemname: "Rejuvenation Greaves", itemcategorie: 4, itemcount: 2, itemtext: "", itemprice: 35, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 159, itemname: "Scroll of Haste", itemcategorie: 5, itemcount: 2, itemtext: "", itemprice: 30, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 160, itemname: "Cutpurse Dagger", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 45, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 161, itemname: "Throwing Axe", itemcategorie: 2, itemcount: 2, itemtext: "", itemprice: 35, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 162, itemname: "Rift Device", itemcategorie: 5, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 163, itemname: "Crystal Tiara", itemcategorie: 0, itemcount: 1, itemtext: "", itemprice: 75, prosperitylevel: 150, items, 2);
+            SaveItem(itemnumber: 164, itemname: "Basin of Prophecy", itemcategorie: 3, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 150, items, 2);
+        }
+
+        private static void AddContentOfID()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                // Content of 
+                // 1 = Gloomhaven
+                // 2 = Forgotten Circles
+             
+                // Update classes
+                var classes = ClassRepository.Get();
+                foreach(var cl in classes)
+                {
+                    if (cl.ClassId < 18)
+                        cl.ContentOfPack = 1;
+                    if (cl.ClassId == 18)
+                        cl.ContentOfPack = 2;
+
+                    ClassRepository.InsertOrReplace(cl);
+                }
+
+                // Update AchievementTypes
+                var gachievement = AchievementTypeRepository.Get();
+                var fcAcheievements = new List<int> { 17, 181, 182, 183, 184, 191, 192, 193, 2001, 2002, 2003, 2004, 21, 22 };
+                foreach (var ga in gachievement)
+                {
+                    if (fcAcheievements.Contains(ga.InternalNumber))
+                        ga.ContentOfPack = 2;
+                    else
+                        ga.ContentOfPack = 1;
+
+                    AchievementTypeRepository.InsertOrReplace(ga);
+                }
+
+                // Update Items
+                var items = ItemRepository.GetAllWithChildren();               
+                // fc items = 152 -164
+                foreach (var item in items)
+                {
+                    if (item.Itemnumber < 152)
+                        item.ContentOfPack = 1;
+                    else
+                        item.ContentOfPack = 2;
+
+                    ItemRepository.InsertOrReplace(item);
+                }
+
+                // update party achievements
+                var paachievements = PartyAchievementRepository.Get();
+                foreach (var pa in paachievements)
+                {
+                    if (pa.InternalNumber < 28)
+                        pa.ContentOfPack = 1;
+                    else
+                        pa.ContentOfPack = 2;
+
+                    PartyAchievementRepository.InsertOrReplace(pa);
+                }
+
+                // update scenarios
+                var scenarios = ScenarioRepository.Get();
+                foreach (var s in scenarios)
+                {
+                    if (s.Scenarionumber < 96)
+                        ScenarioRepository.UpdateScenarioContentOf(s.Scenarionumber,1);  
+                    else
+                        ScenarioRepository.UpdateScenarioContentOf(s.Scenarionumber, 2);                    
+                }
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        private static void AddFCPartyAchievements()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                SaveFCPartyAchievements();
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        internal static void SaveFCPartyAchievements()
+        {
+            SavePartyAchievement(29, "Hunting the Hunter", contentOfPack: 2);
+            SavePartyAchievement(30, "Guard Detail", contentOfPack: 2);
+            SavePartyAchievement(31, "Dimensional Equilibrium", contentOfPack: 2);
+            SavePartyAchievement(32, "Angels of Death", contentOfPack: 2);
+            SavePartyAchievement(33, "Diamara's Aid", contentOfPack: 2);
+            SavePartyAchievement(34, "Hunted Prey", contentOfPack: 2);
+        }
+
+        internal static void SavePartyAchievement(int number, string name, int contentOfPack = 1)
+        {
+            var achievement = new DL_PartyAchievement
+            {
+                Name = name,
+                InternalNumber = number,
+                ContentOfPack = contentOfPack
+            };
+
+            PartyAchievementRepository.InsertOrReplace(achievement);
+        }
+
+        private static void AddFCScenarios()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                SaveFCScenarios();
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        internal static void SaveFCScenarios()
+        {
+            SaveScenario("Unexpected Visitors", 96, requiredGlobalAchievements: "14", contentOfPack: 2);
+            SaveScenario("Lore Untold", 97, unlockedScenarioIdsCommaSeparated: "98,99,100,101", contentOfPack: 2);
+            SaveScenario("Past in Flames", 98, contentOfPack: 2);
+            SaveScenario("Aftershocks", 99, contentOfPack: 2);
+            SaveScenario("Shifting Gears", 100, contentOfPack: 2);
+            SaveScenario("Shrouded Crypt", 101, contentOfPack: 2);
+            SaveScenario("Bazaar of Knowledge", 102, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2);
+            SaveScenario("Where It Is Needed", 103, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2);
+            SaveScenario("A Gaping Wound", 104, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2);
+            SaveScenario("Monstrosities of a Cult", 105, requiredGlobalAchievements: "182", blockingPartyAchievements: "29", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2);
+            SaveScenario("Intricate Work", 106, requiredGlobalAchievements: "182", contentOfPack: 2);
+            SaveScenario("Mechanical Genius", 107, requiredGlobalAchievements: "182", contentOfPack: 2);
+            SaveScenario("Prologue to the End", 108, requiredGlobalAchievements: "182", contentOfPack: 2);
+            SaveScenario("Epilogue of a War", 109, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "113", contentOfPack: 2);
+            SaveScenario("A Circular Solution", 110, contentOfPack: 2);
+            SaveScenario("The Shackles Loosen", 111, contentOfPack: 2);
+            SaveScenario("The Bottom of It", 112, contentOfPack: 2);
+            SaveScenario("The Lost Thread", 113, contentOfPack: 2);
+            SaveScenario("Ink Not Yet Dry", 114, unlockedScenarioIdsCommaSeparated: "115", contentOfPack: 2);
+            SaveScenario("Future Uncertain", 115, contentOfPack: 2);
+        }
+
+        internal static void SaveScenario(string name, int scenarionumber,
+                                        string unlockedScenarioIdsCommaSeparated = "",
+                                        string requiredGlobalAchievements = "",
+                                        string requiredPartyAchievements = "",
+                                        string blockingGlobalAchievements = "",
+                                        string blockingPartyAchievements = "",
+                                        int contentOfPack = 1)
+        {
+            var scenario = new DL_Scenario
+            {
+                Name = name,
+                Scenarionumber = scenarionumber,
+                UnlockedScenarios = unlockedScenarioIdsCommaSeparated,
+                RequiredGlobalAchievements = requiredGlobalAchievements,
+                RequiredPartyAchievements = requiredPartyAchievements,
+                BlockingGlobalAchievements = blockingGlobalAchievements,
+                BlockingPartyAchievements = blockingPartyAchievements,
+                ContentOfPack = contentOfPack
+            };
+
+            ScenarioRepository.InsertOrReplace(scenario);
+        }
+
+        private static void AddFCGlobalAchievements()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                SaveFCGlobalAchievements();
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        internal static void SaveFCGlobalAchievements()
+        {
+            SaveAchievementType("Through the Portal", 17, contentOfPack: 2);
+            SaveAchievementType("Knowledge is Power", 180, steps: 4, contentOfPack: 2);
+            SaveAchievementType("Pieces of an Artifact", 19, steps: 3, contentOfPack: 2);
+            SaveAchievementType("A Peril Averted", 2000, steps: 4, contentOfPack: 2);
+            SaveAchievementType("Mechanical Splendor", 21, contentOfPack: 2);
+            SaveAchievementType("Severed Ties", 22, contentOfPack: 2);
+        }
+
+        internal static void SaveAchievementType(string name, int internalNumber, int steps = 1, List<DL_Achievement> achievements = null, int contentOfPack = 1)
+        {
+            if (achievements == null)
+            {
+                achievements = new List<DL_Achievement>();
+            }
+
+            var achievement = new DL_AchievementType
+            {
+                Name = name,
+                InternalNumber = internalNumber,
+                Steps = steps,
+                Achievements = achievements,
+                ContentOfPack = contentOfPack
+            };
+
+            AchievementTypeRepository.InsertOrReplace(achievement);
         }
 
         private static void FixSawHealPerk()
         {
-            DL_ClassPerk perk = ClassPerkRepository.GetClassPerks(14).FirstOrDefault(x => x.Checkboxnumber == 13);
-
-            if (perk != null)
+            Connection.BeginTransaction();
+            try
             {
-                perk.Perktext = "Add one [RM] HEAL [H] 3, SELF card";
-                ClassPerkRepository.UpdatePerkText(perk);
+                DL_ClassPerk perk = ClassPerkRepository.GetClassPerks(14).FirstOrDefault(x => x.Checkboxnumber == 13);
+
+                if (perk != null)
+                {
+                    perk.Perktext = "Add one [RM] HEAL [H] 3, SELF card";
+                    ClassPerkRepository.UpdatePerkText(perk);
+                }
+
+                perk = ClassPerkRepository.GetClassPerks(14).FirstOrDefault(x => x.Checkboxnumber == 14);
+                if (perk != null)
+                {
+                    perk.Perktext = "Add one [RM] HEAL [H] 3, SELF card";
+
+                    ClassPerkRepository.UpdatePerkText(perk);
+                }
+
+                Connection.Commit();
             }
-
-            perk = ClassPerkRepository.GetClassPerks(14).FirstOrDefault(x => x.Checkboxnumber == 14);
-            if (perk != null)
+            catch
             {
-                perk.Perktext = "Add one [RM] HEAL [H] 3, SELF card";
-
-                ClassPerkRepository.UpdatePerkText(perk);
+                Connection.Rollback();
+                throw;
             }
         }
 
@@ -443,43 +719,61 @@ namespace Data
 
         private static void AddDivinerClass()
         {
-            var classes = ClassRepository.Get();
-
-            if (!classes.Any(x => x.ClassId == 18))
+            Connection.BeginTransaction();
+            try
             {
-                // add Aesther Diviner
-                var cl = new DL_Class
-                {
-                    Abilities = new List<DL_ClassAbility>(),
-                    Characters = new List<DL_Character>(),
-                    ClassId = 18,
-                    ClassName = "Aesther Diviner",
-                    Perks = new List<DL_ClassPerks>()
-                };
+                var classes = ClassRepository.Get();
 
-                SaveClass(cl);
+                if (!classes.Any(x => x.ClassId == 18))
+                {
+                    // add Aesther Diviner
+                    var cl = new DL_Class
+                    {
+                        Abilities = new List<DL_ClassAbility>(),
+                        Characters = new List<DL_Character>(),
+                        ClassId = 18,
+                        ClassName = "Aesther Diviner",
+                        Perks = new List<DL_ClassPerks>()
+                    };
+
+                    SaveClass(cl);
+                }
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
             }
         }
 
         private static void AddItem151()
         {
-            SaveItem(itemnumber: 151, itemname: "Blade of the Sands", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200);
+            var items = ItemRepository.Get();
+            SaveItem(itemnumber: 151, itemname: "Blade of the Sands", itemcategorie: 2, itemcount: 1, itemtext: "", itemprice: 50, prosperitylevel: 200, items);
         }
 
-        private static void SaveItem(int itemnumber, string itemname, int itemcategorie, int itemcount, string itemtext, int itemprice, int prosperitylevel)
+        internal static void SaveItem(int itemnumber, string itemname, int itemcategorie, int itemcount, string itemtext, int itemprice, int prosperitylevel, List<DL_Item> items, int contentpack = 1)
         {
-            var item = new DL_Item
+            if (!items.Any(x => x.Itemnumber == itemnumber))
             {
-                Itemcategorie = itemcategorie,
-                Itemcount = itemcount,
-                Itemname = itemname,
-                Itemnumber = itemnumber,
-                Itemprice = itemprice,
-                Itemtext = itemtext,
-                Prosperitylevel = prosperitylevel
-            };
+                var item = new DL_Item
+                {
+                    Itemcategorie = itemcategorie,
+                    Itemcount = itemcount,
+                    Itemname = itemname,
+                    Itemnumber = itemnumber,
+                    Itemprice = itemprice,
+                    Itemtext = itemtext,
+                    Prosperitylevel = prosperitylevel,
+                    ContentOfPack = contentpack
+                };
 
-            ItemRepository.InsertOrReplace(item);
+                ItemRepository.InsertOrReplace(item);
+
+                items.Add(item);
+            }
         }
 
         private static void FixNameOfScenario83()
@@ -1672,9 +1966,9 @@ namespace Data
                 Connection.BeginTransaction();
                 try
                 {
-                    GloomhavenDbHelper.SavePartyAchievement(
+                    SavePartyAchievement(
                        28,
-                       "Sun Blessed"
+                       "Sun Blessed", contentOfPack:1
                     );
 
                     Connection.Commit();

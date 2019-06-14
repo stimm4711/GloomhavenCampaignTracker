@@ -17,6 +17,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         [ForeignKey(typeof(DL_AchievementType))]
         public int ID_AchievementType { get; set; }
+        
 
         [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead)]
         public DL_AchievementType AchievementType { get; set; }

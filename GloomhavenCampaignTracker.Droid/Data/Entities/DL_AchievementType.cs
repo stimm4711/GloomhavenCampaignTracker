@@ -18,6 +18,8 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         public int Steps { get; set; }
 
+        public int ContentOfPack { get; set; } // 1 = gloomhaven, 2 = forgotten circles
+
         [ManyToMany(typeof(DL_CampaignGlobalAchievement), CascadeOperations = CascadeOperation.CascadeRead)]
         public List<DL_Campaign> Campaigns { get; set; }
 

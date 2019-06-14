@@ -183,7 +183,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
         {
             lock (locker)
             {
-                var query = "Select Id, Name FROM DL_AchievementType";
+                var query = "Select Id, Name , ContentOfPack FROM DL_AchievementType";
                 var result = Connection.Query<DL_AchievementType>(query);
 
                 return result;
