@@ -27,7 +27,6 @@
             android:textColor="@color/gloom_primaryText"
             android:padding="5px"
             android:gravity="center"
-            android:drawableTop="@drawable/ic_location"
             android:drawablePadding="5px"
             android:textSize="18dp" />
         <Button
@@ -40,13 +39,11 @@
             android:padding="5px"
             android:gravity="center"
             android:layout_marginTop="15px"
-            android:drawableTop="@drawable/ic_achievement"
             android:drawablePadding="5px"
             android:textSize="18dp" />
         <Button
             android:text="Road Events"
             android:id="@+id/roadeventsButton"
-            android:drawableTop="@drawable/ic_road"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/borderbuttons"
