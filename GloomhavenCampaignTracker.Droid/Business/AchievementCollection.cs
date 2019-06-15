@@ -84,7 +84,13 @@ namespace GloomhavenCampaignTracker.Business
         DimensionalEquilibrium = 31,
         AngelsOfDeath = 32,
         DiamarasAid = 33,
-        HuntedPrey = 34
+        HuntedPrey = 34,
+        Accomplices = 35,
+        Saboteurs = 36,
+        Custodians = 37,
+        AStrongbox = 38,
+        Opportunists = 39
+
     }
 
     public class AchievementCollection

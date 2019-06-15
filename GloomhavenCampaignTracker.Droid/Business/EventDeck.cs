@@ -106,6 +106,11 @@ namespace GloomhavenCampaignTracker.Business
         {
             return _eventDeckItems;
         }
+
+        public void ClearDeck()
+        {
+            _eventDeckItems.Clear();
+        }
     }
 
 }

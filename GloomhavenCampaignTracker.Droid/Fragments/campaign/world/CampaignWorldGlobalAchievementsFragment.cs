@@ -79,7 +79,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
             IEnumerable<DL_AchievementType> selectableAchievements = DataServiceCollection.CampaignDataService.GetAchievementTypesFlat();
 
-            if (!Campaign.CampaignData.CampaignUnlocks.CampaignCompleted || !GCTContext.ActivateForgottenCiclesContent)
+            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.ActivateForgottenCiclesContent)
                 selectableAchievements = selectableAchievements.Where(x => x.ContentOfPack == 1);
 
             if (Campaign.GlobalAchievements != null)
@@ -116,8 +116,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
                         if (achType.InternalNumber == (int)GlobalAchievementsInternalNumbers.EndOfGloom)
                         {
-                            Campaign.CampaignData.CampaignUnlocks.CampaignCompleted = true;
-
                             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                                 .SetMessage("Congratulatios! You have finished the campaign. Now you can play the expansion Forgotten Circles. Go to Settings to activate the content of the expansion.")
                                 .SetTitle("Campaign Finished!")

@@ -244,7 +244,138 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 var unlockedScenarioNumbers = campScenario.GetUnlockedScenarios();
                 var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;                                               
 
-                if (campScenario.Scenario.ScenarioNumber == 13)
+                if (campScenario.Scenario.ScenarioNumber == 98)
+                {
+                    // Choose Section for scenario unlock
+                    var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                    var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                    listview.ItemsCanFocus = true;
+                    listview.ChoiceMode = ChoiceMode.Single;
+
+                    var selectableSections = new List<int> { 59, 82, 55 };
+
+                    var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
+                    listview.Adapter = adapter;
+
+                    new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                        .SetCustomView(view)
+                        .SetTitle("Select section")
+                        .SetMessage($"Select the sectionnumber with your conclusion.")
+                        .SetPositiveButton("Select", (senderAlert, args) =>
+                        {
+                            if (listview.CheckedItemPosition == -1) return;
+
+                            var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition); 
+                            
+                            if (selectedSection == 59)
+                            {
+                                var unlockedcampscenario = currentCampaign.AddUnlockedScenario(102);
+                                Add(unlockedcampscenario);
+                            }
+                            else if (selectedSection == 82)
+                            {
+                                var unlockedcampscenario = currentCampaign.AddUnlockedScenario(102);
+                                Add(unlockedcampscenario);
+                                unlockedcampscenario = currentCampaign.AddUnlockedScenario(103);
+                                Add(unlockedcampscenario);
+                            }
+                            else if (selectedSection == 55)
+                            {
+                                var unlockedcampscenario = currentCampaign.AddUnlockedScenario(103);
+                                Add(unlockedcampscenario);
+                            }
+
+                            _listDataChild[_unlocked].Remove(campScenario);
+                            _listDataChild[_completed].Add(campScenario);                                                      
+
+                            NotifyDataSetChanged();
+
+                            _isCompleting = false;
+                        })
+                        .Show();
+                }
+                else if (campScenario.Scenario.ScenarioNumber == 100)
+                {
+                    // Choose Section for scenario unlock
+                    var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                    var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                    listview.ItemsCanFocus = true;
+                    listview.ChoiceMode = ChoiceMode.Single;
+
+                    var selectableSections = new List<int> { 36, 80 };
+
+                    var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
+                    listview.Adapter = adapter;
+
+                    new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                        .SetCustomView(view)
+                        .SetTitle("Select section")
+                        .SetMessage($"Select the sectionnumber with your conclusion.")
+                        .SetPositiveButton("Select", (senderAlert, args) =>
+                        {
+                            if (listview.CheckedItemPosition == -1) return;
+
+                            var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition);
+                                                       
+                            if (selectedSection == 80)
+                            {
+                                var unlockedcampscenario = currentCampaign.AddUnlockedScenario(106);
+                                Add(unlockedcampscenario);
+                                unlockedcampscenario = currentCampaign.AddUnlockedScenario(107);
+                                Add(unlockedcampscenario);
+                            }
+
+                            _listDataChild[_unlocked].Remove(campScenario);
+                            _listDataChild[_completed].Add(campScenario);
+
+                            NotifyDataSetChanged();
+
+                            _isCompleting = false;
+                        })
+                        .Show();
+                }
+                else if (campScenario.Scenario.ScenarioNumber == 99)
+                {
+                    // Choose Section for scenario unlock
+                    var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                    var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                    listview.ItemsCanFocus = true;
+                    listview.ChoiceMode = ChoiceMode.Single;
+
+                    var selectableSections = new List<int> { 16, 25 };
+
+                    var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
+                    listview.Adapter = adapter;
+
+                    new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                        .SetCustomView(view)
+                        .SetTitle("Select section")
+                        .SetMessage($"Select the sectionnumber with your conclusion.")
+                        .SetPositiveButton("Select", (senderAlert, args) =>
+                        {
+                            if (listview.CheckedItemPosition == -1) return;
+
+                            var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition);
+
+                            var unlockedcampscenario = currentCampaign.AddUnlockedScenario(104);
+                            Add(unlockedcampscenario);
+
+                            if (selectedSection == 16)
+                            {
+                                unlockedcampscenario = currentCampaign.AddUnlockedScenario(105);
+                                Add(unlockedcampscenario);
+                            }                          
+
+                            _listDataChild[_unlocked].Remove(campScenario);
+                            _listDataChild[_completed].Add(campScenario);
+
+                            NotifyDataSetChanged();
+
+                            _isCompleting = false;
+                        })
+                        .Show();
+                }
+                else if (campScenario.Scenario.ScenarioNumber == 13)
                 {
                     // Choose the Scenario to unlock
 

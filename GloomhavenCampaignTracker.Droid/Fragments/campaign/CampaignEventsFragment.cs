@@ -13,6 +13,7 @@ using Plugin.Connectivity;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Support.Percent;
+using System.Collections.Generic;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
@@ -61,8 +62,18 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
             if (GCTContext.CampaignCollection.CurrentCampaign != null)
             {
-                _eventDeck = _eventType == EventTypes.RoadEvent ? GCTContext.CampaignCollection.CurrentCampaign.RoadEventDeck :
-                                                                GCTContext.CampaignCollection.CurrentCampaign.CityEventDeck;
+                if (_eventType == EventTypes.CityEvent)
+                {
+                    _eventDeck = GCTContext.CampaignCollection.CurrentCampaign.CityEventDeck;
+                }
+                else if(_eventType == EventTypes.RoadEvent)
+                {
+                    _eventDeck = GCTContext.CampaignCollection.CurrentCampaign.RoadEventDeck;
+                }
+                else if (_eventType == EventTypes.RiftEvent)
+                {
+                    _eventDeck = GCTContext.CampaignCollection.CurrentCampaign.RiftEventDeck;
+                }                                                                
             }
         }
 
@@ -130,7 +141,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                         .SetTitle(Resources.GetString(Resource.String.InitializeEventDeck))
                         .SetPositiveButton(Resources.GetString(Resource.String.Initialize), (senderAlert, args) =>
                         {
-                            _eventDeck.InitializeDeck();
+                            if (_eventType == EventTypes.RiftEvent)
+                                _eventDeck.ClearDeck();
+                            else
+                                _eventDeck.InitializeDeck();
+
                             GCTContext.CurrentCampaign.InitializeEventDeck(_eventType);
                             InitHistoryAdapter();
                         })
@@ -197,7 +212,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 if (_eventType == EventTypes.CityEvent)
                 {
                     eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";
-                }               
+                }
+                else if(_eventType == EventTypes.RiftEvent)
+                {
+                    eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/rift/rf-";
+                }
 
                 showEventButton.Click += (s, args) =>
                 {
@@ -333,9 +352,17 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         {
             var cardId = _eventDeck.DrawCard();
 
+            cardId = RedrawIfRequirementNotMet(cardId);
+
             if (cardId == -1)
             {
                 Toast.MakeText(Context, Resources.GetString(Resource.String.EventdeckEmpty), ToastLength.Short).Show();
+                return;
+            }  
+            
+            if (cardId == -2)
+            { 
+                Toast.MakeText(Context, "No valid card in deck.", ToastLength.Long).Show();
                 return;
             }
 
@@ -351,13 +378,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 var putUnderButton = convertView.FindViewById<Button>(Resource.Id.putunder);
                 var outcome = convertView.FindViewById<EditText>(Resource.Id.outcome);
                 var radiooptionA = convertView.FindViewById<RadioButton>(Resource.Id.optionA);
-                var eventnumbertext = convertView.FindViewById<TextView>(Resource.Id.eventnumbertext);               
+                var eventnumbertext = convertView.FindViewById<TextView>(Resource.Id.eventnumbertext);
 
                 deciscion_layout.Visibility = ViewStates.Visible;
-                result_layout.Visibility = ViewStates.Gone;                
+                result_layout.Visibility = ViewStates.Gone;
 
                 string cardIdText = cardId.ToString();
-                if(cardId < 10)
+                if (cardId < 10)
                 {
                     cardIdText = $"0{cardId}";
                 }
@@ -365,9 +392,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 string eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/road/re-";
                 if (_eventType == EventTypes.CityEvent)
                 {
-                    eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";                  
+                    eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";
                 }
-
+                else if (_eventType == EventTypes.RiftEvent)
+                {
+                    eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/rift/rf-";
+                }
                 var eventFront = GetImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-f.png", pqimage, convertView);
                 eventnumbertext.Text = $"{Resources.GetString(Resource.String.EventNumber)}: {cardId}";
 
@@ -396,7 +426,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 {
                     if (deciscion_layout.Visibility == ViewStates.Visible)
                     {
-                        pqimage.SetImageDrawable(null); 
+                        pqimage.SetImageDrawable(null);
                         convertView.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Visible;
 
                         var eventback = GetEventBackImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png", pqimage, convertView, radiooptionA);
@@ -413,8 +443,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
                         deciscion_layout.Visibility = ViewStates.Visible;
                         result_layout.Visibility = ViewStates.Gone;
-                    }                   
-                };               
+                    }
+                };
             }
             else
             {
@@ -442,7 +472,79 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                    })
                    .SetNeutralButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
                    .Show();
-            }         
+            }
+        }
+
+        private int RedrawIfRequirementNotMet(int cardId)
+        {
+            var needRedraw = true;
+            var lstDrawnCards = new List<int>();
+            lstDrawnCards.Add(cardId);
+            while (needRedraw)
+            {
+                needRedraw = false;
+
+                if (_eventType == EventTypes.CityEvent)
+                {
+                    if (cardId == 84 && !Campaign.HasPartyAchievement((int)PartyAchievementsInternalNumbers.Opportunists))
+                    {
+                        PutBack(cardId);
+                        needRedraw = true;
+                    }
+
+                    if (cardId == 85 && !Campaign.HasPartyAchievement((int)PartyAchievementsInternalNumbers.AStrongbox))
+                    {
+                        PutBack(cardId);
+                        needRedraw = true;
+                    }
+
+                    if (cardId == 86 && !Campaign.HasPartyAchievement((int)PartyAchievementsInternalNumbers.Custodians))
+                    {
+                        PutBack(cardId);
+                        needRedraw = true;
+                    }
+
+                    if (cardId == 87 && !Campaign.HasPartyAchievement((int)PartyAchievementsInternalNumbers.GuardDetail))
+                    {
+                        PutBack(cardId);
+                        needRedraw = true;
+                    }
+                }
+
+                if (_eventType == EventTypes.RiftEvent)
+                {
+                    if (cardId == 16 && !Campaign.HasPartyAchievement((int)PartyAchievementsInternalNumbers.HuntedPrey))
+                    {
+                        PutBack(cardId);
+                        needRedraw = true;
+                    }
+
+                    if (cardId == 17 && !Campaign.HasPartyAchievement((int)PartyAchievementsInternalNumbers.Accomplices))
+                    {
+                        PutBack(cardId);
+                        needRedraw = true;
+                    }
+
+                    if (cardId == 18 && !Campaign.HasPartyAchievement((int)PartyAchievementsInternalNumbers.Saboteurs))
+                    {
+                        PutBack(cardId);
+                        needRedraw = true;
+                    }
+                }
+
+                if (needRedraw)
+                {                   
+                    Toast.MakeText(Context, "Requirement not met. Put event under deck and redrawn a new event.", ToastLength.Long).Show();
+                    cardId = _eventDeck.DrawCard();
+                    
+                    if (lstDrawnCards.Contains(cardId))
+                    {                        
+                        return -2;
+                    }
+                }
+            }
+
+            return cardId;
         }
 
         private async Task<Bitmap> GetEventBackImageBitmapFromUrlAsync(string url, ImageView imagen, View view, RadioButton radiooptionA)

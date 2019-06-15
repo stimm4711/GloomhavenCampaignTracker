@@ -976,3 +976,4 @@ F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\stamp\_
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\stamp\_GenerateJavaStubs.stamp
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\stamp\_GeneratePackageManagerJava.stamp
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\stamp\_ResolveLibraryProjectImports.stamp
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\GloomhavenCampaignTracker.Droid.csprojAssemblyReference.cache

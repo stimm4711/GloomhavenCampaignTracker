@@ -106,7 +106,8 @@
   <string name="EventdeckEmpty">Eventdeck is empty</string>
   <string name="AddedShuffled">Added, Shuffled</string>
   <string name="DeleteEventhistoryEntry">Delete eventhistory entry?</string>
-  
+  <string name="RiftEvents">Rift Events</string>
+
   <!-- Global Achievements -->
   <string name="GlobalAchievements">Global Achievements</string>
   <string name="AssignGlobalAchievement">Assign Global Achievement</string>

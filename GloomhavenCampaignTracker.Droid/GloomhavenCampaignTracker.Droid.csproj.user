@@ -4,6 +4,6 @@
     <SelectedDevice>my_device</SelectedDevice>
     <DefaultDevice>my_device</DefaultDevice>
     <AndroidDesignerPreferredTheme>MyTheme</AndroidDesignerPreferredTheme>
-    <AndroidDesignerPreferredDevice>Nexus 7 2013</AndroidDesignerPreferredDevice>
+    <AndroidDesignerPreferredDevice>5.4in FWVGA</AndroidDesignerPreferredDevice>
   </PropertyGroup>
 </Project>

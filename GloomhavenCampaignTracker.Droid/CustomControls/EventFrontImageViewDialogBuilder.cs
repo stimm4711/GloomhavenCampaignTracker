@@ -114,11 +114,14 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
             Button pbutton = alert.GetButton((int)DialogButtonType.Positive);
             pbutton.SetTextSize(Android.Util.ComplexUnitType.Dip, 20);
 
-
-            string eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/road/re-";
+            string eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/road/re-";           
             if (_eventtype == EventTypes.CityEvent)
             {
                 eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";
+            }
+            else if(_eventtype == EventTypes.RiftEvent)
+            {
+                eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/rift/rf-";
             }
 
             var eventFront = GetImageBitmapFromUrlAsync(eventtypeurl + _eventnumber + "-f.png", _imagen, _eventview);

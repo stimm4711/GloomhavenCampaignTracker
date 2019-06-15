@@ -20,6 +20,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
         private Button _showGlobalAchievementsButton;
         private Button _showUnlockedScenariosButton;
         private Button _showRoadEventsButton;
+        private Button _rifteventsButton;
         private TextView _scenarioleveltext;
         private TextView _scenariolevelmodtext;
         private TextView _goldtext;
@@ -49,6 +50,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             _showGlobalAchievementsButton = _view.FindViewById<Button>(Resource.Id.globalachievementsButton);
             _showUnlockedScenariosButton = _view.FindViewById<Button>(Resource.Id.unlockedScenariosButton);
             _showRoadEventsButton = _view.FindViewById<Button>(Resource.Id.roadeventsButton);
+            _rifteventsButton = _view.FindViewById<Button>(Resource.Id.rifteventsButton);
             _scenarioleveltext = _view.FindViewById<TextView>(Resource.Id.scenarioleveltext);
             _scenariolevelmodtext = _view.FindViewById<TextView>(Resource.Id.scenariolevelmodtext);
             _goldtext = _view.FindViewById<TextView>(Resource.Id.goldtext);
@@ -60,6 +62,18 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             var calcscenariolevelbutton = _view.FindViewById<Button>(Resource.Id.calcscenariolevelbutton);
             var subscenariolevelButton = _view.FindViewById<Button>(Resource.Id.subscenariolevelButton);
             var addscenariolevelButton = _view.FindViewById<Button>(Resource.Id.addscenariolevelButton);
+
+            if (_rifteventsButton != null)
+            {
+                if (GCTContext.ActivateForgottenCiclesContent && GCTContext.CurrentCampaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom))
+                {
+                    _rifteventsButton.Visibility = ViewStates.Visible;
+                }
+                else
+                {
+                    _rifteventsButton.Visibility = ViewStates.Gone;
+                }
+            }
 
             if (_isDualPane)
             {
@@ -91,7 +105,15 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                 };
             }
 
-            if(!calcscenariolevelbutton.HasOnClickListeners)
+            if (!_rifteventsButton.HasOnClickListeners)
+            {
+                _rifteventsButton.Click += (sender, args) =>
+                {
+                    ShowDetail(DetailFragmentTypes.Riftevents);
+                };
+            }
+
+            if (!calcscenariolevelbutton.HasOnClickListeners)
             {
                 calcscenariolevelbutton.Click += Calcscenariolevelbutton_Click;
             }

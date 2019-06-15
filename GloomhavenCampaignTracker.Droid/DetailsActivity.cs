@@ -77,6 +77,10 @@ namespace GloomhavenCampaignTracker.Droid
                     SupportActionBar.Title = Resources.GetString(Resource.String.RoadEvents);
                     _detailsFrag = CampaignEventsFragment.NewInstance(campId, EventTypes.RoadEvent);
                     break;
+                case (int)DetailFragmentTypes.Riftevents:
+                    SupportActionBar.Title = Resources.GetString(Resource.String.RiftEvents);
+                    _detailsFrag = CampaignEventsFragment.NewInstance(campId, EventTypes.RiftEvent);
+                    break;
                 case (int)DetailFragmentTypes.CampaignSelection:
                     SupportActionBar.Title = Resources.GetString(Resource.String.camaignSelection);
                     _detailsFrag = CampaignSelectionFragment.NewInstance();

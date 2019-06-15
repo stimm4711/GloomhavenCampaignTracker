@@ -260,6 +260,11 @@ namespace Data
             SavePartyAchievement(32, "Angels of Death", contentOfPack: 2);
             SavePartyAchievement(33, "Diamara's Aid", contentOfPack: 2);
             SavePartyAchievement(34, "Hunted Prey", contentOfPack: 2);
+            SavePartyAchievement(35, "Accomplices", contentOfPack: 2);
+            SavePartyAchievement(36, "Saboteurs", contentOfPack: 2);
+            SavePartyAchievement(37, "Custodians", contentOfPack: 2);
+            SavePartyAchievement(38, "A Strongbox", contentOfPack: 2);
+            SavePartyAchievement(39, "Opportunists", contentOfPack: 2);
         }
 
         internal static void SavePartyAchievement(int number, string name, int contentOfPack = 1)
@@ -293,10 +298,10 @@ namespace Data
         {
             SaveScenario("Unexpected Visitors", 96, requiredGlobalAchievements: "14", contentOfPack: 2);
             SaveScenario("Lore Untold", 97, unlockedScenarioIdsCommaSeparated: "98,99,100,101", contentOfPack: 2);
-            SaveScenario("Past in Flames", 98, contentOfPack: 2);
-            SaveScenario("Aftershocks", 99, contentOfPack: 2);
-            SaveScenario("Shifting Gears", 100, contentOfPack: 2);
-            SaveScenario("Shrouded Crypt", 101, contentOfPack: 2);
+            SaveScenario("Past in Flames", 98, unlockedScenarioIdsCommaSeparated: "102,103", contentOfPack: 2);
+            SaveScenario("Aftershocks", 99,  unlockedScenarioIdsCommaSeparated: "104,105", contentOfPack: 2);
+            SaveScenario("Shifting Gears", 100, unlockedScenarioIdsCommaSeparated: "106,107", contentOfPack: 2);
+            SaveScenario("Shrouded Crypt", 101, unlockedScenarioIdsCommaSeparated: "108,109", contentOfPack: 2);
             SaveScenario("Bazaar of Knowledge", 102, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2);
             SaveScenario("Where It Is Needed", 103, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2);
             SaveScenario("A Gaping Wound", 104, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2);

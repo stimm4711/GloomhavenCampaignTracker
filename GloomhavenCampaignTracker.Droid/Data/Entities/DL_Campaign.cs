@@ -23,6 +23,8 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         public string CityEventDeckString { get; set; }
 
+        public string RiftEventDeckString { get; set; }
+
         public int CurrentParty_ID { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]

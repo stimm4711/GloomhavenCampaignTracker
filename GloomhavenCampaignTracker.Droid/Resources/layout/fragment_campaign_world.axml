@@ -52,6 +52,19 @@
             android:layout_marginTop="20px"
             android:drawablePadding="10px"
             android:textSize="20dp" />
+         <Button
+            android:text="Rift Events"
+            android:id="@+id/rifteventsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbuttons"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="10px"
+            android:gravity="center"
+            android:layout_marginTop="20px"
+            android:drawablePadding="10px"
+            android:textSize="20dp" 
+			android:visibility="gone"/>
         <RelativeLayout
             android:minWidth="25px"
             android:minHeight="25px"

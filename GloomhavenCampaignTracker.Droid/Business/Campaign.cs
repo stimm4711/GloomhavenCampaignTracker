@@ -36,6 +36,7 @@ namespace GloomhavenCampaignTracker.Business
                 CampaignUnlocks = new DL_CampaignUnlocks(),
                 CityEventDeckString = "",
                 RoadEventDeckString = "",
+                RiftEventDeckString = "",
                 UnlockedItems = new List<DL_Item>()
             };
 
@@ -67,6 +68,7 @@ namespace GloomhavenCampaignTracker.Business
             m_loadingMessages = new List<string>();
             InitRoadEvents();
             InitCityEvents();
+            InitRiftEvents();
             InitGlobalAchievements();
             InitUnlockedClasses();
         }
@@ -184,6 +186,29 @@ namespace GloomhavenCampaignTracker.Business
             }
         }
 
+        private void InitRiftEvents()
+        {
+            try
+            {
+                // init rift deck
+                if (string.IsNullOrEmpty(CampaignData.RiftEventDeckString))
+                {
+                    RiftEventDeck.ClearDeck();
+                    CampaignData.RiftEventDeckString = RiftEventDeck.ToString();
+                }
+                else
+                {
+                    RiftEventDeck.FromString(CampaignData.RiftEventDeckString);
+                }
+            }
+            catch
+            {
+                m_loadingMessages.Add("Can't load Rift Event Deck. Initialized Event Deck.");
+                RiftEventDeck.ClearDeck();
+                CampaignData.RiftEventDeckString = RiftEventDeck.ToString();
+            }
+        }
+
         internal List<string> GetLoadingMessages()
         {
             return m_loadingMessages;
@@ -207,6 +232,8 @@ namespace GloomhavenCampaignTracker.Business
         /// Road Event Deck
         /// </summary>
         public EventDeck RoadEventDeck { get; } = new EventDeck();
+
+        public EventDeck RiftEventDeck { get; } = new EventDeck();
 
         /// <summary>
         /// City Event Deck
@@ -272,9 +299,13 @@ namespace GloomhavenCampaignTracker.Business
             if (eventType == EventTypes.RoadEvent)
                 // road event deck
                 CampaignData.RoadEventDeckString = RoadEventDeck.ToString();
-            else
+            else if (eventType == EventTypes.CityEvent)
                 // city event deck
                 CampaignData.CityEventDeckString = CityEventDeck.ToString();
+            else if (eventType == EventTypes.RiftEvent)
+                // rift event deck
+                CampaignData.RiftEventDeckString = RiftEventDeck.ToString();
+
             Save(recursive: false);
         }
 
@@ -284,11 +315,15 @@ namespace GloomhavenCampaignTracker.Business
             {
                 RoadEventDeck.AddCard(eventnumber);
             }
-            else
+            else if (eventtype == EventTypes.CityEvent)
             {
                 CityEventDeck.AddCard(eventnumber);
             }
-            
+            else if (eventtype == EventTypes.RiftEvent)
+            {
+                RiftEventDeck.AddCard(eventnumber);
+            }
+
             EventhistoryHelper.AddEventHistory(context, eventnumber, (int)eventtype);
            
             SetEventDeckString(eventtype);
@@ -301,10 +336,15 @@ namespace GloomhavenCampaignTracker.Business
                 CampaignEventHistoryLogItemRepository.DisableOldEvents(CampaignData.Id, eventType: 2);
                 SetEventDeckString(EventTypes.RoadEvent);
             }
-            else
+            else if (eventType == EventTypes.CityEvent)
             {
                 CampaignEventHistoryLogItemRepository.DisableOldEvents(CampaignData.Id, eventType: 1);
                 SetEventDeckString(EventTypes.CityEvent);
+            }
+            else if (eventType == EventTypes.RiftEvent)
+            {
+                CampaignEventHistoryLogItemRepository.DisableOldEvents(CampaignData.Id, eventType: 3);
+                SetEventDeckString(EventTypes.RiftEvent);
             }
         }
 

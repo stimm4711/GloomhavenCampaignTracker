@@ -83,6 +83,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                         fragTrans = _fragmentManager.BeginTransaction().Replace(Resource.Id.frame_details_city, detailsFrag);
                         fragTrans.Commit();
                         break;
+                    case DetailFragmentTypes.Riftevents:
+                        detailsFrag = CampaignEventsFragment.NewInstance(GCTContext.CurrentCampaign.CampaignData.Id, EventTypes.RiftEvent);
+                        title.Text = "Rift Events";
+                        _dualtdetailLayout.Visibility = ViewStates.Visible;
+                        fragTrans = _fragmentManager.BeginTransaction().Replace(Resource.Id.frame_details_world, detailsFrag);
+                        fragTrans.Commit();
+                        break;
                     case DetailFragmentTypes.Roadevents:
                         detailsFrag = CampaignEventsFragment.NewInstance(GCTContext.CurrentCampaign.CampaignData.Id, EventTypes.RoadEvent); 
                         title.Text = "Road Events";

@@ -16,7 +16,8 @@ namespace GloomhavenCampaignTracker.Business
     public enum EventTypes 
     {
         CityEvent = 1,
-        RoadEvent = 2
+        RoadEvent = 2,
+        RiftEvent = 3
     }
     public enum DetailFragmentTypes 
     {
@@ -34,7 +35,8 @@ namespace GloomhavenCampaignTracker.Business
         Settings = 14,
         Support = 15,
         Releasenotes = 16,
-        EnvelopeXUnlock = 17
+        EnvelopeXUnlock = 17,
+        Riftevents = 18
     }
     
     public class Helper
