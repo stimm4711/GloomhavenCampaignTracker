@@ -25,13 +25,11 @@
 				android:id="@+id/txt_classunlocks" 
 				android:textColor="@color/gloom_primaryText"/>
 			  <GridView
-				android:minWidth="25px"
-				android:minHeight="25px"
 				android:layout_width="match_parent"
-				android:layout_height="160dp"
+				android:layout_height="210dp"
 				android:verticalSpacing="2dp"
 				android:horizontalSpacing="2dp"
-				android:stretchMode="spacingWidthUniform"
+				android:stretchMode="spacingWidthUniform"              
 				android:gravity="center"
 				android:id="@+id/imagesGridView"
 				android:layout_marginTop="15px"

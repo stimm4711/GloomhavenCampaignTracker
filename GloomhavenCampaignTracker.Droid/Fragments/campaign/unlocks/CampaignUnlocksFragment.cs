@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using GloomhavenCampaignTracker.Business.Network;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using Android.Content;
+using Android.Util;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
 {
@@ -76,6 +77,21 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
             _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
             _unlockEnvelopeXButton = _view.FindViewById<Button>(Resource.Id.openEnvelopeXButton);
 
+            ViewGroup.LayoutParams layoutParams = _grid.LayoutParameters;
+
+            var rows = 3;
+
+            if (GCTContext.ActivateForgottenCiclesContent && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
+            {
+                rows = 4;
+            }
+
+            var dp = 50;
+            int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dp, Context.Resources.DisplayMetrics);
+
+            layoutParams.Height = pixel * rows;
+            _grid.LayoutParameters = layoutParams;
+
             if (CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeXUnlocked)
             {
                 _unlockEnvelopeXButton.Text = Resources.GetString(Resource.String.ShowEnvelopeXProgress);
@@ -129,7 +145,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
             SwitchViewStates();
 
             return _view;
-        }
+        } 
 
         private void _unlockEnvelopeXButton_Click(object sender, System.EventArgs e)
         {

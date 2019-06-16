@@ -216,10 +216,13 @@ namespace GloomhavenCampaignTracker.Business
             // specials
 
             // OR-connected Requirements
-            if (Scenarionumber == 22 || Scenarionumber == 26 || Scenarionumber == 33)
+            var scenarioNumbers = new List<int> { 22, 26, 33, 102, 103, 104, 105, 106, 107, 108, 109 };
+            if (scenarioNumbers.Contains(Scenarionumber))
             {                
-                return Scenario.RequiredCompletedGlobalAchievements.Any(x => GCTContext.CurrentCampaign.HasGlobalAchievement(x)) ||
-                Scenario.RequiredPartyAchievements.Any(x => GCTContext.CurrentCampaign.HasPartyAchievement(x));
+                return (Scenario.RequiredCompletedGlobalAchievements.Any(x => GCTContext.CurrentCampaign.HasGlobalAchievement(x)) ||
+                Scenario.RequiredPartyAchievements.Any(x => GCTContext.CurrentCampaign.HasPartyAchievement(x))) && 
+                !(Scenario.BlockingGlobalAchievements.Any(x => GCTContext.CurrentCampaign.HasGlobalAchievement(x)) ||
+                Scenario.BlockingPartyAchievements.Any(x => GCTContext.CurrentCampaign.HasPartyAchievement(x)));
             }
 
             foreach (var reqGlobAch in Scenario.RequiredCompletedGlobalAchievements)

@@ -7,7 +7,6 @@ using SQLite;
 using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
-using GloomhavenCampaignTracker.Droid;
 
 namespace Data
 {
@@ -302,14 +301,14 @@ namespace Data
             SaveScenario("Aftershocks", 99,  unlockedScenarioIdsCommaSeparated: "104,105", contentOfPack: 2);
             SaveScenario("Shifting Gears", 100, unlockedScenarioIdsCommaSeparated: "106,107", contentOfPack: 2);
             SaveScenario("Shrouded Crypt", 101, unlockedScenarioIdsCommaSeparated: "108,109", contentOfPack: 2);
-            SaveScenario("Bazaar of Knowledge", 102, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2);
-            SaveScenario("Where It Is Needed", 103, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2);
-            SaveScenario("A Gaping Wound", 104, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2);
-            SaveScenario("Monstrosities of a Cult", 105, requiredGlobalAchievements: "182", blockingPartyAchievements: "29", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2);
-            SaveScenario("Intricate Work", 106, requiredGlobalAchievements: "182", contentOfPack: 2);
-            SaveScenario("Mechanical Genius", 107, requiredGlobalAchievements: "182", contentOfPack: 2);
-            SaveScenario("Prologue to the End", 108, requiredGlobalAchievements: "182", contentOfPack: 2);
-            SaveScenario("Epilogue of a War", 109, requiredGlobalAchievements: "182", unlockedScenarioIdsCommaSeparated: "113", contentOfPack: 2);
+            SaveScenario("Bazaar of Knowledge", 102, requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2); // OR
+            SaveScenario("Where It Is Needed", 103, requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2); // OR
+            SaveScenario("A Gaping Wound", 104, requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2); // OR
+            SaveScenario("Monstrosities of a Cult", 105, requiredGlobalAchievements: "182,183,184", blockingPartyAchievements: "29", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2); // OR (req)
+            SaveScenario("Intricate Work", 106, requiredGlobalAchievements: "182,183,184", contentOfPack: 2); // OR
+            SaveScenario("Mechanical Genius", 107, requiredGlobalAchievements: "182,183,184", contentOfPack: 2); // OR
+            SaveScenario("Prologue to the End", 108, requiredGlobalAchievements: "182,183,184", contentOfPack: 2); // OR
+            SaveScenario("Epilogue of a War", 109, requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "113", contentOfPack: 2); // OR
             SaveScenario("A Circular Solution", 110, contentOfPack: 2);
             SaveScenario("The Shackles Loosen", 111, contentOfPack: 2);
             SaveScenario("The Bottom of It", 112, contentOfPack: 2);
