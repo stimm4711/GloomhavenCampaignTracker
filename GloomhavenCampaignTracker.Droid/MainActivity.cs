@@ -106,7 +106,7 @@ namespace GloomhavenCampaignTracker.Droid
                 GCTContext.CampaignCollection.SetCurrentCampaign(-1);
                 new CustomDialogBuilder(this, Resource.Style.MyDialogTheme)
                     .SetTitle("Load last campaign error")
-                    .SetMessage("Can't load the last opened campaign. Please try to open the campaign through the campaign selection. If that doesn't work please select crash & report to send informations.")
+                    .SetMessage("Can't load the last opened campaign. Please try to open the campaign from the campaign selection. If that doesn't work please select crash & report to send informations.")
                     .SetPositiveButton("Crash & Report", (senderAlert, args) =>
                     {
                         throw ex;

@@ -13,7 +13,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 10);
+        public static Version Dbversion { get; } = new Version(1, 4, 11);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
@@ -106,6 +106,11 @@ namespace Data
                     AddFCPartyAchievements();
                     AddFCScenarios();
                     AddFCItems();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 11)) == VersionTime.Earlier)
+                {
+                    FixScenarioRegions();
                 }
 
                 currentDbVersion.Value = Dbversion.ToString();
@@ -253,21 +258,25 @@ namespace Data
 
         internal static void SaveFCPartyAchievements()
         {
-            SavePartyAchievement(29, "Hunting the Hunter", contentOfPack: 2);
-            SavePartyAchievement(30, "Guard Detail", contentOfPack: 2);
-            SavePartyAchievement(31, "Dimensional Equilibrium", contentOfPack: 2);
-            SavePartyAchievement(32, "Angels of Death", contentOfPack: 2);
-            SavePartyAchievement(33, "Diamara's Aid", contentOfPack: 2);
-            SavePartyAchievement(34, "Hunted Prey", contentOfPack: 2);
-            SavePartyAchievement(35, "Accomplices", contentOfPack: 2);
-            SavePartyAchievement(36, "Saboteurs", contentOfPack: 2);
-            SavePartyAchievement(37, "Custodians", contentOfPack: 2);
-            SavePartyAchievement(38, "A Strongbox", contentOfPack: 2);
-            SavePartyAchievement(39, "Opportunists", contentOfPack: 2);
+            var paments = PartyAchievementRepository.Get();
+
+            SavePartyAchievement(29, "Hunting the Hunter", paments, contentOfPack: 2);
+            SavePartyAchievement(30, "Guard Detail", paments, contentOfPack: 2);
+            SavePartyAchievement(31, "Dimensional Equilibrium", paments, contentOfPack: 2);
+            SavePartyAchievement(32, "Angels of Death", paments, contentOfPack: 2);
+            SavePartyAchievement(33, "Diamara's Aid", paments, contentOfPack: 2);
+            SavePartyAchievement(34, "Hunted Prey", paments, contentOfPack: 2);
+            SavePartyAchievement(35, "Accomplices", paments, contentOfPack: 2);
+            SavePartyAchievement(36, "Saboteurs", paments, contentOfPack: 2);
+            SavePartyAchievement(37, "Custodians", paments, contentOfPack: 2);
+            SavePartyAchievement(38, "A Strongbox", paments, contentOfPack: 2);
+            SavePartyAchievement(39, "Opportunists", paments, contentOfPack: 2);
         }
 
-        internal static void SavePartyAchievement(int number, string name, int contentOfPack = 1)
+        internal static void SavePartyAchievement(int number, string name, List<DL_PartyAchievement> existingPAAchievements = null, int contentOfPack = 1)
         {
+            if (existingPAAchievements != null && existingPAAchievements.Any(x => x.Name == name)) return;
+
             var achievement = new DL_PartyAchievement
             {
                 Name = name,
@@ -282,7 +291,7 @@ namespace Data
         {
             Connection.BeginTransaction();
             try
-            {
+            {                
                 SaveFCScenarios();
                 Connection.Commit();
             }
@@ -295,26 +304,28 @@ namespace Data
 
         internal static void SaveFCScenarios()
         {
-            SaveScenario("Unexpected Visitors", 96, requiredGlobalAchievements: "14", contentOfPack: 2);
-            SaveScenario("Lore Untold", 97, unlockedScenarioIdsCommaSeparated: "98,99,100,101", contentOfPack: 2);
-            SaveScenario("Past in Flames", 98, unlockedScenarioIdsCommaSeparated: "102,103", contentOfPack: 2);
-            SaveScenario("Aftershocks", 99,  unlockedScenarioIdsCommaSeparated: "104,105", contentOfPack: 2);
-            SaveScenario("Shifting Gears", 100, unlockedScenarioIdsCommaSeparated: "106,107", contentOfPack: 2);
-            SaveScenario("Shrouded Crypt", 101, unlockedScenarioIdsCommaSeparated: "108,109", contentOfPack: 2);
-            SaveScenario("Bazaar of Knowledge", 102, requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2); // OR
-            SaveScenario("Where It Is Needed", 103, requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2); // OR
-            SaveScenario("A Gaping Wound", 104, requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2); // OR
-            SaveScenario("Monstrosities of a Cult", 105, requiredGlobalAchievements: "182,183,184", blockingPartyAchievements: "29", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2); // OR (req)
-            SaveScenario("Intricate Work", 106, requiredGlobalAchievements: "182,183,184", contentOfPack: 2); // OR
-            SaveScenario("Mechanical Genius", 107, requiredGlobalAchievements: "182,183,184", contentOfPack: 2); // OR
-            SaveScenario("Prologue to the End", 108, requiredGlobalAchievements: "182,183,184", contentOfPack: 2); // OR
-            SaveScenario("Epilogue of a War", 109, requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "113", contentOfPack: 2); // OR
-            SaveScenario("A Circular Solution", 110, contentOfPack: 2);
-            SaveScenario("The Shackles Loosen", 111, contentOfPack: 2);
-            SaveScenario("The Bottom of It", 112, contentOfPack: 2);
-            SaveScenario("The Lost Thread", 113, contentOfPack: 2);
-            SaveScenario("Ink Not Yet Dry", 114, unlockedScenarioIdsCommaSeparated: "115", contentOfPack: 2);
-            SaveScenario("Future Uncertain", 115, contentOfPack: 2);
+            var scenarios = ScenarioRepository.Get();
+
+            SaveScenario("Unexpected Visitors", 96, requiredGlobalAchievements: "14", contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Lore Untold", 97,  unlockedScenarioIdsCommaSeparated: "98,99,100,101", contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Past in Flames", 98,  unlockedScenarioIdsCommaSeparated: "102,103", contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Aftershocks", 99,  unlockedScenarioIdsCommaSeparated: "104,105", contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Shifting Gears", 100,  unlockedScenarioIdsCommaSeparated: "106,107", contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Shrouded Crypt", 101,  unlockedScenarioIdsCommaSeparated: "108,109", contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Bazaar of Knowledge", 102,  requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2, existingScenarios: scenarios); // OR
+            SaveScenario("Where It Is Needed", 103,  requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "110", contentOfPack: 2, existingScenarios: scenarios); // OR
+            SaveScenario("A Gaping Wound", 104,  requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2, existingScenarios: scenarios); // OR
+            SaveScenario("Monstrosities of a Cult", 105,  requiredGlobalAchievements: "182,183,184", blockingPartyAchievements: "29", unlockedScenarioIdsCommaSeparated: "111", contentOfPack: 2, existingScenarios: scenarios); // OR (req)
+            SaveScenario("Intricate Work", 106,  requiredGlobalAchievements: "182,183,184", contentOfPack: 2, existingScenarios: scenarios); // OR
+            SaveScenario("Mechanical Genius", 107,  requiredGlobalAchievements: "182,183,184", contentOfPack: 2, existingScenarios: scenarios); // OR
+            SaveScenario("Prologue to the End", 108,  requiredGlobalAchievements: "182,183,184", contentOfPack: 2, existingScenarios: scenarios); // OR
+            SaveScenario("Epilogue of a War", 109,  requiredGlobalAchievements: "182,183,184", unlockedScenarioIdsCommaSeparated: "113", contentOfPack: 2, existingScenarios: scenarios); // OR
+            SaveScenario("A Circular Solution", 110,  contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("The Shackles Loosen", 111,  contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("The Bottom of It", 112,  contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("The Lost Thread", 113,  contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Ink Not Yet Dry", 114,  unlockedScenarioIdsCommaSeparated: "115", contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Future Uncertain", 115,  contentOfPack: 2, existingScenarios: scenarios);
         }
 
         internal static void SaveScenario(string name, int scenarionumber,
@@ -323,8 +334,10 @@ namespace Data
                                         string requiredPartyAchievements = "",
                                         string blockingGlobalAchievements = "",
                                         string blockingPartyAchievements = "",
-                                        int contentOfPack = 1)
+                                        int contentOfPack = 1, List<DL_Scenario> existingScenarios = null)
         {
+            if (existingScenarios != null && existingScenarios.Any(x => x.Name == name)) return;
+
             var scenario = new DL_Scenario
             {
                 Name = name,
@@ -357,16 +370,20 @@ namespace Data
 
         internal static void SaveFCGlobalAchievements()
         {
-            SaveAchievementType("Through the Portal", 17, contentOfPack: 2);
-            SaveAchievementType("Knowledge is Power", 180, steps: 4, contentOfPack: 2);
-            SaveAchievementType("Pieces of an Artifact", 19, steps: 3, contentOfPack: 2);
-            SaveAchievementType("A Peril Averted", 2000, steps: 4, contentOfPack: 2);
-            SaveAchievementType("Mechanical Splendor", 21, contentOfPack: 2);
-            SaveAchievementType("Severed Ties", 22, contentOfPack: 2);
+            var aments = AchievementTypeRepository.Get();
+            
+            SaveAchievementType("Through the Portal", 17, contentOfPack: 2, existingAchievements:aments);
+            SaveAchievementType("Knowledge is Power", 180, steps: 4, contentOfPack: 2, existingAchievements: aments);
+            SaveAchievementType("Pieces of an Artifact", 19, steps: 3, contentOfPack: 2, existingAchievements: aments);
+            SaveAchievementType("A Peril Averted", 2000, steps: 4, contentOfPack: 2, existingAchievements: aments);
+            SaveAchievementType("Mechanical Splendor", 21, contentOfPack: 2, existingAchievements: aments);
+            SaveAchievementType("Severed Ties", 22, contentOfPack: 2, existingAchievements: aments);
         }
 
-        internal static void SaveAchievementType(string name, int internalNumber, int steps = 1, List<DL_Achievement> achievements = null, int contentOfPack = 1)
+        internal static void SaveAchievementType(string name, int internalNumber, int steps = 1, List<DL_Achievement> achievements = null, int contentOfPack = 1, List<DL_AchievementType> existingAchievements = null)
         {
+            if (existingAchievements != null && existingAchievements.Any(x => x.Name == name)) return;
+
             if (achievements == null)
             {
                 achievements = new List<DL_Achievement>();
@@ -760,24 +777,23 @@ namespace Data
 
         internal static void SaveItem(int itemnumber, string itemname, int itemcategorie, int itemcount, string itemtext, int itemprice, int prosperitylevel, List<DL_Item> items, int contentpack = 1)
         {
-            if (!items.Any(x => x.Itemnumber == itemnumber))
+            if (items.Any(x => x.Itemnumber == itemnumber)) return;
+
+            var item = new DL_Item
             {
-                var item = new DL_Item
-                {
-                    Itemcategorie = itemcategorie,
-                    Itemcount = itemcount,
-                    Itemname = itemname,
-                    Itemnumber = itemnumber,
-                    Itemprice = itemprice,
-                    Itemtext = itemtext,
-                    Prosperitylevel = prosperitylevel,
-                    ContentOfPack = contentpack
-                };
+                Itemcategorie = itemcategorie,
+                Itemcount = itemcount,
+                Itemname = itemname,
+                Itemnumber = itemnumber,
+                Itemprice = itemprice,
+                Itemtext = itemtext,
+                Prosperitylevel = prosperitylevel,
+                ContentOfPack = contentpack
+            };
 
-                ItemRepository.InsertOrReplace(item);
+            ItemRepository.InsertOrReplace(item);
 
-                items.Add(item);
-            }
+            items.Add(item);
         }
 
         private static void FixNameOfScenario83()
@@ -862,18 +878,6 @@ namespace Data
             }
         }
 
-        private static void FixSpellweaverWoundPerk()
-        {
-            DL_ClassPerk perk = ClassPerkRepository.GetClassPerks(2).FirstOrDefault(x => x.Checkboxnumber == 7);
-
-            if (perk != null)
-            {
-                perk.Perktext = "Add one [+1] WOUND [W] card";
-
-                ClassPerkRepository.UpdatePerkText(perk);
-            }
-        }
-
         public static void CheckIfAllPerksExists()
         {
             List<DL_ClassPerk> perks = ClassPerkRepository.Get(false);
@@ -900,19 +904,19 @@ namespace Data
             AddBladeswarmPerks(perks); // 17
             AddDivinerClassPerks(perks); // 18
 
-            perks = ClassPerkRepository.Get(false);
+            //perks = ClassPerkRepository.Get(false);
 
-            MigrateSunPerks(perks);
-            MigrateQuatermasterPerks(perks);
-            MigrateSummonerPerks(perks);
-            MigrateNightShroudPerks(perks);
-            MigratePlagueheraldPerks(perks);
-            MigrateLightningPerks(perks);
-            MigrateSoothsingerPerks(perks);
-            MigrateDoomstalkerPerks(perks);
-            MigrateSawbonePerks(perks);
-            MigrateElementalistPerks(perks);
-            MigrateBeastTyrantPerks(perks);
+            //MigrateSunPerks(perks);
+            //MigrateQuatermasterPerks(perks);
+            //MigrateSummonerPerks(perks);
+            //MigrateNightShroudPerks(perks);
+            //MigratePlagueheraldPerks(perks);
+            //MigrateLightningPerks(perks);
+            //MigrateSoothsingerPerks(perks);
+            //MigrateDoomstalkerPerks(perks);
+            //MigrateSawbonePerks(perks);
+            //MigrateElementalistPerks(perks);
+            //MigrateBeastTyrantPerks(perks);
         }
 
         private static void AddDivinerClassPerks(List<DL_ClassPerk> perks)
@@ -2268,8 +2272,7 @@ namespace Data
             try
             {
                 var sdc = new ScenarioDataService();
-                sdc.UpdateScenarioRegion(68, 4);
-                sdc.UpdateScenarioRegion(49, 4);
+                sdc.UpdateScenarioRegion(79, 4);
 
                 Connection.Commit();
             }

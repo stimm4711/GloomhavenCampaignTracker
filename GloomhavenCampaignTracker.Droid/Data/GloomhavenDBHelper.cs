@@ -215,7 +215,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 sdc.UpdateScenarioRegion(76, 6);
                 sdc.UpdateScenarioRegion(77, 1);
                 sdc.UpdateScenarioRegion(78, 1);
-                sdc.UpdateScenarioRegion(79, 7);
+                sdc.UpdateScenarioRegion(79, 4);
                 sdc.UpdateScenarioRegion(80, 6);
                 sdc.UpdateScenarioRegion(81, 2);
                 sdc.UpdateScenarioRegion(82, 6);
