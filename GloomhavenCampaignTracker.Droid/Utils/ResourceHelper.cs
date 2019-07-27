@@ -20,7 +20,6 @@ namespace GloomhavenCampaignTracker.Droid
 
         public static int GetItemCategorieIconRessourceId(int categorieId)
         {
-            // classid index between 0 and 16
             categorieId = Math.Max(Math.Min(categorieId, 5), 0);
             return m_itemcategorieItems[categorieId];
         }

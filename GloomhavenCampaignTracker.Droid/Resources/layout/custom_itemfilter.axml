@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gloom_primaryLighter">
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.01"
+        android:layout_height="48dp"
+        android:id="@+id/headImageView"
+        android:src="@drawable/ic_gloom_item_helmet" />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.01"
+        android:layout_height="48dp"
+        android:id="@+id/armorImageView"
+        android:src="@drawable/ic_gloom_item_armor" />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.01"
+        android:layout_height="48dp"
+        android:id="@+id/bootsImageView"
+        android:src="@drawable/ic_gloom_item_boots" />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.01"
+        android:layout_height="48dp"
+        android:id="@+id/singlehandweaponImageView"
+        android:src="@drawable/ic_gloom_item_onehand" />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.01"
+        android:layout_height="48dp"
+        android:id="@+id/twohandweaponImageView"
+        android:src="@drawable/ic_gloom_item_twohand" />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.01"
+        android:layout_height="48dp"
+        android:id="@+id/smallitemImageView"
+        android:src="@drawable/ic_gloom_item_small" />
+</LinearLayout>

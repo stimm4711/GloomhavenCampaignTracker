@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="10dp">    
+    android:layout_height="wrap_content">   
     <gloomhavencampaigntracker.droid.customcontrols.ItemFilterBar
         android:id="@+id/itemfilter"
         android:layout_width="match_parent"
@@ -11,5 +10,5 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/itemsListView" />
+        android:id="@+id/listView" />
 </LinearLayout>

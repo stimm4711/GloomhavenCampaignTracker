@@ -16,10 +16,18 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
         public override int Count => _items.Count;
 
-        public UnlockedItemAdapter(Context context, List<DL_Item> items)
+        public UnlockedItemAdapter(Context context, List<DL_Item> items, int filter)
         {
             _context = context;
-            _items = items.Where(x => !x.IsHide).ToList();
+            if (filter >= 0 && filter <= 5)
+            {
+                _items = items.Where(x => x.Itemcategorie == filter).ToList();
+            }
+            else
+            {
+                _items = items;
+            }
+            _items = _items.Where(x => !x.IsHide).ToList();
         }
 
         public override long GetItemId(int position)

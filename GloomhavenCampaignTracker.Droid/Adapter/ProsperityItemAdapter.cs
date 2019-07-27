@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Android.Content;
-using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
@@ -19,10 +15,17 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
         public override int Count => _items.Count;
 
-        public ProsperityItemAdapter(Context context, List<DL_Item> items) 
+        public ProsperityItemAdapter(Context context, List<DL_Item> items, int filter) 
         {
             _context = context;
-            _items = items;
+            if(filter >= 0 && filter <= 5)
+            {
+                _items = items.Where(x=>x.Itemcategorie == filter).ToList();
+            }
+            else
+            {
+                _items = items;
+            }            
         }
 
         public override long GetItemId(int position)

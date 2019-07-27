@@ -95,23 +95,44 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         private void AddNewItemDialogStore(ListView lv)
         {
             var inflater = (LayoutInflater)Context.GetSystemService(Context.LayoutInflaterService);
-            var view = inflater.Inflate(Resource.Layout.alertdialog_listview, null);
+            var view = inflater.Inflate(Resource.Layout.alertdialog_listview_itemfilter, null);
             var listview = view.FindViewById<ListView>(Resource.Id.listView);
+            var itemfilter = view.FindViewById<ItemFilterBar>(Resource.Id.itemfilter);
+            List<DL_Item> selectableItems = new List<DL_Item>();
+
+            itemfilter.ItemClicked += (sender, e) =>
+            {
+                if (selectableItems != null)
+                {
+                    IEnumerable<DL_Item> filteredItems;
+                    if (e.Itemcategorie >= 0 && e.Itemcategorie <= 5)
+                    {
+                        filteredItems = selectableItems.Where(x => x.Itemcategorie == e.Itemcategorie);
+                    }
+                    else
+                    {
+                        filteredItems = selectableItems;
+                    }
+
+                    var adapter = new SelectableItemAdapter(Context, filteredItems.ToList(), true);
+                    listview.Adapter = adapter;
+                }
+            };
+
             listview.ItemsCanFocus = true;
             listview.ChoiceMode = ChoiceMode.Multiple;
-
-            List<DL_Item> selectableItems;
+                        
             if (Character.Party?.Campaign != null)
             {
                 var prosp = Helper.GetProsperityLevel(Character.Party.Campaign.CityProsperity);
-                selectableItems = DataServiceCollection.ItemDataService.GetSelectableItems(prosp, Character.Party.Campaign.Id);              
+                selectableItems = DataServiceCollection.ItemDataService.GetSelectableItems(prosp, Character.Party.Campaign.Id);
             }
             else
             {
                 selectableItems = DataServiceCollection.ItemDataService.Get();
             }
 
-            if(Character.Items != null)
+            if (Character.Items != null)
             {
                 selectableItems = selectableItems.Except(Character.Items).ToList();
 

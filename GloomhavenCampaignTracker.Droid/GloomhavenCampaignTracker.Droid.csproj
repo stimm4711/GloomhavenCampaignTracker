@@ -255,6 +255,7 @@
     <Compile Include="CustomControls\ItemImageViewDialogBuilder.cs" />
     <Compile Include="CustomControls\PersonalQuestCheckView.cs" />
     <Compile Include="CustomControls\PersonalQuestCounterBase.cs" />
+    <Compile Include="CustomControls\ItemFilterBar.cs" />
     <Compile Include="CustomControls\ProsperityMeter.cs" />
     <Compile Include="Data\DatabaseAccess\AbilityDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\AchievementDBAccess.cs" />
@@ -2837,6 +2838,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_regenerate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\custom_itemfilter.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\alertdialog_listview_itemfilter.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

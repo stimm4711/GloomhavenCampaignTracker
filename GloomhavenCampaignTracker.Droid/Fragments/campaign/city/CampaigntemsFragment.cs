@@ -44,6 +44,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
             _lv = _view.FindViewById<ListView>(Resource.Id.itemsListView);
             var fab = _view.FindViewById<FloatingActionButton>(Resource.Id.fab);
 
+            var itemfilter = _view.FindViewById<ItemFilterBar>(Resource.Id.itemfilter);
+
+            itemfilter.ItemClicked += Itemfilter_ItemClicked;
+
             if (fab != null)
             {
                 if (!fab.HasOnClickListeners)
@@ -60,12 +64,17 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
             return _view;
         }
 
-        private void FillListView()
+        private void Itemfilter_ItemClicked(object sender, ItemFilterBar.ItemClickedEventArgs e)
+        {
+            FillListView(e.Itemcategorie);
+        }
+
+        private void FillListView(int filter = -1)
         {
             if (_prosperityLevel >= 1 && _prosperityLevel <= 9)
             {
                 var items = DataServiceCollection.ItemDataService.GetByProsperity(_prosperityLevel);
-                _lv.Adapter = new ProsperityItemAdapter(Context, items);
+                _lv.Adapter = new ProsperityItemAdapter(Context, items, filter);
             }
             else
             {
@@ -78,7 +87,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
                     if (item.Itemnumber == 151 && !GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked) item.IsHide = true;
                 }
 
-                var adapter = new UnlockedItemAdapter(Context, items);
+                var adapter = new UnlockedItemAdapter(Context, items, filter);
                 adapter.DataModified += Adapter_DataModified;
 
                 _lv.Adapter = adapter;
