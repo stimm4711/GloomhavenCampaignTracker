@@ -31,6 +31,18 @@
             android:layout_alignParentRight="true"
             android:alpha="0.7" />
     </RelativeLayout>
+    <TextView
+            android:text="Playername"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playernameTextView"
+            android:layout_alignParentLeft="true"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:paddingLeft="8px"
+            android:layout_toLeftOf="@+id/characterItemView_optionsButton" 
+            android:visibility="gone"/>
     <RelativeLayout
         android:minWidth="25px"
         android:minHeight="25px"

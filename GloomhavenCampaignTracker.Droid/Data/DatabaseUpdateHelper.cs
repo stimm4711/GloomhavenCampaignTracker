@@ -5,7 +5,6 @@ using System.Linq;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using SQLite;
 using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
-using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 
 namespace Data
@@ -49,12 +48,12 @@ namespace Data
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 17)) == VersionTime.Earlier)
                 {
-                    FixNameOfScenario31();
+                    FixNameOfScenario(31, "Plane of Night");
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 18)) == VersionTime.Earlier)
                 {
-                    FixNameOfScenario54();
+                    FixNameOfScenario(54, "Palace of Ice");
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 19)) == VersionTime.Earlier)
@@ -84,7 +83,7 @@ namespace Data
                 {
                     FixQuatermasterStunPerk();
                     FixElementalistStunPerk();
-                    FixNameOfScenario83();
+                    FixNameOfScenario(83, "Shadows Within");
                     AddItem151();
                 }
                 
@@ -111,6 +110,11 @@ namespace Data
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 11)) == VersionTime.Earlier)
                 {
                     FixScenarioRegions();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 12)) == VersionTime.Earlier)
+                {
+                    FixNameOfScenario(87, "Corrupted Cove");
                 }
 
                 currentDbVersion.Value = Dbversion.ToString();
@@ -796,15 +800,15 @@ namespace Data
             items.Add(item);
         }
 
-        private static void FixNameOfScenario83()
+        private static void FixNameOfScenario(int scenarioNumber,string scenarioName)
         {
-            var scenario = ScenarioRepository.Get(true).FirstOrDefault(x => x.Scenarionumber == 83);
+            var scenario = ScenarioRepository.Get(true).FirstOrDefault(x => x.Scenarionumber == scenarioNumber);
             if (scenario == null) return;
 
             Connection.BeginTransaction();
             try
             {
-                scenario.Name = "Shadows Within";
+                scenario.Name = scenarioName;
 
                 ScenarioRepository.InsertOrReplace(scenario);
 
@@ -816,6 +820,7 @@ namespace Data
                 throw;
             }
         }
+
 
         private static void FixQuatermasterStunPerk()
         {
@@ -904,19 +909,6 @@ namespace Data
             AddBladeswarmPerks(perks); // 17
             AddDivinerClassPerks(perks); // 18
 
-            //perks = ClassPerkRepository.Get(false);
-
-            //MigrateSunPerks(perks);
-            //MigrateQuatermasterPerks(perks);
-            //MigrateSummonerPerks(perks);
-            //MigrateNightShroudPerks(perks);
-            //MigratePlagueheraldPerks(perks);
-            //MigrateLightningPerks(perks);
-            //MigrateSoothsingerPerks(perks);
-            //MigrateDoomstalkerPerks(perks);
-            //MigrateSawbonePerks(perks);
-            //MigrateElementalistPerks(perks);
-            //MigrateBeastTyrantPerks(perks);
         }
 
         private static void AddDivinerClassPerks(List<DL_ClassPerk> perks)
@@ -1257,48 +1249,6 @@ namespace Data
             }
         }
 
-        private static void FixNameOfScenario54()
-        {
-            var scenario = ScenarioRepository.Get(true).FirstOrDefault(x => x.Scenarionumber == 54);
-            if (scenario == null) return;
-
-            Connection.BeginTransaction();
-            try
-            {
-                scenario.Name = "Palace of Ice";
-
-                ScenarioRepository.InsertOrReplace(scenario);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void FixNameOfScenario31()
-        {
-            var scenario = ScenarioRepository.Get(true).FirstOrDefault(x => x.Scenarionumber == 31);
-            if (scenario == null) return;
-
-            Connection.BeginTransaction();
-            try
-            {
-                scenario.Name = "Plane of Night";
-
-                ScenarioRepository.InsertOrReplace(scenario);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
         private static void UpdatePersonalQuestCountersWithScenarios()
         {
             if (PersonalQuestCountersRepository.Get(false).Any())
@@ -1431,73 +1381,6 @@ namespace Data
             CharacterPersonalQuestCountersRepository.InsertOrReplace(item);
         }
 
-        private static void MigrateUnlockedItems()
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var items = ItemRepository.Get();
-                var campaigns = CampaignRepository.Get();
-                foreach (DL_Campaign c in campaigns)
-                {
-                    if (c?.CampaignUnlocks?.UnlockedItemDesignNumbers.Length > 0 && items.Any())
-                    {
-                        foreach (int unlockedItem in Helper.StringToIntList(c.CampaignUnlocks.UnlockedItemDesignNumbers))
-                        {
-                            var item = items.FirstOrDefault(x => x.Itemnumber == unlockedItem);
-
-                            if (item != null)
-                            {
-                                DL_CampaignUnlockedItem ui = new DL_CampaignUnlockedItem()
-                                {
-                                    Campaign = c,
-                                    ID_Campaign = c.Id,
-                                    ID_Item = item.Id,
-                                    Item = item
-                                };
-
-                                CampaignUnlockedItemRepository.InsertOrReplace(ui);
-                            }
-                        }
-                    }
-
-                }
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigratePersonalQuests()
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var pqs = PersonalQuestRepository.Get();
-                foreach (DL_Character c in CharacterRepository.Get())
-                {
-                    var pq = pqs.FirstOrDefault(x => x.QuestNumber == c.LifegoalNumber);
-                    if (pq != null && c.PersonalQuest == null)
-                    {
-                        c.ID_PersonalQuest = pq.Id;
-                        c.PersonalQuest = pq;
-                    }
-
-                    CharacterRepository.InsertOrReplace(c);
-                }
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
         private static void MigrateAbillities()
         {
             Connection.BeginTransaction();
@@ -1512,245 +1395,6 @@ namespace Data
 
                     AbilityRepository.InsertOrReplace(a);
                 }
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void UpdateDBFrom_004_to_005()
-        {
-            var scenarios = ScenarioRepository.Get();
-            var changedScenarios = new List<DL_Scenario>();
-
-            // scenario 19: requires ga 8, ga 8 is not blocking (again, forgot to update init)
-            var scen19 = scenarios.FirstOrDefault(x => x.Scenarionumber == 19);
-            if (scen19 != null)
-            {
-                scen19.BlockingGlobalAchievements = "";
-                scen19.RequiredGlobalAchievements = "8";
-                changedScenarios.Add(scen19);
-            }
-
-            // scenario 8: unlocks scenario 13
-            var scen8 = scenarios.FirstOrDefault(x => x.Scenarionumber == 8);
-            if (scen8 != null)
-            {
-                scen8.UnlockedScenarios = "13,14,7";
-                changedScenarios.Add(scen8);
-            }
-
-            // scenario 41 does not unlock scenario 42
-            var scen41 = scenarios.FirstOrDefault(x => x.Scenarionumber == 41);
-            if (scen41 != null)
-            {
-                scen41.UnlockedScenarios = "";
-                changedScenarios.Add(scen41);
-            }
-
-            // scenario 42 does not unlock scenario 41
-            var scen42 = scenarios.FirstOrDefault(x => x.Scenarionumber == 42);
-            if (scen42 != null)
-            {
-                scen42.UnlockedScenarios = "";
-                changedScenarios.Add(scen42);
-            }
-
-            // wrong string
-            var scen34 = scenarios.FirstOrDefault(x => x.Scenarionumber == 34);
-            if (scen34 != null)
-            {
-                scen34.RequiredPartyAchievements = "17";
-                changedScenarios.Add(scen34);
-            }
-
-            // wrong string
-            var scen35 = scenarios.FirstOrDefault(x => x.Scenarionumber == 35);
-            if (scen35 != null)
-            {
-                scen35.RequiredPartyAchievements = "1";
-                changedScenarios.Add(scen35);
-            }
-
-            // wrong string
-            var scen36 = scenarios.FirstOrDefault(x => x.Scenarionumber == 36);
-            if (scen36 != null)
-            {
-                scen36.RequiredPartyAchievements = "1";
-                changedScenarios.Add(scen36);
-            }
-
-            ScenarioRepository.InsertOrReplace(changedScenarios);
-
-            var campaignScenarios = CampaignUnlockedScenarioRepository.Get();
-
-            // Unlock scenario 13 for campaigns where scenario 8 is completed
-            var campScenario8 = campaignScenarios.FirstOrDefault(x => x.Scenario.Scenarionumber == 8 && x.Completed && x.Campaign != null);
-
-            if (campScenario8 == null) return;
-            if (campaignScenarios.FirstOrDefault(x => x.Scenario.Scenarionumber == 13) != null) return;
-
-            var scen13 = scenarios.FirstOrDefault(x => x.Scenarionumber == 13);
-            if (scen13 == null) return;
-
-            var unlockedScenarioData = new DL_CampaignUnlockedScenario
-            {
-                Scenario = scen13,
-                Campaign = campScenario8.Campaign,
-                ID_Scenario = scen13.Id,
-                ID_Campaign = campScenario8.ID_Campaign,
-                Completed = false,
-                ScenarioTreasures = new List<DL_Treasure>()
-            };
-
-            CampaignUnlockedScenarioRepository.InsertOrReplace(unlockedScenarioData);
-        }
-
-        private static void FixNameOfScenario22()
-        {
-            var scenario = ScenarioRepository.Get(false).FirstOrDefault(x => x.Scenarionumber == 22);
-            if (scenario == null) return;
-
-            Connection.BeginTransaction();
-            try
-            {
-                scenario.Name = "Temple of the Elements";
-
-                ScenarioRepository.InsertOrReplace(scenario);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void FixTinkererHealPerk(List<DL_ClassPerk> perks)
-        {
-            var tinkererHealPerks = perks.Where(x => x.ClassId == 1 && (x.Checkboxnumber == 12 || x.Checkboxnumber == 13));
-
-            Connection.BeginTransaction();
-            try
-            {
-                foreach (var p in tinkererHealPerks)
-                {
-                    p.Perktext = "Add one [+1] Heal [H]2, self card";
-                    ClassPerkRepository.InsertOrReplace(p);
-                }
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigrateSoothsingerPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 12);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 13);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigrateQuatermasterPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 7);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 8);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigratePlagueheraldPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 10);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 11);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigrateNightShroudPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 9);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 10);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigrateElementalistPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 15);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 16);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigrateBeastTyrantPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 16);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 17);
-                MigratePerks(classperks, characters);
 
                 Connection.Commit();
             }
@@ -2009,43 +1653,7 @@ namespace Data
                 throw;
             }
         }
-
-        private static void MigrateSummonerPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 8);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 9);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigrateDoomstalkerPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 13);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 14);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
+               
         private static void AddDoomstalkerPerks(List<DL_ClassPerk> perks)
         {
             if (!perks.Any(x => x.ClassId == 13))
@@ -2113,49 +1721,7 @@ namespace Data
                 }
             }
         }
-
-        private static void MigrateSunPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 6);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 7);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void MigratePerks(IEnumerable<DL_ClassPerk> classperks, IEnumerable<DL_Character> characters)
-        {
-            foreach (DL_Character c in characters)
-            {
-                var chara = CharacterRepository.Get(c.Id);
-                if (chara.Perks.Any())
-                {
-                    foreach (DL_Perk oldperk in chara.Perks.Where(x => x.Checkboxnumber > 0 && x.Checkboxnumber < 16))
-                    {
-                        if (!chara.CharacterPerks.Any(x => x.Checkboxnumber == oldperk.Checkboxnumber))
-                        {
-                            var newPerk = classperks.FirstOrDefault(x => x.ClassId == chara.ClassId - 1 && x.Checkboxnumber == oldperk.Checkboxnumber);
-
-                            if (newPerk != null)
-                            {
-                                chara.CharacterPerks.Add(newPerk);
-                                CharacterRepository.InsertOrReplace(chara);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
+               
         private static void AddSunPerks(List<DL_ClassPerk> perks)
         {
             if (!perks.Any(x => x.ClassId == 6))
@@ -2199,24 +1765,6 @@ namespace Data
                     Connection.Rollback();
                     throw;
                 }
-            }
-        }
-
-        private static void MigrateLightningPerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var classperks = perks.Where(x => x.ClassId == 11);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 12);
-                MigratePerks(classperks, characters);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
             }
         }
 
@@ -2273,139 +1821,6 @@ namespace Data
             {
                 var sdc = new ScenarioDataService();
                 sdc.UpdateScenarioRegion(79, 4);
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void FixScoundrelPerkTypo()
-        {
-            var perks = ClassPerkRepository.Get(false);
-            var scoundrelPerks = perks.Where(x => x.ClassId == 3 && (x.Checkboxnumber == 11 || x.Checkboxnumber == 12));
-
-            Connection.BeginTransaction();
-            try
-            {
-                foreach (var p in scoundrelPerks)
-                {
-                    p.Perktext = "Add two [RM] POISON [PO] cards";
-                    ClassPerkRepository.InsertOrReplace(p);
-                }
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void FixMindthiefPerkTypo()
-        {
-            var perks = ClassPerkRepository.Get(false);
-            var scoundrelPerks = perks.Where(x => x.ClassId == 5 && (x.Checkboxnumber == 6 || x.Checkboxnumber == 7));
-
-            Connection.BeginTransaction();
-            try
-            {
-                foreach (var p in scoundrelPerks)
-                {
-                    p.Perktext = "Add one [+2] FROST [FROST] card";
-                    ClassPerkRepository.InsertOrReplace(p);
-                }
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-        private static void UpdateEventHistoryPositions()
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                foreach (DL_Campaign c in CampaignRepository.Get())
-                {
-                    if (c != null)
-                    {
-                        List<DL_CampaignEventHistoryLogItem> roadevents = CampaignEventHistoryLogItemRepository.GetEvents(c.Id, 1);
-                        List<DL_CampaignEventHistoryLogItem> cityevents = CampaignEventHistoryLogItemRepository.GetEvents(c.Id, 2);
-                        foreach (DL_CampaignEventHistoryLogItem evl in roadevents)
-                        {
-                            evl.Position = roadevents.IndexOf(evl);
-                        }
-                        foreach (DL_CampaignEventHistoryLogItem evl in cityevents)
-                        {
-                            evl.Position = cityevents.IndexOf(evl);
-                        }
-                    }
-
-                }
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-            }
-        }
-
-        private static void MigrateSawbonePerks(List<DL_ClassPerk> perks)
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                var sawperks = perks.Where(x => x.ClassId == 14);
-                var characters = CharacterRepository.Get(false).Where(x => x.ClassId == 15);
-                foreach (DL_Character c in characters)
-                {
-                    var chara = CharacterRepository.Get(c.Id);
-                    if (chara.Perks.Any())
-                    {
-                        foreach (DL_Perk oldperk in chara.Perks.Where(x => x.Checkboxnumber > 0 && x.Checkboxnumber < 16))
-                        {
-                            var newPerk = sawperks.FirstOrDefault(x => x.ClassId == chara.ClassId - 1 && x.Checkboxnumber == oldperk.Checkboxnumber);
-
-                            if (newPerk != null)
-                            {
-                                chara.CharacterPerks.Add(newPerk);
-                                CharacterRepository.InsertOrReplace(chara);
-                            }
-                        }
-                    }
-                }
-
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
-
-
-        private static void UpdateGlobalAchievementNameRiftClosed()
-        {
-            var ga = AchievementTypeRepository.Get(false).FirstOrDefault(x => x.Name == "The Rift Closed");
-            if (ga == null) return;
-
-            Connection.BeginTransaction();
-            try
-            {
-                ga.Name = "The Rift Neutralized";
-
-                AchievementTypeRepository.InsertOrReplace(ga);
 
                 Connection.Commit();
             }

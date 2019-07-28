@@ -58,6 +58,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 var inflater = _context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
                 view = inflater.Inflate(Resource.Layout.listviewitem_character, parent, false);
                 holder.Charactername = view.FindViewById<TextView>(Resource.Id.charnameTextView);
+                holder.Playername = view.FindViewById<TextView>(Resource.Id.playernameTextView);
                 holder.Characterlevel = view.FindViewById<TextView>(Resource.Id.charLevelText);
                 holder.CharacterClass = view.FindViewById<ImageView>(Resource.Id.chaclassImage);
                 holder.CharacterRetiredImage = view.FindViewById<ImageView>(Resource.Id.retiredImage);
@@ -79,6 +80,16 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             holder.CharacterRetiredImage.Visibility = partymember.Retired ? ViewStates.Visible : ViewStates.Invisible;           
 
             holder.PartyImage.Visibility = partymember.ID_Party > 0 ? ViewStates.Visible : ViewStates.Invisible;
+
+            if (!string.IsNullOrEmpty(partymember.Playername))
+            {
+                holder.Playername.Visibility = ViewStates.Visible;
+                holder.Playername.Text = partymember.Playername;
+            }
+            else
+            {
+                holder.Playername.Visibility = ViewStates.Gone;
+            }
 
             holder.Charactername.Tag = new CharacterWrapper(partymember);
 
@@ -182,5 +193,6 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         public ImageView CharacterRetiredImage { get; set; }
         public ImageView CharacterOptionsButton { get; set; }
         public ImageView PartyImage { get; set; }
+        public TextView Playername { get; internal set; }
     }
 }

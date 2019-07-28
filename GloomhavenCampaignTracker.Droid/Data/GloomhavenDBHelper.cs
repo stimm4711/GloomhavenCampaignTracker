@@ -1652,7 +1652,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 DatabaseUpdateHelper.SaveScenario("Crystalline Cave", 84, requiredPartyAchievements: "26");
                 DatabaseUpdateHelper.SaveScenario("Sun Temple", 85);
                 DatabaseUpdateHelper.SaveScenario("Harried Village", 86, "87");
-                DatabaseUpdateHelper.SaveScenario("CorruptDatabaseUpdateHelper.ed Cove", 87, requiredPartyAchievements: "19");
+                DatabaseUpdateHelper.SaveScenario("Corrupted Cove", 87, requiredPartyAchievements: "19");
                 DatabaseUpdateHelper.SaveScenario("Plane of Water", 88, requiredPartyAchievements: "27", requiredGlobalAchievements: "9");
                 DatabaseUpdateHelper.SaveScenario("Syndicate Hideout", 89, requiredPartyAchievements: "15");
                 DatabaseUpdateHelper.SaveScenario("Demonic Rift", 90);
