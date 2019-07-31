@@ -1,0 +1,167 @@
+{
+	"classabilities":
+	[
+		{
+			"classname": "Brute",
+			"classid": 0,
+			"Abilities": 
+			[
+				{
+					"abilityName": "Trample",
+					"referenceNumber": 1,
+					"level": 1,
+					"image_url": null,
+					"iD_Class": 0
+				},
+				{
+					"abilityName": "Eye for an Eye",
+					"referenceNumber": 2,
+					"level": 1,
+					"image_url": null,
+					"iD_Class": 0
+				}
+			]
+		},
+		{
+			"classname": "Tinkerer",
+			"classid": 1,
+			"Abilities": 
+			[
+				{
+					"abilityName": "Stun Shot",
+					"referenceNumber": 36,
+					"level": 1,
+					"image_url": null,
+					"iD_Class": 1
+				},
+				{
+					"abilityName": "Reinvigorating Elixir",
+					"referenceNumber": 37,
+					"level": 1,
+					"image_url": null,
+					"iD_Class": 1
+				}
+			]
+		},
+		{
+			"classname": "Spellweaver",
+			"classid": 2,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Scoundrel",
+			"classid": 3,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Cragheart",
+			"classid": 4,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Mindthief",
+			"classid": 5,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Sunkeeper",
+			"classid": 6,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Quatermaster",
+			"classid": 7,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Summoner",
+			"classid": 8,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Nightshround",
+			"classid": 9,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Plagueherald",
+			"classid": 10,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Berserker",
+			"classid": 11,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Soothsinger",
+			"classid": 12,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Doomstalker",
+			"classid": 13,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Sawbones",
+			"classid": 14,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Elementalist",
+			"classid": 15,
+			"Abilities": 
+			[
+				
+			]
+		},
+		{
+			"classname": "Beasttyrant",
+			"classid": 16,
+			"Abilities": 
+			[
+				
+			]
+		}	
+	]
+}
