@@ -2,9 +2,7 @@
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-using GloomhavenCampaignTracker.Droid.Fragments.campaign;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.city;
-using GloomhavenCampaignTracker.Shared;
 using GloomhavenCampaignTracker.Business;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
@@ -13,7 +11,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
     {
         private readonly FragmentManager _fragManager;
         private readonly Context _context;
-        private int _pageCount = 10;
+        private int _pageCount = 11;
         private readonly Fragment[] frags;
         private readonly Campaign _campaign;
         private readonly int _prosperity;
@@ -24,7 +22,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             _fragManager = fm;
             _campaign = campaign;
             _prosperity = Helper.GetProsperityLevel(campaign.CityProsperity);
-            _pageCount = _prosperity + 1;
+            _pageCount = _prosperity + 2;
 
             frags = new Fragment[_pageCount];            
         }
@@ -41,19 +39,20 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             var title = "";
 
-            if (position + 1 > _prosperity) return "UL";
-            if (position < 9) return (position + 1).ToString();
+            if (position == 0) return "ALL";
+            if (position > _prosperity) return "UL";
+            if (position < 10) return position.ToString();
 
             return title;
         }
 
         public override Fragment GetItem(int position)
         {
-            if(position+1 > _prosperity)
+            if(position > _prosperity)
             {
-                position += 10;
+                position += 11;
             }
-            Fragment frag = new CampaignItemsFragment(position + 1);  
+            Fragment frag = new CampaignItemsFragment(position);  
             return frag;
         }
 

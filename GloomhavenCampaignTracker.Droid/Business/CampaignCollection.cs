@@ -8,9 +8,8 @@ namespace GloomhavenCampaignTracker.Business
 {
     public class CampaignCollection
     {
-        private Lazy<List<Campaign>> m_campaigns;
-        private Dictionary<int, Campaign> m_campaignDict = new Dictionary<int, Campaign>();
-        private List<DL_Campaign> m_campaignData;
+        private readonly Lazy<List<Campaign>> m_campaigns;
+        private readonly Dictionary<int, Campaign> m_campaignDict = new Dictionary<int, Campaign>();
         private int _currentCampaignId;
 
 
@@ -48,7 +47,6 @@ namespace GloomhavenCampaignTracker.Business
 
         public CampaignCollection()
         {
-            m_campaignData = DataServiceCollection.CampaignDataService.GetCampaignsFlat();
             m_campaigns = new Lazy<List<Campaign>>(() =>
             {
                 var campaigns = new List<Campaign>();
@@ -93,7 +91,7 @@ namespace GloomhavenCampaignTracker.Business
                 {
                     data = DataServiceCollection.CampaignDataService.Get(campaignId);                    
                 }
-                catch(Exception ex)
+                catch
                 {
                     // If an error occurs on loading the data, set campaign id to -1. then the current campaign is null
                     campaignId = -1;

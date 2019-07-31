@@ -76,21 +76,21 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
 		///
 		public DraggableListView (Context context) : base (context)
 		{
-			init (context);
+			Init();
 		}
 
 		public DraggableListView (Context context, IAttributeSet attrs, int defStyle) : base (context, attrs, defStyle)
 		{
-			init (context);
+			Init();
 		}
 
 		public DraggableListView (Context context, IAttributeSet attrs) : base (context, attrs)
 		{
-			init (context);
+			Init();
 		}
 
-		public void init (Context context)
-		{
+        public void Init()
+        {
 			//	the detector handles all the gestures
 			dectector = new GestureDetector (this);
 			ItemLongClick += HandleItemLongClick;
@@ -249,7 +249,7 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
 			} catch (Exception ex) {
 				Console.WriteLine (ex.Message);
 			}
-			return default(Bitmap);
+			return default;
 
 		}
 

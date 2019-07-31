@@ -24,22 +24,6 @@ namespace GloomhavenCampaignTracker.Business
             }
         }
 
-        private void SetUnlockScenariosOnComletation()
-        {
-            if (string.IsNullOrEmpty(ScenarioData.UnlockedScenarios)) return;
-
-            var scenarioIds = ScenarioData.UnlockedScenarios.Split(',');
-
-            m_unlockScenariosOnCompletation.Clear();
-            foreach (var i in scenarioIds)
-            {
-                if (int.TryParse(i, out int scenarioId))
-                {
-                    m_unlockScenariosOnCompletation.Add(scenarioId);
-                }
-            }
-        }
-
         private void SetRequiredCompletedGlobalAchievements()
         {
             if (string.IsNullOrEmpty(ScenarioData.RequiredGlobalAchievements)) return;
@@ -96,10 +80,7 @@ namespace GloomhavenCampaignTracker.Business
 
         public int ScenarioId => ScenarioData.Id;
 
-        public DL_Scenario ScenarioData { get; }
-
-        private List<int> m_unlockScenariosOnCompletation;
-       
+        public DL_Scenario ScenarioData { get; }       
 
         private HashSet<int> m_requiredCompletedGlobalAchievements;
         public HashSet<int> RequiredCompletedGlobalAchievements

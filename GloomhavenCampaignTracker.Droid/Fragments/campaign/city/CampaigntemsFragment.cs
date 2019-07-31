@@ -32,7 +32,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
         {
             base.OnCreateView(inflater, container, savedInstanceState);
 
-            if (_prosperityLevel >= 1 && _prosperityLevel <= 9)
+            if (_prosperityLevel >= 0 && _prosperityLevel <= 9)
             {
                 _view = inflater.Inflate(Resource.Layout.fragment_itemstore_prosperityitems, container, false);
             }
@@ -71,12 +71,18 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
 
         private void FillListView(int filter = -1)
         {
+            if (_prosperityLevel == 0)
+            {
+                var prosp = Helper.GetProsperityLevel(GCTContext.CurrentCampaign.CityProsperity);
+                var items = DataServiceCollection.ItemDataService.GetSelectableItems(prosp, GCTContext.CurrentCampaign.CampaignData.Id);
+                _lv.Adapter = new ProsperityItemAdapter(Context, items, filter);
+            }
             if (_prosperityLevel >= 1 && _prosperityLevel <= 9)
             {
                 var items = DataServiceCollection.ItemDataService.GetByProsperity(_prosperityLevel);
                 _lv.Adapter = new ProsperityItemAdapter(Context, items, filter);
             }
-            else
+            if (_prosperityLevel > 9)
             {
                 var items = GCTContext.CurrentCampaign.CampaignData.UnlockedItems;
                 foreach (var item in items)

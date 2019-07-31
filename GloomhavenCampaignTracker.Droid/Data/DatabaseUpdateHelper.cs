@@ -676,7 +676,7 @@ namespace Data
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
                         ClassId = 15,
-                        ClassName = "Vermling Beasttyrant",
+                        ClassName = "Savvas Elementalist",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -875,7 +875,7 @@ namespace Data
 
                         CampaignUnlockedScenarioRepository.InsertOrReplace(newScenario);
                     }
-                    catch(Exception ex)
+                    catch
                     {
                         // do nothing
                     }                   
@@ -1381,29 +1381,29 @@ namespace Data
             CharacterPersonalQuestCountersRepository.InsertOrReplace(item);
         }
 
-        private static void MigrateAbillities()
-        {
-            Connection.BeginTransaction();
-            try
-            {
-                foreach (DL_Ability a in AbilityRepository.Get())
-                {
-                    if (int.TryParse(a.Name, out int aNumber))
-                    {
-                        a.ReferenceNumber = aNumber;
-                    }
+        //private static void MigrateAbillities()
+        //{
+        //    Connection.BeginTransaction();
+        //    try
+        //    {
+        //        foreach (DL_Ability a in AbilityRepository.Get())
+        //        {
+        //            if (int.TryParse(a.Name, out int aNumber))
+        //            {
+        //                a.ReferenceNumber = aNumber;
+        //            }
 
-                    AbilityRepository.InsertOrReplace(a);
-                }
+        //            AbilityRepository.InsertOrReplace(a);
+        //        }
 
-                Connection.Commit();
-            }
-            catch
-            {
-                Connection.Rollback();
-                throw;
-            }
-        }
+        //        Connection.Commit();
+        //    }
+        //    catch
+        //    {
+        //        Connection.Rollback();
+        //        throw;
+        //    }
+        //}
 
         private static void AddSoothsingerPerks(List<DL_ClassPerk> perks)
         {
