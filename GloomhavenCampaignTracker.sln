@@ -14,6 +14,9 @@ EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GCT.Shared", "GCT.Shared\GCT.Shared.shproj", "{27A5574A-1481-4AD8-90D0-BB037D5C3411}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		GCT.Shared\GCT.Shared.projitems*{27a5574a-1481-4ad8-90d0-bb037d5c3411}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64

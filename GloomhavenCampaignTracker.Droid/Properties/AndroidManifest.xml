@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.timmcode.ghcampaigntracker.droid" android:versionCode="19080201" android:installLocation="auto" android:versionName="1.4.2">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.timmcode.ghcampaigntracker.droid" android:versionCode="19080301" android:installLocation="auto" android:versionName="1.4.2">
 	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
