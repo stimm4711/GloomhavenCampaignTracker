@@ -9,6 +9,8 @@ using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using System.Collections.Generic;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using System.Linq;
+using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.character
 {
@@ -66,71 +68,71 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             var enhancementListBottom = convertView.FindViewById<ListView>(Resource.Id.listViewbottom);
             var fabBottom = convertView.FindViewById<FloatingActionButton>(Resource.Id.fabbottom);
 
-            var ability = Character.Abilities[e.Position];               
+            var ability = Character.CharacterAbilities[e.Position];               
 
             if (ability == null) return;
 
-            refNumberText.Text = ability.ReferenceNumber.ToString();
-            levelText.Text = ability.Level.ToString();
-            nameText.Text = ability.AbilityName;
+            refNumberText.Text = ability.Ability.ReferenceNumber.ToString();
+            levelText.Text = ability.Ability.Level.ToString();
+            nameText.Text = ability.Ability.AbilityName;
 
-            enhancementListTop.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, true);
-            enhancementListBottom.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, false);
+            //enhancementListTop.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, true);
+            //enhancementListBottom.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, false);
 
-            if (!fabTop.HasOnClickListeners)
-            {
-                fabTop.Click += (s, arg) =>
-                {
-                    AddEnhancement(inflater, enhancementListTop, ability, true);
-                };
-            }
+            //if (!fabTop.HasOnClickListeners)
+            //{
+            //    fabTop.Click += (s, arg) =>
+            //    {
+            //        AddEnhancement(inflater, enhancementListTop, ability, true);
+            //    };
+            //}
 
-            if (!fabBottom.HasOnClickListeners)
-            {
-                fabBottom.Click += (s, arg) =>
-                {
-                    AddEnhancement(inflater, enhancementListBottom, ability, false);
-                };
-            }
+            //if (!fabBottom.HasOnClickListeners)
+            //{
+            //    fabBottom.Click += (s, arg) =>
+            //    {
+            //        AddEnhancement(inflater, enhancementListBottom, ability, false);
+            //    };
+            //}
 
-            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-                .SetCustomView(convertView)
-                .SetTitle("Edit Ability")
-                .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
-                .SetPositiveButton("Save changes", (senderAlert, args) =>
-                {
-                    if (string.IsNullOrEmpty(nameText.Text)) return;
+            //new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+            //    .SetCustomView(convertView)
+            //    .SetTitle("Edit Ability")
+            //    .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
+            //    .SetPositiveButton("Save changes", (senderAlert, args) =>
+            //    {
+            //        if (string.IsNullOrEmpty(nameText.Text)) return;
 
-                    ability.AbilityName = nameText.Text;
+            //        ability.AbilityName = nameText.Text;
 
-                    if (!string.IsNullOrEmpty(levelText.Text))
-                    {
-                        int.TryParse(levelText.Text, out int level);
-                        if (level < 1 || level > 9)
-                        {
-                            Toast.MakeText(Context, Resources.GetString(Resource.String.WrongAbilityLevel), ToastLength.Short).Show();
-                            return;
-                        }
-                        ability.Level = level;
-                    }
+            //        if (!string.IsNullOrEmpty(levelText.Text))
+            //        {
+            //            int.TryParse(levelText.Text, out int level);
+            //            if (level < 1 || level > 9)
+            //            {
+            //                Toast.MakeText(Context, Resources.GetString(Resource.String.WrongAbilityLevel), ToastLength.Short).Show();
+            //                return;
+            //            }
+            //            ability.Level = level;
+            //        }
 
-                    if (!string.IsNullOrEmpty(levelText.Text))
-                    {
-                        if (int.TryParse(refNumberText.Text, out int number))
-                        {
-                            ability.ReferenceNumber = number;
-                        }
-                        else
-                        {
-                            ability.ReferenceNumber = 0;
-                        }
-                    }
+            //        if (!string.IsNullOrEmpty(levelText.Text))
+            //        {
+            //            if (int.TryParse(refNumberText.Text, out int number))
+            //            {
+            //                ability.ReferenceNumber = number;
+            //            }
+            //            else
+            //            {
+            //                ability.ReferenceNumber = 0;
+            //            }
+            //        }
 
-                    SaveCharacter();
+            //        SaveCharacter();
 
-                    _lv.Adapter = new AbilitiesAdapter(Context, Character);
-                })
-                .Show();
+            //        _lv.Adapter = new AbilitiesAdapter(Context, Character);
+            //    })
+            //    .Show();
         }
 
         private void AddEnhancement(LayoutInflater inflater, ListView enhancementListTop, DL_Ability ability, bool isTop)
@@ -217,52 +219,43 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         private void AddNewAbility(ListView lv)
         {
             var inflater = Context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
-            var convertView = inflater.Inflate(Resource.Layout.alertdialog_addability, null);
-            var refNumberText = convertView.FindViewById<EditText>(Resource.Id.inputText);
-            var levelText = convertView.FindViewById<EditText>(Resource.Id.inputNumber);
-            var nameText = convertView.FindViewById<EditText>(Resource.Id.abilityName);
+            var convertView = inflater.Inflate(Resource.Layout.alertdialog_listview, null);
+            var listview = convertView.FindViewById<ListView>(Resource.Id.listView);
+            List<DL_ClassAbility> selectableAbilities = new List<DL_ClassAbility>();
+
+            listview.ItemsCanFocus = true;
+            listview.ChoiceMode = ChoiceMode.Multiple;
+
+            selectableAbilities = ClassAbilitiesRepository.Get().
+                Where(x => x.ID_Class == Character.ID_Class && 
+                x.Level <= Character.Level &&
+                !Character.CharacterAbilities.Any(y=>y.Ability.Id == x.Id)).ToList();
+
+            var itemadapter = new SelectableClassAbilitiesAdapter(Context, selectableAbilities);
+            listview.Adapter = itemadapter;
 
             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                 .SetCustomView(convertView)
-                .SetTitle(Context.Resources.GetString(Resource.String.AddAbilityAlertTitle))
-                .SetPositiveButton(Context.Resources.GetString(Resource.String.AddAbility), (senderAlert, args) =>
+                .SetTitle("Select Abilities")
+                .SetNeutralButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
+                .SetNegativeButton("Add Abilities", (senderAlert, args) =>
                 {
-                    if (string.IsNullOrEmpty(nameText.Text)) return;
-                    
-                    var newAbility = new DL_Ability()
+                    var selectedItems = itemadapter.GetSelected();
+                    foreach (var si in selectedItems)
                     {
-                        Character = Character,
-                        ID_Character = Character.Id,
-                        AbilityName = nameText.Text
-                    };
-
-                    if (!string.IsNullOrEmpty(levelText.Text))
-                    {
-                        int.TryParse(levelText.Text, out int level);
-                        if (level < 1 || level > 9)
+                        if (Character.CharacterAbilities == null) Character.CharacterAbilities = new List<DL_CharacterAbility>();
+                        Character.CharacterAbilities.Add(new DL_CharacterAbility()
                         {
-                            Toast.MakeText(Context, Resources.GetString(Resource.String.WrongAbilityLevel), ToastLength.Short).Show();
-                            return;
-                        }
-                        newAbility.Level = level;
+                            Ability = si,
+                            Character = Character,
+                            ID_Character = Character.Id,
+                            ID_ClassAbility = si.Id
+                        });
                     }
 
-                    if (!string.IsNullOrEmpty(levelText.Text))
-                    {
-                        if(int.TryParse(refNumberText.Text, out int number))
-                        {
-                            newAbility.ReferenceNumber = number;
-                        }
-                        else
-                        {
-                            newAbility.ReferenceNumber = 0;
-                        }                        
-                    }
-
-                    Character.Abilities.Add(newAbility);
                     SaveCharacter();
                     lv.Adapter = new AbilitiesAdapter(Context, Character);
-                })
+                })                
                 .Show();
         }       
     }

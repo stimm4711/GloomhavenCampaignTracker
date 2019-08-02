@@ -56,6 +56,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         public List<DL_Ability> Abilities { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
+        public List<DL_CharacterAbility> CharacterAbilities { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
         public List<DL_Perk> Perks { get; set; }
 
         [ManyToMany(typeof(DL_CharacterItem)), JsonIgnore]

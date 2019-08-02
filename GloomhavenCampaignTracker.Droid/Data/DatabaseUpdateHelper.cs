@@ -6,13 +6,15 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using SQLite;
 using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
+using GloomhavenCampaignTracker.Droid.Data.ConversionClasses;
+using Android.Content.Res;
 
 namespace Data
 {
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 13);
+        public static Version Dbversion { get; } = new Version(1, 4, 15);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
@@ -120,7 +122,18 @@ namespace Data
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 13)) == VersionTime.Earlier)
                 {
                     AddPartyAchievementSunblessed();
-                }                
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 14)) == VersionTime.Earlier)
+                {
+                    AddClasses();
+                    AddClassAblities();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 15)) == VersionTime.Earlier)
+                {
+                    MigrateCharactersToClasses();
+                }
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
@@ -440,11 +453,79 @@ namespace Data
             }
         }
 
-        private static void AddCLassAblities()
+        private static void MigrateCharactersToClasses()
         {
-            // read from JSON
+            var classes = ClassRepository.Get();
+            var characters = CharacterRepository.Get();
 
+            foreach(var character in characters)
+            {
+                var charClass = classes.FirstOrDefault(x => x.ClassId == character.ClassId);
 
+                if (charClass == null) continue;
+
+                character.DL_Class = charClass;
+                character.ID_Class = charClass.Id;
+
+                CharacterRepository.InsertOrReplace(character); 
+                
+                foreach(var firstlevelability in charClass.Abilities.Where(x=>x.Level == 1))
+                {
+                    var characterAbility = new DL_CharacterAbility()
+                    {
+                        Ability = firstlevelability,
+                        Character = character,
+                        ID_Character = character.Id,
+                        ID_ClassAbility = firstlevelability.Id
+                    };
+
+                    CharacterAbilitiesRepository.InsertOrReplace(characterAbility);
+                }
+            }
+        }
+
+        private static void AddClassAblities()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                // read from JSON
+                AssetManager assets = Android.App.Application.Context.Assets;
+                var asset = Android.App.Application.Context.Assets.Open("raw_data/Classabilities.json");
+                var classabilities = JSONConverter.LoadJson<ClassAbilites>(asset);
+
+                var classes = ClassRepository.Get();
+                var classAbs = ClassAbilitiesRepository.Get();
+                foreach (var classAb in classabilities.classabilities)
+                {
+                    var currentClass = classes.FirstOrDefault(x => x.ClassId == classAb.classid+1);
+
+                    if (currentClass == null) continue ;
+
+                    if (classAbs.Any(x => x.ID_Class == currentClass.Id)) continue;
+
+                    foreach(var ability in classAb.Abilities)
+                    {
+                        var classAbility = new DL_ClassAbility()
+                        {
+                            AbilityName = ability.abilityName,
+                            DL_Class = currentClass,
+                            ID_Class = currentClass.Id,
+                            Level = ability.level,
+                            ReferenceNumber = ability.referenceNumber
+                        };
+
+                        ClassAbilitiesRepository.InsertOrReplace(classAbility);
+                    }
+                }
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
         }
 
         private static void AddClasses()
@@ -461,7 +542,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 0,
+                        ClassId = 1,
                         ClassName = "Inox Brute",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -476,7 +557,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 1,
+                        ClassId = 2,
                         ClassName = "Quatryl Tinkerer",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -491,7 +572,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 2,
+                        ClassId = 3,
                         ClassName = "Orchid Spellweaver",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -506,7 +587,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 3,
+                        ClassId = 4,
                         ClassName = "Human Scoundrel",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -521,7 +602,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 4,
+                        ClassId = 5,
                         ClassName = "Savvas Cragheart",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -536,7 +617,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 5,
+                        ClassId = 6,
                         ClassName = "Vermling Mindthief",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -551,7 +632,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 6,
+                        ClassId = 7,
                         ClassName = "Valrath Sunkeeper",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -566,7 +647,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 7,
+                        ClassId = 8,
                         ClassName = "Valrath Quatermaster",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -581,7 +662,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 8,
+                        ClassId = 9,
                         ClassName = "Aesther Summoner",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -596,7 +677,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 9,
+                        ClassId = 10,
                         ClassName = "Aesther Nightshround",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -611,7 +692,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 10,
+                        ClassId = 11,
                         ClassName = "Harrower Plagueherald",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -627,7 +708,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 11,
+                        ClassId = 12,
                         ClassName = "Inox Berserker",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -642,7 +723,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 12,
+                        ClassId = 13,
                         ClassName = "Quatryl Soothsinger",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -657,7 +738,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 13,
+                        ClassId = 14,
                         ClassName = "Orchid Doomstalker",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -672,7 +753,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 14,
+                        ClassId = 15,
                         ClassName = "Human Sawbones",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -687,7 +768,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 15,
+                        ClassId = 16,
                         ClassName = "Savvas Elementalist",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -702,7 +783,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 16,
+                        ClassId = 17,
                         ClassName = "Vermling Beasttyrant",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -717,7 +798,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 17,
+                        ClassId = 18,
                         ClassName = "Harrower Bladeswarm",
                         Perks = new List<DL_ClassPerks>()
                     };
@@ -732,7 +813,7 @@ namespace Data
                     {
                         Abilities = new List<DL_ClassAbility>(),
                         Characters = new List<DL_Character>(),
-                        ClassId = 18,
+                        ClassId = 19,
                         ClassName = "Aesther Diviner",
                         Perks = new List<DL_ClassPerks>()
                     };

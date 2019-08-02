@@ -15,6 +15,7 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System;
 using System.Linq;
 using Android.Preferences;
+using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments
 {
@@ -195,9 +196,29 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
                 LifegoalNumber = personalQuest,
                 Items = new List<DL_Item>(),
                 PersonalQuest = null,
-                Notes = ""
-            };            
+                Notes = "",
+                CharacterAbilities = new List<DL_CharacterAbility>()
+            };
+
+            var charClass = ClassRepository.Get().FirstOrDefault(x => x.ClassId == charac.ClassId);
             
+            if(charClass != null)
+            {
+                charac.DL_Class = charClass;
+                charac.ID_Class = charClass.Id;
+                var classAbilities = ClassAbilitiesRepository.Get().Where(x => x.ID_Class == charac.ID_Class && x.Level == 1);
+                foreach (var ability in classAbilities)
+                {
+                    charac.CharacterAbilities.Add(new DL_CharacterAbility()
+                    {
+                        Ability = ability,
+                        Character = charac,
+                        ID_Character = charac.Id,
+                        ID_ClassAbility = ability.Id
+                    });
+                }
+            }           
+
             if (Justparty)
             {
                 charac.Party = GCTContext.CurrentCampaign.CurrentParty;

@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
+using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 using Java.Lang;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
@@ -17,14 +18,21 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             get
             {
-                if (_character.Abilities == null) return 0;
-                return _character.Abilities.Count;
+                if (_character.CharacterAbilities == null) return 0;
+                return _character.CharacterAbilities.Count;
+                //if (_character.Abilities == null) return 0;
+                //return _character.Abilities.Count;
             }
         }
 
         public void AddItem(DL_Ability item)
         {
             _character.Abilities.Add(item);
+        }
+
+        public void AddItem(DL_CharacterAbility item)
+        {
+            _character.CharacterAbilities.Add(item);
         }
 
         public AbilitiesAdapter(Context context, DL_Character character) : base(context, character)
@@ -53,15 +61,20 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 convertView.Tag = holder;
             }
 
-            var ability = _character.Abilities[position];
+            //var ability = _character.Abilities[position];
+            var ability = _character.CharacterAbilities[position];
 
             if (ability == null) return convertView;
 
-            holder.AbilityNumber.Text = $"# {ability.ReferenceNumber}";
-            holder.AbilityName.Text = ability.AbilityName;
-            holder.AbilityLevel.Text = $"{ability.Level}";
+            //holder.AbilityNumber.Text = $"# {ability.ReferenceNumber}";
+            //holder.AbilityName.Text = ability.AbilityName;
+            //holder.AbilityLevel.Text = $"{ability.Level}";
 
-            var numberOfEnhancements = (ability?.Enhancements != null) ? ability.Enhancements.Count : 0;
+            holder.AbilityNumber.Text = $"# {ability.Ability.ReferenceNumber}";
+            holder.AbilityName.Text = ability.Ability.AbilityName;
+            holder.AbilityLevel.Text = $"{ability.Ability.Level}";
+
+            var numberOfEnhancements = 0;//(ability?.Enhancements != null) ? ability.Enhancements.Count : 0;
             holder.AbilityEnhancementsNumber.Text = $"{numberOfEnhancements}";
 
             // options button  
@@ -108,7 +121,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 .SetMessage(_context.Resources.GetString(Resource.String.DeleteAbility))
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {
-                    _character.Abilities.Remove(_character.Abilities[position]);
+                    //_character.Abilities.Remove(_character.Abilities[position]);
+                    _character.CharacterAbilities.Remove(_character.CharacterAbilities[position]);
                     SaveCharacter();
                     NotifyDataSetChanged();
                 })

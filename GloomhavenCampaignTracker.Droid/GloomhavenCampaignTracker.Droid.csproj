@@ -198,6 +198,7 @@
     <Compile Include="Adapter\CharacterViewPagerAdapter.cs" />
     <Compile Include="Adapter\CharacterPerksAdapter.cs" />
     <Compile Include="Adapter\SelectableCharacterAdapter.cs" />
+    <Compile Include="Adapter\SelectableClassAbilitiesAdapter.cs" />
     <Compile Include="Adapter\SelectablePerksAdapter.cs" />
     <Compile Include="Adapter\PerksAdapter.cs" />
     <Compile Include="Adapter\CharacterItemsAdapter.cs" />
@@ -257,6 +258,7 @@
     <Compile Include="CustomControls\PersonalQuestCounterBase.cs" />
     <Compile Include="CustomControls\ItemFilterBar.cs" />
     <Compile Include="CustomControls\ProsperityMeter.cs" />
+    <Compile Include="Data\ConversionClasses\JSONConverter.cs" />
     <Compile Include="Data\DatabaseAccess\AbilityDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\AchievementDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\AchievementTypeDBAccess.cs" />
@@ -269,6 +271,8 @@
     <Compile Include="Data\DatabaseAccess\CampaignUnlocksDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\CharacterDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\CharacterPersonalQuestCounterDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CharacterAbilitiesDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\ClassAbilitiesDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\ClassDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\ClassPerkDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\EnhancementDBAccess.cs" />
@@ -335,7 +339,9 @@
     <Compile Include="Data\Repositories\CampaignUnlocksRepository.cs" />
     <Compile Include="Data\Repositories\CharacterPersonalQuestCountersRepository.cs" />
     <Compile Include="Data\Repositories\CharacterRepository.cs" />
+    <Compile Include="Data\Repositories\CharacterAbilitiesRepository.cs" />
     <Compile Include="Data\Repositories\ClassPerkRepository.cs" />
+    <Compile Include="Data\Repositories\ClassAbilitiesRepository.cs" />
     <Compile Include="Data\Repositories\ClassRepository.cs" />
     <Compile Include="Data\Repositories\EnhancementRepository.cs" />
     <Compile Include="Data\Repositories\GloomhavenSettingsRepository.cs" />
@@ -393,6 +399,9 @@
     <AndroidAsset Include="Assets\fonts\PirataOne_Gloomhaven.ttf" />
     <None Include="app.config" />
     <AndroidAsset Include="Assets\fonts\Roboto-Regular.ttf" />
+    <AndroidAsset Include="Assets\raw_data\Classabilities.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
     <None Include="GloomhavenCampaignTracker.Droid.csproj.vspscc" />
     <None Include="packages.config" />
     <None Include="Assets\AboutAssets.txt" />
@@ -2847,6 +2856,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\alertdialog_listview_itemfilter.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Raw\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_classability_selectable.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_ability_selectable.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>

@@ -5,7 +5,7 @@ using SQLiteNetExtensions.Attributes;
 namespace GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign
 {
     [Table("DL_ClassAbility")]
-    public class DL_ClassAbility : Java.Lang.Object, IEntity
+    public class DL_ClassAbility : Java.Lang.Object, IEntity, ISelectable
     {
         [PrimaryKey, AutoIncrement, JsonIgnore] 
         public int Id { get; set; }
@@ -25,5 +25,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign
         [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
         public DL_Class DL_Class { get; set; }
 
+        [Ignore]
+        public bool IsSelected { get; set; }
     }
 }
