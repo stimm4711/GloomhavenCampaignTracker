@@ -440,6 +440,13 @@ namespace Data
             }
         }
 
+        private static void AddCLassAblities()
+        {
+            // read from JSON
+
+
+        }
+
         private static void AddClasses()
         {
             var classes = ClassRepository.Get();          
