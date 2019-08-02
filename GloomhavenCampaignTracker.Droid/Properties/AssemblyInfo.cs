@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Stefan Timm")]
-[assembly: AssemblyProduct("Gloomhaven Capaign Tracker")]
+[assembly: AssemblyProduct("Gloomhaven Campaign Tracker")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

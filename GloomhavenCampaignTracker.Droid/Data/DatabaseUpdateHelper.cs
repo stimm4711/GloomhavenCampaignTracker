@@ -12,7 +12,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 11);
+        public static Version Dbversion { get; } = new Version(1, 4, 13);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
@@ -116,6 +116,11 @@ namespace Data
                 {
                     FixNameOfScenario(87, "Corrupted Cove");
                 }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 13)) == VersionTime.Earlier)
+                {
+                    AddPartyAchievementSunblessed();
+                }                
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);

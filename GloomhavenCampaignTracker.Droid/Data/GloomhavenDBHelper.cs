@@ -5,8 +5,6 @@ using System.Linq;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using SQLite;
-using Java.IO;
-using System.Diagnostics;
 using Data;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 
@@ -17,7 +15,6 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
         // Database Info
         internal const string DatabaseName = "GloomhavenCampaignTracker.db3";
         private static SQLiteConnection _conn;
-        private enum VersionTime { Earlier = -1 }
 
         internal static string DatabaseFilePath
         {

@@ -26,7 +26,7 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid
 {
-    [Activity(Label = "GloomhavenSaveGame_Droid", MainLauncher = true, Icon = "@drawable/ic_launcher", AlwaysRetainTaskState = true)]
+    [Activity(Label = "Gloomhaven Campaign Tracker", MainLauncher = true, Icon = "@drawable/ic_launcher", AlwaysRetainTaskState = true)]
     public class MainActivity : AppCompatActivity
     {
         private DrawerLayout _drawerLayout;
