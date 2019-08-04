@@ -128,7 +128,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
         public override Java.Lang.Object GetItem(int position)
         {
-            return _character.Abilities[position];
+            return _abilities[position];
         }
 
         internal class AbilityViewHolder : Object

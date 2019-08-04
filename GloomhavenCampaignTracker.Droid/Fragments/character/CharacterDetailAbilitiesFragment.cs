@@ -68,7 +68,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             var enhancementListBottom = convertView.FindViewById<ListView>(Resource.Id.listViewbottom);
             var fabBottom = convertView.FindViewById<FloatingActionButton>(Resource.Id.fabbottom);
 
-            var ability = Character.CharacterAbilities[e.Position];               
+            var ability = (DL_CharacterAbility)((AbilitiesAdapter)_lv.Adapter).GetItem(e.Position);               
 
             if (ability == null) return;
 

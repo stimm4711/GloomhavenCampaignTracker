@@ -978,7 +978,6 @@ F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\stamp\_
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\stamp\_GenerateJavaStubs.stamp
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\stamp\_GeneratePackageManagerJava.stamp
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\stamp\_ResolveLibraryProjectImports.stamp
-F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\GloomhavenCampaignTracker.Droid.csprojAssemblyReference.cache
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\listviewitem_classability_selectable.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bce4c564e68312e6840e74babc7faa63\SelectableClassAbilitiesAdapter.java
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bce4c564e68312e6840e74babc7faa63\SelectableClassAbilitiesAdapter_AbilityViewHolder.java
