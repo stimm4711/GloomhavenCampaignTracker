@@ -17,7 +17,6 @@ namespace GloomhavenCampaignTracker.Business
                 GCTContext.Clear();
                 GloomhavenDbHelper.ResetConnection();
                 InitReposAfterRestoreBackup();
-                GloomhavenDbHelper.InitDb();
 
                 return true;
             }

@@ -97,7 +97,7 @@
         android:paddingTop="5dp"
         android:layout_marginTop="10dp">
         <TextView
-            android:text="Activate Forgotten Circles (Beta)"
+            android:text="Activate Forgotten Circles"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/enableFCtext"
             android:textColor="@color/gloom_primaryText"
@@ -113,7 +113,7 @@
             android:checked="false"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion. It is still a work in progress"
+            android:text="This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion."
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -158,7 +158,34 @@
             android:id="@+id/checkitemsButton"
             android:background="@drawable/borderbuttons"
             android:textColor="@color/gloom_primaryText"/>
-
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showOldabilitiesSheet"
+        android:background="@drawable/borderwhite"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Enable old ability sheet"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/enableOldAbilitiesSheet"
+            android:textColor="@color/gloom_primaryText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <CheckBox
+            android:text="Show the old ability sheet in the character details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/isShowOldAbilitySheet"
+            android:textColor="@color/gloom_primaryText"
+            app:buttonTint="#ffffffff"
+            android:checked="false"
+            fontPath="fonts/Roboto-Regular.ttf" />        
+        </LinearLayout>
 
 </LinearLayout>

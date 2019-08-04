@@ -1,5 +1,7 @@
 ﻿using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
+using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
+using System;
 using System.Collections.Generic;
 
 namespace GloomhavenCampaignTracker.Shared.Data.Repositories
@@ -32,6 +34,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.Repositories
         public static DL_ClassAbility Get(long id, bool recursive = true)
         {
             return Me._db.Get(id, recursive);
+        }
+
+        internal static List<DL_ClassAbility> GetSelectableAbilities(int iD_class, int characterlevel)
+        {
+            return Me._db.GetSelectable(iD_class, characterlevel);
         }
 
         internal static void Insert(IEnumerable<DL_ClassAbility> items)

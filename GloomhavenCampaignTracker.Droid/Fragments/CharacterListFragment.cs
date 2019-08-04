@@ -206,7 +206,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             {
                 charac.DL_Class = charClass;
                 charac.ID_Class = charClass.Id;
-                var classAbilities = ClassAbilitiesRepository.Get().Where(x => x.ID_Class == charac.ID_Class && x.Level == 1);
+                var classAbilities = DataServiceCollection.ClassAbilityDataService.GetSelectableAbilities(charac.ID_Class, charac.Level);
                 foreach (var ability in classAbilities)
                 {
                     charac.CharacterAbilities.Add(new DL_CharacterAbility()

@@ -186,6 +186,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapter\AbilitiesAdapterOld.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementDeleteableAdapter.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementSelectableAdapter.cs" />
     <Compile Include="Adapter\ChangeAwareAdapter.cs" />
@@ -289,6 +290,7 @@
     <Compile Include="Data\DataService\DataServiceCollection.cs" />
     <Compile Include="Data\DataService\ICampaignDataService.cs" />
     <Compile Include="Data\DataService\IDataService.cs" />
+    <Compile Include="Data\DataService\ClassAbilityDataService.cs" />
     <Compile Include="Data\DataService\ItemDataService.cs" />
     <Compile Include="Data\DataService\PartyDataService.cs" />
     <Compile Include="Data\DataService\ScenarioDataService.cs" />
@@ -364,6 +366,7 @@
     <Compile Include="Fragments\campaign\party\CampaignPartyNotesFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyAchievementsFragment.cs" />
     <Compile Include="Fragments\campaign\unlocks\CampaignUnlocksEnvelopeXFragment.cs" />
+    <Compile Include="Fragments\character\CharacterDetailAbilitiesFragmentOld.cs" />
     <Compile Include="Fragments\character\CharacterDetailFragmentBase.cs" />
     <Compile Include="Fragments\character\CharacterDetailPerks2Fragment.cs" />
     <Compile Include="Fragments\character\CharacterDetailPerksFragment.cs" />
@@ -387,6 +390,7 @@
     <Compile Include="Fragments\SupportDevFragment.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
     <Compile Include="GloomhavenCampaignTrackerApplication.cs" />
+    <Compile Include="SplashActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Utils\ResourceHelper.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -2709,9 +2713,6 @@
     <AndroidResource Include="Resources\drawable\ic_effect_plus_four.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bootsofstriding.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\item_view.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -2874,6 +2875,12 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splash_screen.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

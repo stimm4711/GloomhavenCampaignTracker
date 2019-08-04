@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
+using System.Collections.Generic;
 
 namespace GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign
 {
@@ -21,6 +22,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign
 
         [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
         public DL_Character Character { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
+        public List<DL_CharacterAbilityEnhancement> AbilityEnhancements { get; set; }
 
     }
 }

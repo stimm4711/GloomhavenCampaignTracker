@@ -76,66 +76,66 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             levelText.Text = ability.Ability.Level.ToString();
             nameText.Text = ability.Ability.AbilityName;
 
-            //enhancementListTop.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, true);
-            //enhancementListBottom.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, false);
+            enhancementListTop.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, true);
+            enhancementListBottom.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, false);
 
-            //if (!fabTop.HasOnClickListeners)
-            //{
-            //    fabTop.Click += (s, arg) =>
-            //    {
-            //        AddEnhancement(inflater, enhancementListTop, ability, true);
-            //    };
-            //}
+            if (!fabTop.HasOnClickListeners)
+            {
+                fabTop.Click += (s, arg) =>
+                {
+                    AddEnhancement(inflater, enhancementListTop, ability, true);
+                };
+            }
 
-            //if (!fabBottom.HasOnClickListeners)
-            //{
-            //    fabBottom.Click += (s, arg) =>
-            //    {
-            //        AddEnhancement(inflater, enhancementListBottom, ability, false);
-            //    };
-            //}
+            if (!fabBottom.HasOnClickListeners)
+            {
+                fabBottom.Click += (s, arg) =>
+                {
+                    AddEnhancement(inflater, enhancementListBottom, ability, false);
+                };
+            }
 
-            //new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-            //    .SetCustomView(convertView)
-            //    .SetTitle("Edit Ability")
-            //    .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
-            //    .SetPositiveButton("Save changes", (senderAlert, args) =>
-            //    {
-            //        if (string.IsNullOrEmpty(nameText.Text)) return;
+            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                .SetCustomView(convertView)
+                .SetTitle("Edit Ability")
+                .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
+                .SetPositiveButton("Save changes", (senderAlert, args) =>
+                {
+                    if (string.IsNullOrEmpty(nameText.Text)) return;
 
-            //        ability.AbilityName = nameText.Text;
+                    ability.Ability.AbilityName = nameText.Text;
 
-            //        if (!string.IsNullOrEmpty(levelText.Text))
-            //        {
-            //            int.TryParse(levelText.Text, out int level);
-            //            if (level < 1 || level > 9)
-            //            {
-            //                Toast.MakeText(Context, Resources.GetString(Resource.String.WrongAbilityLevel), ToastLength.Short).Show();
-            //                return;
-            //            }
-            //            ability.Level = level;
-            //        }
+                    if (!string.IsNullOrEmpty(levelText.Text))
+                    {
+                        int.TryParse(levelText.Text, out int level);
+                        if (level < 1 || level > 9)
+                        {
+                            Toast.MakeText(Context, Resources.GetString(Resource.String.WrongAbilityLevel), ToastLength.Short).Show();
+                            return;
+                        }
+                        ability.Ability.Level = level;
+                    }
 
-            //        if (!string.IsNullOrEmpty(levelText.Text))
-            //        {
-            //            if (int.TryParse(refNumberText.Text, out int number))
-            //            {
-            //                ability.ReferenceNumber = number;
-            //            }
-            //            else
-            //            {
-            //                ability.ReferenceNumber = 0;
-            //            }
-            //        }
+                    if (!string.IsNullOrEmpty(levelText.Text))
+                    {
+                        if (int.TryParse(refNumberText.Text, out int number))
+                        {
+                            ability.Ability.ReferenceNumber = number;
+                        }
+                        else
+                        {
+                            ability.Ability.ReferenceNumber = 0;
+                        }
+                    }
 
-            //        SaveCharacter();
+                    SaveCharacter();
 
-            //        _lv.Adapter = new AbilitiesAdapter(Context, Character);
-            //    })
-            //    .Show();
+                    _lv.Adapter = new AbilitiesAdapter(Context, Character);
+                })
+                .Show();
         }
 
-        private void AddEnhancement(LayoutInflater inflater, ListView enhancementListTop, DL_Ability ability, bool isTop)
+        private void AddEnhancement(LayoutInflater inflater, ListView enhancementListTop, DL_CharacterAbility ability, bool isTop)
         {
             var view = inflater.Inflate(Resource.Layout.alertdialog_addenhancement, null);
             var ehanceedittext = view.FindViewById<EditText>(Resource.Id.enhancementEditText1);
@@ -170,8 +170,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                             var enhancement = itemadapter.GetSelected();
 
                             if (enhancement == null) return;
-                            if (ability.Enhancements == null)
-                                ability.Enhancements = new List<DL_AbilityEnhancement>();
+                            if (ability.AbilityEnhancements == null)
+                                ability.AbilityEnhancements = new List<DL_CharacterAbilityEnhancement>();
 
                             enhan = enhancement;
                             ehanceedittext.Text = enhancement.EnhancementCode;
@@ -194,17 +194,17 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                         int.TryParse(slotedittext.Text, out slotnumber);
                     }
 
-                    var abEn = new DL_AbilityEnhancement()
+                    var abEn = new DL_CharacterAbilityEnhancement()
                     {
-                        Ability = ability,
+                        CharacterAbility = ability,
                         Enhancement = enhan,
-                        ID_Ability = ability.Id,
+                        ID_CharacterAbility = ability.Id,
                         ID_Enhancement = enhan.Id,
                         SlotNumber = slotnumber,
                         IsTop = isTop
                     };
 
-                    ability.Enhancements.Add(abEn);
+                    ability.AbilityEnhancements.Add(abEn);
 
                     SaveCharacter();
                     enhancementListTop.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, isTop);
@@ -226,10 +226,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             listview.ItemsCanFocus = true;
             listview.ChoiceMode = ChoiceMode.Multiple;
 
-            selectableAbilities = ClassAbilitiesRepository.Get().
-                Where(x => x.ID_Class == Character.ID_Class && 
-                x.Level <= Character.Level &&
-                !Character.CharacterAbilities.Any(y=>y.Ability.Id == x.Id)).ToList();
+            selectableAbilities = DataServiceCollection.ClassAbilityDataService.GetSelectableAbilities(Character.ID_Class, Character.Level)
+                .Where(x=>!Character.CharacterAbilities.Any(y => y.Ability.Id == x.Id)).ToList();
 
             var itemadapter = new SelectableClassAbilitiesAdapter(Context, selectableAbilities);
             listview.Adapter = itemadapter;

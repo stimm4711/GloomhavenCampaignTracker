@@ -2,6 +2,8 @@
 using SQLiteNetExtensions.Extensions;
 using SQLite;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
+using GloomhavenCampaignTracker.Shared.Data.Entities;
+using System;
 
 namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 {
@@ -36,6 +38,16 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             lock (locker)
             {
                 Connection.InsertOrReplaceWithChildren(item, recursive: true);
+            }
+        }
+
+        internal List<DL_ClassAbility> GetSelectable(int iD_class, int characterlevel)
+        {
+            lock (locker)
+            {
+                var query = $"Select * from DL_ClassAbility where ID_Class = ? And Level <= ?";
+                var abilities = Connection.Query<DL_ClassAbility>(query, iD_class, characterlevel);   
+                return abilities;
             }
         }
 

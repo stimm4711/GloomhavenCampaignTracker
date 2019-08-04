@@ -834,204 +834,211 @@
          "classid":4,
          "Abilities":[  
             {  
-               "abilityName":"Submissive Affliction",
+               "abilityName":"Opposing Strike",
                "referenceNumber":116,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Into the Night",
+               "abilityName":"Crushing Grasp",
                "referenceNumber":117,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Fearsome Blade",
+               "abilityName":"Avalanche",
                "referenceNumber":118,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Feedback Loop",
+               "abilityName":"Rumbling Advance",
                "referenceNumber":119,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Gnawing Horde",
+               "abilityName":"Massive Boulder",
                "referenceNumber":120,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"The Mind's Weakness",
+               "abilityName":"Backup Ammunition",
                "referenceNumber":121,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Parasitic Influence",
+               "abilityName":"Rock Tunnel",
                "referenceNumber":122,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Scurry",
+               "abilityName":"Unstable Upheaval",
                "referenceNumber":123,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Perverse Edge",
+               "abilityName":"Crater",
                "referenceNumber":124,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Empathetic Assault",
+               "abilityName":"Dirt Tornado",
                "referenceNumber":125,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Withering Claw",
+               "abilityName":"Earthen Cloud",
                "referenceNumber":126,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Possession",
+               "abilityName":"Heaving Swing",
                "referenceNumber":127,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Frigid Apparition",
+               "abilityName":"Forceful Storm",
                "referenceNumber":128,
                "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Wretched Creature",
+               "abilityName":"Nature's Lift",
                "referenceNumber":129,
-               "level":2,
+               "level":1,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Hostile Takeover",
+               "abilityName":"Explosive Punch",
                "referenceNumber":130,
                "level":2,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Brain Leech",
+               "abilityName":"Sentient Growth",
                "referenceNumber":131,
-               "level":3,
+               "level":2,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Silent Scream",
+               "abilityName":"Clear the Way",
                "referenceNumber":132,
                "level":3,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Pilfer",
+               "abilityName":"Blunt Force",
                "referenceNumber":133,
-               "level":4,
+               "level":3,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Cranium Overload",
+               "abilityName":"Rock Slide",
                "referenceNumber":134,
                "level":4,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Mass Hysteria",
+               "abilityName":"Kinetic Assault",
                "referenceNumber":135,
-               "level":5,
+               "level":4,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Frozen Mind",
+               "abilityName":"Petrify",
                "referenceNumber":136,
                "level":5,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Corrupting Embrace",
+               "abilityName":"Stone Pummel",
                "referenceNumber":137,
-               "level":6,
+               "level":5,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Dark Frenzy",
+               "abilityName":"Dig Pit",
                "referenceNumber":138,
                "level":6,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Vicious Blood",
+               "abilityName":"Cataclysm",
                "referenceNumber":139,
-               "level":7,
+               "level":6,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Psychic Projection",
+               "abilityName":"Meteor",
                "referenceNumber":140,
                "level":7,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Shared Nightmare",
+               "abilityName":"Brutal Momentum",
                "referenceNumber":141,
-               "level":8,
+               "level":7,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Domination",
+               "abilityName":"Rocky End",
                "referenceNumber":142,
                "level":8,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Many as One",
+               "abilityName":"Lumbering Bash",
                "referenceNumber":143,
+               "level":8,
+               "image_url":null,
+               "iD_Class":4
+            },
+            {  
+               "abilityName":"Blind Destruction",
+               "referenceNumber":144,
                "level":9,
                "image_url":null,
                "iD_Class":4
             },
             {  
-               "abilityName":"Phantasmal Killer",
-               "referenceNumber":144,
+               "abilityName":"Pulverize",
+               "referenceNumber":145,
                "level":9,
                "image_url":null,
                "iD_Class":4
@@ -1043,214 +1050,207 @@
          "classid":5,
          "Abilities":[  
             {  
-               "abilityName":"Opposing Strike",
-               "referenceNumber":145,
-               "level":1,
-               "image_url":null,
-               "iD_Class":5
-            },
-            {  
-               "abilityName":"Crushing Grasp",
+               "abilityName":"Submissive Affliction",
                "referenceNumber":146,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Avalanche",
+               "abilityName":"Into the Night",
                "referenceNumber":147,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Rumbling Advance",
+               "abilityName":"Fearsome Blade",
                "referenceNumber":148,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Massive Boulder",
+               "abilityName":"Feedback Loop",
                "referenceNumber":149,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Backup Ammunition",
+               "abilityName":"Gnawing Horde",
                "referenceNumber":150,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Rock Tunnel",
+               "abilityName":"The Mind's Weakness",
                "referenceNumber":151,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Unstable Upheaval",
+               "abilityName":"Parasitic Influence",
                "referenceNumber":152,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Crater",
+               "abilityName":"Scurry",
                "referenceNumber":153,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Dirt Tornado",
+               "abilityName":"Perverse Edge",
                "referenceNumber":154,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Earthen Cloud",
+               "abilityName":"Empathetic Assault",
                "referenceNumber":155,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Heaving Swing",
+               "abilityName":"Withering Claw",
                "referenceNumber":156,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Forceful Storm",
+               "abilityName":"Possession",
                "referenceNumber":157,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Nature's Lift",
+               "abilityName":"Frigid Apparition",
                "referenceNumber":158,
                "level":1,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Explosive Punch",
+               "abilityName":"Wretched Creature",
                "referenceNumber":159,
                "level":2,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Sentient Growth",
+               "abilityName":"Hostile Takeover",
                "referenceNumber":160,
                "level":2,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Clear the Way",
+               "abilityName":"Brain Leech",
                "referenceNumber":161,
                "level":3,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Blunt Force",
+               "abilityName":"Silent Scream",
                "referenceNumber":162,
                "level":3,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Rock Slide",
+               "abilityName":"Pilfer",
                "referenceNumber":163,
                "level":4,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Kinetic Assault",
+               "abilityName":"Cranium Overload",
                "referenceNumber":164,
                "level":4,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Petrify",
+               "abilityName":"Mass Hysteria",
                "referenceNumber":165,
                "level":5,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Stone Pummel",
+               "abilityName":"Frozen Mind",
                "referenceNumber":166,
                "level":5,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Dig Pit",
+               "abilityName":"Corrupting Embrace",
                "referenceNumber":167,
                "level":6,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Cataclysm",
+               "abilityName":"Dark Frenzy",
                "referenceNumber":168,
                "level":6,
                "image_url":null,
-               "iD_Class":5
+                "iD_Class":5
             },
             {  
-               "abilityName":"Meteor",
+               "abilityName":"Vicious Blood",
                "referenceNumber":169,
                "level":7,
                "image_url":null,
-               "iD_Class":5
+               "iD_Class":4
             },
             {  
-               "abilityName":"Brutal Momentum",
+               "abilityName":"Psychic Projection",
                "referenceNumber":170,
                "level":7,
                "image_url":null,
-               "iD_Class":5
+               "iD_Class":4
             },
             {  
-               "abilityName":"Rocky End",
+               "abilityName":"Shared Nightmare",
                "referenceNumber":171,
                "level":8,
                "image_url":null,
-               "iD_Class":5
+               "iD_Class":4
             },
             {  
-               "abilityName":"Lumbering Bash",
+               "abilityName":"Domination",
                "referenceNumber":172,
                "level":8,
                "image_url":null,
-               "iD_Class":5
+               "iD_Class":4
             },
             {  
-               "abilityName":"Blind Destruction",
+               "abilityName":"Many as One",
                "referenceNumber":173,
                "level":9,
                "image_url":null,
                "iD_Class":5
             },
             {  
-               "abilityName":"Pulverize",
+               "abilityName":"Phantasmal Killer",
                "referenceNumber":174,
                "level":9,
                "image_url":null,
-               "iD_Class":5
+               "iD_Class":4
             }
          ]
       },
@@ -1263,7 +1263,7 @@
                "referenceNumber":175,
                "level":1,
                "image_url":null,
-               "iD_Class":6
+                "iD_Class":6
             },
             {  
                "abilityName":"Cautious Advance",
@@ -2992,91 +2992,7 @@
                "level":1,
                "image_url":null,
                "iD_Class":14
-            },
-            {  
-               "abilityName":"Medical Pack",
-               "referenceNumber":416,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Medical Pack",
-               "referenceNumber":417,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Medical Pack",
-               "referenceNumber":418,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Medical Pack",
-               "referenceNumber":419,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Medical Pack",
-               "referenceNumber":420,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Medical Pack",
-               "referenceNumber":421,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Medical Pack",
-               "referenceNumber":422,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Medical Pack",
-               "referenceNumber":423,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Large Medical Pack",
-               "referenceNumber":424,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Large Medical Pack",
-               "referenceNumber":425,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Large Medical Pack",
-               "referenceNumber":426,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
-            {  
-               "abilityName":"Large Medical Pack",
-               "referenceNumber":427,
-               "level":1,
-               "image_url":null,
-               "iD_Class":14
-            },
+            }, 
             {  
                "abilityName":"Prevention is Key",
                "referenceNumber":428,
@@ -3213,420 +3129,420 @@
          ]
       },
       {  
-         "classname":"Elementalist",
-         "classid":15,
-         "Abilities":[  
-            {  
-               "abilityName":"Disorienting Roar",
-               "referenceNumber":447,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Spirit Swap",
-               "referenceNumber":448,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Venomous Ally",
-               "referenceNumber":449,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Relentless Ally",
-               "referenceNumber":450,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Concentrated Rage",
-               "referenceNumber":451,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Disappearing Wounds",
-               "referenceNumber":452,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Patch Fur",
-               "referenceNumber":453,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Maul",
-               "referenceNumber":454,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Forceful Swipe",
-               "referenceNumber":455,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Howling Bolts",
-               "referenceNumber":456,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Soaring Ally",
-               "referenceNumber":457,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Focused Aggression",
-               "referenceNumber":458,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Borrowed Essence",
-               "referenceNumber":459,
-               "level":1,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Energizing Strike",
-               "referenceNumber":460,
-               "level":2,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Earthen Spikes",
-               "referenceNumber":461,
-               "level":2,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Vicious Ally",
-               "referenceNumber":462,
-               "level":3,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Unstoppable Beast",
-               "referenceNumber":463,
-               "level":3,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Ancient Ward",
-               "referenceNumber":464,
-               "level":4,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Punch Through",
-               "referenceNumber":465,
-               "level":4,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Rampage",
-               "referenceNumber":466,
-               "level":5,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Stone Sigil",
-               "referenceNumber":467,
-               "level":5,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Primal Blessing",
-               "referenceNumber":468,
-               "level":6,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Blood Hunger",
-               "referenceNumber":469,
-               "level":6,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Storm Sigil",
-               "referenceNumber":470,
-               "level":7,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Tyrannical Force",
-               "referenceNumber":471,
-               "level":7,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Lash Out",
-               "referenceNumber":472,
-               "level":8,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Natural Remedy",
-               "referenceNumber":473,
-               "level":8,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Jaws of Death",
-               "referenceNumber":474,
-               "level":9,
-               "image_url":null,
-               "iD_Class":15
-            },
-            {  
-               "abilityName":"Tribal Sigil",
-               "referenceNumber":475,
-               "level":9,
-               "image_url":null,
-               "iD_Class":15
-            }
-         ]
-      },
-      {  
          "classname":"Beast Tyrant",
          "classid":16,
          "Abilities":[  
             {  
-               "abilityName":"Raw Enhancement",
-               "referenceNumber":476,
-               "level":1,
-               "image_url":null,
-               "iD_Class":16
-            },
-            {  
-               "abilityName":"Pure Augmentation",
+               "abilityName":"Disorienting Roar",
                "referenceNumber":477,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Formless Power",
+               "abilityName":"Spirit Swap",
                "referenceNumber":478,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Shaping the Ether",
+               "abilityName":"Venomous Ally",
                "referenceNumber":479,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Stoking Hail",
+               "abilityName":"Relentless Ally",
                "referenceNumber":480,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Tremulant Cyclone",
+               "abilityName":"Concentrated Rage",
                "referenceNumber":481,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Infernal Vortex",
+               "abilityName":"Disappearing Wounds",
                "referenceNumber":482,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Lava Eruption",
+               "abilityName":"Patch Fur",
                "referenceNumber":483,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Ice Spikes",
+               "abilityName":"Maul",
                "referenceNumber":484,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Frigid Torrent",
+               "abilityName":"Forceful Swipe",
                "referenceNumber":485,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Malleable Evocation",
+               "abilityName":"Howling Bolts",
                "referenceNumber":486,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Brilliant Flash",
+               "abilityName":"Soaring Ally",
                "referenceNumber":487,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Encompassing Shadow",
+               "abilityName":"Focused Aggression",
                "referenceNumber":488,
                "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Boiling Arc",
+               "abilityName":"Borrowed Essence",
                "referenceNumber":489,
-               "level":2,
+               "level":1,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Crystallizing Blast",
+               "abilityName":"Energizing Strike",
                "referenceNumber":490,
                "level":2,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Burial",
+               "abilityName":"Earthen Spikes",
                "referenceNumber":491,
-               "level":3,
+               "level":2,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Chain Lightning",
+               "abilityName":"Vicious Ally",
                "referenceNumber":492,
                "level":3,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Primal Duality",
+               "abilityName":"Unstoppable Beast",
                "referenceNumber":493,
-               "level":4,
+               "level":3,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Gravel Vortex",
+               "abilityName":"Ancient Ward",
                "referenceNumber":494,
                "level":4,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Obsidian Shards",
+               "abilityName":"Punch Through",
                "referenceNumber":495,
-               "level":5,
+               "level":4,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Winter's Edge",
+               "abilityName":"Rampage",
                "referenceNumber":496,
                "level":5,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Eye of the Hurricane",
+               "abilityName":"Stone Sigil",
                "referenceNumber":497,
-               "level":6,
+               "level":5,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Simulacrum",
+               "abilityName":"Primal Blessing",
                "referenceNumber":498,
                "level":6,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Vengeance",
+               "abilityName":"Blood Hunger",
                "referenceNumber":499,
-               "level":7,
+               "level":6,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Pragmatic Reinforcement",
+               "abilityName":"Storm Sigil",
                "referenceNumber":500,
                "level":7,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Volatile Consumption",
+               "abilityName":"Tyrannical Force",
                "referenceNumber":501,
-               "level":8,
+               "level":7,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Elemental Aegis",
+               "abilityName":"Lash Out",
                "referenceNumber":502,
                "level":8,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Ethereal Manifestation",
+               "abilityName":"Natural Remedy",
                "referenceNumber":503,
+               "level":8,
+               "image_url":null,
+               "iD_Class":16
+            },
+            {  
+               "abilityName":"Jaws of Death",
+               "referenceNumber":504,
                "level":9,
                "image_url":null,
                "iD_Class":16
             },
             {  
-               "abilityName":"Eternal Equilibrium",
-               "referenceNumber":504,
+               "abilityName":"Tribal Sigil",
+               "referenceNumber":505,
                "level":9,
                "image_url":null,
                "iD_Class":16
+            }
+         ]
+      },
+      {  
+         "classname":"Elementalist",
+         "classid":15,
+         "Abilities":[  
+            {  
+               "abilityName":"Raw Enhancement",
+               "referenceNumber":447,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Pure Augmentation",
+               "referenceNumber":448,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Formless Power",
+               "referenceNumber":449,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Shaping the Ether",
+               "referenceNumber":450,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Stoking Hail",
+               "referenceNumber":451,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Tremulant Cyclone",
+               "referenceNumber":452,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Infernal Vortex",
+               "referenceNumber":453,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Lava Eruption",
+               "referenceNumber":454,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Ice Spikes",
+               "referenceNumber":455,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Frigid Torrent",
+               "referenceNumber":456,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Malleable Evocation",
+               "referenceNumber":457,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Brilliant Flash",
+               "referenceNumber":458,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Encompassing Shadow",
+               "referenceNumber":459,
+               "level":1,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Boiling Arc",
+               "referenceNumber":460,
+               "level":2,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Crystallizing Blast",
+               "referenceNumber":461,
+               "level":2,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Burial",
+               "referenceNumber":462,
+               "level":3,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Chain Lightning",
+               "referenceNumber":463,
+               "level":3,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Primal Duality",
+               "referenceNumber":464,
+               "level":4,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Gravel Vortex",
+               "referenceNumber":465,
+               "level":4,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Obsidian Shards",
+               "referenceNumber":466,
+               "level":5,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Winter's Edge",
+               "referenceNumber":467,
+               "level":5,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Eye of the Hurricane",
+               "referenceNumber":468,
+               "level":6,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Simulacrum",
+               "referenceNumber":469,
+               "level":6,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Vengeance",
+               "referenceNumber":470,
+               "level":7,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Pragmatic Reinforcement",
+               "referenceNumber":471,
+               "level":7,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Volatile Consumption",
+               "referenceNumber":472,
+               "level":8,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Elemental Aegis",
+               "referenceNumber":473,
+               "level":8,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Ethereal Manifestation",
+               "referenceNumber":474,
+               "level":9,
+               "image_url":null,
+               "iD_Class":15
+            },
+            {  
+               "abilityName":"Eternal Equilibrium",
+               "referenceNumber":475,
+               "level":9,
+               "image_url":null,
+               "iD_Class":15
             }
          ]
       }

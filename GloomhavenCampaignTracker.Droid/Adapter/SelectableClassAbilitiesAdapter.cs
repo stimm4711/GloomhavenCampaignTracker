@@ -46,7 +46,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 holder = new AbilityViewHolder();
 
                 var inflater = (LayoutInflater)_context.GetSystemService(Context.LayoutInflaterService);
-                convertView = inflater.Inflate(Resource.Layout.listviewitem_classability_selectable, parent, false);
+                convertView = inflater.Inflate(Resource.Layout.listviewitem_ability_selectable, parent, false);
                 holder.AbilityName = convertView.FindViewById<TextView>(Resource.Id.abilityNameText);
                 holder.AbilityNumber = convertView.FindViewById<TextView>(Resource.Id.itemNumberTextView);
                 holder.Selected = convertView.FindViewById<CheckBox>(Resource.Id.selected);
@@ -78,7 +78,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             var item = _items[position];            
 
             // Set Data
-            holder.AbilityName.Text = (_isCharacterDetailView || GCTContext.ShowItemNames) ? item.AbilityName : "";
+            holder.AbilityName.Text = item.AbilityName;
             holder.AbilityNumber.Text = $"# {item.ReferenceNumber}";
             holder.Selected.Tag = item;
             holder.Selected.Checked = item.IsSelected;

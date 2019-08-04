@@ -562,7 +562,6 @@ F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\lay
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\view_personalquestcheck.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\bgroundcornerswhite.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\ic_effect_plus_four.png
-F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\bootsofstriding.png
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\item_view.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\qustom_transparent_dialog_layout.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\alertdialog_personalquest_spinner_imageview.xml
@@ -984,3 +983,10 @@ F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\lay
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bce4c564e68312e6840e74babc7faa63\SelectableClassAbilitiesAdapter.java
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bce4c564e68312e6840e74babc7faa63\SelectableClassAbilitiesAdapter_AbilityViewHolder.java
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\listviewitem_ability_selectable.xml
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bce4c564e68312e6840e74babc7faa63\AbilitiesAdapterOld.java
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bce4c564e68312e6840e74babc7faa63\AbilitiesAdapterOld_AbilityViewHolder.java
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bce4c564e68312e6840e74babc7faa63\AbilitiesEnhancementDeleteableAdapter_AbilitiesEnhancementDeleteableAdapterOld.java
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bad2f58a5f1cbbde2050504bdbf61176\CharacterDetailAbilitiesFragmentOld.java
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\splash_screen.xml
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md590c61f3952228220fff98b7489bdf623\SplashActivity.java
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\splash.png

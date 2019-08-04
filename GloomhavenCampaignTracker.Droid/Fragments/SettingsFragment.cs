@@ -14,7 +14,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
         private const string _showItemnames = "showItemnames";
         private const string _showPQNames = "showPQDetails";
         private const string _showScenarioNames = "showScenarioNames";
-        private const string _showOldPerkSheet = "showOldPerkSheet";
+        private const string _showOldAbilitySheet = "showOldAbilitySheet";
         private const string _activateFC = "activateFC";
 
         public static SettingsFragment NewInstance()
@@ -37,12 +37,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             var checkscenarios = view.FindViewById<CheckBox>(Resource.Id.chkunlockedscenarioname);
             var btnCheckItems = view.FindViewById<Button>(Resource.Id.checkitemsButton);
             var activateFCCheck = view.FindViewById<CheckBox>(Resource.Id.activateFCCheck);
+            var showOldAbilitySheetCheck = view.FindViewById<CheckBox>(Resource.Id.isShowOldAbilitySheet);
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var isShowItems = prefs.GetBoolean(_showItemnames, true);
             var isShowPQ = prefs.GetBoolean(_showPQNames, true);
             var isShowScenarios = prefs.GetBoolean(_showScenarioNames, false);
-            var isShowOldPerkSheet = prefs.GetBoolean(_showOldPerkSheet, false);
+            var isShowOldAbilitySheet = prefs.GetBoolean(_showOldAbilitySheet, false);
             var isFCActivated = prefs.GetBoolean(_activateFC, false);
             
             checkItems.Checked = isShowItems;
@@ -54,6 +55,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             checkpq.CheckedChange += Checkpq_CheckedChange;
             checkscenarios.CheckedChange += Checkscenarios_CheckedChange;
             activateFCCheck.CheckedChange += ActivateFCCheck_CheckedChange;
+            showOldAbilitySheetCheck.CheckedChange += showOldAbilitySheetCheck_CheckedChange;
 
             if (!btnCheckItems.HasOnClickListeners)
                 btnCheckItems.Click += BtnCheckItems_Click;
@@ -91,16 +93,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             }
         }
 
-        private void CheckShowoldperksheet_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        private void showOldAbilitySheetCheck_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            if (e.IsChecked == GCTContext.ShowOldPerkSheet) return;
+            if (e.IsChecked == GCTContext.ShowAbilitySheet) return;
 
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
             var editor = prefs.Edit();
-            editor.PutBoolean(_showOldPerkSheet, e.IsChecked);
+            editor.PutBoolean(_showOldAbilitySheet, e.IsChecked);
             editor.Apply();
 
-            GCTContext.ShowOldPerkSheet = e.IsChecked;
+            GCTContext.ShowAbilitySheet = e.IsChecked;
         }
 
         private void Checkscenarios_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)

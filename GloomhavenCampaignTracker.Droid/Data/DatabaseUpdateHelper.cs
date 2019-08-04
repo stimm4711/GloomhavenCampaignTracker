@@ -96,7 +96,6 @@ namespace Data
 
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 8)) == VersionTime.Earlier)
                 {
-                    AddClasses();
                     AddDivinerClass();
                 }
 
@@ -455,32 +454,85 @@ namespace Data
 
         private static void MigrateCharactersToClasses()
         {
-            var classes = ClassRepository.Get();
-            var characters = CharacterRepository.Get();
-
-            foreach(var character in characters)
+            Connection.BeginTransaction();
+            try
             {
-                var charClass = classes.FirstOrDefault(x => x.ClassId == character.ClassId);
+                var classes = ClassRepository.Get();
+                var characters = CharacterRepository.Get();
 
-                if (charClass == null) continue;
-
-                character.DL_Class = charClass;
-                character.ID_Class = charClass.Id;
-
-                CharacterRepository.InsertOrReplace(character); 
-                
-                foreach(var firstlevelability in charClass.Abilities.Where(x=>x.Level == 1))
+                foreach (var character in characters)
                 {
-                    var characterAbility = new DL_CharacterAbility()
-                    {
-                        Ability = firstlevelability,
-                        Character = character,
-                        ID_Character = character.Id,
-                        ID_ClassAbility = firstlevelability.Id
-                    };
+                    var charClass = classes.FirstOrDefault(x => x.ClassId == character.ClassId);
 
-                    CharacterAbilitiesRepository.InsertOrReplace(characterAbility);
+                    if (charClass == null) continue;
+
+                    character.DL_Class = charClass;
+                    character.ID_Class = charClass.Id;
+
+                    if (character.CharacterAbilities == null) character.CharacterAbilities = new List<DL_CharacterAbility>();
+
+                    foreach (var oldCharacterAbility in character.Abilities)
+                    {
+                        if (oldCharacterAbility.ReferenceNumber != 0)
+                        {
+                            var classAbility = charClass.Abilities.FirstOrDefault(x => 
+                                x.ReferenceNumber == oldCharacterAbility.ReferenceNumber && 
+                                x.DL_Class.ClassId == character.ClassId);
+
+                            if (classAbility == null) continue;
+
+                            var newCharacterAbility = new DL_CharacterAbility()
+                            {
+                                Ability = classAbility,
+                                Character = character,
+                                ID_Character = character.Id,
+                                ID_ClassAbility = classAbility.Id,
+                                AbilityEnhancements = new List<DL_CharacterAbilityEnhancement>()
+                            };
+
+                            foreach (var enhancement in oldCharacterAbility.Enhancements)
+                            {
+                                var abilityenhancement = new DL_CharacterAbilityEnhancement()
+                                {
+                                    CharacterAbility = newCharacterAbility,
+                                    Enhancement = enhancement.Enhancement,
+                                    ID_CharacterAbility = newCharacterAbility.Id,
+                                    ID_Enhancement = enhancement.ID_Enhancement,
+                                    IsTop = enhancement.IsTop,
+                                    SlotNumber = enhancement.SlotNumber
+                                };
+
+                                newCharacterAbility.AbilityEnhancements.Add(abilityenhancement);
+                            }
+
+                            character.CharacterAbilities.Add(newCharacterAbility);
+                        }
+                    }
+
+                    foreach (var firstlevelability in charClass.Abilities.Where(x => x.Level == 1))
+                    {
+                        if (character.CharacterAbilities.Any(x => x.ID_ClassAbility == firstlevelability.Id)) continue;
+
+                        var characterAbility = new DL_CharacterAbility()
+                        {
+                            Ability = firstlevelability,
+                            Character = character,
+                            ID_Character = character.Id,
+                            ID_ClassAbility = firstlevelability.Id
+                        };
+
+                        character.CharacterAbilities.Add(characterAbility);
+                    }
+
+                    CharacterRepository.InsertOrReplace(character);
                 }
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
             }
         }
 
@@ -530,12 +582,20 @@ namespace Data
 
         private static void AddClasses()
         {
-            var classes = ClassRepository.Get();          
+            var classes = ClassRepository.Get();
+
+            if (classes.Any())
+            {
+                Connection.DropTable<DL_Class>();
+                Connection.CreateTable<DL_Class>();
+            }
+
+            classes = ClassRepository.Get();
 
             Connection.BeginTransaction();
             try
             {
-                if (!classes.Any(x=>x.ClassId == 0))
+                if (!classes.Any(x=>x.ClassId == 1))
                 {
                     // add Brute
                     var cl = new DL_Class
@@ -550,7 +610,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 1))
+                if (!classes.Any(x => x.ClassId == 2))
                 {
                     // add Tinkerer
                     var cl = new DL_Class
@@ -565,7 +625,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 2))
+                if (!classes.Any(x => x.ClassId == 3))
                 {
                     // add Orchid Spellweaver
                     var cl = new DL_Class
@@ -580,7 +640,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 3))
+                if (!classes.Any(x => x.ClassId == 4))
                 {
                     // add Human Scoundrel
                     var cl = new DL_Class
@@ -595,7 +655,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 4))
+                if (!classes.Any(x => x.ClassId == 5))
                 {
                     // add Savvas Cragheart
                     var cl = new DL_Class
@@ -610,7 +670,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 5))
+                if (!classes.Any(x => x.ClassId == 6))
                 {
                     // add Vermling Mindthief
                     var cl = new DL_Class
@@ -625,7 +685,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 6))
+                if (!classes.Any(x => x.ClassId == 7))
                 {
                     // add Valrath Sunkeeper
                     var cl = new DL_Class
@@ -640,7 +700,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 7))
+                if (!classes.Any(x => x.ClassId == 8))
                 {
                     // add Valrath Quatermaster
                     var cl = new DL_Class
@@ -655,7 +715,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 8))
+                if (!classes.Any(x => x.ClassId == 9))
                 {
                     // add Aesther Summoner
                     var cl = new DL_Class
@@ -670,7 +730,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 9))
+                if (!classes.Any(x => x.ClassId == 10))
                 {
                     // add Aesther Nightshround
                     var cl = new DL_Class
@@ -685,7 +745,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 10))
+                if (!classes.Any(x => x.ClassId == 11))
                 {
                     // add Harrower Plagueherald
                     var cl = new DL_Class
@@ -701,7 +761,7 @@ namespace Data
                 }
 
 
-                if (!classes.Any(x => x.ClassId == 11))
+                if (!classes.Any(x => x.ClassId == 12))
                 {
                     // add Inox Berserker
                     var cl = new DL_Class
@@ -716,7 +776,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 12))
+                if (!classes.Any(x => x.ClassId == 13))
                 {
                     // add Quatryl Soothsinger
                     var cl = new DL_Class
@@ -731,7 +791,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 13))
+                if (!classes.Any(x => x.ClassId == 14))
                 {
                     // add Orchid Doomstalker
                     var cl = new DL_Class
@@ -746,7 +806,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 14))
+                if (!classes.Any(x => x.ClassId == 15))
                 {
                     // add Human Sawbones
                     var cl = new DL_Class
@@ -761,7 +821,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 15))
+                if (!classes.Any(x => x.ClassId == 16))
                 {
                     // add Vermling Beasttyrant
                     var cl = new DL_Class
@@ -776,7 +836,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 16))
+                if (!classes.Any(x => x.ClassId == 17))
                 {
                     // add Vermling Beasttyrant
                     var cl = new DL_Class
@@ -791,7 +851,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 17))
+                if (!classes.Any(x => x.ClassId == 18))
                 {
                     // add Harrower Bladeswarm
                     var cl = new DL_Class
@@ -806,7 +866,7 @@ namespace Data
                     SaveClass(cl);
                 }
 
-                if (!classes.Any(x => x.ClassId == 18))
+                if (!classes.Any(x => x.ClassId == 19))
                 {
                     // add Aesther Diviner
                     var cl = new DL_Class

@@ -26,7 +26,7 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid
 {
-    [Activity(Label = "Gloomhaven Campaign Tracker", MainLauncher = true, Icon = "@drawable/ic_launcher", AlwaysRetainTaskState = true)]
+    [Activity(Label = "Gloomhaven Campaign Tracker", Icon = "@drawable/ic_launcher", AlwaysRetainTaskState = true)]
     public class MainActivity : AppCompatActivity
     {
         private DrawerLayout _drawerLayout;
@@ -37,7 +37,7 @@ namespace GloomhavenCampaignTracker.Droid
         private Fragment _currentFragment;
         private const string _showItemnames = "showItemnames";
         private const string _showPQNames = "showPQDetails";
-        private const string _showOldPerkSheet = "showOldPerkSheet";
+        private const string _showOldAbilitySheet = "showOldAbilitySheet";
         private const string _activateFC = "activateFC";
 
         protected override void OnResume()
@@ -95,8 +95,7 @@ namespace GloomhavenCampaignTracker.Droid
             var drawerToggle = new Android.Support.V7.App.ActionBarDrawerToggle(this, _drawerLayout, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
             _drawerLayout.AddDrawerListener(drawerToggle);
             drawerToggle.SyncState();
-
-            GloomhavenDbHelper.InitDb();
+                        
             try
             {
                 LoadLastCampaign();
@@ -118,12 +117,12 @@ namespace GloomhavenCampaignTracker.Droid
             var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             var isShowItems = prefs.GetBoolean(_showItemnames, true);
             var isShowPq = prefs.GetBoolean(_showPQNames, true);
-            var isShowOldPerks = prefs.GetBoolean(_showOldPerkSheet, false);
+            var isShowOldAbilitySheet = prefs.GetBoolean(_showOldAbilitySheet, false);
             var isFCActivated = prefs.GetBoolean(_activateFC, false);
 
             GCTContext.ShowItemNames = isShowItems;
             GCTContext.ShowPersonalQuestDetails = isShowPq;
-            GCTContext.ShowOldPerkSheet = isShowOldPerks;
+            GCTContext.ShowAbilitySheet = isShowOldAbilitySheet;
             GCTContext.ActivateForgottenCiclesContent = isFCActivated;
 
             _navigationView.NavigationItemSelected += NavigationItemSelected;

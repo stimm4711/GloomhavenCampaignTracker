@@ -20,7 +20,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             _context = context;
             FragManager = fm;
-            if (GCTContext.ShowOldPerkSheet) PageCount = 5;
+            if (GCTContext.ShowAbilitySheet) PageCount = 5;
             frags = new Fragment[PageCount];
             _character = character;
         }
@@ -49,13 +49,13 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                     break;
                 case 2:
                     title = "Abilities";
+                    if (PageCount == 5) title = "Abilities 2.0"; ;
                     break;                
                 case 3:
-                    title = "Perks";
-                    if (PageCount == 5) title = "Perks.2"; ;                    
+                    title = "Perks";                   
                     break;
                 case 4:
-                    title = "Perks.1";
+                    title = "Abilities 1.0";
                     break;
             }
             return title;
@@ -69,17 +69,17 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 case 0:
                     frag = CharacterDetailsStatsFragment.NewInstance(_character);
                     break;
-                case 2:
-                    frag = CharacterDetailAbilitiesFragment.NewInstance(_character);
-                    break;
                 case 1:
                     frag = CharacterDetailItemsFragment.NewInstance(_character);
                     break;
+                case 2:
+                    frag = CharacterDetailAbilitiesFragment.NewInstance(_character);
+                    break;
                 case 3:
-                        frag = CharacterDetailPerks2Fragment.NewInstance(_character);                  
+                    frag = CharacterDetailPerks2Fragment.NewInstance(_character);                  
                     break;
                 case 4:
-                    frag = CharacterDetailPerksFragment.NewInstance(_character);
+                    frag = CharacterDetailAbilitiesFragmentOld.NewInstance(_character);
                     break;
             }
 

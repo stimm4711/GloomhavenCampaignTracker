@@ -29,7 +29,7 @@ namespace GloomhavenCampaignTracker.Business
         public static bool ShowScenarioNames { get; set; } = false;
 
         public static int LastSelectedCampaignTab { get; set; } = -1;
-        public static bool ShowOldPerkSheet { get; internal set; }
+        public static bool ShowAbilitySheet { get; internal set; }
 
         public static bool ActivateForgottenCiclesContent { get; set; } = false;
 
