@@ -3545,6 +3545,424 @@
                "iD_Class":15
             }
          ]
+      },
+      {  
+         "classname":"Bladeswarm",
+         "classid":17,
+         "Abilities":[  
+            {  
+               "abilityName":"Deflecting Blades",
+               "referenceNumber":1000,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Corrupting Parasites",
+               "referenceNumber":1001,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Hive Mind",
+               "referenceNumber":1002,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Omniscient Assault",
+               "referenceNumber":1003,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Death March",
+               "referenceNumber":1004,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Engulfing Stingers",
+               "referenceNumber":1005,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"The Storm's Edge",
+               "referenceNumber":1006,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Scattered Defense",
+               "referenceNumber":1007,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Call of the Grave",
+               "referenceNumber":1008,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Unstoppable Army",
+               "referenceNumber":1009,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Swarming Minions",
+               "referenceNumber":1010,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Venomous Barbs",
+               "referenceNumber":1011,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Grasping Advance",
+               "referenceNumber":1012,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Tomb of the Immortal",
+               "referenceNumber":1013,
+               "level":1,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Vampiric Tempest",
+               "referenceNumber":1014,
+               "level":2,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Infest",
+               "referenceNumber":1015,
+               "level":2,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Putrid Grubs",
+               "referenceNumber":1016,
+               "level":3,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Sand Scythe",
+               "referenceNumber":1017,
+               "level":3,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Sword of Tenacity",
+               "referenceNumber":1018,
+               "level":4,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Incubation",
+               "referenceNumber":1019,
+               "level":4,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Bioluminescence",
+               "referenceNumber":1020,
+               "level":5,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Bone Daggers",
+               "referenceNumber":1021,
+               "level":5,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Prismatic Cyclone",
+               "referenceNumber":1022,
+               "level":6,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Erosion",
+               "referenceNumber":1023,
+               "level":6,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Solitary Horde",
+               "referenceNumber":1024,
+               "level":7,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Sunstroke",
+               "referenceNumber":1025,
+               "level":7,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Focused Scourge",
+               "referenceNumber":1026,
+               "level":8,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Blood Drain",
+               "referenceNumber":1027,
+               "level":8,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Wasteland",
+               "referenceNumber":1028,
+               "level":9,
+               "image_url":null,
+               "iD_Class":17
+            },
+            {  
+               "abilityName":"Oasis",
+               "referenceNumber":1029,
+               "level":9,
+               "image_url":null,
+               "iD_Class":17
+            }
+         ]
+      },
+      {  
+         "classname":"Diviner",
+         "classid":18,
+         "Abilities":[  
+            {  
+               "abilityName":"Peer into Battle",
+               "referenceNumber":574,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Anticipate Intricacies",
+               "referenceNumber":575,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Protective Aura",
+               "referenceNumber":576,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Clairvoyance",
+               "referenceNumber":577,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Otherworldy Journey",
+               "referenceNumber":578,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Ray of Light",
+               "referenceNumber":579,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Dimensional Transfer",
+               "referenceNumber":580,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Void Snare",
+               "referenceNumber":581,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Cursed Ground",
+               "referenceNumber":582,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Bad Omen",
+               "referenceNumber":583,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Inspiration from Beyond",
+               "referenceNumber":584,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Duality Shards",
+               "referenceNumber":585,
+               "level":1,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Revitalizing Fount",
+               "referenceNumber":586,
+               "level":2,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Gift of the Void",
+               "referenceNumber":587,
+               "level":2,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Envision the Course",
+               "referenceNumber":588,
+               "level":3,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Call of the Nether",
+               "referenceNumber":589,
+               "level":3,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Preordain the Path",
+               "referenceNumber":590,
+               "level":4,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Cleansing Rite",
+               "referenceNumber":591,
+               "level":4,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Seal Their Fate",
+               "referenceNumber":592,
+               "level":5,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Dimensional Divide",
+               "referenceNumber":593,
+               "level":5,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Enfeebling Hex",
+               "referenceNumber":594,
+               "level":6,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Careful Attunement",
+               "referenceNumber":595,
+               "level":6,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Curative Flux",
+               "referenceNumber":596,
+               "level":7,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Ethereal Vortex",
+               "referenceNumber":597,
+               "level":7,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Deep Contemplation",
+               "referenceNumber":598,
+               "level":8,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Anguish and Salvation",
+               "referenceNumber":599,
+               "level":8,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Hand of Destiny",
+               "referenceNumber":600,
+               "level":9,
+               "image_url":null,
+               "iD_Class":18
+            },
+            {  
+               "abilityName":"Planar Fissure",
+               "referenceNumber":601,
+               "level":9,
+               "image_url":null,
+               "iD_Class":18
+            }
+         ]
       }
    ]
 }
