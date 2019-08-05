@@ -50,6 +50,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             checkpq.Checked = isShowPQ;
             checkscenarios.Checked = isShowScenarios;
             activateFCCheck.Checked = isFCActivated;
+            showOldAbilitySheetCheck.Checked = isShowOldAbilitySheet;
 
             checkItems.CheckedChange += CheckItems_CheckedChange;
             checkpq.CheckedChange += Checkpq_CheckedChange;
