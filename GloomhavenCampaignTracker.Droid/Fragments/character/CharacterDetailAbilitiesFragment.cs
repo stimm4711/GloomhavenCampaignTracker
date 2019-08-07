@@ -63,22 +63,31 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         private void Lv_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var inflater = Context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
-            var convertView = inflater.Inflate(Resource.Layout.alertdialog_editability, null);
-            var refNumberText = convertView.FindViewById<EditText>(Resource.Id.inputText);
-            var levelText = convertView.FindViewById<EditText>(Resource.Id.inputNumber);
-            var nameText = convertView.FindViewById<EditText>(Resource.Id.abilityName);
+
+
+            var convertView = inflater.Inflate(Resource.Layout.alertdialog_editability2, null);
+            //var convertView = inflater.Inflate(Resource.Layout.alertdialog_editability, null);
+
             var enhancementListTop = convertView.FindViewById<ListView>(Resource.Id.listViewtop);
             var fabTop = convertView.FindViewById<FloatingActionButton>(Resource.Id.fabtop);
             var enhancementListBottom = convertView.FindViewById<ListView>(Resource.Id.listViewbottom);
             var fabBottom = convertView.FindViewById<FloatingActionButton>(Resource.Id.fabbottom);
             var img = convertView.FindViewById<ImageView>(Resource.Id.abilityimageview);
 
+            var refNumberText = convertView.FindViewById<EditText>(Resource.Id.inputText);
+            var levelText = convertView.FindViewById<EditText>(Resource.Id.inputNumber);
+            var nameText = convertView.FindViewById<EditText>(Resource.Id.abilityName);
+
             var ability = (DL_CharacterAbility)((AbilitiesAdapter)_lv.Adapter).GetItem(e.Position);
 
             if (ability == null) return;
 
-           
-            // https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/character-ability-cards/BR/balanced-measure.png
+            if (refNumberText != null)
+            {
+                refNumberText.Text = ability.Ability.ReferenceNumber.ToString();
+                levelText.Text = ability.Ability.Level.ToString();
+                nameText.Text = ability.Ability.AbilityName;
+            }
 
             if (CrossConnectivity.Current.IsConnected)
             {
@@ -88,10 +97,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                ".png";
                 var imageBitmap = GetImageBitmapFromUrlAsync(url, img);
             }
-
-            refNumberText.Text = ability.Ability.ReferenceNumber.ToString();
-            levelText.Text = ability.Ability.Level.ToString();
-            nameText.Text = ability.Ability.AbilityName;
 
             enhancementListTop.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, true);
             enhancementListBottom.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, false);
@@ -112,46 +117,42 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                 };
             }
 
-            if(!img.HasOnClickListeners)
-            {
-                img.Click += (s, args) =>
-                {
-                    ShowAbilityCard(ability.Ability.AbilityName, Character.DL_Class.ClassShorty);
-                };
-            }
+            convertView.SetBackgroundColor(Color.Transparent);
 
             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                 .SetCustomView(convertView)
-                .SetTitle("Edit Ability")
                 .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
                 .SetPositiveButton("Save changes", (senderAlert, args) =>
                 {
-                    if (string.IsNullOrEmpty(nameText.Text)) return;
-
-                    ability.Ability.AbilityName = nameText.Text;
-
-                    if (!string.IsNullOrEmpty(levelText.Text))
+                    if (nameText != null)
                     {
-                        int.TryParse(levelText.Text, out int level);
-                        if (level < 1 || level > 9)
-                        {
-                            Toast.MakeText(Context, Resources.GetString(Resource.String.WrongAbilityLevel), ToastLength.Short).Show();
-                            return;
-                        }
-                        ability.Ability.Level = level;
-                    }
+                        if (string.IsNullOrEmpty(nameText.Text)) return;
 
-                    if (!string.IsNullOrEmpty(levelText.Text))
-                    {
-                        if (int.TryParse(refNumberText.Text, out int number))
+                        ability.Ability.AbilityName = nameText.Text;
+
+                        if (!string.IsNullOrEmpty(levelText.Text))
                         {
-                            ability.Ability.ReferenceNumber = number;
+                            int.TryParse(levelText.Text, out int level);
+                            if (level < 1 || level > 9)
+                            {
+                                Toast.MakeText(Context, Resources.GetString(Resource.String.WrongAbilityLevel), ToastLength.Short).Show();
+                                return;
+                            }
+                            ability.Ability.Level = level;
                         }
-                        else
+
+                        if (!string.IsNullOrEmpty(levelText.Text))
                         {
-                            ability.Ability.ReferenceNumber = 0;
+                            if (int.TryParse(refNumberText.Text, out int number))
+                            {
+                                ability.Ability.ReferenceNumber = number;
+                            }
+                            else
+                            {
+                                ability.Ability.ReferenceNumber = 0;
+                            }
                         }
-                    }
+                    }                    
 
                     SaveCharacter();
 
