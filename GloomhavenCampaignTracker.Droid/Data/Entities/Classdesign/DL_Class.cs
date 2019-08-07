@@ -16,6 +16,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign
         [MaxLength(100)]
         public string ClassName { get; set; }
 
+        [MaxLength(5)]
+        public string ClassShorty { get; set; }
+
         public int ContentOfPack { get; set; } // 1 = gloomhaven, 2 = forgotten circles
 
         [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]

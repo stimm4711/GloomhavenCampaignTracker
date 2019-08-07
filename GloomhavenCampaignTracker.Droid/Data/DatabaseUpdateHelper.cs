@@ -536,7 +536,7 @@ namespace Data
             }
         }
 
-        private static void AddClassAblities()
+        internal static void AddClassAblities()
         {
             Connection.BeginTransaction();
             try
@@ -580,7 +580,7 @@ namespace Data
             }
         }
 
-        private static void AddClasses()
+        internal static void AddClasses()
         {
             var classes = ClassRepository.Get();
 
@@ -604,6 +604,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 1,
                         ClassName = "Inox Brute",
+                        ClassShorty = "BR",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -619,6 +620,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 2,
                         ClassName = "Quatryl Tinkerer",
+                        ClassShorty = "TI",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -634,6 +636,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 3,
                         ClassName = "Orchid Spellweaver",
+                        ClassShorty = "SW",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -649,6 +652,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 4,
                         ClassName = "Human Scoundrel",
+                        ClassShorty = "SC",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -664,6 +668,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 5,
                         ClassName = "Savvas Cragheart",
+                        ClassShorty = "CH",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -679,6 +684,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 6,
                         ClassName = "Vermling Mindthief",
+                        ClassShorty = "MT",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -694,6 +700,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 7,
                         ClassName = "Valrath Sunkeeper",
+                        ClassShorty = "SK",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -709,6 +716,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 8,
                         ClassName = "Valrath Quatermaster",
+                        ClassShorty = "QM",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -724,6 +732,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 9,
                         ClassName = "Aesther Summoner",
+                        ClassShorty = "SU",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -739,6 +748,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 10,
                         ClassName = "Aesther Nightshround",
+                        ClassShorty = "NS",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -754,6 +764,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 11,
                         ClassName = "Harrower Plagueherald",
+                        ClassShorty = "PH",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -770,6 +781,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 12,
                         ClassName = "Inox Berserker",
+                        ClassShorty = "BE",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -785,6 +797,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 13,
                         ClassName = "Quatryl Soothsinger",
+                        ClassShorty = "SS",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -800,6 +813,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 14,
                         ClassName = "Orchid Doomstalker",
+                        ClassShorty = "DS",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -815,6 +829,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 15,
                         ClassName = "Human Sawbones",
+                        ClassShorty = "SB",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -830,6 +845,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 16,
                         ClassName = "Savvas Elementalist",
+                        ClassShorty = "EL",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -845,6 +861,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 17,
                         ClassName = "Vermling Beasttyrant",
+                        ClassShorty = "BT",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -860,6 +877,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 18,
                         ClassName = "Harrower Bladeswarm",
+                        ClassShorty = "BS",
                         Perks = new List<DL_ClassPerks>()
                     };
 
@@ -875,6 +893,7 @@ namespace Data
                         Characters = new List<DL_Character>(),
                         ClassId = 19,
                         ClassName = "Aesther Diviner",
+                        ClassShorty = "DR",
                         Perks = new List<DL_ClassPerks>()
                     };
 

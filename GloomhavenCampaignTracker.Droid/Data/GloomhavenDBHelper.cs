@@ -375,12 +375,24 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             FillScenarios();
             FillPartyAchievements();
             FillPersonalQuests();
-            FillItems();
-            FillClassPerks();
+            FillItems();            
             FillEnhancement();
             FillPersonalQuestCounters();
 
             AddRegionsToScenarios();
+            FillClasses();
+            FillClassAbilities();
+            DatabaseUpdateHelper.CheckIfAllPerksExists();
+        }
+
+        private static void FillClassAbilities()
+        {
+            DatabaseUpdateHelper.AddClassAblities();
+        }
+
+        private static void FillClasses()
+        {
+            DatabaseUpdateHelper.AddClasses();
         }
 
         internal static void FillPersonalQuestCounters()

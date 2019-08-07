@@ -254,6 +254,7 @@
     <Compile Include="CustomControls\DraggableListView.cs" />
     <Compile Include="CustomControls\IDraggableListAdapter.cs" />
     <Compile Include="CustomControls\EventFrontImageViewDialogBuilder.cs" />
+    <Compile Include="CustomControls\AbilityImageViewDialogBuilder.cs" />
     <Compile Include="CustomControls\ItemImageViewDialogBuilder.cs" />
     <Compile Include="CustomControls\PersonalQuestCheckView.cs" />
     <Compile Include="CustomControls\PersonalQuestCounterBase.cs" />

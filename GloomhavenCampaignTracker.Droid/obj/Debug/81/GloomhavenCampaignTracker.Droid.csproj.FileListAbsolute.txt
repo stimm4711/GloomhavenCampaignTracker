@@ -990,3 +990,4 @@ F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\dra
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md590c61f3952228220fff98b7489bdf623\SplashActivity.java
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\splash.png
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\GloomhavenCampaignTracker.Droid.csprojAssemblyReference.cache
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md51f0577bb3a96a723292868f663fedefc\AbilityImageViewDialogBuilder.java

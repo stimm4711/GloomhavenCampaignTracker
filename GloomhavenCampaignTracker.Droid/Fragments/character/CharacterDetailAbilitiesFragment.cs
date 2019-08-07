@@ -11,6 +11,10 @@ using System.Collections.Generic;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Linq;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
+using Plugin.Connectivity;
+using System.Threading.Tasks;
+using Android.Graphics;
+using System.Net.Http;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.character
 {
@@ -67,10 +71,23 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             var fabTop = convertView.FindViewById<FloatingActionButton>(Resource.Id.fabtop);
             var enhancementListBottom = convertView.FindViewById<ListView>(Resource.Id.listViewbottom);
             var fabBottom = convertView.FindViewById<FloatingActionButton>(Resource.Id.fabbottom);
+            var img = convertView.FindViewById<ImageView>(Resource.Id.abilityimageview);
 
-            var ability = (DL_CharacterAbility)((AbilitiesAdapter)_lv.Adapter).GetItem(e.Position);               
+            var ability = (DL_CharacterAbility)((AbilitiesAdapter)_lv.Adapter).GetItem(e.Position);
 
             if (ability == null) return;
+
+           
+            // https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/character-ability-cards/BR/balanced-measure.png
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/character-ability-cards/" +
+               $"{Character.DL_Class.ClassShorty}/" +
+               $"{ability.Ability.AbilityName.ToLower().Replace(" ", "-")}" +
+               ".png";
+                var imageBitmap = GetImageBitmapFromUrlAsync(url, img);
+            }
 
             refNumberText.Text = ability.Ability.ReferenceNumber.ToString();
             levelText.Text = ability.Ability.Level.ToString();
@@ -92,6 +109,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                 fabBottom.Click += (s, arg) =>
                 {
                     AddEnhancement(inflater, enhancementListBottom, ability, false);
+                };
+            }
+
+            if(!img.HasOnClickListeners)
+            {
+                img.Click += (s, args) =>
+                {
+                    ShowAbilityCard(ability.Ability.AbilityName, Character.DL_Class.ClassShorty);
                 };
             }
 
@@ -133,6 +158,35 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                     _lv.Adapter = new AbilitiesAdapter(Context, Character);
                 })
                 .Show();
+        }
+
+  
+
+        private void ShowAbilityCard(string abilityname, string classshorty)
+        {
+            if (string.IsNullOrEmpty(abilityname) || string.IsNullOrEmpty(classshorty)) return;
+            var diag = new AbilityImageViewDialogBuilder(Context, Resource.Style.MyTransparentDialogTheme)
+                        .SetAbilityName(abilityname)
+                        .SetClassShorty(classshorty)
+                        .Show();
+        }
+
+        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen)
+        {
+            Bitmap imageBitmap = null;
+
+            using (var httpClient = new HttpClient())
+            {
+                var imageBytes = await httpClient.GetByteArrayAsync(url);
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                }
+            }
+
+            imagen.SetImageBitmap(imageBitmap);
+
+            return imageBitmap;
         }
 
         private void AddEnhancement(LayoutInflater inflater, ListView enhancementListTop, DL_CharacterAbility ability, bool isTop)

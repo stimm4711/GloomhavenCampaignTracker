@@ -48,7 +48,9 @@
             android:id="@+id/InputLayout2"
             android:theme="@style/TextLabel"
             android:hint="Ability level"
-            app:hintTextAppearance="@style/HintTextLabel">
+            app:hintTextAppearance="@style/HintTextLabel"
+            android:minWidth="25px"
+            android:minHeight="25px">           
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,6 +59,11 @@
                 android:maxLength="1"
                 android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
+         <ImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                 android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/abilityimageview" />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
