@@ -16,12 +16,20 @@ namespace Data
         private enum VersionTime { Earlier = -1 }
         public static Version Dbversion { get; } = new Version(1, 4, 15);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
+        public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
+
+        protected static void OnUpdateLoadingStep(UpdateSplashScreenLoadingInfoEVentArgs e)
+        {
+            UpdateLoadingStep?.Invoke(null, e);
+        }
 
         internal static void CheckForUpdates(DL_GlommhavenSettings currentDbVersion)
         {
-            var old = Version.Parse(currentDbVersion.Value);
+            var old = Version.Parse(currentDbVersion.Value);          
             if ((VersionTime)old.CompareTo(Dbversion) == VersionTime.Earlier)
             {
+                OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Check for databaseupdates"));
+
                 if ((VersionTime)old.CompareTo(new Version(1, 3, 4)) == VersionTime.Earlier)
                 {
                     FixItem33ItemCategorie();
@@ -115,27 +123,33 @@ namespace Data
 
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 12)) == VersionTime.Earlier)
                 {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.12"));
                     FixNameOfScenario(87, "Corrupted Cove");
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 13)) == VersionTime.Earlier)
                 {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.13"));
                     AddPartyAchievementSunblessed();
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 14)) == VersionTime.Earlier)
                 {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.14"));
                     AddClasses();
                     AddClassAblities();
                 }
 
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 15)) == VersionTime.Earlier)
                 {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.15"));
                     MigrateCharactersToClasses();
                 }
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
+
+                OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished databaseupdates"));
             }
         }
 

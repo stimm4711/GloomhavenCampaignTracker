@@ -15,6 +15,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
         // Database Info
         internal const string DatabaseName = "GloomhavenCampaignTracker.db3";
         private static SQLiteConnection _conn;
+        public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
         internal static string DatabaseFilePath
         {
@@ -25,6 +26,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 var path = Path.Combine(libraryPath, DatabaseName);
                 return path;
             }
+        }
+
+        protected static void OnUpdateLoadingStep(UpdateSplashScreenLoadingInfoEVentArgs e)
+        {
+            UpdateLoadingStep?.Invoke(null, e);
         }
 
         public static SQLiteConnection Connection
@@ -54,12 +60,15 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
 
             if (currentDbVersion == null)
             {
+                OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Creating new database"));
                 currentDbVersion = CreateNewDB();
+                OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished creating database"));
             }
             else
             {
+                
                 DatabaseUpdateHelper.CheckIfAllPerksExists();
-                DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);
+                DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);               
             }
         }
 
@@ -1681,5 +1690,15 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 throw;
             }
         }     
+    }
+
+    public class UpdateSplashScreenLoadingInfoEVentArgs
+    {
+        public UpdateSplashScreenLoadingInfoEVentArgs(string message)
+        {
+            Stepname = message;
+        }
+
+        public string Stepname { get; private set; }
     }
 }

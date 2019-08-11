@@ -3,9 +3,11 @@
   <color name="mytheme_background">#ff313131</color>
 
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
+    <item name="android:windowBackground">?android:attr/colorBackground</item>
+    <item name="android:colorBackground">@color/mytheme_background</item>
+    <item name="colorAccent">@color/gloom_secondary</item>
   </style>
 
   <style name="MyTheme" parent="MyTheme.Base">

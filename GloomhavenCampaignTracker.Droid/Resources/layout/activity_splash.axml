@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:src="@drawable/splash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:id="@+id/splashimage" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="100dp">
+            <ProgressBar
+                android:id="@+id/pbSpinningCircle"
+                android:indeterminateOnly="true"
+                android:keepScreenOn="true"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent" />
+            <TextView
+                android:id="@+id/txtLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/pbSpinningCircle"
+                android:layout_alignTop="@+id/pbSpinningCircle"
+                android:textColor="#fff"
+                android:text="Loading..."
+                android:layout_marginLeft="5dp"
+                android:textSize="14sp"
+                android:background="@android:color/transparent" />
+            <TextView
+                android:id="@+id/txtLoadingDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/pbSpinningCircle"
+                android:layout_alignTop="@+id/pbSpinningCircle"
+                android:textColor="#fff"
+                android:text=""
+                android:layout_marginLeft="5dp"
+                android:textSize="14sp"
+                android:background="@android:color/transparent" />
+        </LinearLayout>  
+    </LinearLayout>   
+    <TextView
+        android:id="@+id/txtAppVersion"
+        android:text="[APP_VERSION]"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="#fff"
+        android:textSize="14sp"
+        android:background="@android:color/transparent" />   
+</RelativeLayout>
