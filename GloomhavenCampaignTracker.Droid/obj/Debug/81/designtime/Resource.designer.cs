@@ -26,6 +26,108 @@ namespace GloomhavenCampaignTracker.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Xamarin.Essentials.Resource.Attribute.font = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.font;
+			global::Xamarin.Essentials.Resource.Attribute.fontProviderAuthority = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.fontProviderAuthority;
+			global::Xamarin.Essentials.Resource.Attribute.fontProviderCerts = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.fontProviderCerts;
+			global::Xamarin.Essentials.Resource.Attribute.fontProviderFetchStrategy = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.fontProviderFetchStrategy;
+			global::Xamarin.Essentials.Resource.Attribute.fontProviderFetchTimeout = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.fontProviderFetchTimeout;
+			global::Xamarin.Essentials.Resource.Attribute.fontProviderPackage = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.fontProviderPackage;
+			global::Xamarin.Essentials.Resource.Attribute.fontProviderQuery = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.fontProviderQuery;
+			global::Xamarin.Essentials.Resource.Attribute.fontStyle = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.fontStyle;
+			global::Xamarin.Essentials.Resource.Attribute.fontWeight = global::GloomhavenCampaignTracker.Droid.Resource.Attribute.fontWeight;
+			global::Xamarin.Essentials.Resource.Boolean.abc_action_bar_embed_tabs = global::GloomhavenCampaignTracker.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Xamarin.Essentials.Resource.Color.notification_action_color_filter = global::GloomhavenCampaignTracker.Droid.Resource.Color.notification_action_color_filter;
+			global::Xamarin.Essentials.Resource.Color.notification_icon_bg_color = global::GloomhavenCampaignTracker.Droid.Resource.Color.notification_icon_bg_color;
+			global::Xamarin.Essentials.Resource.Color.ripple_material_light = global::GloomhavenCampaignTracker.Droid.Resource.Color.ripple_material_light;
+			global::Xamarin.Essentials.Resource.Color.secondary_text_default_material_light = global::GloomhavenCampaignTracker.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Xamarin.Essentials.Resource.Dimension.compat_button_inset_horizontal_material = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
+			global::Xamarin.Essentials.Resource.Dimension.compat_button_inset_vertical_material = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.compat_button_inset_vertical_material;
+			global::Xamarin.Essentials.Resource.Dimension.compat_button_padding_horizontal_material = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
+			global::Xamarin.Essentials.Resource.Dimension.compat_button_padding_vertical_material = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.compat_button_padding_vertical_material;
+			global::Xamarin.Essentials.Resource.Dimension.compat_control_corner_material = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Xamarin.Essentials.Resource.Dimension.notification_action_icon_size = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Xamarin.Essentials.Resource.Dimension.notification_action_text_size = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_action_text_size;
+			global::Xamarin.Essentials.Resource.Dimension.notification_big_circle_margin = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Xamarin.Essentials.Resource.Dimension.notification_content_margin_start = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Xamarin.Essentials.Resource.Dimension.notification_large_icon_height = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Xamarin.Essentials.Resource.Dimension.notification_large_icon_width = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Xamarin.Essentials.Resource.Dimension.notification_main_column_padding_top = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Xamarin.Essentials.Resource.Dimension.notification_media_narrow_margin = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Xamarin.Essentials.Resource.Dimension.notification_right_icon_size = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Xamarin.Essentials.Resource.Dimension.notification_right_side_padding_top = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Xamarin.Essentials.Resource.Dimension.notification_small_icon_background_padding = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Xamarin.Essentials.Resource.Dimension.notification_small_icon_size_as_large = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Xamarin.Essentials.Resource.Dimension.notification_subtext_size = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_subtext_size;
+			global::Xamarin.Essentials.Resource.Dimension.notification_top_pad = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_top_pad;
+			global::Xamarin.Essentials.Resource.Dimension.notification_top_pad_large_text = global::GloomhavenCampaignTracker.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Xamarin.Essentials.Resource.Drawable.notification_action_background = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_action_background;
+			global::Xamarin.Essentials.Resource.Drawable.notification_bg = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_bg;
+			global::Xamarin.Essentials.Resource.Drawable.notification_bg_low = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_bg_low;
+			global::Xamarin.Essentials.Resource.Drawable.notification_bg_low_normal = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Xamarin.Essentials.Resource.Drawable.notification_bg_low_pressed = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Xamarin.Essentials.Resource.Drawable.notification_bg_normal = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_bg_normal;
+			global::Xamarin.Essentials.Resource.Drawable.notification_bg_normal_pressed = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Xamarin.Essentials.Resource.Drawable.notification_icon_background = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_icon_background;
+			global::Xamarin.Essentials.Resource.Drawable.notification_template_icon_bg = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Xamarin.Essentials.Resource.Drawable.notification_template_icon_low_bg = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Xamarin.Essentials.Resource.Drawable.notification_tile_bg = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notification_tile_bg;
+			global::Xamarin.Essentials.Resource.Drawable.notify_panel_notification_icon_bg = global::GloomhavenCampaignTracker.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Xamarin.Essentials.Resource.Id.action_container = global::GloomhavenCampaignTracker.Droid.Resource.Id.action_container;
+			global::Xamarin.Essentials.Resource.Id.action_divider = global::GloomhavenCampaignTracker.Droid.Resource.Id.action_divider;
+			global::Xamarin.Essentials.Resource.Id.action_image = global::GloomhavenCampaignTracker.Droid.Resource.Id.action_image;
+			global::Xamarin.Essentials.Resource.Id.action_text = global::GloomhavenCampaignTracker.Droid.Resource.Id.action_text;
+			global::Xamarin.Essentials.Resource.Id.actions = global::GloomhavenCampaignTracker.Droid.Resource.Id.actions;
+			global::Xamarin.Essentials.Resource.Id.async = global::GloomhavenCampaignTracker.Droid.Resource.Id.async;
+			global::Xamarin.Essentials.Resource.Id.blocking = global::GloomhavenCampaignTracker.Droid.Resource.Id.blocking;
+			global::Xamarin.Essentials.Resource.Id.chronometer = global::GloomhavenCampaignTracker.Droid.Resource.Id.chronometer;
+			global::Xamarin.Essentials.Resource.Id.forever = global::GloomhavenCampaignTracker.Droid.Resource.Id.forever;
+			global::Xamarin.Essentials.Resource.Id.icon = global::GloomhavenCampaignTracker.Droid.Resource.Id.icon;
+			global::Xamarin.Essentials.Resource.Id.icon_group = global::GloomhavenCampaignTracker.Droid.Resource.Id.icon_group;
+			global::Xamarin.Essentials.Resource.Id.info = global::GloomhavenCampaignTracker.Droid.Resource.Id.info;
+			global::Xamarin.Essentials.Resource.Id.italic = global::GloomhavenCampaignTracker.Droid.Resource.Id.italic;
+			global::Xamarin.Essentials.Resource.Id.line1 = global::GloomhavenCampaignTracker.Droid.Resource.Id.line1;
+			global::Xamarin.Essentials.Resource.Id.line3 = global::GloomhavenCampaignTracker.Droid.Resource.Id.line3;
+			global::Xamarin.Essentials.Resource.Id.normal = global::GloomhavenCampaignTracker.Droid.Resource.Id.normal;
+			global::Xamarin.Essentials.Resource.Id.notification_background = global::GloomhavenCampaignTracker.Droid.Resource.Id.notification_background;
+			global::Xamarin.Essentials.Resource.Id.notification_main_column = global::GloomhavenCampaignTracker.Droid.Resource.Id.notification_main_column;
+			global::Xamarin.Essentials.Resource.Id.notification_main_column_container = global::GloomhavenCampaignTracker.Droid.Resource.Id.notification_main_column_container;
+			global::Xamarin.Essentials.Resource.Id.right_icon = global::GloomhavenCampaignTracker.Droid.Resource.Id.right_icon;
+			global::Xamarin.Essentials.Resource.Id.right_side = global::GloomhavenCampaignTracker.Droid.Resource.Id.right_side;
+			global::Xamarin.Essentials.Resource.Id.tag_transition_group = global::GloomhavenCampaignTracker.Droid.Resource.Id.tag_transition_group;
+			global::Xamarin.Essentials.Resource.Id.text = global::GloomhavenCampaignTracker.Droid.Resource.Id.text;
+			global::Xamarin.Essentials.Resource.Id.text2 = global::GloomhavenCampaignTracker.Droid.Resource.Id.text2;
+			global::Xamarin.Essentials.Resource.Id.time = global::GloomhavenCampaignTracker.Droid.Resource.Id.time;
+			global::Xamarin.Essentials.Resource.Id.title = global::GloomhavenCampaignTracker.Droid.Resource.Id.title;
+			global::Xamarin.Essentials.Resource.Integer.status_bar_notification_info_maxnum = global::GloomhavenCampaignTracker.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Xamarin.Essentials.Resource.Layout.notification_action = global::GloomhavenCampaignTracker.Droid.Resource.Layout.notification_action;
+			global::Xamarin.Essentials.Resource.Layout.notification_action_tombstone = global::GloomhavenCampaignTracker.Droid.Resource.Layout.notification_action_tombstone;
+			global::Xamarin.Essentials.Resource.Layout.notification_template_custom_big = global::GloomhavenCampaignTracker.Droid.Resource.Layout.notification_template_custom_big;
+			global::Xamarin.Essentials.Resource.Layout.notification_template_icon_group = global::GloomhavenCampaignTracker.Droid.Resource.Layout.notification_template_icon_group;
+			global::Xamarin.Essentials.Resource.Layout.notification_template_part_chronometer = global::GloomhavenCampaignTracker.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Xamarin.Essentials.Resource.Layout.notification_template_part_time = global::GloomhavenCampaignTracker.Droid.Resource.Layout.notification_template_part_time;
+			global::Xamarin.Essentials.Resource.String.status_bar_notification_info_overflow = global::GloomhavenCampaignTracker.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification = global::GloomhavenCampaignTracker.Droid.Resource.Style.TextAppearance_Compat_Notification;
+			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification_Info = global::GloomhavenCampaignTracker.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::GloomhavenCampaignTracker.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification_Time = global::GloomhavenCampaignTracker.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification_Title = global::GloomhavenCampaignTracker.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Xamarin.Essentials.Resource.Style.Widget_Compat_NotificationActionContainer = global::GloomhavenCampaignTracker.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
+			global::Xamarin.Essentials.Resource.Style.Widget_Compat_NotificationActionText = global::GloomhavenCampaignTracker.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Xamarin.Essentials.Resource.Xml.xamarin_essentials_fileprovider_file_paths = global::GloomhavenCampaignTracker.Droid.Resource.Xml.xamarin_essentials_fileprovider_file_paths;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamily = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamily;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamily_fontProviderAuthority = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamily_fontProviderCerts = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamily_fontProviderPackage = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamily_fontProviderQuery = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamilyFont;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont_android_font = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont_android_fontStyle = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont_android_fontWeight = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont_font = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamilyFont_font;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont_fontStyle = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont_fontWeight = global::GloomhavenCampaignTracker.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
 		}
 		
 		public partial class Animation
@@ -7153,8 +7255,8 @@ namespace GloomhavenCampaignTracker.Droid
 			public static int[] ActionBarLayout = new int[] {
 					16842931};
 			
-			// aapt resource value: 0x7F110033
-			public const int ActionBarLayout_android_layout_gravity = 2131820595;
+			// aapt resource value: 0x7F120033
+			public const int ActionBarLayout_android_layout_gravity = 2131886131;
 			
 			// aapt resource value: 0x10
 			public const int ActionBar_background = 16;
@@ -7195,8 +7297,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x26
 			public const int ActionBar_elevation = 38;
 			
-			// aapt resource value: 0x7F110016
-			public const int ActionBar_height = 2131820566;
+			// aapt resource value: 0x7F120016
+			public const int ActionBar_height = 2131886102;
 			
 			// aapt resource value: 0x19
 			public const int ActionBar_hideOnContentScroll = 25;
@@ -7246,8 +7348,8 @@ namespace GloomhavenCampaignTracker.Droid
 			public static int[] ActionMenuItemView = new int[] {
 					16843071};
 			
-			// aapt resource value: 0x7F110035
-			public const int ActionMenuItemView_android_minWidth = 2131820597;
+			// aapt resource value: 0x7F120035
+			public const int ActionMenuItemView_android_minWidth = 2131886133;
 			
 			public static int[] ActionMenuView = new int[] {
 					0};
@@ -7269,8 +7371,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x5
 			public const int ActionMode_closeItemLayout = 5;
 			
-			// aapt resource value: 0x7F110041
-			public const int ActionMode_height = 2131820609;
+			// aapt resource value: 0x7F120041
+			public const int ActionMode_height = 2131886145;
 			
 			// aapt resource value: 0x2
 			public const int ActionMode_subtitleTextStyle = 2;
@@ -7285,8 +7387,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x1
 			public const int ActivityChooserView_expandActivityOverflowButtonDrawable = 1;
 			
-			// aapt resource value: 0x7F110046
-			public const int ActivityChooserView_initialActivityCount = 2131820614;
+			// aapt resource value: 0x7F120046
+			public const int ActivityChooserView_initialActivityCount = 2131886150;
 			
 			public static int[] AlertDialog = new int[] {
 					16842994,
@@ -7297,8 +7399,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130772006,
 					2130772007};
 			
-			// aapt resource value: 0x7F110048
-			public const int AlertDialog_android_layout = 2131820616;
+			// aapt resource value: 0x7F120048
+			public const int AlertDialog_android_layout = 2131886152;
 			
 			// aapt resource value: 0x1
 			public const int AlertDialog_buttonPanelSideLayout = 1;
@@ -7329,14 +7431,14 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968838,
 					2130968839};
 			
-			// aapt resource value: 0x7F110386
-			public const int AppBarLayoutStates_state_collapsed = 2131821446;
+			// aapt resource value: 0x7F120386
+			public const int AppBarLayoutStates_state_collapsed = 2131886982;
 			
 			// aapt resource value: 0x1
 			public const int AppBarLayoutStates_state_collapsible = 1;
 			
-			// aapt resource value: 0x7F110380
-			public const int AppBarLayout_android_background = 2131821440;
+			// aapt resource value: 0x7F120380
+			public const int AppBarLayout_android_background = 2131886976;
 			
 			// aapt resource value: 0x1
 			public const int AppBarLayout_android_keyboardNavigationCluster = 1;
@@ -7354,8 +7456,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968765,
 					2130968766};
 			
-			// aapt resource value: 0x7F110389
-			public const int AppBarLayout_Layout_layout_scrollFlags = 2131821449;
+			// aapt resource value: 0x7F120389
+			public const int AppBarLayout_Layout_layout_scrollFlags = 2131886985;
 			
 			// aapt resource value: 0x1
 			public const int AppBarLayout_Layout_layout_scrollInterpolator = 1;
@@ -7364,8 +7466,8 @@ namespace GloomhavenCampaignTracker.Droid
 					16843033,
 					2130772008};
 			
-			// aapt resource value: 0x7F110056
-			public const int AppCompatImageView_android_src = 2131820630;
+			// aapt resource value: 0x7F120056
+			public const int AppCompatImageView_android_src = 2131886166;
 			
 			// aapt resource value: 0x1
 			public const int AppCompatImageView_srcCompat = 1;
@@ -7382,8 +7484,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130772010,
 					2130772011};
 			
-			// aapt resource value: 0x7F110059
-			public const int AppCompatSeekBar_android_thumb = 2131820633;
+			// aapt resource value: 0x7F120059
+			public const int AppCompatSeekBar_android_thumb = 2131886169;
 			
 			// aapt resource value: 0x1
 			public const int AppCompatSeekBar_tickMark = 1;
@@ -7421,15 +7523,15 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x1
 			public const int AppCompatTextHelper_android_drawableTop = 1;
 			
-			// aapt resource value: 0x7F110070
-			public const int AppCompatTextHelper_android_textAppearance = 2131820656;
+			// aapt resource value: 0x7F120070
+			public const int AppCompatTextHelper_android_textAppearance = 2131886192;
 			
 			public static int[] AppCompatTextView = new int[] {
 					16842804,
 					2130772012};
 			
-			// aapt resource value: 0x7F110072
-			public const int AppCompatTextView_android_textAppearance = 2131820658;
+			// aapt resource value: 0x7F120072
+			public const int AppCompatTextView_android_textAppearance = 2131886194;
 			
 			// aapt resource value: 0x1
 			public const int AppCompatTextView_autoSizeMaxTextSize = 1;
@@ -7677,8 +7779,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x1
 			public const int AppCompatTheme_android_windowAnimationStyle = 1;
 			
-			// aapt resource value: 0x7F110111
-			public const int AppCompatTheme_android_windowIsFloating = 2131820817;
+			// aapt resource value: 0x7F120111
+			public const int AppCompatTheme_android_windowIsFloating = 2131886353;
 			
 			// aapt resource value: 0x101
 			public const int AppCompatTheme_autoCompleteTextViewStyle = 257;
@@ -7933,8 +8035,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968753,
 					2130968783};
 			
-			// aapt resource value: 0x7F110404
-			public const int BottomNavigationView_elevation = 2131821572;
+			// aapt resource value: 0x7F120404
+			public const int BottomNavigationView_elevation = 2131887108;
 			
 			// aapt resource value: 0x1
 			public const int BottomNavigationView_itemBackground = 1;
@@ -7953,8 +8055,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968635,
 					2130968636};
 			
-			// aapt resource value: 0x7F110410
-			public const int BottomSheetBehavior_Layout_behavior_hideable = 2131821584;
+			// aapt resource value: 0x7F120410
+			public const int BottomSheetBehavior_Layout_behavior_hideable = 2131887120;
 			
 			// aapt resource value: 0x1
 			public const int BottomSheetBehavior_Layout_behavior_peekHeight = 1;
@@ -7965,8 +8067,8 @@ namespace GloomhavenCampaignTracker.Droid
 			public static int[] ButtonBarLayout = new int[] {
 					2130772126};
 			
-			// aapt resource value: 0x7F110191
-			public const int ButtonBarLayout_allowStacking = 2131820945;
+			// aapt resource value: 0x7F120191
+			public const int ButtonBarLayout_allowStacking = 2131886481;
 			
 			public static int[] CollapsingToolbarLayout = new int[] {
 					2130968658,
@@ -7986,8 +8088,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968892,
 					2130968902};
 			
-			// aapt resource value: 0x7F110414
-			public const int CollapsingToolbarLayout_collapsedTitleGravity = 2131821588;
+			// aapt resource value: 0x7F120414
+			public const int CollapsingToolbarLayout_collapsedTitleGravity = 2131887124;
 			
 			// aapt resource value: 0x1
 			public const int CollapsingToolbarLayout_collapsedTitleTextAppearance = 1;
@@ -8020,8 +8122,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968760,
 					2130968761};
 			
-			// aapt resource value: 0x7F110431
-			public const int CollapsingToolbarLayout_Layout_layout_collapseMode = 2131821617;
+			// aapt resource value: 0x7F120431
+			public const int CollapsingToolbarLayout_Layout_layout_collapseMode = 2131887153;
 			
 			// aapt resource value: 0x1
 			public const int CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = 1;
@@ -8055,16 +8157,16 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x1
 			public const int ColorStateListItem_android_alpha = 1;
 			
-			// aapt resource value: 0x7F110195
-			public const int ColorStateListItem_android_color = 2131820949;
+			// aapt resource value: 0x7F120195
+			public const int ColorStateListItem_android_color = 2131886485;
 			
 			public static int[] CompoundButton = new int[] {
 					16843015,
 					2130772128,
 					2130772129};
 			
-			// aapt resource value: 0x7F110197
-			public const int CompoundButton_android_button = 2131820951;
+			// aapt resource value: 0x7F120197
+			public const int CompoundButton_android_button = 2131886487;
 			
 			// aapt resource value: 0x1
 			public const int CompoundButton_buttonTint = 1;
@@ -8076,8 +8178,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968754,
 					2130968840};
 			
-			// aapt resource value: 0x7F110434
-			public const int CoordinatorLayout_keylines = 2131821620;
+			// aapt resource value: 0x7F120434
+			public const int CoordinatorLayout_keylines = 2131887156;
 			
 			public static int[] CoordinatorLayout_Layout = new int[] {
 					16842931,
@@ -8088,8 +8190,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968763,
 					2130968764};
 			
-			// aapt resource value: 0x7F110437
-			public const int CoordinatorLayout_Layout_android_layout_gravity = 2131821623;
+			// aapt resource value: 0x7F120437
+			public const int CoordinatorLayout_Layout_android_layout_gravity = 2131887159;
 			
 			// aapt resource value: 0x1
 			public const int CoordinatorLayout_Layout_layout_anchor = 1;
@@ -8117,8 +8219,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968640,
 					2130968879};
 			
-			// aapt resource value: 0x7F110445
-			public const int DesignTheme_bottomSheetDialogTheme = 2131821637;
+			// aapt resource value: 0x7F120445
+			public const int DesignTheme_bottomSheetDialogTheme = 2131887173;
 			
 			// aapt resource value: 0x1
 			public const int DesignTheme_bottomSheetStyle = 1;
@@ -8145,8 +8247,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x6
 			public const int DrawerArrowToggle_barLength = 6;
 			
-			// aapt resource value: 0x7F110204
-			public const int DrawerArrowToggle_color = 2131821060;
+			// aapt resource value: 0x7F120204
+			public const int DrawerArrowToggle_color = 2131886596;
 			
 			// aapt resource value: 0x2
 			public const int DrawerArrowToggle_drawableSize = 2;
@@ -8170,8 +8272,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968816,
 					2130968911};
 			
-			// aapt resource value: 0x7F110449
-			public const int FloatingActionButton_backgroundTint = 2131821641;
+			// aapt resource value: 0x7F120449
+			public const int FloatingActionButton_backgroundTint = 2131887177;
 			
 			// aapt resource value: 0x1
 			public const int FloatingActionButton_backgroundTintMode = 1;
@@ -8179,8 +8281,8 @@ namespace GloomhavenCampaignTracker.Droid
 			public static int[] FloatingActionButton_Behavior_Layout = new int[] {
 					2130968632};
 			
-			// aapt resource value: 0x7F110458
-			public const int FloatingActionButton_Behavior_Layout_behavior_autoHide = 2131821656;
+			// aapt resource value: 0x7F120458
+			public const int FloatingActionButton_Behavior_Layout_behavior_autoHide = 2131887192;
 			
 			// aapt resource value: 0x2
 			public const int FloatingActionButton_borderWidth = 2;
@@ -8216,8 +8318,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968584,
 					2130968585};
 			
-			// aapt resource value: 0x7F110373
-			public const int FontFamilyFont_android_font = 2131821427;
+			// aapt resource value: 0x7F120373
+			public const int FontFamilyFont_android_font = 2131886963;
 			
 			// aapt resource value: 0x1
 			public const int FontFamilyFont_android_fontStyle = 1;
@@ -8234,8 +8336,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x5
 			public const int FontFamilyFont_fontWeight = 5;
 			
-			// aapt resource value: 0x7F110366
-			public const int FontFamily_fontProviderAuthority = 2131821414;
+			// aapt resource value: 0x7F120366
+			public const int FontFamily_fontProviderAuthority = 2131886950;
 			
 			// aapt resource value: 0x1
 			public const int FontFamily_fontProviderCerts = 1;
@@ -8257,8 +8359,8 @@ namespace GloomhavenCampaignTracker.Droid
 					16843264,
 					2130968729};
 			
-			// aapt resource value: 0x7F110460
-			public const int ForegroundLinearLayout_android_foreground = 2131821664;
+			// aapt resource value: 0x7F120460
+			public const int ForegroundLinearLayout_android_foreground = 2131887200;
 			
 			// aapt resource value: 0x1
 			public const int ForegroundLinearLayout_android_foregroundGravity = 1;
@@ -8283,8 +8385,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x3
 			public const int LinearLayoutCompat_android_baselineAlignedChildIndex = 3;
 			
-			// aapt resource value: 0x7F110212
-			public const int LinearLayoutCompat_android_gravity = 2131821074;
+			// aapt resource value: 0x7F120212
+			public const int LinearLayoutCompat_android_gravity = 2131886610;
 			
 			// aapt resource value: 0x1
 			public const int LinearLayoutCompat_android_orientation = 1;
@@ -8304,8 +8406,8 @@ namespace GloomhavenCampaignTracker.Droid
 					16842997,
 					16843137};
 			
-			// aapt resource value: 0x7F110220
-			public const int LinearLayoutCompat_Layout_android_layout_gravity = 2131821088;
+			// aapt resource value: 0x7F120220
+			public const int LinearLayoutCompat_Layout_android_layout_gravity = 2131886624;
 			
 			// aapt resource value: 0x2
 			public const int LinearLayoutCompat_Layout_android_layout_height = 2;
@@ -8326,8 +8428,8 @@ namespace GloomhavenCampaignTracker.Droid
 					16843436,
 					16843437};
 			
-			// aapt resource value: 0x7F110225
-			public const int ListPopupWindow_android_dropDownHorizontalOffset = 2131821093;
+			// aapt resource value: 0x7F120225
+			public const int ListPopupWindow_android_dropDownHorizontalOffset = 2131886629;
 			
 			// aapt resource value: 0x1
 			public const int ListPopupWindow_android_dropDownVerticalOffset = 1;
@@ -8343,8 +8445,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x5
 			public const int MenuGroup_android_checkableBehavior = 5;
 			
-			// aapt resource value: 0x7F110229
-			public const int MenuGroup_android_enabled = 2131821097;
+			// aapt resource value: 0x7F120229
+			public const int MenuGroup_android_enabled = 2131886633;
 			
 			// aapt resource value: 0x1
 			public const int MenuGroup_android_id = 1;
@@ -8401,8 +8503,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x1
 			public const int MenuItem_android_enabled = 1;
 			
-			// aapt resource value: 0x7F110242
-			public const int MenuItem_android_icon = 2131821122;
+			// aapt resource value: 0x7F120242
+			public const int MenuItem_android_icon = 2131886658;
 			
 			// aapt resource value: 0x2
 			public const int MenuItem_android_id = 2;
@@ -8475,8 +8577,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x3
 			public const int MenuView_android_verticalDivider = 3;
 			
-			// aapt resource value: 0x7F110259
-			public const int MenuView_android_windowAnimationStyle = 2131821145;
+			// aapt resource value: 0x7F120259
+			public const int MenuView_android_windowAnimationStyle = 2131886681;
 			
 			// aapt resource value: 0x7
 			public const int MenuView_preserveIconSpacing = 7;
@@ -8496,8 +8598,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968753,
 					2130968783};
 			
-			// aapt resource value: 0x7F110470
-			public const int NavigationView_android_background = 2131821680;
+			// aapt resource value: 0x7F120470
+			public const int NavigationView_android_background = 2131887216;
 			
 			// aapt resource value: 0x1
 			public const int NavigationView_android_fitsSystemWindows = 1;
@@ -8538,8 +8640,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968594,
 					2130968595};
 			
-			// aapt resource value: 0x7F110542
-			public const int PercentLayout_Layout_layout_aspectRatio = 2131821890;
+			// aapt resource value: 0x7F120542
+			public const int PercentLayout_Layout_layout_aspectRatio = 2131887426;
 			
 			// aapt resource value: 0x1
 			public const int PercentLayout_Layout_layout_heightPercent = 1;
@@ -8576,14 +8678,14 @@ namespace GloomhavenCampaignTracker.Droid
 			public static int[] PopupWindowBackgroundState = new int[] {
 					2130772148};
 			
-			// aapt resource value: 0x7F110267
-			public const int PopupWindowBackgroundState_state_above_anchor = 2131821159;
+			// aapt resource value: 0x7F120267
+			public const int PopupWindowBackgroundState_state_above_anchor = 2131886695;
 			
 			// aapt resource value: 0x1
 			public const int PopupWindow_android_popupAnimationStyle = 1;
 			
-			// aapt resource value: 0x7F110264
-			public const int PopupWindow_android_popupBackground = 2131821156;
+			// aapt resource value: 0x7F120264
+			public const int PopupWindow_android_popupBackground = 2131886692;
 			
 			// aapt resource value: 0x2
 			public const int PopupWindow_overlapAnchor = 2;
@@ -8592,8 +8694,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130772149,
 					2130772150};
 			
-			// aapt resource value: 0x7F110269
-			public const int RecycleListView_paddingBottomNoButtons = 2131821161;
+			// aapt resource value: 0x7F120269
+			public const int RecycleListView_paddingBottomNoButtons = 2131886697;
 			
 			// aapt resource value: 0x1
 			public const int RecycleListView_paddingTopNoTitle = 1;
@@ -8611,8 +8713,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968830,
 					2130968836};
 			
-			// aapt resource value: 0x7F110481
-			public const int RecyclerView_android_descendantFocusability = 2131821697;
+			// aapt resource value: 0x7F120481
+			public const int RecyclerView_android_descendantFocusability = 2131887233;
 			
 			// aapt resource value: 0x1
 			public const int RecyclerView_android_orientation = 1;
@@ -8647,14 +8749,14 @@ namespace GloomhavenCampaignTracker.Droid
 			public static int[] ScrimInsetsFrameLayout = new int[] {
 					2130968747};
 			
-			// aapt resource value: 0x7F110493
-			public const int ScrimInsetsFrameLayout_insetForeground = 2131821715;
+			// aapt resource value: 0x7F120493
+			public const int ScrimInsetsFrameLayout_insetForeground = 2131887251;
 			
 			public static int[] ScrollingViewBehavior_Layout = new int[] {
 					2130968634};
 			
-			// aapt resource value: 0x7F110495
-			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 2131821717;
+			// aapt resource value: 0x7F120495
+			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 2131887253;
 			
 			public static int[] SearchView = new int[] {
 					16842970,
@@ -8675,8 +8777,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130772162,
 					2130772163};
 			
-			// aapt resource value: 0x7F110272
-			public const int SearchView_android_focusable = 2131821170;
+			// aapt resource value: 0x7F120272
+			public const int SearchView_android_focusable = 2131886706;
 			
 			// aapt resource value: 0x3
 			public const int SearchView_android_imeOptions = 3;
@@ -8731,8 +8833,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968701,
 					2130968780};
 			
-			// aapt resource value: 0x7F110497
-			public const int SnackbarLayout_android_maxWidth = 2131821719;
+			// aapt resource value: 0x7F120497
+			public const int SnackbarLayout_android_maxWidth = 2131887255;
 			
 			// aapt resource value: 0x1
 			public const int SnackbarLayout_elevation = 1;
@@ -8750,8 +8852,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x3
 			public const int Spinner_android_dropDownWidth = 3;
 			
-			// aapt resource value: 0x7F110291
-			public const int Spinner_android_entries = 2131821201;
+			// aapt resource value: 0x7F120291
+			public const int Spinner_android_entries = 2131886737;
 			
 			// aapt resource value: 0x1
 			public const int Spinner_android_popupBackground = 1;
@@ -8781,8 +8883,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x1
 			public const int SwitchCompat_android_textOff = 1;
 			
-			// aapt resource value: 0x7F110297
-			public const int SwitchCompat_android_textOn = 2131821207;
+			// aapt resource value: 0x7F120297
+			public const int SwitchCompat_android_textOn = 2131886743;
 			
 			// aapt resource value: 0x2
 			public const int SwitchCompat_android_thumb = 2;
@@ -8825,8 +8927,8 @@ namespace GloomhavenCampaignTracker.Droid
 					16842994,
 					16843087};
 			
-			// aapt resource value: 0x7F110501
-			public const int TabItem_android_icon = 2131821825;
+			// aapt resource value: 0x7F120501
+			public const int TabItem_android_icon = 2131887361;
 			
 			// aapt resource value: 0x1
 			public const int TabItem_android_layout = 1;
@@ -8852,8 +8954,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968867,
 					2130968868};
 			
-			// aapt resource value: 0x7F110505
-			public const int TabLayout_tabBackground = 2131821829;
+			// aapt resource value: 0x7F120505
+			public const int TabLayout_tabBackground = 2131887365;
 			
 			// aapt resource value: 0x1
 			public const int TabLayout_tabContentStart = 1;
@@ -8912,8 +9014,8 @@ namespace GloomhavenCampaignTracker.Droid
 					16843108,
 					2130772012};
 			
-			// aapt resource value: 0x7F110521
-			public const int TextAppearance_android_fontFamily = 2131821857;
+			// aapt resource value: 0x7F120521
+			public const int TextAppearance_android_fontFamily = 2131887393;
 			
 			// aapt resource value: 0x5
 			public const int TextAppearance_android_shadowColor = 5;
@@ -8936,8 +9038,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7
 			public const int TextAppearance_android_textColorLink = 7;
 			
-			// aapt resource value: 0x7F110317
-			public const int TextAppearance_android_textSize = 2131821335;
+			// aapt resource value: 0x7F120317
+			public const int TextAppearance_android_textSize = 2131886871;
 			
 			// aapt resource value: 0x2
 			public const int TextAppearance_android_textStyle = 2;
@@ -8969,8 +9071,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130968800,
 					2130968801};
 			
-			// aapt resource value: 0x7F110525
-			public const int TextInputLayout_android_hint = 2131821861;
+			// aapt resource value: 0x7F120525
+			public const int TextInputLayout_android_hint = 2131887397;
 			
 			// aapt resource value: 0x1
 			public const int TextInputLayout_android_textColorHint = 1;
@@ -9048,8 +9150,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130772190,
 					2130772191};
 			
-			// aapt resource value: 0x7F110322
-			public const int Toolbar_android_gravity = 2131821346;
+			// aapt resource value: 0x7F120322
+			public const int Toolbar_android_gravity = 2131886882;
 			
 			// aapt resource value: 0x1
 			public const int Toolbar_android_minHeight = 1;
@@ -9147,8 +9249,8 @@ namespace GloomhavenCampaignTracker.Droid
 					2130772195,
 					2130772196};
 			
-			// aapt resource value: 0x7F110358
-			public const int ViewBackgroundHelper_android_background = 2131821400;
+			// aapt resource value: 0x7F120358
+			public const int ViewBackgroundHelper_android_background = 2131886936;
 			
 			// aapt resource value: 0x1
 			public const int ViewBackgroundHelper_backgroundTint = 1;
@@ -9161,8 +9263,8 @@ namespace GloomhavenCampaignTracker.Droid
 					16842994,
 					16842995};
 			
-			// aapt resource value: 0x7F110362
-			public const int ViewStubCompat_android_id = 2131821410;
+			// aapt resource value: 0x7F120362
+			public const int ViewStubCompat_android_id = 2131886946;
 			
 			// aapt resource value: 0x2
 			public const int ViewStubCompat_android_inflatedId = 2;
@@ -9173,8 +9275,8 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x1
 			public const int View_android_focusable = 1;
 			
-			// aapt resource value: 0x7F110353
-			public const int View_android_theme = 2131821395;
+			// aapt resource value: 0x7F120353
+			public const int View_android_theme = 2131886931;
 			
 			// aapt resource value: 0x3
 			public const int View_paddingEnd = 3;
@@ -9191,6 +9293,25 @@ namespace GloomhavenCampaignTracker.Droid
 			}
 			
 			private Styleable()
+			{
+			}
+		}
+		
+		public partial class Xml
+		{
+			
+			// aapt resource value: 0x7F110002
+			public const int file_paths = 2131820546;
+			
+			// aapt resource value: 0x7F110003
+			public const int xamarin_essentials_fileprovider_file_paths = 2131820547;
+			
+			static Xml()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Xml()
 			{
 			}
 		}

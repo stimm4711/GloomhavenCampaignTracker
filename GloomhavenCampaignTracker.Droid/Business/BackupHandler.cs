@@ -10,9 +10,9 @@ namespace GloomhavenCampaignTracker.Business
     {
         public static string backuppath = "ghcampaigntracker/backup/";
 
-        internal static bool RestoreBackup(IDisposable sd, string dbfile)
+        internal static bool RestoreBackup(IDisposable sd, Java.IO.File dbfile)
         {
-            if(RestoreDBBackup($"{sd}/{backuppath}{dbfile}"))
+            if(RestoreDBBackup($"{sd}/{backuppath}{dbfile.Name}"))
             {
                 GCTContext.Clear();
                 GloomhavenDbHelper.ResetConnection();

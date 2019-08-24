@@ -3,6 +3,7 @@ using Android.Preferences;
 using Android.Runtime;
 using Calligraphy;
 using System;
+using Xamarin.Essentials;
 
 namespace GloomhavenCampaignTracker.Droid
 {
@@ -43,7 +44,7 @@ namespace GloomhavenCampaignTracker.Droid
                             .SetFontAttrId(Resource.Attribute.fontPath)                                
                             .Build());
                 }
-            //}                  
+            //}   
         }
     }
 

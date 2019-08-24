@@ -13,6 +13,8 @@ using GloomhavenCampaignTracker.Business;
 using System;
 using System.Linq;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using GloomhavenCampaignTracker.Droid.Adapter;
+using System.Collections.Generic;
 
 namespace GloomhavenCampaignTracker.Droid
 {
@@ -21,7 +23,7 @@ namespace GloomhavenCampaignTracker.Droid
     {
         private string _backupfilepath = "ghcampaigntracker/backup/";
         private ListView _listviewbackups;
-        private ArrayAdapter<string> _listviewbackupadapter;
+        private SelectableBackupAdapter _listviewbackupadapter;
         private Java.IO.File _sd;
         private bool _hasValidFilePath;
         private EditText _filepath;
@@ -72,7 +74,7 @@ namespace GloomhavenCampaignTracker.Droid
 
         private Boolean GetFilePath()
         {
-            if (GetExternalStorageReadPermission())
+            if (GetExternalStorageWritePermission())
             {
                 _sd = Android.OS.Environment.ExternalStorageDirectory;
 
@@ -90,7 +92,14 @@ namespace GloomhavenCampaignTracker.Droid
         private void SetListviewAdapter()
         {
             var files = GetBackupFiles();
-            _listviewbackupadapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItemSingleChoice, files);
+
+            var listitems = new List<BackupListItem>();
+            foreach (var file in files)
+            {
+                listitems.Add(new BackupListItem() { BackupFile = file });
+            }             
+
+            _listviewbackupadapter = new SelectableBackupAdapter(this, listitems);
             _listviewbackups.Adapter = _listviewbackupadapter;
         }
 
@@ -106,30 +115,30 @@ namespace GloomhavenCampaignTracker.Droid
                 var sd = Android.OS.Environment.ExternalStorageDirectory;
 
                 if (Android.OS.Environment.MediaMounted.Equals(Android.OS.Environment.ExternalStorageState))
-                {
-                    if (_listviewbackups.CheckedItemPosition == -1) return;
-                    var dbfile = _listviewbackupadapter.GetItem(_listviewbackups.CheckedItemPosition);
-                    if (!string.IsNullOrEmpty(dbfile))
-                    {
-                        BackupConfirmDialog(sd, dbfile);
-                    }
+                {  
+                    var dbfile = _listviewbackupadapter.GetSelected();
+
+                    if (dbfile == null) return;
+                    
+                    BackupConfirmDialog(sd, dbfile.BackupFile);
+
                 }
             }
         }
 
-        private string[] GetBackupFiles()
+        private Java.IO.File[] GetBackupFiles()
         {
             if(_hasValidFilePath)
             {
                 var path = new Java.IO.File(_backupfilepath);
-                if (!path.Exists()) return new string[0];
-                return path.ListFiles().Where(x => x != null && x.IsFile).Select(x => x.Name).ToArray();
+                if (!path.Exists()) return new Java.IO.File[0];
+                return path.ListFiles().Where(x => x != null && x.IsFile).ToArray();
             }
 
-            return new string[] { };
+            return new Java.IO.File[] { };
         }
 
-        private void BackupConfirmDialog(IDisposable sd, string dbfile)
+        private void BackupConfirmDialog(IDisposable sd, Java.IO.File dbfile)
         {
             new CustomDialogBuilder(this, Resource.Style.MyDialogTheme)
                 .SetTitle("Confirm Restore")
