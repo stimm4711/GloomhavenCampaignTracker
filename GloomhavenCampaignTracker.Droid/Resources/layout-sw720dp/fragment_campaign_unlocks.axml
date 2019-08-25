@@ -20,7 +20,7 @@
 			android:layout_width="0dp"
 			android:layout_weight=".5"
 			android:layout_height="match_parent"
-			android:id="@+id/linearLayout1">
+			android:id="@+id/lefthalfLinearLayout">
 			<LinearLayout
 				android:orientation="vertical"
 				android:minWidth="25px"
