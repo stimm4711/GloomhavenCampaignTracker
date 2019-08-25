@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.Content;
@@ -58,7 +59,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 holder.FileName = convertView.FindViewById<TextView>(Resource.Id.backupnameTextView);
                 holder.Share = convertView.FindViewById<ImageView>(Resource.Id.shareButton);
                 holder.Selected = convertView.FindViewById<CheckBox>(Resource.Id.selected);
-                holder.Delete = convertView.FindViewById<ImageView>(Resource.Id.deleteButton);       
+                holder.Delete = convertView.FindViewById<ImageView>(Resource.Id.deleteButton);
+                holder.BackupTime = convertView.FindViewById<TextView>(Resource.Id.backupTimeTextView);
 
                 // CheckCHanged Event
                 holder.Selected.CheckedChange += (sender, e) =>
@@ -87,6 +89,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             holder.FileName.Text = item.BackupFile.Name;
             holder.Selected.Tag = item;
             holder.Selected.Checked = item.IsSelected;
+            holder.BackupTime.Text = File.GetCreationTime(item.BackupFile.AbsolutePath).ToString("MM/dd/yyyy HH:mm");
 
             if (!holder.Delete.HasOnClickListeners)
             {
@@ -163,6 +166,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             public ImageView Share { get; set; }
             public CheckBox Selected { get; set; }
             public ImageView Delete { get; set; }
+            public TextView BackupTime { get; set; }
         }
 
         public override Java.Lang.Object GetItem(int position)

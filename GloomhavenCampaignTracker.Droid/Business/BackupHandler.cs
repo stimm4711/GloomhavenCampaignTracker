@@ -88,7 +88,7 @@ namespace GloomhavenCampaignTracker.Business
 
                 var currentDBPath = GloomhavenDbHelper.DatabaseFilePath;
                 var now = DateTime.Now.ToString("yyyyMMdd_H-mm-ss");
-                var backupDBPath = $"{backuppath}{now}_{GloomhavenDbHelper.DatabaseName}";
+                var backupDBPath = $"{backuppath}{now}_GHC_bak.db3";
                 var currentDB = new File(currentDBPath);
                 var backupDB = new File(sd, backupDBPath);
                 var backupfolder = new File(sd, backuppath);
