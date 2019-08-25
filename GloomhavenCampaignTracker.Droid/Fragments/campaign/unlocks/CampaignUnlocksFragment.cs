@@ -76,22 +76,27 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
             _retireText = _view.FindViewById<TextView>(Resource.Id.gainRetireText);
             _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
             _unlockEnvelopeXButton = _view.FindViewById<Button>(Resource.Id.openEnvelopeXButton);
+                       
+            var leftHalfLinearLayout = _view.FindViewById<View>(Resource.Id.lefthalfLinearLayout);
+            _isDualPane = leftHalfLinearLayout != null && leftHalfLinearLayout.Visibility == ViewStates.Visible;
 
-            ViewGroup.LayoutParams layoutParams = _grid.LayoutParameters;
-
-            var rows = 3;
-
-            if (GCTContext.ActivateForgottenCiclesContent && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
+            if (!_isDualPane)
             {
-                rows = 4;
+                ViewGroup.LayoutParams layoutParams = _grid.LayoutParameters;
+                var rows = 3;
+
+                if (GCTContext.ActivateForgottenCiclesContent && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
+                {
+                    rows = 4;
+                }
+
+                var dp = 50;
+                int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dp, Context.Resources.DisplayMetrics);
+
+                layoutParams.Height = pixel * rows;
+                _grid.LayoutParameters = layoutParams;
             }
-
-            var dp = 50;
-            int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dp, Context.Resources.DisplayMetrics);
-
-            layoutParams.Height = pixel * rows;
-            _grid.LayoutParameters = layoutParams;
-
+                       
             if (CurrentCampaign.CampaignData.CampaignUnlocks.EnvelopeXUnlocked)
             {
                 _unlockEnvelopeXButton.Text = Resources.GetString(Resource.String.ShowEnvelopeXProgress);
