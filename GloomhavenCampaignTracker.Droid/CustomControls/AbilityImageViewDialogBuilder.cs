@@ -114,7 +114,7 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
 
             var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/character-ability-cards/" +
                $"{_classShorty}/" +
-               $"{_abilityname.ToLower().Replace(" ", "-")}" +
+               $"{_abilityname}" +
                ".png";
 
             if (CrossConnectivity.Current.IsConnected)

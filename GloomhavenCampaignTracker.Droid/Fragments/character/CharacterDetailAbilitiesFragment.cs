@@ -88,7 +88,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                var abilityname = ability.Ability.AbilityName.ToLower().Replace(" ", "-").Replace("'", "");
+                var abilityname = ability.Ability.GetAbilitynameForURL(); ;
 
                 var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/character-ability-cards/" +
                $"{Character.DL_Class.ClassShorty}/" +
@@ -158,17 +158,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                     _lv.Adapter = new AbilitiesAdapter(Context, Character);
                 })
                 .Show();
-        }
-
-  
-
-        private void ShowAbilityCard(string abilityname, string classshorty)
-        {
-            if (string.IsNullOrEmpty(abilityname) || string.IsNullOrEmpty(classshorty)) return;
-            var diag = new AbilityImageViewDialogBuilder(Context, Resource.Style.MyTransparentDialogTheme)
-                        .SetAbilityName(abilityname)
-                        .SetClassShorty(classshorty)
-                        .Show();
         }
 
         private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen)
@@ -283,7 +272,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             selectableAbilities = DataServiceCollection.ClassAbilityDataService.GetSelectableAbilities(Character.ID_Class, Character.Level)
                 .Where(x=>!Character.CharacterAbilities.Any(y => y.Ability.Id == x.Id)).ToList();
 
-            var itemadapter = new SelectableClassAbilitiesAdapter(Context, selectableAbilities);
+            var itemadapter = new SelectableClassAbilitiesAdapter(Context, selectableAbilities, Character.DL_Class.ClassShorty);
             listview.Adapter = itemadapter;
 
             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)

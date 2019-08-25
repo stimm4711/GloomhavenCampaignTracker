@@ -4,8 +4,10 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Business;
+using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 using Java.Lang;
+using Plugin.Connectivity;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
@@ -13,14 +15,15 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
     {
         private readonly Context _context;
         private readonly List<DL_ClassAbility> _items = new List<DL_ClassAbility>();
-        private readonly bool _isCharacterDetailView;
+        private readonly string _classshorty;
 
         public override int Count => _items.Count;
 
-        public SelectableClassAbilitiesAdapter(Context context, List<DL_ClassAbility> items) 
+        public SelectableClassAbilitiesAdapter(Context context, List<DL_ClassAbility> items, string classShorty) 
         {
             _context = context;
             _items = items;
+            _classshorty = classShorty;
         }
 
         public override long GetItemId(int position)
@@ -62,15 +65,14 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                     NotifyDataSetChanged();
                 };
 
-                //todo: add ability images
-                // Set Item Click Event
-                //convertView.Click += (sender, e) =>
-                //{
-                //    var v = (View)sender;
-                //    var checkview = v.FindViewById<CheckBox>(Resource.Id.selected);
-                //    if (checkview == null) return;
-                //    ItemClick((DL_ClassAbility)checkview.Tag);
-                //};
+ 
+                convertView.Click += (sender, e) =>
+                {
+                    var v = (View)sender;
+                    var checkview = v.FindViewById<CheckBox>(Resource.Id.selected);
+                    if (checkview == null) return;
+                    ItemClick((DL_ClassAbility)checkview.Tag);
+                };
 
                 convertView.Tag = holder;
             }
@@ -87,14 +89,20 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             return convertView;
         }
 
-        //private void ItemClick(DL_ClassAbility item)
-        //{
-        //    var numbertext = item.GetNumberText();
-        //    if (string.IsNullOrEmpty(numbertext)) return;
-        //    var diag = new ItemImageViewDialogBuilder(_context, Resource.Style.MyTransparentDialogTheme)
-        //                .SetItemNumber(numbertext)
-        //                .Show();
-        //}
+        private void ItemClick(DL_ClassAbility item)
+        {
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                var abilityname = item.GetAbilitynameForURL();
+
+                if (string.IsNullOrEmpty(abilityname) || string.IsNullOrEmpty(_classshorty)) return;
+                new AbilityImageViewDialogBuilder(_context, Resource.Style.MyTransparentDialogTheme)
+                            .SetAbilityName(abilityname)
+                            .SetClassShorty(_classshorty)
+                            .Show();
+            }
+        }
 
         internal class AbilityViewHolder : Object
         {

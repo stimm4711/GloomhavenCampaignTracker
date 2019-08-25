@@ -27,5 +27,10 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign
 
         [Ignore]
         public bool IsSelected { get; set; }
+
+        public string GetAbilitynameForURL()
+        {
+            return AbilityName.ToLower().Replace(" ", "-").Replace("'", "");
+        }
     }
 }
