@@ -63,10 +63,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         private void Lv_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var inflater = Context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
-
-
             var convertView = inflater.Inflate(Resource.Layout.alertdialog_editability2, null);
-            //var convertView = inflater.Inflate(Resource.Layout.alertdialog_editability, null);
 
             var enhancementListTop = convertView.FindViewById<ListView>(Resource.Id.listViewtop);
             var fabTop = convertView.FindViewById<FloatingActionButton>(Resource.Id.fabtop);
@@ -91,9 +88,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
             if (CrossConnectivity.Current.IsConnected)
             {
+                var abilityname = ability.Ability.AbilityName.ToLower().Replace(" ", "-").Replace("'", "");
+
                 var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/character-ability-cards/" +
                $"{Character.DL_Class.ClassShorty}/" +
-               $"{ability.Ability.AbilityName.ToLower().Replace(" ", "-")}" +
+               $"{abilityname}" +
                ".png";
                 var imageBitmap = GetImageBitmapFromUrlAsync(url, img);
             }

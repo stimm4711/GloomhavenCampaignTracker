@@ -24,8 +24,6 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             {
                 if (_abilities == null) return 0;
                 return _abilities.Count;
-                //if (_character.Abilities == null) return 0;
-                //return _character.Abilities.Count;
             }
         }
 
@@ -56,14 +54,9 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 convertView.Tag = holder;
             }
 
-            //var ability = _character.Abilities[position];
             var ability = _abilities[position];
 
             if (ability == null) return convertView;
-
-            //holder.AbilityNumber.Text = $"# {ability.ReferenceNumber}";
-            //holder.AbilityName.Text = ability.AbilityName;
-            //holder.AbilityLevel.Text = $"{ability.Level}";
 
             holder.AbilityNumber.Text = $"# {ability.Ability.ReferenceNumber}";
             holder.AbilityName.Text = ability.Ability.AbilityName;
