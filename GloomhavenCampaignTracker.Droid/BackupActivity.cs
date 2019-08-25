@@ -94,7 +94,7 @@ namespace GloomhavenCampaignTracker.Droid
             var files = GetBackupFiles();
 
             var listitems = new List<BackupListItem>();
-            foreach (var file in files)
+            foreach (var file in files.OrderBy(x=>x.Name))
             {
                 listitems.Add(new BackupListItem() { BackupFile = file });
             }             
