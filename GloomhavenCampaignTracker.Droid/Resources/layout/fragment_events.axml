@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:minWidth="25px"
     android:minHeight="25px"
@@ -48,13 +50,21 @@
             android:padding="8px"
             android:drawablePadding="10px"
             android:textSize="20dp" />
+        <ImageButton
+            android:src="@drawable/ic_remove_red_eye_white_24dp"
+            android:id="@+id/showEventsimagebutton"
+            android:scaleType="centerCrop"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="10px"
+            android:background="@color/mytheme_background"/>
         <RelativeLayout
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/relativeLayout1"
-            android:paddingTop="20dp">
+            android:paddingTop="10dp">
             <TextView
                 android:text="Eventdeck History"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -86,7 +96,6 @@
                 android:layout_marginBottom="30dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 app:fabSize="mini" />
         </RelativeLayout>
     </LinearLayout>

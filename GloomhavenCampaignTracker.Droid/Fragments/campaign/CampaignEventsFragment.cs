@@ -14,6 +14,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Support.Percent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
@@ -23,6 +24,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         private Button _draw;
         private Button _add;
         private Button _remove;
+        private ImageButton _showEventsimagebutton;
         private EventDeck _eventDeck;
         private ListView _eventhistory;
 
@@ -84,6 +86,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _add = _view.FindViewById<Button>(Resource.Id.addEventCardButton);
             _remove = _view.FindViewById<Button>(Resource.Id.removeEventCardButton);
             _eventhistory = _view.FindViewById<ListView>(Resource.Id.eventhistoryListView);
+            _showEventsimagebutton = _view.FindViewById<ImageButton>(Resource.Id.showEventsimagebutton);
 
             var fab = _view.FindViewById<FloatingActionButton>(Resource.Id.fab);
             var initEventDeckButton = _view.FindViewById<ImageButton>(Resource.Id.initEventDeckButton);                            
@@ -130,9 +133,30 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 fab.Click += Fab_Click;
             }
 
+            if(!_showEventsimagebutton.HasOnClickListeners)
+            {
+                _showEventsimagebutton.Click += _showEventsimagebutton_Click;
+            }
+
             InitHistoryAdapter();
 
             return _view;
+        }
+
+        private void _showEventsimagebutton_Click(object sender, EventArgs e)
+        {
+            var view = Activity.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+            var listview = view.FindViewById<ListView>(Resource.Id.listView);                          
+            
+            var adapter = new ArrayAdapter<string>(Context, Android.Resource.Layout.SimpleListItem1, _eventDeck.GetItems().Select(x => x.ToString()).ToArray());
+            listview.Adapter = adapter;
+
+            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                .SetCustomView(view)
+                .SetTitle("Eventlist")
+                .SetPositiveButton("OK", (senderAlert, args) =>
+                { })
+                .Show();
         }
 
         private void InitializeDeck()
