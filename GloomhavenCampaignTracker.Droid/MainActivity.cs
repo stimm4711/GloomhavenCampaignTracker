@@ -37,6 +37,7 @@ namespace GloomhavenCampaignTracker.Droid
         private const string _showPQNames = "showPQDetails";
         private const string _showOldAbilitySheet = "showOldAbilitySheet";
         private const string _activateFC = "activateFC";
+        private const string _showReleaseNotes = "showReleaenotes";
 
         protected override void OnResume()
         {
@@ -90,7 +91,7 @@ namespace GloomhavenCampaignTracker.Droid
             _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawerLayout);
             _navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
 
-            var drawerToggle = new Android.Support.V7.App.ActionBarDrawerToggle(this, _drawerLayout, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
+            var drawerToggle = new ActionBarDrawerToggle(this, _drawerLayout, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
             _drawerLayout.AddDrawerListener(drawerToggle);
             drawerToggle.SyncState();
                         
@@ -117,6 +118,7 @@ namespace GloomhavenCampaignTracker.Droid
             var isShowPq = prefs.GetBoolean(_showPQNames, true);
             var isShowOldAbilitySheet = prefs.GetBoolean(_showOldAbilitySheet, false);
             var isFCActivated = prefs.GetBoolean(_activateFC, false);
+            var isShowReleasenotes = prefs.GetBoolean(_showReleaseNotes, true);
 
             GCTContext.ShowItemNames = isShowItems;
             GCTContext.ShowPersonalQuestDetails = isShowPq;
@@ -124,6 +126,22 @@ namespace GloomhavenCampaignTracker.Droid
             GCTContext.ActivateForgottenCiclesContent = isFCActivated;
 
             _navigationView.NavigationItemSelected += NavigationItemSelected;
+
+            if (isShowReleasenotes)
+            {
+                var convertView = this.LayoutInflater.Inflate(Resource.Layout.alertdialog_release_notes, null);
+                new CustomDialogBuilder(this, Resource.Style.MyDialogTheme)
+                    .SetCustomView(convertView)
+                    .SetTitle("Releasenotes 1.4.3")                   
+                    .SetPositiveButton("Do not show again", (senderAlert, args) =>
+                    {
+                        var editor = prefs.Edit();
+                        editor.PutBoolean(_showReleaseNotes, isShowReleasenotes);
+                        editor.Apply();
+                    })
+                     .SetNegativeButton("Cancel", (senderAlert, args) => { })
+                    .Show();
+            }
 
             _drawerLayout.CloseDrawers();
         }

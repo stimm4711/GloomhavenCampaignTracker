@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"   
+    android:fillViewport="true">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mytheme_background">
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="5dp"
+            android:text="New features (of this and the last release)"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            android:text="Selectable abilities"
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventnumbertext"
+            android:textColor="@color/gloom_primaryText"
+            android:text="You can select the abilities for the characters now. The update has migrated your added abilities if you entered the correct reference numbers. You can activate the old characterabilities tab in the settings to compare new and old characterabilities. And you can see the card when you tap on the cardname in the character abilities list and the selection. Thanks to Nick 'Entropy42' Jordan for the cardnames!"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Splashscreen"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventnumbertext"
+            android:textColor="@color/gloom_primaryText"
+            android:text="The app has a splashscreen now as you might have noticed. "
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Show event deck"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventnumbertext"
+            android:textColor="@color/gloom_primaryText"
+            android:text="You can look into the event decks when you tap on the eye icon."
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Share backups"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventnumbertext"
+            android:textColor="@color/gloom_primaryText"
+            android:text="I've changed the backup layout and you can share and delete your backups now."
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+         <TextView
+            android:text="Item filters"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventnumbertext"
+            android:textColor="@color/gloom_primaryText"
+            android:text="I've added item filters to the item shop and the character item screens to filter the items by category."
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Playername in characterlist"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventnumbertext"
+            android:textColor="@color/gloom_primaryText"
+            android:text="I've added the playername to the characterlist."
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Forgotten Circles expansion"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventnumbertext"
+            android:textColor="@color/gloom_primaryText"
+            android:text="The expansion is integrated since the last update but I got may requests if I will add the expansion. Well, yes and it is already in here. You just have to go to the settings menu and activate it. After that you can unlock the diviner class on the unlocks screen. To play the scenarios you will have to finish the campaign of the base game."
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            android:text="Bugfixes (some of them)"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Fixed a layout bug on the unlock screen that prevents unlocking of some classes"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Changed the appname to Campaign Tracker"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+    </LinearLayout>
+</ScrollView>
