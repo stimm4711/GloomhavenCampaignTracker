@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 15);
+        public static Version Dbversion { get; } = new Version(1, 4, 16);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -146,10 +146,62 @@ namespace Data
                     MigrateCharactersToClasses();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 16)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.16"));
+                    FixingTyposInPersonalQuestCounters();
+                }
+
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
 
                 OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished databaseupdates"));
+            }
+        }
+
+        private static void FixingTyposInPersonalQuestCounters()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                var counters = PersonalQuestCountersRepository.Get();
+
+                foreach(var counter in counters)
+                {
+                    if (counter.PersonalQuest.QuestNumber == 513 && counter.CounterName == "Killed Forrest Imps")
+                    {
+                        counter.CounterName = "Killed Forest Imps";
+                        PersonalQuestCountersRepository.InsertOrReplace(counter, false);
+                    }
+                    if (counter.PersonalQuest.QuestNumber == 521 && counter.CounterName == "Scenarios in Dagger Forrest")
+                    {
+                        counter.CounterName = "Scenarios in Dagger Forest";
+                        PersonalQuestCountersRepository.InsertOrReplace(counter, false);
+                    }
+                    if (counter.PersonalQuest.QuestNumber == 531 && counter.CounterName == "Dagger Forrest")
+                    {
+                        counter.CounterName = "Dagger Forest";
+                        PersonalQuestCountersRepository.InsertOrReplace(counter, false);
+                    }
+                    if (counter.PersonalQuest.QuestNumber == 532 && counter.CounterName == "Experienced Retiremets")
+                    {
+                        counter.CounterName = "Experienced Retirements";
+                        PersonalQuestCountersRepository.InsertOrReplace(counter, false);
+                    }
+                    if (counter.PersonalQuest.QuestNumber == 533 && counter.CounterName == "Lurker")
+                    {
+                        counter.CounterName = "Lurkers";
+                        PersonalQuestCountersRepository.InsertOrReplace(counter, false);
+                    }
+                }                       
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
             }
         }
 

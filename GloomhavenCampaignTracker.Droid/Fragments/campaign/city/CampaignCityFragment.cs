@@ -65,6 +65,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
             {
                 decreaseCityProperity.Click += (sender, e) =>
                 {
+                    _dataChanged = true;
                     DecreaseCityProsperity();
                 };
             }
@@ -241,7 +242,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
 
         private void DecreaseCityProsperity()
         {
-            CurrentCampaign.DecreaseCityProsperity();           
+            CurrentCampaign.DecreaseCityProsperity();
             UpdateProsperityViews();
         }
 

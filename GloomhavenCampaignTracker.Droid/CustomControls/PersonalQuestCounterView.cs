@@ -57,6 +57,17 @@ namespace GloomhavenCampaignTracker.Droid.Views
         {
             _counter = counter;
             UpdateView();
+
+            //if (_counter.PersonalQuestCounter.PersonalQuest.QuestNumber == 512)
+            //{
+            //    _decreaseCounter.Enabled = false;
+            //    _raiseCounter.Enabled = false;
+            //}
+            //else
+            //{
+            //    _decreaseCounter.Enabled = true;
+            //    _raiseCounter.Enabled = true;
+            //}
         }
 
         private void UpdateView()
@@ -74,21 +85,35 @@ namespace GloomhavenCampaignTracker.Droid.Views
                 _countervalue.SetTextColor(Color.DarkGray);
                 _countername.SetTextColor(Color.DarkGray);
             }
+
+          
         }
 
         private void _raiseCounter_Click(object sender, EventArgs e)
         {
             if(_counter.Value < _counter.PersonalQuestCounter.CounterValue)
             {
-                _counter.Value += 1;
+                if (_counter.PersonalQuestCounter.PersonalQuest.QuestNumber == 525)
+                {
+                    if (_counter.Value + 10 <= _counter.PersonalQuestCounter.CounterValue)
+                        _counter.Value += 10;
+
+                    if (_counter.Value % 10 != 0)
+                        _counter.Value += (10 - _counter.Value % 10);
+                }
+                else
+                {
+                    _counter.Value += 1;                    
+                }
+
                 UpdateView();
                 CharacterPersonalQuestCountersRepository.InsertOrReplace(_counter);
-                if(_counter.PersonalQuestCounter.CounterScenarioUnlock > 50 && _counter.Value == _counter.PersonalQuestCounter.CounterValue)
+                if (_counter.PersonalQuestCounter.CounterScenarioUnlock > 50 && _counter.Value == _counter.PersonalQuestCounter.CounterValue)
                 {
                     ThresholdReachedEventArgs args = new ThresholdReachedEventArgs();
                     args.Threshold = _counter.PersonalQuestCounter.CounterValue;
                     args.ScenarioUnlocked = _counter.PersonalQuestCounter.CounterScenarioUnlock;
-                    OnThresholdReached(args);                    
+                    OnThresholdReached(args);
                 }
             }           
         }
@@ -97,7 +122,19 @@ namespace GloomhavenCampaignTracker.Droid.Views
         {
             if(_counter.Value > 0)
             {
-                _counter.Value -= 1;
+                if (_counter.PersonalQuestCounter.PersonalQuest.QuestNumber == 525)
+                {
+                    if (_counter.Value - 10 >= 0)
+                        _counter.Value -= 10;
+
+                    if (_counter.Value % 10 != 0)
+                        _counter.Value += (10 - _counter.Value % 10);
+                }
+                else
+                {
+                    _counter.Value -= 1;
+                }
+                               
                 UpdateView();
                 CharacterPersonalQuestCountersRepository.InsertOrReplace(_counter);
                 if (_counter.PersonalQuestCounter.CounterScenarioUnlock > 50 && _counter.Value +1 == _counter.PersonalQuestCounter.CounterValue)
@@ -107,7 +144,6 @@ namespace GloomhavenCampaignTracker.Droid.Views
                     args.ScenarioUnlocked = _counter.PersonalQuestCounter.CounterScenarioUnlock;
                     OnThresholdNotReached(args);
                 }
-
             }
         }
 

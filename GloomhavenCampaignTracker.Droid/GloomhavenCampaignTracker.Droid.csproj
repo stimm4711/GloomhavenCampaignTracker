@@ -2871,9 +2871,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Raw\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <AndroidResource Include="Resources\layout\listviewitem_classability_selectable.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>

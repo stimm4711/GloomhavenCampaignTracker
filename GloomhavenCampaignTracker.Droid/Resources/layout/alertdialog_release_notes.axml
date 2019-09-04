@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:background="@color/mytheme_background">
         <TextView
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
@@ -20,7 +20,7 @@
             android:text="New features (of this and the last release)"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
@@ -29,7 +29,7 @@
             android:text="Selectable abilities"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventnumbertext"
@@ -39,7 +39,7 @@
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
             android:text="Splashscreen"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -47,7 +47,7 @@
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventnumbertext"
@@ -57,7 +57,7 @@
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
             android:text="Show event deck"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -65,7 +65,7 @@
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventnumbertext"
@@ -75,7 +75,7 @@
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
             android:text="Share backups"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -83,7 +83,7 @@
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventnumbertext"
@@ -93,7 +93,7 @@
             fontPath="fonts/Roboto-Regular.ttf" />
          <TextView
             android:text="Item filters"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -101,7 +101,7 @@
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventnumbertext"
@@ -111,7 +111,7 @@
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
             android:text="Playername in characterlist"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -119,7 +119,7 @@
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventnumbertext"
@@ -129,7 +129,7 @@
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
             android:text="Forgotten Circles expansion"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -137,16 +137,34 @@
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/eventnumbertext"
             android:textColor="@color/gloom_primaryText"
-            android:text="The expansion is integrated since the last update but I got may requests if I will add the expansion. Well, yes and it is already in here. You just have to go to the settings menu and activate it. After that you can unlock the diviner class on the unlocks screen. To play the scenarios you will have to finish the campaign of the base game."
+            android:text="The expansion is integrated since the last update but I've got may requests if I will add the expansion. Well, yes and it is already in here. You just have to go to the settings menu and activate it. After that you can unlock the diviner class on the unlocks screen. To play the scenarios you will have to finish the campaign of the base game."
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Changed personal quest counter 525"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_secondaryLight"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventnumbertext"
+            android:textColor="@color/gloom_primaryText"
+            android:text="Changed the behavior of the quest counter 525. It will count 10 on one press instead of 1. It will round up to the next 10 if it is not a nuber dividable by 10."
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
@@ -156,7 +174,7 @@
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
             android:text="Fixed a layout bug on the unlock screen that prevents unlocking of some classes"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -165,7 +183,25 @@
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
             android:text="Changed the appname to Campaign Tracker"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Decrase of prosperity didn't work properly"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="5dp"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:text="Fixed some typos in the personal quest counters"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"

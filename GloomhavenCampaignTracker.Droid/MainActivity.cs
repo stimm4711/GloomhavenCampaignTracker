@@ -136,7 +136,7 @@ namespace GloomhavenCampaignTracker.Droid
                     .SetPositiveButton("Do not show again", (senderAlert, args) =>
                     {
                         var editor = prefs.Edit();
-                        editor.PutBoolean(_showReleaseNotes, isShowReleasenotes);
+                        editor.PutBoolean(_showReleaseNotes, false);
                         editor.Apply();
                     })
                      .SetNegativeButton("Cancel", (senderAlert, args) => { })
