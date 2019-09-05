@@ -24,11 +24,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            var view =  inflater.Inflate(Resource.Layout.fragment_releasenotes, container, false);
+            var view =  inflater.Inflate(Resource.Layout.alertdialog_release_notes, container, false);
 
-            var bggTxt = view.FindViewById<TextView>(Resource.Id.githubtext);
+            //var bggTxt = view.FindViewById<TextView>(Resource.Id.githubtext);
 
-            bggTxt.MovementMethod = LinkMovementMethod.Instance;
+            //bggTxt.MovementMethod = LinkMovementMethod.Instance;
 
             return view;
         }
