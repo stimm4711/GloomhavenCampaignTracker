@@ -15,7 +15,7 @@
         android:textColor="@color/gloom_primaryText"
         android:layout_marginTop="5dp" />
 	<Button
-			android:text="Show eventcard"
+			android:text="@string/ShowEventcard"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:id="@+id/show_eventcard"
@@ -40,7 +40,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:checked="true"
-				android:text="Option A"
+				android:text="@string/OptionA"
 				android:id="@+id/optionA"
 				android:layout_gravity="left"
 				android:gravity="center"
@@ -49,7 +49,7 @@
 			<RadioButton
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:text="Option B"
+				android:text="@string/OptionB"
 				android:id="@+id/optionB"
 				android:textColor="@color/gloom_primaryText" />
 		</RadioGroup>		
@@ -87,13 +87,13 @@
 			android:id="@+id/itemInputLayout"
 			android:theme="@style/TextLabel"
 			p2:hintTextAppearance="@style/HintTextLabel"
-			android:hint="Outcome"
+			android:hint="@string/Outcome"
 			android:padding="5dp">
 			<android.support.design.widget.TextInputEditText
 				android:id="@+id/outcome"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				android:text="No effect" />
+				android:text="@string/NoEffect" />
 		</android.support.design.widget.TextInputLayout>		
 	</LinearLayout>	
 	

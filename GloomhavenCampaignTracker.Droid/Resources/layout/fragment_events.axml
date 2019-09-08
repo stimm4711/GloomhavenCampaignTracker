@@ -15,7 +15,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
         <Button
-            android:text="Draw Card"
+            android:text="@string/DrawCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/drawEventCardButton"
@@ -27,7 +27,7 @@
             android:drawablePadding="10px"
             android:textSize="20dp" />
         <Button
-            android:text="Add Card"
+            android:text="@string/AddCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/addEventCardButton"
@@ -39,7 +39,7 @@
             android:drawablePadding="10px"
             android:textSize="20dp" />
         <Button
-            android:text="Remove Card"
+            android:text="@string/RemoveCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/removeEventCardButton"
@@ -66,7 +66,7 @@
             android:id="@+id/relativeLayout1"
             android:paddingTop="10dp">
             <TextView
-                android:text="Eventdeck History"
+                android:text="@string/EventdeckHistory"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

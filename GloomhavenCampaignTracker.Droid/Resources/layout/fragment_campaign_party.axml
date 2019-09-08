@@ -22,7 +22,7 @@
             android:paddingRight="10px"
             android:paddingTop="20px">
             <TextView
-                android:text="Partyname"
+                android:text="@string/Partyname"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:textColor="@color/gloom_primaryText" />
             <Button
-                android:text="Party Members"
+                android:text="@string/PartyMembers"
                 android:id="@+id/partyMembersButton"
                 android:background="@drawable/borderbuttons"
                 android:textColor="@color/gloom_primaryText"
@@ -44,7 +44,7 @@
                 android:textSize="20dp"
                 android:padding="10px" />
             <Button
-                android:text="P. Achievements"
+                android:text="@string/PartyAchievements"
                 android:id="@+id/partyAchievementsButton"
                 android:background="@drawable/borderbuttons"
                 android:textColor="@color/gloom_primaryText"
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5">
                     <TextView
-                        android:text="Party Reputation"
+                        android:text="@string/PartyReputation"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/partyfrag_ReputationTextView"
                         android:gravity="left"
@@ -128,9 +128,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:paddingLeft="15px"
-                    android:layout_weight="0.5">
+                    android:layout_weight="0.7">
                     <TextView
-                        android:text="Shop Price Modifier"
+                        android:text="@string/ShopPriceModifier"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/partyfragment_shopprizeModifierText"
                         android:gravity="right"
@@ -171,7 +171,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp">
                 <TextView
-                    android:text="Current Location"
+                    android:text="@string/CurrentLocation"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
                 android:paddingLeft="5dp"
                 android:paddingBottom="5dp">
                 <TextView
-                    android:text="Notes"
+                    android:text="@string/PartyNotes"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

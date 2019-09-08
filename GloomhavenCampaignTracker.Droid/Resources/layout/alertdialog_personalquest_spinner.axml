@@ -31,7 +31,7 @@
             android:layout_height="36dp" />
     </LinearLayout>
     <TextView
-        android:text="Personal Quest Goal"
+        android:text="@string/PersonalQuestGoal"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         android:layout_marginTop="5dp"
         android:textColor="@color/gloom_primaryText" />
     <TextView
-        android:text="Reward"
+        android:text="@string/Reward"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

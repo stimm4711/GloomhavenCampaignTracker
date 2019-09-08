@@ -18,14 +18,14 @@
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
         <TextView
-            android:text="Spoiler settings"
+            android:text="@string/Spoilersettings"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spoilertitle"
             android:textColor="@color/gloom_primaryText" />
         <CheckBox
-            android:text="Show item names"
+            android:text="@string/ShowItemNames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/chkShowItemnames"
@@ -35,7 +35,7 @@
             android:checked="true"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Show names of locked items in itemdesign selection."
+            android:text="@string/ShowItemNamesDecription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <CheckBox
-            android:text="Show personal quest name and details"
+            android:text="@string/ShowPersonalQuest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/hideitemnamestext"
@@ -55,7 +55,7 @@
             android:checked="true"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Show names and details of personal quests. If not checked, you have to tap a button to see the names and details."
+            android:text="@string/ShowPersonalQuestDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <CheckBox
-            android:text="Show scenarionames in unlocked scenario selection"
+            android:text="@string/ShowScenarioNames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/hidepqtext"
@@ -75,7 +75,7 @@
             android:checked="false"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Show names of locked scenarios in unlocked scenario selection."
+            android:text="@string/ShowScenarioNamesDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
         android:paddingTop="5dp"
         android:layout_marginTop="10dp">
         <TextView
-            android:text="Activate Forgotten Circles"
+            android:text="@string/ActivateFC"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/enableFCtext"
             android:textColor="@color/gloom_primaryText"
@@ -113,7 +113,7 @@
             android:checked="false"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion."
+            android:text="@string/ActivateFCDexription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

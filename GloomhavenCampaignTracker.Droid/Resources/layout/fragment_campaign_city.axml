@@ -13,7 +13,7 @@
         android:paddingLeft="10px"
         android:paddingRight="10px">
         <Button
-            android:text="Item Store"
+            android:text="@string/itemstore"
             android:id="@+id/itemstorebutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:textSize="20dp"
             android:drawableTop="@drawable/ic_moneybag" />
         <Button
-            android:text="City Events"
+            android:text="@string/CityEvents"
             android:id="@+id/cityeventsbutton"
             android:drawableTop="@drawable/ic_cityhall"
             android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 android:id="@+id/prosperityText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Gloomhaven Prosperity"
+                android:text="@string/GloomhavenProsperity"
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:gravity="center"
@@ -137,7 +137,7 @@
             android:paddingRight="5dp"
             android:paddingTop="5dp">
             <TextView
-                android:text="Sanctuary Donations"
+                android:text="@string/SanctuaryDonations"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/gloom_secondaryText"
                 android:id="@+id/donationsText"
@@ -196,7 +196,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp" />
                 <TextView
-                    android:text="Next prosperity:"
+                    android:text="@string/NextProsperity"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -211,7 +211,8 @@
                     android:adjustViewBounds="false"
                     android:layout_marginBottom="0.0dp"
                     android:layout_centerInParent="true"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_toRightOf="@id/textView2"
+                    android:layout_marginLeft="5dp"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

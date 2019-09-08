@@ -18,7 +18,7 @@
 			android:layout_height="match_parent"
 			android:id="@+id/linearLayout2" >
 			<TextView
-				android:text="Unlocked Classes"
+				android:text="@string/UnlockedClasses"
 				android:textAppearance="?android:attr/textAppearanceLarge"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -37,14 +37,14 @@
 				android:columnWidth="48dp"
 				android:layout_marginBottom="10px" />
 			<Button
-				android:text="Open Envelope X"
+				android:text="@string/OpenEnvelopeXButton"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:id="@+id/openEnvelopeXButton"
 				android:background="@drawable/borderbuttons"/>			
 		</LinearLayout>       
         <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:text="Gain 5 “Ancient Technology” global achievements"
+            android:text="@string/FiveAncientTechnologyCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ancienttechnologyUnlockCheck"
@@ -57,7 +57,7 @@
             android:textSize="18dp"
             android:clickable="true" />
         <TextView
-            android:text="Unlocked envelope A"
+            android:text="@string/FiveAncientTechnologyCheckReward"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             android:visibility="invisible"
             android:textSize="18dp" />
         <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:text="Have a party gain both “The Drake’s Command” and “The Drake’s Treasure” party achievements"
+            android:text="@string/DrakesCommandTreasure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/drakepartyachievementCheck"
@@ -79,7 +79,7 @@
             android:textSize="18dp"
             android:clickable="true" />
         <TextView
-            android:text="City Event 75 and Road Event 66 added, and “The Drake Aided” global achievement gained."
+            android:text="@string/DrakesCommandTreasureReward"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:visibility="invisible"
             android:textSize="18dp" />
         <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:text="Donate a total of 100 gold to the Sanctuary of the Great Oak"
+            android:text="@string/Donate100Gold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/donationsCheck"
@@ -102,7 +102,7 @@
             android:textSize="18dp"
             android:clickable="false" />
         <TextView
-            android:text="Unlocked envelope B"
+            android:text="@string/Donate100GoldReward"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
             android:visibility="invisible"
             android:textSize="18dp" />
         <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:text="Have a party reputation of 10 or higher"
+            android:text="@string/Reputation10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/partyRep10Check"
@@ -124,7 +124,7 @@
             android:textSize="18dp"
             android:clickable="false" />
         <TextView
-            android:text="Unlocked Sun Class "
+            android:text="@string/Reputation10Reward"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
             android:visibility="invisible"
             android:textSize="18dp" />
         <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:text="Have a party reputation of 20"
+            android:text="@string/Reputation20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/partyRep20Check"
@@ -146,7 +146,7 @@
             android:textSize="18dp"
             android:clickable="false" />
         <TextView
-            android:text="City Event 76 and Road Event 67 added"
+            android:text="@string/Reputation20Reward"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
             android:visibility="invisible"
             android:textSize="18dp" />
         <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:text="Have a party reputation of -10 or lower"
+            android:text="@string/ReputationMinus10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/partyRepMinus10Check"
@@ -168,7 +168,7 @@
             android:textSize="18dp"
             android:clickable="false" />
         <TextView
-            android:text="Unlocked Moon Class"
+            android:text="@string/ReputationMinus10Reward"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
             android:visibility="invisible"
             android:textSize="18dp" />
         <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:text="Have a party reputation of -20"
+            android:text="@string/ReputationMinus20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/partyRepMinus20Check"
@@ -190,7 +190,7 @@
             android:textSize="18dp"
             android:clickable="false" />
         <TextView
-            android:text="City Event 77 and Road Event 68 added"
+            android:text="@string/ReputationMinus20Reward"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -201,7 +201,7 @@
             android:visibility="invisible"
             android:textSize="18dp" />
         <CheckBox xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:text="Retire a character"
+            android:text="@string/RetireFirstCharacter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/retireCheck"
@@ -212,7 +212,7 @@
             android:textSize="18dp"
             android:clickable="false" />
         <TextView
-            android:text="Open the Town Records Book"
+            android:text="@string/RetireFirstCharacterReward"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

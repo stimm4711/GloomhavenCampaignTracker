@@ -16,7 +16,7 @@
         android:id="@+id/PartyNameInputLayout"
         android:theme="@style/TextLabel"
         app:hintTextAppearance="@style/HintTextLabel"
-      android:hint="Enter Partyname">
+      android:hint="@string/EnterPartyname">
       <android.support.design.widget.TextInputEditText
           android:id="@+id/partyname"
             android:layout_width="fill_parent"

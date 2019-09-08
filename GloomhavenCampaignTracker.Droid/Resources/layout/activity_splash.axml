@@ -37,7 +37,7 @@
                 android:layout_toRightOf="@+id/pbSpinningCircle"
                 android:layout_alignTop="@+id/pbSpinningCircle"
                 android:textColor="#fff"
-                android:text="Loading..."
+                android:text="@string/Loading"
                 android:layout_marginLeft="5dp"
                 android:textSize="14sp"
                 android:background="@android:color/transparent" />

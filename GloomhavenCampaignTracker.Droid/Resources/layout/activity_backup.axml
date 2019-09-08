@@ -18,7 +18,7 @@
         android:paddingBottom="8dp"
         android:paddingRight="8dp">
         <Button
-            android:text="Select backup path"
+            android:text="@string/SelectDir"
             android:id="@+id/button_select_bu_path"
             android:background="@drawable/borderbuttons"
             android:paddingLeft="8dp"
@@ -36,7 +36,7 @@
             android:paddingLeft="8dp"
             android:layout_marginTop="5dp"
             android:editable="false"
-            android:text="path to backup folder"
+            android:text="@string/PathToBackupFolder_placeHolder"
             android:enabled="false"
             android:clickable="false" />
         <RelativeLayout
@@ -45,7 +45,7 @@
             android:id="@+id/relativeLayout2"
             android:layout_below="@id/textViewbackuppath">
             <Button
-                android:text="Create Backup"
+                android:text="@string/CreateBackupButton"
                 android:id="@+id/button_create_backup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 android:paddingLeft="8dp"
                 android:layout_alignParentBottom="true" />
             <Button
-                android:text="Restore Backup"
+                android:text="@string/RestoreBackupButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_restore_backup"
