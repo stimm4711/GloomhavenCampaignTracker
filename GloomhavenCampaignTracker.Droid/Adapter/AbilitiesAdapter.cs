@@ -29,11 +29,13 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
         public AbilitiesAdapter(Context context, DL_Character character) : base(context, character)
         {
-            _abilities = character.CharacterAbilities.OrderBy(x => x.Ability.ReferenceNumber).ToList();
+            _abilities = character.CharacterAbilities.OrderBy(x=>x.Ability.ReferenceNumber).ToList();
         }
          
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+            var ability = _abilities[position];
+
             AbilityViewHolder holder = null;
 
             if (convertView != null)
@@ -54,55 +56,33 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 convertView.Tag = holder;
             }
 
-            var ability = _abilities[position];
-
             if (ability == null) return convertView;
 
             holder.AbilityNumber.Text = $"# {ability.Ability.ReferenceNumber}";
             holder.AbilityName.Text = ability.Ability.AbilityName;
             holder.AbilityLevel.Text = $"{ability.Ability.Level}";
-
             var numberOfEnhancements = (ability?.AbilityEnhancements != null) ? ability.AbilityEnhancements.Count : 0;
             holder.AbilityEnhancementsNumber.Text = $"{numberOfEnhancements}";
+            holder.AbilityName.Tag = ability;
 
             // options button  
             if (!holder.OptionsButton.HasOnClickListeners)
             {
                 holder.OptionsButton.Click += (sender, e) =>
                 {
-                    ShowAbilityPopupMenu(position, holder.OptionsButton);
+                    var ab = (DL_CharacterAbility)holder.AbilityName.Tag;
+                    if (ab == null) return;
+                    ConfirmDeleteDialog(ab);
                 };
             }
             return convertView;
         }
 
         /// <summary>
-        /// Ability options menu
-        /// </summary>
-        /// <param name="position"></param>
-        /// <param name="optionsButton"></param>
-        private void ShowAbilityPopupMenu(int position, ImageView optionsButton)
-        {
-            if (position >= Count) return;
-
-            // open a popup menu with delete option
-            var menu = new PopupMenu(_context, optionsButton);
-            menu.Inflate(Resource.Menu.popupDeleteMenu);
-
-            menu.MenuItemClick += (s, a) =>
-            {
-                if (a.Item.ItemId == Resource.Id.popup_delete)
-                    ConfirmDeleteDialog(position);
-            };
-
-            menu.Show();
-        }
-
-        /// <summary>
         /// Confirm delete ability
         /// </summary>
         /// <param name="position"></param>
-        private void ConfirmDeleteDialog(int position)
+        private void ConfirmDeleteDialog(DL_CharacterAbility ability)
         {
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                 .SetTitle(_context.Resources.GetString(Resource.String.Confirm))
@@ -110,8 +90,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {
                     //_character.Abilities.Remove(_character.Abilities[position]);
-                    _character.CharacterAbilities.Remove(_abilities[position]);
-                    _abilities.Remove(_abilities[position]);
+                    _character.CharacterAbilities.Remove(ability);
+                    _abilities.Remove(ability);
                     SaveCharacter();
                     NotifyDataSetChanged();
                 })
