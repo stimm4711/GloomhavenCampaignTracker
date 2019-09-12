@@ -470,7 +470,14 @@
 					android:layout_marginLeft="5dp"
 					android:alpha="0.9"
 					android:layout_marginBottom="3dp" />
-			</LinearLayout>				
+			</LinearLayout>	
+            <LinearLayout
+				android:orientation="vertical"
+				android:minWidth="25px"
+				android:minHeight="25px"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/linearLayoutPersonalQuest" />
 		</LinearLayout>
     </LinearLayout>
 </ScrollView>

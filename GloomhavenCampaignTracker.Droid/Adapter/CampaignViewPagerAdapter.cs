@@ -35,20 +35,20 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         
         private string GetTitle(int position)
         {
-            var title = "World";
+            var title = _context.Resources.GetString(Resource.String.World);
             switch (position)
             {
                 case 0:
-                    title = "World";
+                    title = _context.Resources.GetString(Resource.String.World);
                     break;
                 case 1:
-                    title = "City";
+                    title = _context.Resources.GetString(Resource.String.City);
                     break;
                 case 2:
-                    title = "Party";
+                    title = _context.Resources.GetString(Resource.String.CamapignParty);
                     break;
                 case 3:
-                    title = "Unlocks";
+                    title = _context.Resources.GetString(Resource.String.CampaignUnlocks);
                     break;
             }
             return title;

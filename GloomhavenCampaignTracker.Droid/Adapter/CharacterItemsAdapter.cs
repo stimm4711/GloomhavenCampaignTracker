@@ -1,17 +1,12 @@
 ﻿using Android.Content;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Droid.Fragments.character;
-using GloomhavenCampaignTracker.Shared;
 using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using Java.Lang;
-using System.Threading.Tasks;
-using Android.Graphics;
-using System.Net.Http;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
@@ -138,9 +133,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             var sellvalue = (int) Math.Floor(item.Itemprice / 2);
 
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                .SetMessage($"Sell Item for {sellvalue} gold? ")
-
-                .SetPositiveButton("Sell", (senderAlert, args) =>
+                .SetMessage(String.Format(_context.Resources.GetString(Resource.String.SellItemCommit), sellvalue))
+                .SetPositiveButton(_context.Resources.GetString(Resource.String.Sell), (senderAlert, args) =>
                 {
                     if (position >= Count) return;
                    
@@ -183,7 +177,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             var item = _character.Items[position];
 
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                .SetMessage("Delete Item?")
+                .SetMessage(_context.Resources.GetString(Resource.String.DeleteItemCommit))
 
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {

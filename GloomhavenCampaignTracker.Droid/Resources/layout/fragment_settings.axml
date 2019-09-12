@@ -18,7 +18,7 @@
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
         <TextView
-            android:text="@string/Spoilersettings"
+            android:text="@string/SpoilerSettings"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

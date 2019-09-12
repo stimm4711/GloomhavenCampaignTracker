@@ -168,7 +168,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         private void DeleteCharacter(DL_Character character)
         {           
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                .SetMessage($"Delete Character {character.Name}?")
+                .SetMessage($"{_context.Resources.GetString(Resource.String.DeleteCharacterCommit)} {character.Name}?")
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {
                     // delete the character                   

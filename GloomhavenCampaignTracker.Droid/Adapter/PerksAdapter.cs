@@ -80,7 +80,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                 .SetTitle(_context.Resources.GetString(Resource.String.Confirm))
-                .SetMessage("Delete Perk?")
+                .SetMessage(_context.Resources.GetString(Resource.String.DeletePerkCommit))
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {
                     _character.Perks.Remove(_character.Perks[position]);

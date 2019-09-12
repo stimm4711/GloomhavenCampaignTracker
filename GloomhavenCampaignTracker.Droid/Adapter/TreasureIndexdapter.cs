@@ -121,8 +121,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                 .SetCustomView(convertView)
-                .SetTitle("Edit Treasure")
-                .SetPositiveButton("Save changes", (senderAlert, args) =>
+                .SetTitle(_context.Resources.GetString(Resource.String.EditTreasure))
+                .SetPositiveButton(_context.Resources.GetString(Resource.String.Save), (senderAlert, args) =>
                 {
                     if (int.TryParse(refNumberText.Text, out int refNumber))
                     {

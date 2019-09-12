@@ -76,7 +76,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             // Set Data
             holder.ItemName.Text = item.Itemname;
             holder.ItemNumber.Text = $"# {item.Itemnumber}";
-            holder.ItemPrice.Text = $"{item.Itemprice} Gold";
+            holder.ItemPrice.Text = $"{item.Itemprice} {_context.Resources.GetString(Resource.String.CharacterGold)}";
             holder.ItemCategoryImage.SetImageResource(ResourceHelper.GetItemCategorieIconRessourceId(item.Itemcategorie));
             holder.ItemNumber.Tag = item;
 
@@ -107,7 +107,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         private void ConfirmDeleteDialog(int position)
         {
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                .SetMessage("Delete unlocked item?")
+                .SetMessage(_context.Resources.GetString(Resource.String.DeleteItemCommit))
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {
                     if (position >= Count) return;

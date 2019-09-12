@@ -135,7 +135,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             var item = _items[position];
 
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                .SetMessage("Delete Backup?")
+                .SetMessage(_context.Resources.GetString(Resource.String.DeleteBackupCommit))
 
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {

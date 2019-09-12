@@ -259,9 +259,9 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
                     new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                         .SetCustomView(view)
-                        .SetTitle("Select section")
-                        .SetMessage($"Select the sectionnumber with your conclusion.")
-                        .SetPositiveButton("Select", (senderAlert, args) =>
+                        .SetTitle(_context.Resources.GetString(Resource.String.SelectSection))
+                        .SetMessage(_context.Resources.GetString(Resource.String.SelectSectionNumber))
+                        .SetPositiveButton(_context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
                         {
                             if (listview.CheckedItemPosition == -1) return;
 
@@ -309,9 +309,9 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
                     new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                         .SetCustomView(view)
-                        .SetTitle("Select section")
-                        .SetMessage($"Select the sectionnumber with your conclusion.")
-                        .SetPositiveButton("Select", (senderAlert, args) =>
+                         .SetTitle(_context.Resources.GetString(Resource.String.SelectSection))
+                        .SetMessage(_context.Resources.GetString(Resource.String.SelectSectionNumber))
+                        .SetPositiveButton(_context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
                         {
                             if (listview.CheckedItemPosition == -1) return;
 
@@ -349,9 +349,9 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
                     new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                         .SetCustomView(view)
-                        .SetTitle("Select section")
-                        .SetMessage($"Select the sectionnumber with your conclusion.")
-                        .SetPositiveButton("Select", (senderAlert, args) =>
+                         .SetTitle(_context.Resources.GetString(Resource.String.SelectSection))
+                        .SetMessage(_context.Resources.GetString(Resource.String.SelectSectionNumber))
+                        .SetPositiveButton(_context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
                         {
                             if (listview.CheckedItemPosition == -1) return;
 
@@ -392,9 +392,9 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
                     new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                         .SetCustomView(view)
-                        .SetTitle("Select unlocked scenario")
-                        .SetMessage($"Choose the scenario you want to unlock.")
-                        .SetPositiveButton("Unlock scenario", (senderAlert, args) =>
+                        .SetTitle(_context.Resources.GetString(Resource.String.SelectUnlockedScenario))
+                        .SetMessage(_context.Resources.GetString(Resource.String.ChooseScenarioToUnlock))
+                        .SetPositiveButton(_context.Resources.GetString(Resource.String.UnlockScenario), (senderAlert, args) =>
                         {
                             if (listview.CheckedItemPosition == -1) return;
 
@@ -451,8 +451,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
                 new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                     .SetCustomView(alertView)
-                    .SetTitle($"Set the scenario {campScenario.ScenarioName} incomplete?")
-                    .SetMessage("The following scenarios will be removed from the list.")
+                    .SetTitle(String.Format(_context.Resources.GetString(Resource.String.SetScenarioIncomplete), campScenario.ScenarioName))
+                    .SetMessage(_context.Resources.GetString(Resource.String.ScenariosWillBeRemoved))
                     .SetNegativeButton(_context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => {
                         checkb.Checked = true;
                     })

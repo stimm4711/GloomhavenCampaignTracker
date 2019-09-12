@@ -50,6 +50,7 @@
   <string name="Initialize">Initialize</string>
   <string name="Removed">Removed</string>
   <string name="Option">Option</string>
+  <string name="Items">Items</string>
   
   <!-- Unlocks -->
   <string name="Congratulation">Congratulation!</string>
@@ -103,10 +104,15 @@
   <string name="DeleteCampaign">Delete Campaign?</string>
   <string name="CampaignDeleted">Campaign deleted.</string>
   <string name="EnterCampaignname">Enter Campaignname</string>
+  <string name="World">World</string>
+  <string name="City">City</string>
+  <string name="CamapignParty">Party</string>
+  <string name="CampaignUnlocks">Unlocks</string>
 
   <!-- Scenariolevel calculation -->
   <string name="ScenariolevelForChars">Scenariolevel for characters:</string>
   <string name="SelectCharacters">Select Characters</string>
+  <string name="JustOneCharacterOfEachClass">You can select just one character of each class.</string>
   
   <!-- Events -->
   <string name="AddEvents">Add Event</string>
@@ -149,11 +155,6 @@
   <string name="AssignGlobalAchievement">Assign Global Achievement</string>
   <string name="AchievementAlreadyAssigned">An achievement with the same type is already assigned.</string>
   <string name="Achievementtypes">Achievement Types</string>
-  <string name="AchievementNameMissing">Achievementtype Name can\'t be empty.</string>
-  <string name="AchievementTypeExists">Achievement Type already exists.</string>
-  <string name="AddAchievement">Add Achievement</string>
-  <string name="AchievementNeedsName">Achievement needs a name.</string>
-  <string name="AchievementAdded">Achievement added</string>
   <string name="Achievements">Achievements</string>
   <string name="AchievementTypes">Achievement Types</string>
   <string name="AchievementType">Achievement Type</string>
@@ -167,9 +168,6 @@
   <string name="ScenarioAlreadyAssigned">The scenario is already assigned.</string>
   <string name="Scenarios">Scenarios</string>
   <string name="Scenario">Scenario</string>
-  <string name="ScenarioNumberMissing">Scenario Number can\'t be empty.</string>
-  <string name="ScenarioNumberExists">Scenario Number already exists.</string>
-  <string name="TreasuresPartOf">Treasures: {0}/{1}</string>
   <string name="BlockingAchievement">{0} \n is blocked by</string>
   <string name="RequiredAchievements">{0}\n requires</string>
   <string name="AddTreasureAlertTitle">Add Treasure</string>
@@ -183,9 +181,18 @@
   <string name="DeleteUnlockedScenario">Delete {0}?</string>
   <string name="EnterTreasureNumber">Enter treasure number</string>
   <string name="EnterTreasureContent">Enter treasure content</string>
+  <string name="SelectSection">Select section</string>
+  <string name="SelectSectionNumber">Select the sectionnumber with your conclusion.</string>
+  <string name="Select">Select</string>
+  <string name="SelectUnlockedScenario">Select unlocked scenario</string>
+  <string name="ChooseScenarioToUnlock">Choose the scenario you want to unlock.</string>
+  <string name="UnlockScenario">Unlock scenario</string>
+  <string name="SetScenarioIncomplete">Set the scenario {0} incomplete?</string>
+  <string name="ScenariosWillBeRemoved">The following scenarios will be removed from the list</string>
+  <string name="EditTreasure">Edit Treasure</string>
   
   <!-- Party -->
-  <string name="Party">Party:</string>
+  <string name="PartyDP">Party:</string>
   <string name="PartySelection">Party Selection</string>
   <string name="DeleteParty">Delete Party?</string>
   <string name="PartyCantbeDeletedIsLastOfCampaign">Each Campaign needs at least one Party. Can\'t delete this party.</string>
@@ -266,12 +273,23 @@
   <string name="CharacterExperience">XP</string>
   <string name="CharacterGold">Gold</string>
   <string name="CharacterNotes">Notes</string>
+  <string name="DeleteEnhancementCommit">Delete Enhancement?</string>
+  <string name="DeleteCharacterCommit">Delete Character</string>
+  <string name="Character">Character</string>
+  <string name="Abilities">Abilities</string>
+  <string name="Perks">Perks</string>
+  <string name="SellItemCommit">Sell Item for {0} gold?</string>
+  <string name="Sell">Sell</string>
+  <string name="DeleteItemCommit">Delete Item?</string>
+  <string name="DeletePerkCommit">Delete Perk?</string>
+  
   
   <!-- Backup-->
   <string name="SelectDir">Select backup path</string>
   <string name="PathToBackupFolder_placeHolder">path to backup folder</string>
   <string name="CreateBackupButton">Create Backup</string>
   <string name="RestoreBackupButton">Restore Backup</string>
+  <string name="DeleteBackupCommit">Delete Backup?</string>
 
   <!-- Splashscreen -->
   <string name="Loading">Loading...</string>

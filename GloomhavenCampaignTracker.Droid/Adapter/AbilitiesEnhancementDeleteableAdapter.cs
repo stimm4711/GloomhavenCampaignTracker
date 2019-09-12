@@ -100,7 +100,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             if (item == null) return;
 
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                .SetMessage("Delete Enhancement?")
+                .SetMessage(_context.Resources.GetString(Resource.String.DeleteEnhancementCommit))
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                 {
                     if (position >= Count) return;
@@ -208,8 +208,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
                 if (item == null) return;
 
-                new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                    .SetMessage("Delete Enhancement?")
+                _ = new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                    .SetMessage(_context.Resources.GetString(Resource.String.DeleteEnhancementCommit))
                     .SetPositiveButton(_context.Resources.GetString(Resource.String.YesDelete), (senderAlert, args) =>
                     {
                         if (position >= Count) return;
