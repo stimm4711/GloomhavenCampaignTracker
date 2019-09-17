@@ -58,4 +58,16 @@ namespace GloomhavenCampaignTracker.Droid.Data.ConversionClasses
     {
         public List<Classability> classabilities { get; set; }
     }
+
+    public class Scenariotreasure
+    {
+        public int scenarionumber { get; set; }
+        public int treasurenumber { get; set; }
+        public string content { get; set; }
+    }
+
+    public class ScenarioTreaures
+    {
+        public List<Scenariotreasure> scenariotreasures { get; set; }
+    }
 }

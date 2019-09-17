@@ -15,7 +15,7 @@
         android:paddingRight="10px"
         android:paddingTop="20px">
         <Button
-            android:text="@string/UnlockedScenarios"
+            android:text="@string/Scenarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/unlockedScenariosButton"

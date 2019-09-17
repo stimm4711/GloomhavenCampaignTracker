@@ -446,9 +446,11 @@ namespace GloomhavenCampaignTracker.Business
         /// </summary>
         /// <param name="scenario"></param>
         /// <returns></returns>
-        public CampaignUnlockedScenario AddUnlockedScenario(int scenarionumber)
+        public CampaignUnlockedScenario AddUnlockedScenario(int scenario_id)
         {
-            var scenario = DataServiceCollection.ScenarioDataService.GetScenarioByScenarioNumber(scenarionumber);
+            var scenario = DataServiceCollection.ScenarioDataService.Get(scenario_id);
+
+            if (scenario == null) return null;
 
             // Create Data Object of link table
             var unlockedScenarioData = new DL_CampaignUnlockedScenario
@@ -458,8 +460,19 @@ namespace GloomhavenCampaignTracker.Business
                 ID_Scenario = scenario.Id,
                 ID_Campaign = CampaignData.Id,
                 Completed = false,
-                ScenarioTreasures = new List<DL_Treasure>()
+                ScenarioTreasures = new List<DL_Treasure>(),
+                CampaignScenarioTreasures = new List<DL_CampaignScenarioTreasure>()
             };
+
+            foreach(var t in scenario.Treasures)
+            {
+                unlockedScenarioData.CampaignScenarioTreasures.Add(new DL_CampaignScenarioTreasure()
+                {
+                    ScenarioTreasure = t,
+                    ScenarioTreasure_ID = t.Id,
+                    UnlockedScenario = unlockedScenarioData
+                });
+            }
 
             // add data object to campaign data
             CampaignData.UnlockedScenarios.Add(unlockedScenarioData);

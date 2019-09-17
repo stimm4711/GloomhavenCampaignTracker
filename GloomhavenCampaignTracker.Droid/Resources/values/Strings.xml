@@ -27,6 +27,12 @@
   <string name="Bladeswarm_web">
     <a href="http://www.cephalofair.com/bladeswarm">http://www.cephalofair.com/bladeswarm</a>
   </string>
+  <string name="TreasureChestBack">
+    https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/back-{0}.jpg
+  </string>
+  <string name="TreasureChestFront">
+    https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/front-{0}.jpg
+  </string>
   
   <!-- Common -->
   <string name="Assign">Assign</string>

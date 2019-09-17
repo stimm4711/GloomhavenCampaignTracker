@@ -36,7 +36,8 @@ namespace GloomhavenCampaignTracker.Business
         Support = 15,
         Releasenotes = 16,
         EnvelopeXUnlock = 17,
-        Riftevents = 18
+        Riftevents = 18,
+        ScenarioDetails = 19
     }
     
     public class Helper

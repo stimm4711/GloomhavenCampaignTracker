@@ -198,6 +198,8 @@
     <Compile Include="Adapter\AbilitiesEnhancementDeleteableAdapter.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementSelectableAdapter.cs" />
     <Compile Include="Adapter\ChangeAwareAdapter.cs" />
+    <Compile Include="Adapter\CampaignScenarioTreasureAdapter.cs" />
+    <Compile Include="Adapter\ScenarioDetailsViewPagerAdapter.cs" />
     <Compile Include="Adapter\CharacterWrapper.cs" />
     <Compile Include="Adapter\SelectableCampaignAdapter.cs" />
     <Compile Include="Adapter\CharacterDetailsAdapterBase.cs" />
@@ -283,6 +285,7 @@
     <Compile Include="Data\DatabaseAccess\CharacterDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\CharacterPersonalQuestCounterDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\CharacterAbilitiesDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\ScenarioTreasureDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\ClassAbilitiesDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\ClassDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\ClassPerkDBAccess.cs" />
@@ -335,6 +338,8 @@
     <Compile Include="Data\Entities\DL_PersonalQuest.cs" />
     <Compile Include="Data\Entities\DL_PersonalQuestCounter.cs" />
     <Compile Include="Data\Entities\DL_Scenario.cs" />
+    <Compile Include="Data\Entities\DL_ScenarioTreasure.cs" />
+    <Compile Include="Data\Entities\DL_CampaignScenarioTreasure.cs" />
     <Compile Include="Data\Entities\DL_Treasure.cs" />
     <Compile Include="Data\Entities\IEntity.cs" />
     <Compile Include="Data\EntityCollection.cs" />
@@ -352,6 +357,7 @@
     <Compile Include="Data\Repositories\CharacterPersonalQuestCountersRepository.cs" />
     <Compile Include="Data\Repositories\CharacterRepository.cs" />
     <Compile Include="Data\Repositories\CharacterAbilitiesRepository.cs" />
+    <Compile Include="Data\Repositories\ScenarioTreasuresRepository.cs" />
     <Compile Include="Data\Repositories\ClassPerkRepository.cs" />
     <Compile Include="Data\Repositories\ClassAbilitiesRepository.cs" />
     <Compile Include="Data\Repositories\ClassRepository.cs" />
@@ -376,6 +382,9 @@
     <Compile Include="Fragments\campaign\party\CampaignPartyNotesFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyAchievementsFragment.cs" />
     <Compile Include="Fragments\campaign\unlocks\CampaignUnlocksEnvelopeXFragment.cs" />
+    <Compile Include="Fragments\campaign\world\ScenarioDetailsViewPagerTabs.cs" />
+    <Compile Include="Fragments\campaign\world\SzenarioDetailsUnlocksFragment.cs" />
+    <Compile Include="Fragments\campaign\world\SzenarioDetailsFragment.cs" />
     <Compile Include="Fragments\character\CharacterDetailAbilitiesFragmentOld.cs" />
     <Compile Include="Fragments\character\CharacterDetailFragmentBase.cs" />
     <Compile Include="Fragments\character\CharacterDetailPerks2Fragment.cs" />
@@ -414,6 +423,9 @@
     <None Include="app.config" />
     <AndroidAsset Include="Assets\fonts\Roboto-Regular.ttf" />
     <AndroidAsset Include="Assets\raw_data\Classabilities.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\raw_data\ScenarioTreaures.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidAsset>
     <None Include="GloomhavenCampaignTracker.Droid.csproj.vspscc" />
@@ -2926,6 +2938,30 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\alertdialog_release_notes.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_scenariodetails.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_scenariodetails_details.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_scenariodetails_unlocks.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_singleitem.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>

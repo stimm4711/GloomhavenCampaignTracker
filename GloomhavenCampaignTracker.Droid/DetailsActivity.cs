@@ -22,6 +22,7 @@ namespace GloomhavenCampaignTracker.Droid
         public static string CurrentCampaignId = "current_campaign_id";
         public static string SelectedFragId = "selected_fragid";
         public static string SelectedCharacterId = "selected_character_id";
+        public static string SelectedScenarioId = "selected_scenario_id";
         public static string JustParty = "JustParty";
         public static string ProsperityLevel = "ProsperityLevel";
 
@@ -96,7 +97,6 @@ namespace GloomhavenCampaignTracker.Droid
                 case (int)DetailFragmentTypes.PartyMember:
                     SupportActionBar.Title = Resources.GetString(Resource.String.PartyMember);
                     _detailsFrag = CharacterListFragment.NewInstance(true);
-                    //_detailsFrag = CharacterExpandableListFragment.NewInstance(true);
                     break;
                 case (int)DetailFragmentTypes.CharacterDetail:
                     var characterId = Intent.Extras.GetInt(SelectedCharacterId, 0);
@@ -105,7 +105,6 @@ namespace GloomhavenCampaignTracker.Droid
                     break;
                 case (int)DetailFragmentTypes.Characters:
                     SupportActionBar.Title = "Characters";
-                    //_detailsFrag = CharacterExpandableListFragment.NewInstance(false);
                     _detailsFrag = CharacterListFragment.NewInstance(false);
                     break;
                 case (int)DetailFragmentTypes.Settings:
@@ -123,6 +122,12 @@ namespace GloomhavenCampaignTracker.Droid
                 case (int)DetailFragmentTypes.EnvelopeXUnlock:
                     SupportActionBar.Title = "Envelope X";
                     _detailsFrag = CampaignUnlocksEnvelopeXFragment.NewInstance();
+                    break;
+                case (int)DetailFragmentTypes.ScenarioDetails:
+                    SupportActionBar.Title = "Scenario Details";
+                    var scenarioID = Intent.Extras.GetInt(SelectedScenarioId, 0); 
+                     //_detailsFrag = ScenarioDetailsViewPagerTabs.NewInstance(scenarioID);
+                    _detailsFrag = SzenarioDetailsFragment.NewInstance(scenarioID);
                     break;
             }
 

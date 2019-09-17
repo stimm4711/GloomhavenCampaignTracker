@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 16);
+        public static Version Dbversion { get; } = new Version(1, 4, 18);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -152,6 +152,17 @@ namespace Data
                     FixingTyposInPersonalQuestCounters();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 17)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.17"));
+                    AddScenarioTreasures();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 18)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.18"));
+                    MigrateScenarioTreasures();
+                }
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
@@ -601,6 +612,91 @@ namespace Data
                 throw;
             }
         }
+
+        private static void MigrateScenarioTreasures()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                var campScenarios = CampaignUnlockedScenarioRepository.Get();
+
+                foreach(var campscen in campScenarios)
+                {
+                    if(campscen.Scenario.Treasures.Any())
+                    {
+                        foreach (var scenTreas in campscen.Scenario.Treasures)
+                        {
+                            if (campscen.CampaignScenarioTreasures == null)
+                                campscen.CampaignScenarioTreasures = new List<DL_CampaignScenarioTreasure>();
+
+                            if (!campscen.CampaignScenarioTreasures.Any(x => x.ScenarioTreasure.TreasureNumber == scenTreas.TreasureNumber))
+                            {
+                                var cst = new DL_CampaignScenarioTreasure()
+                                {
+                                    ScenarioTreasure = scenTreas,
+                                    ScenarioTreasure_ID = scenTreas.Id,
+                                    UnlockedScenario = campscen,
+                                    CampaignScenario_ID = campscen.Id
+                                };
+
+                                campscen.CampaignScenarioTreasures.Add(cst);
+                                CampaignUnlockedScenarioRepository.InsertOrReplace(campscen);
+                            }
+                        }
+                    }
+                }
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        internal static void AddScenarioTreasures()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                // read from JSON
+                AssetManager assets = Android.App.Application.Context.Assets;
+                var asset = Android.App.Application.Context.Assets.Open("raw_data/ScenarioTreaures.json");
+                var scenarioTreasures = JSONConverter.LoadJson<ScenarioTreaures>(asset);
+
+                var scenarios = ScenarioRepository.Get();
+                var scenTreasures = ScenarioTreasuresRepository.Get();
+
+                foreach (var scenariotreasure in scenarioTreasures.scenariotreasures)
+                {
+                    var currentScenario = scenarios.FirstOrDefault(x => x.Scenarionumber == scenariotreasure.scenarionumber);
+
+                    if (currentScenario == null) continue;
+
+                    if (scenTreasures.Any(x => x.Scenario.Scenarionumber == scenariotreasure.scenarionumber && 
+                                            x.TreasureNumber == scenariotreasure.treasurenumber)) continue;
+
+                    var treasure = new DL_ScenarioTreasure()
+                    {
+                        Scenario = currentScenario,
+                        Scenario_ID = currentScenario.Id,
+                        TreasureContent = "",
+                        TreasureNumber = scenariotreasure.treasurenumber
+                    };
+
+                    ScenarioTreasuresRepository.InsertOrReplace(treasure);                    
+                }
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
 
         internal static void AddClassAblities()
         {

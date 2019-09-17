@@ -136,6 +136,34 @@ namespace GloomhavenCampaignTracker.Business
             return neededAchievementNames;
         }
 
+        public List<string> GetAllRequirements()
+        {
+            List<string> neededAchievementNames = new List<string>();
+
+            foreach (var neededGlobAch in Scenario.RequiredCompletedGlobalAchievements)
+            {
+                neededAchievementNames.Add($"Gained {GCTContext.AchievementCollectiom.GlobalAchievementInternalNumberToName(neededGlobAch)} (global)");
+            }
+
+            foreach (var neededPartyAch in Scenario.RequiredPartyAchievements)
+            {
+                neededAchievementNames.Add($"Gained {GCTContext.AchievementCollectiom.PartyAchievementInternalNumberToName(neededPartyAch)} (party)");
+            }
+
+            foreach (var blockGlobAch in Scenario.BlockingGlobalAchievements)
+            {
+                neededAchievementNames.Add($"Not gained {GCTContext.AchievementCollectiom.GlobalAchievementInternalNumberToName(blockGlobAch)} (global)");
+            }
+
+            foreach (var blockPartyAch in Scenario.BlockingPartyAchievements)
+            {
+                neededAchievementNames.Add($"Not gained {GCTContext.AchievementCollectiom.PartyAchievementInternalNumberToName(blockPartyAch)} (party)");
+            }
+
+           
+            return neededAchievementNames;
+        }
+
         /// <summary>
         /// Get all party achievements achieved that block this scenario
         /// </summary>

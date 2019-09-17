@@ -13,6 +13,7 @@ using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Business;
 using Object = Java.Lang.Object;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using Android.Content;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
@@ -197,37 +198,43 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         /// <param name="campScenario"></param>
         private void ScenarioItemClick(CampaignUnlockedScenario campScenario)
         {
-            if (campScenario.IsAvailable() || campScenario.Completed) return;
+            var intent = new Intent();
+            intent.SetClass(_context, typeof(DetailsActivity));
+            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.ScenarioDetails);
+            intent.PutExtra(DetailsActivity.SelectedScenarioId, campScenario.UnlockedScenarioData.Id);
+            _context.StartActivity(intent);
 
-            // collect achievement names
-            List<string> achievementNames;
-            var alerttitle = "";
+            //if (campScenario.IsAvailable() || campScenario.Completed) return;
 
-            if (campScenario.IsBlocked())
-            {
-                // blocking achievements
-                alerttitle = (string.Format(_context.Resources.GetString(Resource.String.BlockingAchievement), campScenario.ScenarioName));
-                achievementNames = campScenario.GetBlockingGlobalAchievements();
-                achievementNames.AddRange(campScenario.GetBlockingPartyAchievements());
-            }
-            else
-            {
-                // required achievements
-                alerttitle = (string.Format(_context.Resources.GetString(Resource.String.RequiredAchievements), campScenario.ScenarioName));
-                achievementNames = campScenario.GetNeededGlobalAchievements();
-                achievementNames.AddRange(campScenario.GetNeededPartyAchievements());
-            }
+            //// collect achievement names
+            //List<string> achievementNames;
+            //var alerttitle = "";
 
-            var sb = new StringBuilder();
-            foreach (var achievementname in achievementNames)
-            {
-                sb.Append(achievementname + "\n");
-            }
+            //if (campScenario.IsBlocked())
+            //{
+            //    // blocking achievements
+            //    alerttitle = (string.Format(_context.Resources.GetString(Resource.String.BlockingAchievement), campScenario.ScenarioName));
+            //    achievementNames = campScenario.GetBlockingGlobalAchievements();
+            //    achievementNames.AddRange(campScenario.GetBlockingPartyAchievements());
+            //}
+            //else
+            //{
+            //    // required achievements
+            //    alerttitle = (string.Format(_context.Resources.GetString(Resource.String.RequiredAchievements), campScenario.ScenarioName));
+            //    achievementNames = campScenario.GetNeededGlobalAchievements();
+            //    achievementNames.AddRange(campScenario.GetNeededPartyAchievements());
+            //}
 
-            new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                .SetTitle(alerttitle)
-                .SetMessage(sb.ToString())
-                .Show();
+            //var sb = new StringBuilder();
+            //foreach (var achievementname in achievementNames)
+            //{
+            //    sb.Append(achievementname + "\n");
+            //}
+
+            //new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+            //    .SetTitle(alerttitle)
+            //    .SetMessage(sb.ToString())
+            //    .Show();
         }
 
         private void SetScenarioCompletedStatus(CampaignUnlockedScenario campScenario, bool status, CheckBox checkb)
