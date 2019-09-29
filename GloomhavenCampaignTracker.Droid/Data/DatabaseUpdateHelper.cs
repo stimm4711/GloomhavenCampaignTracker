@@ -639,6 +639,11 @@ namespace Data
                                     CampaignScenario_ID = campscen.Id
                                 };
 
+                                var y = campscen.ScenarioTreasures.FirstOrDefault(x => x.Number == scenTreas.TreasureNumber);
+
+                                if (y != null)
+                                    cst.Looted = y.Looted;
+
                                 campscen.CampaignScenarioTreasures.Add(cst);
                                 CampaignUnlockedScenarioRepository.InsertOrReplace(campscen);
                             }

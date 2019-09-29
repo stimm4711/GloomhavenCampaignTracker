@@ -580,7 +580,6 @@ F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\dra
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\drawable-xxxhdpi\ic_regenerate.png
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\custom_itemfilter.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\alertdialog_listview_itemfilter.xml
-F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\values-de\strings.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\listviewitem_classability_selectable.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\listviewitem_ability_selectable.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\splash_screen.xml
@@ -1002,3 +1001,5 @@ F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\dra
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\android\src\md5bce4c564e68312e6840e74babc7faa63\CampaignScenarioTreasureAdapter_TreasureViewHolder.java
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\layout\item_view2.xml
 F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\drawable\back_40.jpg
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\GloomhavenCampaignTracker.Droid.csprojAssemblyReference.cache
+F:\GitRepos\CampaignTracker\GloomhavenCampaignTracker.Droid\obj\Debug\81\res\values-en\strings.xml
