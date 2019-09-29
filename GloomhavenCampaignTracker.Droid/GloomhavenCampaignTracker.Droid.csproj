@@ -100,6 +100,9 @@
     <Reference Include="Plugin.Connectivity.Abstractions, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.2.0\lib\MonoAndroid10\Plugin.Connectivity.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.FilePicker, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Plugin.FilePicker.2.1.34\lib\monoandroid81\Plugin.FilePicker.dll</HintPath>
+    </Reference>
     <Reference Include="Sockets.Plugin, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sharpcaster.SocketsForPCL.2.0.4\lib\MonoAndroid10\Sockets.Plugin.dll</HintPath>
     </Reference>
@@ -197,6 +200,7 @@
     <Compile Include="Adapter\AbilitiesAdapterOld.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementDeleteableAdapter.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementSelectableAdapter.cs" />
+    <Compile Include="Adapter\BackupAdapter.cs" />
     <Compile Include="Adapter\ChangeAwareAdapter.cs" />
     <Compile Include="Adapter\CampaignScenarioTreasureAdapter.cs" />
     <Compile Include="Adapter\ScenarioDetailsViewPagerAdapter.cs" />
@@ -273,6 +277,7 @@
     <Compile Include="CustomControls\ProsperityMeter.cs" />
     <Compile Include="Data\ConversionClasses\JSONConverter.cs" />
     <Compile Include="Data\DatabaseAccess\AbilityDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignScenarioTreasureDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\AchievementDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\AchievementTypeDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\CampaignDBAccess.cs" />
@@ -345,6 +350,7 @@
     <Compile Include="Data\EntityCollection.cs" />
     <Compile Include="Data\GloomhavenDBHelper.cs" />
     <Compile Include="Data\Repositories\AbilityRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignScenarioTreasureRepository.cs" />
     <Compile Include="Data\Repositories\AchievementRepository.cs" />
     <Compile Include="Data\Repositories\AchievementTypeRepository.cs" />
     <Compile Include="Data\Repositories\CampaignEventHistoryLogItemRepository.cs" />
@@ -2965,6 +2971,24 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_backup.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\baseline_restore_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\item_view2.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\back_40.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

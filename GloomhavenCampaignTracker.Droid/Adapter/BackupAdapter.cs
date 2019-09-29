@@ -2,31 +2,24 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Android.Content;
 using Android.Provider;
 using Android.Views;
 using Android.Widget;
+using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using Xamarin.Essentials;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
 {
-    internal class BackupListItem : Java.Lang.Object
-    {
-        public Java.IO.File BackupFile { get; set; }
-        public bool IsSelected { get; set; }
-
-    }
-
-    internal class SelectableBackupAdapter : BaseAdapter
+    internal class BackupAdapter : BaseAdapter
     {
         private readonly Context _context;
         private readonly List<BackupListItem> _items = new List<BackupListItem>();
+        public event EventHandler RestartApplication;
 
         public override int Count => _items.Count;
 
-        public SelectableBackupAdapter(Context context, List<BackupListItem> items) 
+        public BackupAdapter(Context context, List<BackupListItem> items) 
         {
             _context = context;
             _items = items;
@@ -55,29 +48,32 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 holder = new Holder();
 
                 var inflater = (LayoutInflater)_context.GetSystemService(Context.LayoutInflaterService);
-                convertView = inflater.Inflate(Resource.Layout.listviewitem_backup_selectable, parent, false);
+                convertView = inflater.Inflate(Resource.Layout.listviewitem_backup, parent, false);
                 holder.FileName = convertView.FindViewById<TextView>(Resource.Id.backupnameTextView);
                 holder.Share = convertView.FindViewById<ImageView>(Resource.Id.shareButton);
-                holder.Selected = convertView.FindViewById<CheckBox>(Resource.Id.selected);
                 holder.Delete = convertView.FindViewById<ImageView>(Resource.Id.deleteButton);
                 holder.BackupTime = convertView.FindViewById<TextView>(Resource.Id.backupTimeTextView);
+                holder.RestoreButton = convertView.FindViewById<ImageView>(Resource.Id.img_load_backup);
 
-                // CheckCHanged Event
-                holder.Selected.CheckedChange += (sender, e) =>
+                holder.RestoreButton.Click += (sender, e) =>
                 {
-                    var chkBx = (CheckBox)sender;
-                    var thisItem = (BackupListItem)chkBx.Tag;
+                    var btn = (ImageView)sender;
+                    var thisItem = (BackupListItem)btn.Tag;
 
-                    if (thisItem == null || thisItem.IsSelected == chkBx.Checked) return;
+                    if (thisItem == null) return;
+                        
+                    var sd = Android.OS.Environment.ExternalStorageDirectory;
 
-                    foreach(var i in _items.Where(x=>x.IsSelected))
+                    if (Android.OS.Environment.MediaMounted.Equals(Android.OS.Environment.ExternalStorageState))
                     {
-                        i.IsSelected = false;
+                        var dbfile = thisItem.BackupFile;
+
+                        if (dbfile == null) return;
+
+                        BackupConfirmDialog(sd, dbfile);
+
                     }
 
-                    thisItem.IsSelected = chkBx.Checked;                                       
-
-                    NotifyDataSetChanged();
                 };               
 
                 convertView.Tag = holder;
@@ -87,8 +83,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
             // Set Data
             holder.FileName.Text = item.BackupFile.Name;
-            holder.Selected.Tag = item;
-            holder.Selected.Checked = item.IsSelected;
+            holder.RestoreButton.Tag = item;
             holder.BackupTime.Text = File.GetCreationTime(item.BackupFile.AbsolutePath).ToString("MM/dd/yyyy HH:mm");
 
             if (!holder.Delete.HasOnClickListeners)
@@ -108,6 +103,33 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             }
 
             return convertView;
+        }
+
+        private void BackupConfirmDialog(IDisposable sd, Java.IO.File dbfile)
+        {
+            new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                .SetTitle("Confirm Restore")
+                .SetMessage("WARNING: This will replace the current database. All changes will be lost!")
+                .SetPositiveButton("Confirm", (sender, a) =>
+                {
+                    if (BackupHandler.RestoreBackup(sd, dbfile))
+                    {
+                        Toast.MakeText(_context, "Databasebackup restored! Application will restart now", ToastLength.Short).Show();
+                    }
+                    else
+                    {
+                        Toast.MakeText(_context, "Database import falied!", ToastLength.Short).Show();
+                    }
+
+                    OnRestartApp();                   
+                })
+                .SetNegativeButton("Cancel", (sender, a) => { })
+                .Show();
+        }
+
+        private void OnRestartApp()
+        {
+            RestartApplication?.Invoke(this, null);
         }
 
         private void ShareBackup(int position, TextView fileName)
@@ -164,9 +186,9 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             public TextView FileName { get; set; }
             public ImageView Share { get; set; }
-            public CheckBox Selected { get; set; }
             public ImageView Delete { get; set; }
             public TextView BackupTime { get; set; }
+            public ImageView RestoreButton { get; set; }
         }
 
         public override Java.Lang.Object GetItem(int position)

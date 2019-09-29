@@ -286,9 +286,11 @@
   <!-- Backup-->
   <string name="SelectDir">Pfad für Sicherungen auswählen</string>
   <string name="PathToBackupFolder_placeHolder">Sicherungsdateipfad</string>
-  <string name="CreateBackupButton">Sicherung erstellen</string>
-  <string name="RestoreBackupButton">Sicherung wiederherstellen</string>
+  <string name="CreateBackupButton">Erstellen</string>
+  <string name="LoadBackupButton">Laden</string>
+  <string name="RestoreBackupButton">Wiederherstellen</string>
   <string name="DeleteBackupCommit">Sicherung löschen?</string>
+  <string name="DatabaseBackupsTitle">Datenbanksicherungen</string>
 
   <!-- Splashscreen -->
   <string name="Loading">Laden...</string>

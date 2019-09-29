@@ -139,10 +139,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/txt_treasures"
             android:textColor="@color/gloom_primaryText"
             android:layout_below="@+id/txt_completedAt"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"/>       
         <GridView
 				android:layout_width="match_parent"
-				android:layout_height="300dp"
+				android:layout_height="wrap_content"
 				android:verticalSpacing="2dp"
 				android:horizontalSpacing="2dp"
 				android:stretchMode="spacingWidthUniform"              

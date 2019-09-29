@@ -52,26 +52,39 @@
                 android:background="@drawable/borderbuttons"
                 android:paddingRight="8dp"
                 android:paddingLeft="8dp"
-                android:layout_alignParentBottom="true" />
+                android:layout_alignParentTop="true" />
+            <Button
+                android:text="@string/LoadBackupButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_load_backup"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/borderbuttons"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_alignParentTop="true" />
             <Button
                 android:text="@string/RestoreBackupButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_restore_backup"
-                android:layout_alignParentRight="true"
+                android:layout_toLeftOf="@+id/button_load_backup"
                 android:background="@drawable/borderbuttons"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
-                android:layout_alignParentBottom="true" />
+                android:layout_alignParentTop="true" 
+                android:visibility="gone"/>
+            
             <ListView
                 android:minWidth="25px"
                 android:minHeight="100dp"
                 android:id="@+id/listviewbackups"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_above="@id/button_restore_backup"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/button_load_backup"
                 android:layout_marginBottom="5dp" />
+
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

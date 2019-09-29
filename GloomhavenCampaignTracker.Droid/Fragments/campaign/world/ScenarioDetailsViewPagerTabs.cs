@@ -15,11 +15,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
     public class ScenarioDetailsViewPagerTabs : Android.Support.V4.App.Fragment
     {
         private View _view;
-            
-        private TextView _scenarioname;
-        private TextView _scenarionumber;
-        private CheckBox _scenariostatus;
-
         private TabLayout _tabLayout;
         private ViewPager _viewPager;
         private ScenarioDetailsViewPagerAdapter _adapter;
@@ -51,54 +46,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _viewPager = _view.FindViewById<ViewPager>(Resource.Id.scenariodetailsviewpager);
             _tabLayout = _view.FindViewById<TabLayout>(Resource.Id.scenariodetails_tabs);
 
-            _scenarioname = _view.FindViewById<TextView>(Resource.Id.scenarionametextview);
-            _scenarionumber = _view.FindViewById<TextView>(Resource.Id.scenarionumbertextview);
-            _scenariostatus = _view.FindViewById<CheckBox>(Resource.Id.scenariostatuscheckbox);
-
             Scenario = GetUnlockedScenario();
-
-            if (Scenario != null)
-            {
-                if (Scenario.Scenario != null)
-                {
-                    _scenarioname.Text = Scenario.ScenarioName;
-                    _scenarionumber.Text = $"# {Scenario.Scenarionumber}";
-                    _scenariostatus.Checked = Scenario.Completed;
-                }
-            }
-
-            SetBackgroundOfTopLayout();
 
             SetTabLayout();
 
             return _view;
         }
 
-        private void SetBackgroundOfTopLayout()
-        {
-            var enableCheckbox = true;
-            var color = ContextCompat.GetColor(Context, Resource.Color.gloom_primaryLighter);
-            if (Scenario.IsBlocked())
-            {
-                enableCheckbox = false;
-                color = ContextCompat.GetColor(Context, Resource.Color.gloom_scenarioBlockedItemBackground);
-            }
-            else if (!Scenario.Completed && !Scenario.IsAvailable())
-            {
-                enableCheckbox = false;
-                color = ContextCompat.GetColor(Context, Resource.Color.gloom_scenarioUnavailableItemBackground);
-            }
-            else if (Scenario.Completed)
-            {
-                color = ContextCompat.GetColor(Context, Resource.Color.gloom_scenarioCompletedItemBackground);
-            }
 
-            var layoutTop = _view.FindViewById<RelativeLayout>(Resource.Id.layout_top);
-            layoutTop.SetBackgroundColor(new Color(color));
-
-            var chk = _view.FindViewById<CheckBox>(Resource.Id.scenariostatuscheckbox);
-            chk.Enabled = enableCheckbox;
-        }
 
         private void SetTabLayout()
         {

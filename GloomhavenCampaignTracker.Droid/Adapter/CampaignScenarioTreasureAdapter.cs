@@ -9,6 +9,7 @@ using Android.Widget;
 using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using Java.Lang;
 using Plugin.Connectivity;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
@@ -39,54 +40,141 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             return position;
         }
 
+        internal class TreasureViewHolder : Object
+        {
+            public ProgressBar ProgBar { get; set; }          
+            public ImageView TreasureImageView { get; set; }
+        }
+
         public override View GetView(int position, View convertView, ViewGroup parent)
-        {             
-            ImageView imageView;
-            if (convertView == null)
-            {
-                // if it's not recycled, initialize some attributes
-                float scale = _context.Resources.DisplayMetrics.Density;
-                int pixelsHeight = (int)(164 * scale + 0.5f);
-                int pixelsWidth = (int)(110 * scale + 0.5f);
-                imageView = new ImageView(_context) { LayoutParameters = new AbsListView.LayoutParams(pixelsWidth, pixelsHeight) };
-                // fixed image size
-                imageView.SetScaleType(ImageView.ScaleType.FitCenter); // fit cell
-            }
-            else
-            {
-                imageView = (ImageView)convertView;
-            }
+        {
+            TreasureViewHolder holder = null;
+
+            if (convertView != null)
+                holder = convertView.Tag as TreasureViewHolder;
 
             var t = _scenarioTreasures[position];
 
+            if (holder == null)
+            {
+                holder = new TreasureViewHolder();
+
+                var inflater = _context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
+                convertView = inflater.Inflate(Resource.Layout.item_view2, parent, false);
+                holder.ProgBar = convertView.FindViewById<ProgressBar>(Resource.Id.loadingPanel);
+                holder.TreasureImageView = convertView.FindViewById<ImageView>(Resource.Id.itemimage);
+                //// if it's not recycled, initialize some attributes
+                float scale = _context.Resources.DisplayMetrics.Density;
+                int pixelsHeight = (int)(164 * scale + 0.5f);
+                int pixelsWidth = (int)(110 * scale + 0.5f);
+                holder.TreasureImageView.LayoutParameters = new RelativeLayout.LayoutParams(pixelsWidth, pixelsHeight); //new ImageView(_context) { LayoutParameters = new AbsListView.LayoutParams(pixelsWidth, pixelsHeight) };
+                //// fixed image size
+                holder.TreasureImageView.SetScaleType(ImageView.ScaleType.FitCenter); // fit cell
+                convertView.Tag = holder;
+            }
+
             if (CrossConnectivity.Current.IsConnected)
             {
-                var side = t.Looted ? "front" : "back" ;
+                holder.ProgBar.Visibility = ViewStates.Visible;
+
+                var side = t.Looted ? "front" : "back";
                 var number = t.ScenarioTreasure.TreasureNumber < 10 ? $"0{t.ScenarioTreasure.TreasureNumber}" : $"{t.ScenarioTreasure.TreasureNumber}";
                 var treasurename = $"{side}-{number}.jpg";
                 var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/" + $"{treasurename}";
-                var imageBitmap = GetImageBitmapFromUrlAsync(url, imageView);
+
+                var imageBitmap = GetImageBitmapFromUrlAsync(url, holder.TreasureImageView, holder.ProgBar);
             }
 
-            if (!imageView.HasOnClickListeners)
+
+            if (!holder.TreasureImageView.HasOnClickListeners)
             {
-                imageView.Click += (sender, e) =>
+                holder.TreasureImageView.Click += (sender, e) =>
                 {
                     t.Looted = !t.Looted;
 
                     CampaignUnlockedScenarioRepository.InsertOrReplace(_campaignScenario);
 
+                    holder.TreasureImageView.SetImageDrawable(null);
+                    holder.ProgBar.Visibility = ViewStates.Visible;
+
                     var side = t.Looted ? "front" : "back";
                     var number = t.ScenarioTreasure.TreasureNumber < 10 ? $"0{t.ScenarioTreasure.TreasureNumber}" : $"{t.ScenarioTreasure.TreasureNumber}";
                     var treasurename = $"{side}-{number}.jpg";
                     var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/" + $"{treasurename}";
-                    var imageBitmap = GetImageBitmapFromUrlAsync(url, imageView);
+                    var imageBitmap = GetImageBitmapFromUrlAsync(url, holder.TreasureImageView, holder.ProgBar);
                 };
             }
-            return imageView;
+            return convertView;
         }
 
-        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen)
+
+        //public override View GetView(int position, View convertView, ViewGroup parent)
+        //{
+        //    ImageView imageView;
+        //    if (convertView == null)
+        //    {
+        //        // if it's not recycled, initialize some attributes
+        //        float scale = _context.Resources.DisplayMetrics.Density;
+        //        int pixelsHeight = (int)(164 * scale + 0.5f);
+        //        int pixelsWidth = (int)(110 * scale + 0.5f);
+        //        imageView = new ImageView(_context) { LayoutParameters = new AbsListView.LayoutParams(pixelsWidth, pixelsHeight) };
+        //        // fixed image size
+        //        imageView.SetScaleType(ImageView.ScaleType.FitCenter); // fit cell
+        //    }
+        //    else
+        //    {
+        //        imageView = (ImageView)convertView;
+        //    }
+
+        //    var t = _scenarioTreasures[position];
+
+        //    if (CrossConnectivity.Current.IsConnected)
+        //    {
+        //        var side = t.Looted ? "front" : "back";
+        //        var number = t.ScenarioTreasure.TreasureNumber < 10 ? $"0{t.ScenarioTreasure.TreasureNumber}" : $"{t.ScenarioTreasure.TreasureNumber}";
+        //        var treasurename = $"{side}-{number}.jpg";
+        //        var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/" + $"{treasurename}";
+        //        var imageBitmap = GetImageBitmapFromUrlAsync(url, imageView);
+        //    }
+
+        //    if (!imageView.HasOnClickListeners)
+        //    {
+        //        imageView.Click += (sender, e) =>
+        //        {
+        //            t.Looted = !t.Looted;
+
+        //            CampaignUnlockedScenarioRepository.InsertOrReplace(_campaignScenario);
+
+        //            var side = t.Looted ? "front" : "back";
+        //            var number = t.ScenarioTreasure.TreasureNumber < 10 ? $"0{t.ScenarioTreasure.TreasureNumber}" : $"{t.ScenarioTreasure.TreasureNumber}";
+        //            var treasurename = $"{side}-{number}.jpg";
+        //            var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/" + $"{treasurename}";
+        //            var imageBitmap = GetImageBitmapFromUrlAsync(url, imageView);
+        //        };
+        //    }
+        //    return imageView;
+        //}
+
+        //private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen)
+        //{
+        //    Bitmap imageBitmap = null;
+
+        //    using (var httpClient = new HttpClient())
+        //    {
+        //        var imageBytes = await httpClient.GetByteArrayAsync(url);
+        //        if (imageBytes != null && imageBytes.Length > 0)
+        //        {
+        //            imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+        //        }
+        //    }
+
+        //    imagen.SetImageBitmap(imageBitmap);
+
+        //    NotifyDataSetChanged();
+        //    return imageBitmap;
+        //}
+
+        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
         {
             Bitmap imageBitmap = null;
 
@@ -101,8 +189,11 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
             imagen.SetImageBitmap(imageBitmap);
 
-            NotifyDataSetChanged();
-            return imageBitmap;
+            ((ProgressBar)view).Visibility = ViewStates.Gone;
+
+  
+
+            return imageBitmap;                   
         }
 
         public override int Count => _scenarioTreasures.Count;

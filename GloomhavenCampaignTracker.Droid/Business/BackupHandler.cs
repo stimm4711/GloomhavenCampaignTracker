@@ -123,5 +123,29 @@ namespace GloomhavenCampaignTracker.Business
                 return false;
             }
         }
+
+        public static string CopyFileToBackupStorage(Plugin.FilePicker.Abstractions.FileData filedata)
+        {
+            var sd = Android.OS.Environment.ExternalStorageDirectory;
+
+            if (!Android.OS.Environment.MediaMounted.Equals(Android.OS.Environment.ExternalStorageState) ||
+                Android.OS.Environment.MediaMountedReadOnly.Equals(
+                    Android.OS.Environment.ExternalStorageState)) return null;
+
+            var backupfolder = new Java.IO.File(sd, backuppath);   
+            if (!backupfolder.Exists()) backupfolder.Mkdirs();
+
+            var filename = System.IO.Path.Combine(backupfolder.Path, filedata.FileName);
+
+            using (var fileStream = new System.IO.FileStream(filename, System.IO.FileMode.Create, System.IO.FileAccess.Write))
+            {
+                fileStream.Write(filedata.DataArray, 0, filedata.DataArray.Length);
+            }
+
+            //System.IO.File.WriteAllBytes(filename, filedata.DataArray);
+
+            return filename;
+
+        }
     }
 }

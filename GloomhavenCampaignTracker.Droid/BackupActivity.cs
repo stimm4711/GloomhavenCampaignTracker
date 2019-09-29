@@ -15,6 +15,9 @@ using System.Linq;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using System.Collections.Generic;
+using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
+using Java.IO;
 
 namespace GloomhavenCampaignTracker.Droid
 {
@@ -23,8 +26,9 @@ namespace GloomhavenCampaignTracker.Droid
     {
         private string _backupfilepath = "ghcampaigntracker/backup/";
         private ListView _listviewbackups;
-        private SelectableBackupAdapter _listviewbackupadapter;
-        private Java.IO.File _sd;
+        //private SelectableBackupAdapter _listviewbackupadapter;
+        private BackupAdapter _listviewbackupadapter;
+        private File _sd;
         private bool _hasValidFilePath;
         private EditText _filepath;
 
@@ -39,14 +43,14 @@ namespace GloomhavenCampaignTracker.Droid
 
             //Toolbar will now take on default actionbar characteristics
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "Database Backups";
+            SupportActionBar.Title = Resources.GetString(Resource.String.DatabaseBackupsTitle);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             _listviewbackups = FindViewById<ListView>(Resource.Id.listviewbackups);
             _filepath = FindViewById<EditText>(Resource.Id.textViewbackuppath);
             var selectbackuppathbutton = FindViewById<Button>(Resource.Id.button_select_bu_path);
             var createbackupbutton = FindViewById<Button>(Resource.Id.button_create_backup);
-            var restorebackupbutton = FindViewById<Button>(Resource.Id.button_restore_backup);
+            var loadbackupbutton = FindViewById<Button>(Resource.Id.button_load_backup);
 
             _listviewbackups.ItemsCanFocus = true;
             _listviewbackups.ChoiceMode = ChoiceMode.Single;
@@ -60,9 +64,9 @@ namespace GloomhavenCampaignTracker.Droid
                 createbackupbutton.Click += Createbackupbutton_Click;
             }
 
-            if (!restorebackupbutton.HasOnClickListeners)
+            if (!loadbackupbutton.HasOnClickListeners)
             {
-                restorebackupbutton.Click += Restorebackupbutton_Click; ;
+                loadbackupbutton.Click += Loadbackupbutton_Click; ;
             }
 
             if (!selectbackuppathbutton.HasOnClickListeners)
@@ -89,6 +93,9 @@ namespace GloomhavenCampaignTracker.Droid
             return false;
         }
 
+        /// <summary>
+        /// Get files in Backuppath, fill BackupAdapter and assign it to listview
+        /// </summary>
         private void SetListviewAdapter()
         {
             var files = GetBackupFiles();
@@ -97,10 +104,17 @@ namespace GloomhavenCampaignTracker.Droid
             foreach (var file in files.OrderByDescending(x=>x.Name))
             {
                 listitems.Add(new BackupListItem() { BackupFile = file });
-            }             
+            }
+            
+            _listviewbackupadapter = new BackupAdapter(this, listitems);
+            _listviewbackupadapter.RestartApplication += _listviewbackupadapter_RestartApplication;
 
-            _listviewbackupadapter = new SelectableBackupAdapter(this, listitems);
-            _listviewbackups.Adapter = _listviewbackupadapter;
+            _listviewbackups.Adapter = _listviewbackupadapter;          
+        }
+
+        private void _listviewbackupadapter_RestartApplication(object sender, EventArgs e)
+        {
+            RestartApp();
         }
 
         private void Selectbackuppathbutton_Click(object sender, EventArgs e)
@@ -108,58 +122,57 @@ namespace GloomhavenCampaignTracker.Droid
             Toast.MakeText(this, "Ignore this button. Just for now. Please.", ToastLength.Short).Show();
         }
 
-        private void Restorebackupbutton_Click(object sender, System.EventArgs e)
+        private void Loadbackupbutton_Click(object sender, System.EventArgs e)
         {
-            if (GetExternalStorageReadPermission())
-            {
-                var sd = Android.OS.Environment.ExternalStorageDirectory;
-
-                if (Android.OS.Environment.MediaMounted.Equals(Android.OS.Environment.ExternalStorageState))
-                {  
-                    var dbfile = _listviewbackupadapter.GetSelected();
-
-                    if (dbfile == null) return;
-                    
-                    BackupConfirmDialog(sd, dbfile.BackupFile);
-
-                }
-            }
+            PickFileAsync();              
         }
 
-        private Java.IO.File[] GetBackupFiles()
+        /// <summary>
+        /// Pick a file and copy it to the backup path
+        /// </summary>
+        private async void PickFileAsync()
+        {
+            try
+            {
+                FileData fileData = await CrossFilePicker.Current.PickFile();
+                if (fileData == null)
+                    return; // user canceled file picking
+
+                if (GetExternalStorageWritePermission())
+                {
+                    var filename = BackupHandler.CopyFileToBackupStorage(fileData);
+                    var file = new File(filename);
+                    if (file == null) return;
+
+                }
+
+                SetListviewAdapter();
+
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine("Exception choosing file: " + ex.ToString());
+            }
+        }
+        
+
+        private File[] GetBackupFiles()
         {
             if(_hasValidFilePath)
             {
-                var path = new Java.IO.File(_backupfilepath);
-                if (!path.Exists()) return new Java.IO.File[0];
+                var path = new File(_backupfilepath);
+                if (!path.Exists()) return new File[0];
                 return path.ListFiles().Where(x => x != null && x.IsFile).ToArray();
             }
 
-            return new Java.IO.File[] { };
+            return new File[] { };
         }
 
-        private void BackupConfirmDialog(IDisposable sd, Java.IO.File dbfile)
+        private void RestartApp()
         {
-            new CustomDialogBuilder(this, Resource.Style.MyDialogTheme)
-                .SetTitle("Confirm Restore")
-                .SetMessage("WARNING: This will replace the current database. All changes will be lost!")
-                .SetPositiveButton("Confirm", (sender, a) =>
-                {
-                    if (BackupHandler.RestoreBackup(sd, dbfile))
-                    {
-                        Toast.MakeText(this, "Databasebackup restored! Application will restart now", ToastLength.Short).Show();
-                    }
-                    else
-                    {
-                        Toast.MakeText(this, "Database import falied!", ToastLength.Short).Show();
-                    }
-
-                    var i = BaseContext.PackageManager.GetLaunchIntentForPackage(BaseContext.PackageName);
-                    i.AddFlags(ActivityFlags.ClearTop);
-                    StartActivity(i);
-                })
-                .SetNegativeButton("Cancel", (sender, a) => { })
-                .Show();
+            var i = BaseContext.PackageManager.GetLaunchIntentForPackage(BaseContext.PackageName);
+            i.AddFlags(ActivityFlags.ClearTop);
+            StartActivity(i);
         }
 
         private void Createbackupbutton_Click(object sender, System.EventArgs e)
@@ -185,17 +198,6 @@ namespace GloomhavenCampaignTracker.Droid
                     }
                 }
             }
-        }
-
-        private bool GetExternalStorageReadPermission()
-        {
-            var hasPermission2 = (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == Android.Content.PM.Permission.Granted);
-            if (!hasPermission2)
-            {
-                ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.ReadExternalStorage }, 521);
-            }
-
-            return (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == Android.Content.PM.Permission.Granted);
         }
 
         private bool GetExternalStorageWritePermission()

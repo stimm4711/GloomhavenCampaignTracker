@@ -19,10 +19,10 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         [ForeignKey(typeof(DL_CampaignUnlockedScenario))]
         public int CampaignScenario_ID { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.All), JsonIgnore]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
         public DL_CampaignUnlockedScenario UnlockedScenario { get; set; }
 
-        [ManyToOne(CascadeOperations = CascadeOperation.All), JsonIgnore]
+        [ManyToOne(CascadeOperations = CascadeOperation.CascadeRead), JsonIgnore]
         public DL_ScenarioTreasure ScenarioTreasure { get; set; }
     }
 }

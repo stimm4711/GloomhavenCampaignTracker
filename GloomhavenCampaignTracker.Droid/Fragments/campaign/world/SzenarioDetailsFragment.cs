@@ -17,6 +17,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         private TextView _scenarioname;
         private TextView _scenarionumber;
         private CheckBox _scenariostatus;
+        private ProgressBar _progBarLoadingTreasure;
         private GridView _grid;
 
         internal static SzenarioDetailsFragment NewInstance(int scenarioId)
@@ -46,8 +47,19 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _scenarionumber = _view.FindViewById<TextView>(Resource.Id.scenarionumbertextview);
             _scenariostatus = _view.FindViewById<CheckBox>(Resource.Id.scenariostatuscheckbox);
             _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
+            _progBarLoadingTreasure = _view.FindViewById<ProgressBar>(Resource.Id.pbSpinningCircle);
 
             _campaignScenario = GetUnlockedScenario();
+
+            if (_campaignScenario != null)
+            {
+                if (_campaignScenario.Scenario != null)
+                {
+                    _scenarioname.Text = _campaignScenario.ScenarioName;
+                    _scenarionumber.Text = $"# {_campaignScenario.Scenarionumber}";
+                    _scenariostatus.Checked = _campaignScenario.Completed;
+                }
+            }
 
             UpdateRequirementsListView();
 

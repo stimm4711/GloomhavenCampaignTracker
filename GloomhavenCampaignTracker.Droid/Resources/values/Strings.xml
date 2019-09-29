@@ -293,9 +293,11 @@
   <!-- Backup-->
   <string name="SelectDir">Select backup path</string>
   <string name="PathToBackupFolder_placeHolder">path to backup folder</string>
-  <string name="CreateBackupButton">Create Backup</string>
-  <string name="RestoreBackupButton">Restore Backup</string>
+  <string name="CreateBackupButton">Create</string>
+  <string name="RestoreBackupButton">Restore selected</string>
+  <string name="LoadBackupButton">Load Backup</string>
   <string name="DeleteBackupCommit">Delete Backup?</string>
+  <string name="DatabaseBackupsTitle">Database Backups</string>
 
   <!-- Splashscreen -->
   <string name="Loading">Loading...</string>
