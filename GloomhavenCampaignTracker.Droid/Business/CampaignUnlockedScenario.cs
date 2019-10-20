@@ -62,9 +62,9 @@ namespace GloomhavenCampaignTracker.Business
             set { UnlockedScenarioData.Completed = value; }
         }
 
-        public List<DL_Treasure> Treasures
+        public List<DL_CampaignScenarioTreasure> Treasures
         {
-            get { return UnlockedScenarioData?.ScenarioTreasures; }
+            get { return UnlockedScenarioData?.CampaignScenarioTreasures; }
         }
 
         public void AddTreasure(int treasureNumber, string content, bool isLooted = false)

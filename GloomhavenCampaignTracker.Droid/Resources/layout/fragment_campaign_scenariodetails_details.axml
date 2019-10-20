@@ -84,7 +84,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_height="wrap_content"
             android:id="@+id/txt_unlockByCaption"
             android:textColor="@color/gloom_primaryText"
-            android:layout_below="@+id/txt_regionCaption"/>
+            android:layout_below="@+id/txt_regionCaption"
+            android:visibility="gone" />
         <TextView
             android:text="#122"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -94,7 +95,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:textColor="@color/gloom_primaryText"
             android:layout_marginLeft="30dp"
             android:layout_below="@+id/txt_region"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:visibility="gone"/>
         <TextView
             android:text="Unlocked At:"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -102,7 +104,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_height="wrap_content"
             android:id="@+id/txt_unlockAtCaption"
             android:textColor="@color/gloom_primaryText"
-            android:layout_below="@+id/txt_unlockByCaption"/>
+            android:layout_below="@+id/txt_unlockByCaption"
+            android:visibility="gone"/>
         <TextView
             android:text="2019-09-20"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -112,7 +115,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:textColor="@color/gloom_primaryText"
             android:layout_marginLeft="30dp"
             android:layout_below="@+id/txt_unlockedBy"
-            android:layout_alignParentRight="true"/>       
+            android:layout_alignParentRight="true"
+            android:visibility="gone"/>       
         <TextView
             android:text="Completed At:"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -120,7 +124,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_height="wrap_content"
             android:id="@+id/txt_completedAtCaption"
             android:textColor="@color/gloom_primaryText"
-            android:layout_below="@+id/txt_unlockAtCaption"/>
+            android:layout_below="@+id/txt_unlockAtCaption"
+            android:visibility="gone"/>
         <TextView
             android:text="2019-09-20"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -130,7 +135,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:textColor="@color/gloom_primaryText"
             android:layout_marginLeft="30dp"
             android:layout_below="@+id/txt_unlockAtCaption"
-            android:layout_alignParentRight="true"/>    
+            android:layout_alignParentRight="true"
+            android:visibility="gone"/>
         <TextView
             android:text="Treasures:"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -139,7 +145,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/txt_treasures"
             android:textColor="@color/gloom_primaryText"
             android:layout_below="@+id/txt_completedAt"
-            android:layout_alignParentLeft="true"/>       
+            android:layout_alignParentLeft="true"
+            android:visibility="gone" />       
         <GridView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
@@ -164,7 +171,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:textColor="@color/gloom_primaryText"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/imagesGridView"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:visibility="gone"/>
         </RelativeLayout>
         <Button            
             android:text="Open in Scenario Viewer"
@@ -172,5 +180,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_height="wrap_content"
             android:id="@+id/cmd_openInScenarioViewer"            
             android:background="@drawable/borderbuttons"
-            android:layout_margin="20dp"/>  
+            android:layout_margin="20dp"
+            android:visibility="gone"/>  
     </LinearLayout>

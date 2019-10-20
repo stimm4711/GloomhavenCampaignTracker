@@ -15,16 +15,29 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
     }
 
-    public class TreasureWrapper : Java.Lang.Object
-    {
-        private DL_Treasure _treasure;
+    //public class TreasureWrapper : Java.Lang.Object
+    //{
+    //    private DL_Treasure _treasure;
 
-        public TreasureWrapper(DL_Treasure treasure)
+    //    public TreasureWrapper(DL_Treasure treasure)
+    //    {
+    //        _treasure = treasure;
+    //    }
+
+    //    public DL_Treasure Treasure => _treasure;
+
+    //}
+
+    public class CampaignTreasureWrapper : Java.Lang.Object
+    {
+        private DL_CampaignScenarioTreasure _treasure;
+
+        public CampaignTreasureWrapper(DL_CampaignScenarioTreasure treasure)
         {
             _treasure = treasure;
         }
 
-        public DL_Treasure Treasure => _treasure;
+        public DL_CampaignScenarioTreasure Treasure => _treasure;
 
     }
 }

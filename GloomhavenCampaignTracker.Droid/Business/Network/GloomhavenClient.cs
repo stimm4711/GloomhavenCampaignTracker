@@ -189,13 +189,13 @@ namespace GloomhavenCampaignTracker.Business.Network
 
                         if (scenariotreasures != null)
                         {
-                            foreach (DL_Treasure st in scenariotreasures.Where(x => x.CampaignScenario_ID == cs.Id))
-                            {
-                                if (!currentScenario.Treasures.Any(x => x.Number == st.Number))
-                                {
-                                    currentScenario.AddTreasure(st.Number, st.Content, st.Looted);
-                                }
-                            }
+                            //foreach (DL_CampaignScenarioTreasure st in scenariotreasures.Where(x => x.CampaignScenario_ID == cs.Id))
+                            //{
+                            //    if (!currentScenario.Treasures.Any(x => x.ScenarioTreasure.TreasureNumber == st.Number))
+                            //    {
+                            //        currentScenario.AddTreasure(st.Number, st.Content, st.Looted);
+                            //    }
+                            //}
                         }
 
                         currentScenario.Save();

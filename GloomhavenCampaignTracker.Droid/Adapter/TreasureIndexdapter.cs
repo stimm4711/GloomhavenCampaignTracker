@@ -70,7 +70,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                     holder.TreasureLooted.CheckedChange += (sender, e) =>
                     {
                         var chkBx = (CheckBox)sender;
-                        var treasure = (TreasureWrapper)chkBx.Tag;
+                        var treasure = (CampaignTreasureWrapper)chkBx.Tag;
 
                         if (treasure == null || treasure.Treasure.Looted == chkBx.Checked) return;
                         treasure.Treasure.Looted = chkBx.Checked;
@@ -93,31 +93,31 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                     {
                         var v = (View)sender;
                         var chb = v.FindViewById<CheckBox>(Resource.Id.treasureLootedCheck);
-                        var t = (TreasureWrapper)chb.Tag;
+                        var t = (CampaignTreasureWrapper)chb.Tag;
 
                         TreasureItemClick(t);
                     };
                 }
 
                 // Set Data
-                holder.TreasureNumber.Text = $"# {scenarioTreasure.Number}";
-                holder.TresureContent.Text = scenarioTreasure.Content;
-                holder.TreasureLooted.Tag = new TreasureWrapper(scenarioTreasure);
+                holder.TreasureNumber.Text = $"# {scenarioTreasure.ScenarioTreasure.TreasureNumber}";
+                holder.TresureContent.Text = "---";
+                holder.TreasureLooted.Tag = new CampaignTreasureWrapper(scenarioTreasure);
                 holder.TreasureLooted.Checked = scenarioTreasure.Looted;              
             }
 
             return convertView;
         }
 
-        private void TreasureItemClick(TreasureWrapper treasure)
+        private void TreasureItemClick(CampaignTreasureWrapper treasure)
         {
             var inflater = _context.GetSystemService(Context.LayoutInflaterService).JavaCast<LayoutInflater>();
             var convertView = inflater.Inflate(Resource.Layout.alertdialog_addtreasure, null);
             var refNumberText = convertView.FindViewById<EditText>(Resource.Id.treasure_ref_number);
             var content = convertView.FindViewById<EditText>(Resource.Id.treasure_content);
 
-            content.Text = treasure.Treasure.Content;
-            refNumberText.Text = $"{treasure.Treasure.Number}";
+            content.Text = treasure.Treasure.ScenarioTreasure.TreasureContent;
+            refNumberText.Text = $"{treasure.Treasure.ScenarioTreasure.TreasureNumber}";
 
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                 .SetCustomView(convertView)
@@ -126,10 +126,10 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 {
                     if (int.TryParse(refNumberText.Text, out int refNumber))
                     {
-                        treasure.Treasure.Number = refNumber;
+                        treasure.Treasure.ScenarioTreasure.TreasureNumber = refNumber;
                     }
 
-                    treasure.Treasure.Content = content.Text;
+                    treasure.Treasure.ScenarioTreasure.TreasureContent = content.Text;
 
                     NotifyDataSetChanged();
                     _campScenario.Save();

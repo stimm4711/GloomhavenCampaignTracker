@@ -201,7 +201,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             var intent = new Intent();
             intent.SetClass(_context, typeof(DetailsActivity));
             intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.ScenarioDetails);
-            intent.PutExtra(DetailsActivity.SelectedScenarioId, campScenario.UnlockedScenarioData.Id);
+            intent.PutExtra(DetailsActivity.SelectedScenarioId, campScenario.UnlockedScenarioData.ID_Scenario);
             _context.StartActivity(intent);
 
             //if (campScenario.IsAvailable() || campScenario.Completed) return;
@@ -480,7 +480,9 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                         NotifyDataSetChanged();
                     })
                     .Show();
-            }            
+            }
+
+            //GCTContext.CurrentCampaign.Save();
         }
 
         internal HashSet<CampaignUnlockedScenario> SetIncomplete(CampaignUnlockedScenario cs, HashSet<CampaignUnlockedScenario> removededScenarios = null)

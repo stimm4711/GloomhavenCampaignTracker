@@ -47,6 +47,12 @@ namespace GloomhavenCampaignTracker.Business
             return campaign;
         }
 
+        internal CampaignUnlockedScenario GetUnlockedScenario(int id)
+        {
+            var scen = CampaignData.UnlockedScenarios.FirstOrDefault(x => x.ID_Scenario == id);
+            return new CampaignUnlockedScenario(scen);
+        }
+
         /// <summary>
         /// constructor
         /// </summary>

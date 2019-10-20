@@ -30,6 +30,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             return frag;
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+            InitListData();
+            BindListToAdapter();
+        }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -55,9 +62,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                 {
                     ShowAssignScenarioDialog(inflater);
                 };
-            }
-
-            BindListToAdapter();
+            }            
 
             return _view;
         }
