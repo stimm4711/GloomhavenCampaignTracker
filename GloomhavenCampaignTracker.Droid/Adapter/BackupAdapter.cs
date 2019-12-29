@@ -176,7 +176,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                         contentResolver.Delete(filesUri, where, selectionArgs);
                     }
 
-                    //NotifyDataSetChanged();
+                    NotifyDataSetChanged();
                 })
                 .SetNegativeButton(_context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
                 .Show();

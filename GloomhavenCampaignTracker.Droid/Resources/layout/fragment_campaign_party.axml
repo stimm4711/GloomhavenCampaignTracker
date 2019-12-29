@@ -44,7 +44,7 @@
                 android:textSize="20dp"
                 android:padding="10px" />
             <Button
-                android:text="@string/PartyAchievements"
+                android:text="@string/PAchievements"
                 android:id="@+id/partyAchievementsButton"
                 android:background="@drawable/borderbuttons"
                 android:textColor="@color/gloom_primaryText"
@@ -204,7 +204,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView1"
+                    android:id="@+id/textView2"
                     android:textStyle="bold" />
                 <EditText
                     android:inputType="textMultiLine"

@@ -94,7 +94,6 @@
   <string name="classes_bladeswarmname">Bladeswarm</string>
   <string name="unlocks_envelopex_congratulations">Congratulations!\nYou have unlocked the content of envelope X!</string>
   <string name="unlocks_envelopex_completeddialogmessage">Select Reward to open a website with your reward for completing the quest!</string>
-  <string name="Reward">Reward</string>
   <string name="unlocks_envelopex_speakthenamebutton">Speak the name</string>
   <string name="unlocks_envelopex_nothinghappens">You speak out the name but nothing happens.</string>
   
@@ -207,7 +206,7 @@
   <string name="EnterPartyname">Enter Partyname</string>
   <string name="Partyname">Partyname</string>
   <string name="PartyMembers">Party Members</string>
-  <string name="PartyAchievements">P. Achievements</string>
+  <string name="PAchievements">P. Achievements</string>
   <string name="PartyReputation">Party Reputation</string>
   <string name="ShopPriceModifier">Shop Price Modifier</string>
   <string name="CurrentLocation">Current Location</string>

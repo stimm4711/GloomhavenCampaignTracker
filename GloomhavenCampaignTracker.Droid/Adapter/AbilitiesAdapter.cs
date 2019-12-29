@@ -64,13 +64,17 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
             var numberOfEnhancements = (ability?.AbilityEnhancements != null) ? ability.AbilityEnhancements.Count : 0;
             holder.AbilityEnhancementsNumber.Text = $"{numberOfEnhancements}";
+            holder.OptionsButton.Tag = $"{position}";
 
             // options button  
             if (!holder.OptionsButton.HasOnClickListeners)
             {
                 holder.OptionsButton.Click += (sender, e) =>
                 {
-                    ShowAbilityPopupMenu(position, holder.OptionsButton);
+                    if (int.TryParse(holder.OptionsButton.Tag.ToString(), out int pos))
+                    {
+                        ShowAbilityPopupMenu(pos, holder.OptionsButton);
+                    }                   
                 };
             }
             return convertView;

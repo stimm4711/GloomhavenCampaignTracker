@@ -153,10 +153,16 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             if (GCTContext.CurrentCampaign.CurrentParty == null) return;
             if (GCTContext.CurrentCampaign.CurrentParty.Id != character.ID_Party) return;
 
+            //Remove character from list
             character.Party = null;
             character.ID_Party = 0;
-            DataServiceCollection.CharacterDataService.InsertOrReplace(character);
             _characters.Remove(character);
+
+            // remove party from character in database
+            var chara = CharacterRepository.Get(character.Id);            
+            chara.Party = null;
+            chara.ID_Party = 0;
+            DataServiceCollection.CharacterDataService.InsertOrReplace(chara);          
 
             NotifyDataSetChanged();
         }
