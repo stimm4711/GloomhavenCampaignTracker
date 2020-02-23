@@ -2,13 +2,11 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Preferences;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Business;
 using System;
 using System.Linq;
@@ -83,9 +81,8 @@ namespace GloomhavenCampaignTracker.Droid
                 _sd = Android.OS.Environment.ExternalStorageDirectory;
 
                 if (Android.OS.Environment.MediaMounted.Equals(Android.OS.Environment.ExternalStorageState))
-                {                    
-                    var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-                    _backupfilepath = prefs.GetString("Backuppath", $"{_sd}/ghcampaigntracker/backup/");
+                {
+                    _backupfilepath = GCTContext.Settings.Backuppath;
                     _filepath.Text = _backupfilepath;
                     return true;
                 }

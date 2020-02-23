@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
 using GloomhavenCampaignTracker.Droid;
@@ -446,6 +445,20 @@ namespace GloomhavenCampaignTracker.Business
         #endregion
 
         #region "Unlocked Scenarios"
+
+        /// <summary>
+        /// Check is a scenario with the given number is already unlocked
+        /// </summary>
+        /// <param name="scenarioNumber"></param>
+        /// <returns></returns>
+        internal bool IsScenarioUnlocked(int scenarioNumber)
+        {
+            if(CampaignData.UnlockedScenarios.FirstOrDefault(x => x.Scenario.Scenarionumber == scenarioNumber) == null)
+            {
+                return false;
+            }
+            return true;
+        }
 
         /// <summary>
         /// Adds an unlocked scenario

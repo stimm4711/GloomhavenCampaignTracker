@@ -41,7 +41,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         {
             get
             {
-                if (GCTContext.ShowScenarioNames)
+                if (GCTContext.Settings.IsShowScenarios)
                 {
                     return $"# {Scenarionumber}   {Name}";
                 }

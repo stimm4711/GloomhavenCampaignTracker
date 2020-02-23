@@ -33,6 +33,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:text="@string/Completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+             android:layout_marginRight="5dp"
                 android:id="@+id/scenariostatuscheckbox"                
                 android:layout_below="@+id/scenarionametextview"
                 android:layout_alignParentRight="true"
@@ -41,9 +42,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+         android:layout_marginTop="5dp"
         android:id="@+id/rl_region">
         <TextView
-            android:text="Requirements"
+            android:text="@string/Requirements"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,16 +58,18 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_height="wrap_content"
             android:id="@+id/lv_requirements"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="2dp"
             android:layout_below="@+id/txt_requirementsCaption"
             android:layout_centerHorizontal="true" />        
         <TextView
-            android:text="Region:"
+            android:text="@string/Region"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txt_regionCaption"
             android:textColor="@color/gloom_primaryText"
             android:layout_alignParentLeft="true"
+            android:layout_marginTop="2dp"
             android:layout_below="@+id/lv_requirements"/>
         <TextView
             android:text="Dagger Forrest"
@@ -75,6 +79,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/txt_region"
             android:textColor="@color/gloom_primaryText"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="2dp"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/lv_requirements"/>
         <TextView
@@ -138,7 +143,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_alignParentRight="true"
             android:visibility="gone"/>
         <TextView
-            android:text="Treasures:"
+            android:text="@string/TreasuresCaption"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

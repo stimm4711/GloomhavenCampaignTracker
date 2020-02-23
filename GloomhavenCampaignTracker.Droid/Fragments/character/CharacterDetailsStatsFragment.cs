@@ -228,9 +228,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         private void ShowPersonalQuest()
         {
             if (Character?.PersonalQuest == null) return;
-            _lifegoalnumber.Text = GCTContext.ShowPersonalQuestDetails ? $"# {Character.PersonalQuest.QuestNumber}   {Character.PersonalQuest.QuestName}" : $"# {Character.PersonalQuest.QuestNumber}";
+            _lifegoalnumber.Text = GCTContext.Settings.IsShowPq ? $"# {Character.PersonalQuest.QuestNumber}   {Character.PersonalQuest.QuestName}" : $"# {Character.PersonalQuest.QuestNumber}";
 
-            if(GCTContext.ShowPersonalQuestDetails)
+            if(GCTContext.Settings.IsShowPq)
             {
                 _linearLayoutPersonalQuest.RemoveAllViews();
 
@@ -521,9 +521,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             var rewardtext = view.FindViewById<TextView>(Resource.Id.rewardtextview);
             var classImageView = view.FindViewById<ImageView>(Resource.Id.classImageView);
 
-            SetPqSpinnerData(spinner, GCTContext.ShowPersonalQuestDetails, true);
+            SetPqSpinnerData(spinner, GCTContext.Settings.IsShowPq, true);
 
-            if (!GCTContext.ShowPersonalQuestDetails)
+            if (!GCTContext.Settings.IsShowPq)
             {
                 if (connected)
                 {
@@ -649,7 +649,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                     goalText.Text = pq.QuestGoal;
                     if (pq.QuestReward == "class")
                     {
-                        if (GCTContext.ShowPersonalQuestDetails) classImageView.Visibility = ViewStates.Visible;
+                        if (GCTContext.Settings.IsShowPq) classImageView.Visibility = ViewStates.Visible;
 
                         classImageView.SetImageResource(ResourceHelper.GetClassIconWhiteSmallRessourceId(pq.QuestRewardClassId - 1));
                         rewardtext.Text = "Character";

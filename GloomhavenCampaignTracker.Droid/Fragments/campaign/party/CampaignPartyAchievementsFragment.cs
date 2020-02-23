@@ -73,7 +73,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
 
             IEnumerable<PartyAchievement> selectableAchievements = GCTContext.AchievementCollectiom.PartyAchievements.OrderBy(x => x.PartyAchievementData.Name);
 
-            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.ActivateForgottenCiclesContent)
+            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.Settings.IsFCActivated)
                 selectableAchievements = selectableAchievements.Where(x => x.PartyAchievementData.ContentOfPack == 1);
 
             if (GCTContext.CurrentCampaign.CurrentParty.PartyAchievements != null)

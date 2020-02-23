@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Android.OS;
-using Android.Preferences;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
@@ -32,7 +30,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
         private int _currentScenarioLevel = 0;
         private int _scenariolevelMod = 0;
         private bool _isSolo = false;
-        private bool _hideRetired;
 
         public CampaignWorldFragment() : base() {}
 
@@ -65,7 +62,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
             if (_rifteventsButton != null)
             {
-                if (GCTContext.ActivateForgottenCiclesContent && GCTContext.CurrentCampaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom))
+                if (GCTContext.Settings.IsFCActivated && GCTContext.CurrentCampaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom))
                 {
                     _rifteventsButton.Visibility = ViewStates.Visible;
                 }
@@ -144,9 +141,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                 _scenariolevelmodtext.Text = $"{_scenariolevelMod}";
                 SetScenarioLevel();
             }
-
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            _hideRetired = prefs.GetBoolean("FilterRetired", true);
 
             return _view;
         }

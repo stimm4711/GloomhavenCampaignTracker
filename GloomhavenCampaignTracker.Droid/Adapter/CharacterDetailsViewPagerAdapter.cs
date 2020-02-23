@@ -20,7 +20,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             _context = context;
             FragManager = fm;
-            if (GCTContext.ShowAbilitySheet) PageCount = 5;
+            if (GCTContext.Settings.IsShowOldAbilitySheet) PageCount = 5;
             frags = new Fragment[PageCount];
             _character = character;
         }

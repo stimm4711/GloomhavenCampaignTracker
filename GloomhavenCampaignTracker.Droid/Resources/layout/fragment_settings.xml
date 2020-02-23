@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -85,7 +85,7 @@
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <CheckBox
-            android:text="@string/ShowTreasures"
+            android:text="Show treasures"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/chkShowTreasures"
@@ -95,11 +95,11 @@
             android:checked="true"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:text="@string/ShowTreasuresDescription"
+            android:text="Show treasure count in scenario list and treasure images in scenario details"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/hideTreasuresText"
+            android:id="@+id/hideTreasuresTest"
             android:layout_below="@+id/chkShowTreasures"
             android:textColor="@color/gloom_secondaryLight"
             android:layout_marginLeft="40dp"

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using Android.App;
 using Android.Graphics;
 using Android.Support.Design.Widget;
@@ -12,7 +10,6 @@ using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Business;
 using Object = Java.Lang.Object;
-using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using Android.Content;
 
 namespace GloomhavenCampaignTracker.Droid.Adapter
@@ -129,6 +126,13 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 holder.OptionsButton = convertView.FindViewById<Button>(Resource.Id.optionsButton);
                 holder.TreasureText = convertView.FindViewById<TextView>(Resource.Id.scenarioTreasureStatus);
                 holder.Region = convertView.FindViewById<TextView>(Resource.Id.campaignScenarioRegion);
+
+                if(!GCTContext.Settings.IsShowTreasure)
+                {
+                    holder.TreasureText.Visibility = ViewStates.Gone;
+                    var treasureImage = convertView.FindViewById<ImageView>(Resource.Id.treasureImage);
+                    treasureImage.Visibility = ViewStates.Gone;
+                }
 
                 // Completed CheckCHanged Event
                 holder.ScenarioCompleted.CheckedChange += (sender, e) =>

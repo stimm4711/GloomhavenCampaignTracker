@@ -178,7 +178,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
             var scenarios = DataServiceCollection.ScenarioDataService.Get();
 
-            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.ActivateForgottenCiclesContent)
+            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.Settings.IsFCActivated)
                 scenarios = scenarios.Where(x => x.ContentOfPack == 1).ToList();
 
             //IEnumerable<Scenario> selectableScenarios = GCTContext.ScenarioCollection.Items;

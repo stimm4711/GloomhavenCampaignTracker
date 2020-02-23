@@ -48,7 +48,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _scenarioname = _view.FindViewById<TextView>(Resource.Id.scenarionametextview);
             _scenarionumber = _view.FindViewById<TextView>(Resource.Id.scenarionumbertextview);
             _scenariostatus = _view.FindViewById<CheckBox>(Resource.Id.scenariostatuscheckbox);
-            _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
+            _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);           
 
             _campaignScenario = GetUnlockedScenario();
 
@@ -69,6 +69,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                         txt_region.Text = Helper.GetRegionName(_campaignScenario.UnlockedScenarioData.Scenario.Region_ID);
                     }
                 }
+            }
+
+            if (!GCTContext.Settings.IsShowTreasure)
+            {
+                _grid.Visibility = ViewStates.Gone;
+                txt_treasures.Visibility = ViewStates.Gone;
             }
 
             UpdateRequirementsListView();
@@ -96,9 +102,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 List<CampaignUnlockedScenario> unlockedScenarios = new List<CampaignUnlockedScenario>();
                 campScenario.Completed = true;
 
-                var unlockedScenarioNumbers = campScenario.GetUnlockedScenarios();
                 var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;
-
+                var unlockedScenarioNumbers = campScenario.GetUnlockedScenarios().Where(x=> !currentCampaign.IsScenarioUnlocked(x));
+                
                 var lstScenariosWithSection = new List<int>()
                 {
                     98,100,99
@@ -165,7 +171,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 {
                     foreach (var scenarioNumber in unlockedScenarioNumbers)
                     {
-                        _ = currentCampaign.AddUnlockedScenario(scenarioNumber);
+                        _ = currentCampaign.AddUnlockedScenario(scenarioNumber);      
                     }
                 }
 

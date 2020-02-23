@@ -3,7 +3,6 @@ using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Widget;
-using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,9 +15,9 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Linq;
 using Android.Support.V4.App;
 using Android.Views;
-using Android.Preferences;
 using GloomhavenCampaignTracker.Business.Network;
 using Data;
+using GloomhavenCampaignTracker.Business;
 
 namespace GloomhavenCampaignTracker.Droid
 {
@@ -27,9 +26,8 @@ namespace GloomhavenCampaignTracker.Droid
     {
         private Guid _guid;
 
-        private const string _guidpref = "deviceguid";
-        private const string _username = "username";
-        private const int Port = 54218;
+        //private const string _guidpref = "deviceguid";
+        //private const int Port = 54218;
 
         private TextView _serverstatus;
         private TextView _serveripaddress;
@@ -64,8 +62,7 @@ namespace GloomhavenCampaignTracker.Droid
             _btnStartServer = FindViewById<Button>(Resource.Id.btn_serverstart);
             _btnShowCampaign = FindViewById<Button>(Resource.Id.btn_select_campaign);
 
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-            var username = prefs.GetString(_username, "");
+            var username = GCTContext.Settings.Username; 
 
             _txtUsername.Text = username;
 
@@ -236,10 +233,7 @@ namespace GloomhavenCampaignTracker.Droid
                     return;
                 }
 
-                var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-                var editor = prefs.Edit();
-                editor.PutString(_username, username);
-                editor.Apply();
+                GCTContext.Settings.Username = username;
 
                 GloomhavenClient.ClientGuid = _guid;
                 GloomhavenClient.ServerIPAddress = ipaddress;

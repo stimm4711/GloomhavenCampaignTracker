@@ -3,7 +3,6 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Business;
-using Android.Preferences;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
 
@@ -11,12 +10,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
 {
     public class SettingsFragment : Fragment
     {
-        private const string _showItemnames = "showItemnames";
-        private const string _showPQNames = "showPQDetails";
-        private const string _showScenarioNames = "showScenarioNames";
-        private const string _showOldAbilitySheet = "showOldAbilitySheet";
-        private const string _activateFC = "activateFC";
-
         public static SettingsFragment NewInstance()
         {
             var frag = new SettingsFragment { Arguments = new Bundle() };
@@ -38,41 +31,44 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             var btnCheckItems = view.FindViewById<Button>(Resource.Id.checkitemsButton);
             var activateFCCheck = view.FindViewById<CheckBox>(Resource.Id.activateFCCheck);
             var showOldAbilitySheetCheck = view.FindViewById<CheckBox>(Resource.Id.isShowOldAbilitySheet);
+            var showTreasuresCheck = view.FindViewById<CheckBox>(Resource.Id.chkShowTreasures);
 
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            var isShowItems = prefs.GetBoolean(_showItemnames, true);
-            var isShowPQ = prefs.GetBoolean(_showPQNames, true);
-            var isShowScenarios = prefs.GetBoolean(_showScenarioNames, false);
-            var isShowOldAbilitySheet = prefs.GetBoolean(_showOldAbilitySheet, false);
-            var isFCActivated = prefs.GetBoolean(_activateFC, false);
+            var isShowItems = GCTContext.Settings.IsShowItems;
+            var isShowPQ = GCTContext.Settings.IsShowPq;
+            var isShowScenarios = GCTContext.Settings.IsShowScenarios;
+            var isShowOldAbilitySheet = GCTContext.Settings.IsShowOldAbilitySheet;
+            var isFCActivated = GCTContext.Settings.IsFCActivated;
+            var isShowTreasure = GCTContext.Settings.IsShowTreasure;
             
             checkItems.Checked = isShowItems;
             checkpq.Checked = isShowPQ;
             checkscenarios.Checked = isShowScenarios;
             activateFCCheck.Checked = isFCActivated;
             showOldAbilitySheetCheck.Checked = isShowOldAbilitySheet;
+            showTreasuresCheck.Checked = isShowTreasure;
 
             checkItems.CheckedChange += CheckItems_CheckedChange;
             checkpq.CheckedChange += Checkpq_CheckedChange;
             checkscenarios.CheckedChange += Checkscenarios_CheckedChange;
             activateFCCheck.CheckedChange += ActivateFCCheck_CheckedChange;
             showOldAbilitySheetCheck.CheckedChange += showOldAbilitySheetCheck_CheckedChange;
+            showTreasuresCheck.CheckedChange += ShowTreasuresCheck_CheckedChange;
 
             if (!btnCheckItems.HasOnClickListeners)
                 btnCheckItems.Click += BtnCheckItems_Click;
             return view;
         }
 
+        private void ShowTreasuresCheck_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
+        {
+            if (e.IsChecked == GCTContext.Settings.IsShowTreasure) return;
+            GCTContext.Settings.IsShowTreasure = e.IsChecked;
+        }
+
         private void ActivateFCCheck_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            if (e.IsChecked == GCTContext.ActivateForgottenCiclesContent) return;
-
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            var editor = prefs.Edit();
-            editor.PutBoolean(_activateFC, e.IsChecked);
-            editor.Apply();
-
-            GCTContext.ActivateForgottenCiclesContent = e.IsChecked;
+            if (e.IsChecked == GCTContext.Settings.IsFCActivated) return;
+            GCTContext.Settings.IsFCActivated = e.IsChecked;
         }
 
         private void BtnCheckItems_Click(object sender, System.EventArgs e)
@@ -96,50 +92,26 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
 
         private void showOldAbilitySheetCheck_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            if (e.IsChecked == GCTContext.ShowAbilitySheet) return;
-
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            var editor = prefs.Edit();
-            editor.PutBoolean(_showOldAbilitySheet, e.IsChecked);
-            editor.Apply();
-
-            GCTContext.ShowAbilitySheet = e.IsChecked;
+            if (e.IsChecked == GCTContext.Settings.IsShowOldAbilitySheet) return;
+            GCTContext.Settings.IsShowOldAbilitySheet = e.IsChecked;
         }
 
         private void Checkscenarios_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            if (e.IsChecked == GCTContext.ShowScenarioNames) return;
-
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            var editor = prefs.Edit();
-            editor.PutBoolean(_showScenarioNames, e.IsChecked);
-            editor.Apply();
-
-            GCTContext.ShowScenarioNames = e.IsChecked;
+            if (e.IsChecked == GCTContext.Settings.IsShowScenarios) return;
+            GCTContext.Settings.IsShowScenarios = e.IsChecked;
         }
 
         private void Checkpq_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            if (e.IsChecked == GCTContext.ShowPersonalQuestDetails) return;
-
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            var editor = prefs.Edit();
-            editor.PutBoolean(_showPQNames, e.IsChecked);
-            editor.Apply();
-
-            GCTContext.ShowPersonalQuestDetails = e.IsChecked;
+            if (e.IsChecked == GCTContext.Settings.IsShowPq) return;
+            GCTContext.Settings.IsShowPq = e.IsChecked;
         }
 
         private void CheckItems_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            if (e.IsChecked == GCTContext.ShowItemNames) return;
-
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            var editor = prefs.Edit();
-            editor.PutBoolean(_showItemnames, e.IsChecked);
-            editor.Apply();
-
-            GCTContext.ShowItemNames = e.IsChecked;
+            if (e.IsChecked == GCTContext.Settings.IsShowItems) return;
+            GCTContext.Settings.IsShowItems = e.IsChecked;
         }
     }
 }

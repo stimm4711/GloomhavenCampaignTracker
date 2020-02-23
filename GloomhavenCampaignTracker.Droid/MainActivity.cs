@@ -2,7 +2,6 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Widget;
@@ -28,16 +27,9 @@ namespace GloomhavenCampaignTracker.Droid
     public class MainActivity : AppCompatActivity
     {
         private DrawerLayout _drawerLayout;
-        private NavigationView _navigationView;
-        private const string LastLoadedCampaign = "lastloadedcampaign";
-        private const string LastloadedParty = "lastloadedparty";
+        private NavigationView _navigationView;       
         private const string SelectedFragId = "selected_fragid";
-        private Fragment _currentFragment;
-        private const string _showItemnames = "showItemnames";
-        private const string _showPQNames = "showPQDetails";
-        private const string _showOldAbilitySheet = "showOldAbilitySheet";
-        private const string _activateFC = "activateFC";
-        private const string _showReleaseNotes = "showReleaenotes";
+        private Fragment _currentFragment;       
 
         protected override void OnResume()
         {
@@ -111,23 +103,11 @@ namespace GloomhavenCampaignTracker.Droid
                     })
                      .SetNegativeButton("Cancel", (senderAlert, args) => { })
                     .Show();                
-            }           
-
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-            var isShowItems = prefs.GetBoolean(_showItemnames, true);
-            var isShowPq = prefs.GetBoolean(_showPQNames, true);
-            var isShowOldAbilitySheet = prefs.GetBoolean(_showOldAbilitySheet, false);
-            var isFCActivated = prefs.GetBoolean(_activateFC, false);
-            var isShowReleasenotes = prefs.GetBoolean(_showReleaseNotes, true);
-
-            GCTContext.ShowItemNames = isShowItems;
-            GCTContext.ShowPersonalQuestDetails = isShowPq;
-            GCTContext.ShowAbilitySheet = isShowOldAbilitySheet;
-            GCTContext.ActivateForgottenCiclesContent = isFCActivated;
+            }          
 
             _navigationView.NavigationItemSelected += NavigationItemSelected;
 
-            if (isShowReleasenotes)
+            if (GCTContext.Settings.IsShowReleasenotes)
             {
                 var convertView = this.LayoutInflater.Inflate(Resource.Layout.alertdialog_release_notes, null);
                 new CustomDialogBuilder(this, Resource.Style.MyDialogTheme)
@@ -135,9 +115,7 @@ namespace GloomhavenCampaignTracker.Droid
                     .SetTitle("Releasenotes 1.4.3")                   
                     .SetPositiveButton("Do not show again", (senderAlert, args) =>
                     {
-                        var editor = prefs.Edit();
-                        editor.PutBoolean(_showReleaseNotes, false);
-                        editor.Apply();
+                        GCTContext.Settings.IsShowReleasenotes = false;
                     })
                      .SetNegativeButton("Cancel", (senderAlert, args) => { })
                     .Show();
@@ -151,9 +129,8 @@ namespace GloomhavenCampaignTracker.Droid
             try
             {
                 if (GCTContext.CampaignCollection.CurrentCampaign == null)
-                {
-                    var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-                    var currentCampaignId = prefs.GetInt(LastLoadedCampaign, -1);
+                {              
+                    var currentCampaignId = GCTContext.Settings.LastLoadedCampaign;
                     if (currentCampaignId > 0)
                     {
                         var campaigns = DataServiceCollection.CampaignDataService.GetCampaignsFlat();
@@ -165,7 +142,7 @@ namespace GloomhavenCampaignTracker.Droid
                             }
                             else
                             {
-                                var currentPartyId = prefs.GetInt(LastloadedParty, -1);
+                                var currentPartyId = GCTContext.Settings.LastLoadedParty;
                                 if (GCTContext.CurrentCampaign != null && currentPartyId > 0) GCTContext.CurrentCampaign.SetCurrentParty(currentPartyId);
                             }
                         }
@@ -303,13 +280,10 @@ namespace GloomhavenCampaignTracker.Droid
             {
                 _currentFragment = new CampaignViewPagerFragmentTabs();
                 ShowFragment();
-            }         
+            }
 
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(this);
-            var editor = prefs.Edit();
-            editor.PutInt(LastLoadedCampaign, GCTContext.CurrentCampaign.CampaignData.Id);
-            if (GCTContext.CurrentCampaign.CurrentParty != null) editor.PutInt(LastloadedParty, GCTContext.CurrentCampaign.CurrentParty.Id);
-            editor.Apply();
+            GCTContext.Settings.LastLoadedCampaign = GCTContext.CurrentCampaign.CampaignData.Id;           
+            if (GCTContext.CurrentCampaign.CurrentParty != null) GCTContext.Settings.LastLoadedParty = GCTContext.CurrentCampaign.CurrentParty.Id; ;
         }
 
         private void ShowFragment()

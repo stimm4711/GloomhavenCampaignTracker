@@ -420,6 +420,7 @@
     <Compile Include="Fragments\SupportDevFragment.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
     <Compile Include="GloomhavenCampaignTrackerApplication.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Utils\ResourceHelper.cs" />
@@ -2988,6 +2989,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\back_40.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_settings.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

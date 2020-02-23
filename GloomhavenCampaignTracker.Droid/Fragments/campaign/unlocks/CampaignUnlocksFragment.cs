@@ -85,7 +85,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
                 ViewGroup.LayoutParams layoutParams = _grid.LayoutParameters;
                 var rows = 3;
 
-                if (GCTContext.ActivateForgottenCiclesContent && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
+                if (GCTContext.Settings.IsFCActivated && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
                 {
                     rows = 4;
                 }

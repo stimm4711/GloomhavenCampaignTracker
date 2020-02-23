@@ -54,7 +54,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             var item = _items[position];
 
             // Set Data              
-            holder.Questname.Text = (GCTContext.ShowPersonalQuestDetails || _showDetails) ? item.QuestName : "";
+            holder.Questname.Text = (GCTContext.Settings.IsShowPq || _showDetails) ? item.QuestName : "";
             holder.Questnumber.Text = $"# {item.QuestNumber}";
 
             return convertView;

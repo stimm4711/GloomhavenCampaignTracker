@@ -140,7 +140,7 @@ namespace GloomhavenCampaignTracker.Business
         {
             get
             {
-                if(GCTContext.ShowScenarioNames)
+                if(GCTContext.Settings.IsShowScenarios)
                 {
                     return $"# {ScenarioNumber}   {ScenarioName}";
                 }

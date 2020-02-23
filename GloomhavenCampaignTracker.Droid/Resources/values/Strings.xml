@@ -195,6 +195,9 @@
   <string name="SetScenarioIncomplete">Set the scenario {0} incomplete?</string>
   <string name="ScenariosWillBeRemoved">The following scenarios will be removed from the list</string>
   <string name="EditTreasure">Edit Treasure</string>
+  <string name="Requirements">Requirements</string>
+  <string name="Region">Region</string>
+  <string name="TreasuresCaption">Treasures</string>
   
   <!-- Party -->
   <string name="PartyDP">Party:</string>
@@ -316,6 +319,8 @@
   <string name="ShowScenarioNamesDescription">Show names of locked scenarios in unlocked scenario selection.</string>
   <string name="ActivateFC">Activate Forgotten Circles</string>
   <string name="ActivateFCDexription">This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion.</string>
+  <string name="ShowTreasures">Show treasures</string>
+  <string name="ShowTreasuresDescription">Show treasure count in scenario list and treasure images in scenario details</string>
 
   <!-- Support Dev -->
   <string name="Feedback">Feedback</string>
