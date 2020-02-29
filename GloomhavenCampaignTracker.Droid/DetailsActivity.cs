@@ -56,6 +56,8 @@ namespace GloomhavenCampaignTracker.Droid
 
         private void SetFragment(int campId, int fragId)
         {
+            var scenarioID = 0;
+
             switch (fragId)
             {
                 case (int)DetailFragmentTypes.GlobalAchievements:
@@ -125,9 +127,13 @@ namespace GloomhavenCampaignTracker.Droid
                     break;
                 case (int)DetailFragmentTypes.ScenarioDetails:
                     SupportActionBar.Title = "Scenario Details";
-                    var scenarioID = Intent.Extras.GetInt(SelectedScenarioId, 0); 
-                     //_detailsFrag = ScenarioDetailsViewPagerTabs.NewInstance(scenarioID);
-                    _detailsFrag = SzenarioDetailsFragment.NewInstance(scenarioID);
+                    scenarioID = Intent.Extras.GetInt(SelectedScenarioId, 0); 
+                    _detailsFrag = ScenarioDetailsFragment.NewInstance(scenarioID);
+                    break;
+                case (int)DetailFragmentTypes.ScenarioRewards:
+                    SupportActionBar.Title = "Scenario Rewards";
+                    scenarioID = Intent.Extras.GetInt(SelectedScenarioId, 0);
+                    _detailsFrag = SzenarioRewardsFragment.NewInstance(scenarioID);
                     break;
             }
 

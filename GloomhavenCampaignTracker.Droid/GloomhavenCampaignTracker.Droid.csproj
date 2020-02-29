@@ -210,7 +210,8 @@
     <Compile Include="Adapter\BackupAdapter.cs" />
     <Compile Include="Adapter\ChangeAwareAdapter.cs" />
     <Compile Include="Adapter\CampaignScenarioTreasureAdapter.cs" />
-    <Compile Include="Adapter\ScenarioDetailsViewPagerAdapter.cs" />
+    <Compile Include="Adapter\ScenarioRewardsCharacterViewPagerAdapter.cs" />
+    <Compile Include="Adapter\ScenarioRewardsViewPagerAdapter.cs" />
     <Compile Include="Adapter\CharacterWrapper.cs" />
     <Compile Include="Adapter\SelectableCampaignAdapter.cs" />
     <Compile Include="Adapter\CharacterDetailsAdapterBase.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Business\EventDeck.cs" />
     <Compile Include="Business\GCTContext.cs" />
     <Compile Include="Business\Helper.cs" />
+    <Compile Include="Business\ImageCacher.cs" />
     <Compile Include="Business\IResourceContainer.cs" />
     <Compile Include="Business\ISpinneritem.cs" />
     <Compile Include="Business\Network\Abstract\Client.cs" />
@@ -272,6 +274,7 @@
     <Compile Include="Business\PartyAchievement.cs" />
     <Compile Include="Business\Scenario.cs" />
     <Compile Include="Business\ScenarioCollection.cs" />
+    <Compile Include="Business\ScenarioHelper.cs" />
     <Compile Include="CustomControls\CustomDialogBuilder.cs" />
     <Compile Include="CustomControls\DraggableListView.cs" />
     <Compile Include="CustomControls\IDraggableListAdapter.cs" />
@@ -395,7 +398,9 @@
     <Compile Include="Fragments\campaign\party\CampaignPartyNotesFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyAchievementsFragment.cs" />
     <Compile Include="Fragments\campaign\unlocks\CampaignUnlocksEnvelopeXFragment.cs" />
-    <Compile Include="Fragments\campaign\world\ScenarioDetailsViewPagerTabs.cs" />
+    <Compile Include="Fragments\campaign\world\ScenarioRewardsViewPagerTabs.cs" />
+    <Compile Include="Fragments\campaign\world\SzenarioCharacterRewardsFragment.cs" />
+    <Compile Include="Fragments\campaign\world\SzenarioRewardsFragment.cs" />
     <Compile Include="Fragments\campaign\world\SzenarioDetailsUnlocksFragment.cs" />
     <Compile Include="Fragments\campaign\world\SzenarioDetailsFragment.cs" />
     <Compile Include="Fragments\character\CharacterDetailAbilitiesFragmentOld.cs" />
@@ -422,7 +427,7 @@
     <Compile Include="Fragments\SupportDevFragment.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
     <Compile Include="GloomhavenCampaignTrackerApplication.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Business\Settings.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Utils\ResourceHelper.cs" />
@@ -2951,7 +2956,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\fragment_campaign_scenariodetails.axml">
+    <AndroidResource Include="Resources\layout\fragment_campaign_scenario_rewards.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -2994,6 +2999,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_settings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_scenariorewards_character.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_partyachievement.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

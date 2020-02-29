@@ -428,7 +428,7 @@ namespace GloomhavenCampaignTracker.Droid
             notificationManager.Notify(ServerStartedNotificationId, builder.Build());
         }
 
-        private async Task ShowClientConnected(object sender, Business.Network.ClientConnectedEventArgs e)
+        private async Task ShowClientConnected(object sender,ClientConnectedEventArgs e)
         {
             await Task.Run(() =>
             {

@@ -85,7 +85,7 @@
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <CheckBox
-            android:text="Show treasures"
+            android:text="@string/ShowTreasures"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/chkShowTreasures"
@@ -95,11 +95,11 @@
             android:checked="true"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:text="Show treasure count in scenario list and treasure images in scenario details"
+            android:text="@string/ShowTreasuresDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/hideTreasuresTest"
+            android:id="@+id/hideTreasuresText"
             android:layout_below="@+id/chkShowTreasures"
             android:textColor="@color/gloom_secondaryLight"
             android:layout_marginLeft="40dp"
@@ -189,7 +189,8 @@
         android:paddingLeft="8dp"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
         <TextView
             android:text="Enable old ability sheet"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -206,6 +207,40 @@
             app:buttonTint="#ffffffff"
             android:checked="false"
             fontPath="fonts/Roboto-Regular.ttf" />        
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/downloadImages"
+        android:background="@drawable/borderwhite"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:text="Download Images to app storage"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/enableOldAbilitiesSheet"
+            android:textColor="@color/gloom_primaryText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <CheckBox
+            android:text="Save the images of cards to the apps storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/isShowOldAbilitySheet"
+            android:textColor="@color/gloom_primaryText"
+            app:buttonTint="#ffffffff"
+            android:checked="false"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <Button
+            android:text="@string/DownloadAllImagesButton"
+            android:background="@drawable/borderbuttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLoadImages" />        
         </LinearLayout>
 
 </LinearLayout>

@@ -57,6 +57,7 @@
   <string name="Removed">Removed</string>
   <string name="Option">Option</string>
   <string name="Items">Items</string>
+  <string name="Yes">Yes</string>
   
   <!-- Unlocks -->
   <string name="Congratulation">Congratulation!</string>
@@ -214,6 +215,7 @@
   <string name="ShopPriceModifier">Shop Price Modifier</string>
   <string name="CurrentLocation">Current Location</string>
   <string name="PartyNotes">Notes</string>
+  <string name="Reputation">Reputation</string>
   
   <!-- Party Achievement -->
   <string name="PartyAchievements">Party Achievements</string>
@@ -237,6 +239,7 @@
   <string name="GloomhavenProsperity">Gloomhaven Prosperity</string>
   <string name="SanctuaryDonations">Sanctuary Donations</string>
   <string name="NextProsperity">Next prosperity:</string>
+  <string name="Prosperity">Prosperity</string>
   
   <!-- Character -->
   <string name="AddCharacter">Add Character</string>
@@ -321,6 +324,9 @@
   <string name="ActivateFCDexription">This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion.</string>
   <string name="ShowTreasures">Show treasures</string>
   <string name="ShowTreasuresDescription">Show treasure count in scenario list and treasure images in scenario details</string>
+  <string name="DownloadAllImagesButton">Download all images now</string>
+  <string name="DownloadAllImagesCheckbox">Cache images of cards to the apps storage</string>
+  <string name="DownloadAllImagesCaption">Download Images to app storage</string>
 
   <!-- Support Dev -->
   <string name="Feedback">Feedback</string>

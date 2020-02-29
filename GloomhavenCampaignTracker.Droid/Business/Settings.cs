@@ -9,7 +9,6 @@ namespace GloomhavenCampaignTracker.Droid
         private const string _showItemnames = "showItemnames";
         private const string _showPQNames = "showPQDetails";
         private const string _showScenarioNames = "showScenarioNames";
-        private const string _showOldAbilitySheet = "showOldAbilitySheet";
         private const string _activateFC = "activateFC";
         private const string _showTreasures = "showTreasures";
         private const string _showReleaseNotes = "showReleaenotes";
@@ -18,10 +17,10 @@ namespace GloomhavenCampaignTracker.Droid
         private const string _filterRetired = "FilterRetired";
         private const string _lastloadedcampaign = "lastloadedcampaign";
         private const string _username = "username";
+        private const string _downloadImages = "downloadImages";
 
         private bool isShowItems;
         private bool isShowPq;
-        private bool isShowOldAbilitySheet;
         private bool isFCActivated;
         private bool isShowReleasenotes;
         private bool isShowScenarios;
@@ -31,6 +30,7 @@ namespace GloomhavenCampaignTracker.Droid
         private bool isFilterRetired;
         private int lastloadedcampaign;
         private string username;
+        private bool isDownloadImages;
 
         public Settings()
         {
@@ -59,12 +59,7 @@ namespace GloomhavenCampaignTracker.Droid
 
         public bool IsShowOldAbilitySheet
         {
-            get => isShowOldAbilitySheet;
-            set
-            {
-                isShowOldAbilitySheet = value;
-                SetSettingBoolean(_showOldAbilitySheet, value);
-            }
+            get => false;
         }
 
         public bool IsFCActivated
@@ -157,12 +152,22 @@ namespace GloomhavenCampaignTracker.Droid
             }
         }
 
+        public bool IsDownloadImages
+        {
+            get => isDownloadImages;
+            set
+            {
+                isDownloadImages = value;
+                SetSettingBoolean(_downloadImages, value);
+            }
+        }
+ 
+
         public void ReadSettings()
         {
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
             IsShowItems = prefs.GetBoolean(_showItemnames, true);
             IsShowPq = prefs.GetBoolean(_showPQNames, true);
-            IsShowOldAbilitySheet = prefs.GetBoolean(_showOldAbilitySheet, false);
             IsFCActivated = prefs.GetBoolean(_activateFC, false);
             IsShowReleasenotes = prefs.GetBoolean(_showReleaseNotes, true);
             IsShowScenarios = prefs.GetBoolean(_showScenarioNames, false);
@@ -172,6 +177,7 @@ namespace GloomhavenCampaignTracker.Droid
             IsFilterRetired = prefs.GetBoolean(_filterRetired, true);
             LastLoadedCampaign = prefs.GetInt(_lastloadedcampaign, -1);
             Username = prefs.GetString(_username, "");
+            IsDownloadImages = prefs.GetBoolean(_downloadImages, false);
         }
 
         public void SetSettingBoolean(string settingname, bool value)

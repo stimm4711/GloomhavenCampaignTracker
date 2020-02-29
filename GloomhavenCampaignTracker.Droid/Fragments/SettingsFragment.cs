@@ -32,20 +32,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             var activateFCCheck = view.FindViewById<CheckBox>(Resource.Id.activateFCCheck);
             var showOldAbilitySheetCheck = view.FindViewById<CheckBox>(Resource.Id.isShowOldAbilitySheet);
             var showTreasuresCheck = view.FindViewById<CheckBox>(Resource.Id.chkShowTreasures);
-
-            var isShowItems = GCTContext.Settings.IsShowItems;
-            var isShowPQ = GCTContext.Settings.IsShowPq;
-            var isShowScenarios = GCTContext.Settings.IsShowScenarios;
-            var isShowOldAbilitySheet = GCTContext.Settings.IsShowOldAbilitySheet;
-            var isFCActivated = GCTContext.Settings.IsFCActivated;
-            var isShowTreasure = GCTContext.Settings.IsShowTreasure;
+            //var loadImagesCheck = view.FindViewById<CheckBox>(Resource.Id.DownloadAllImagesCheck);
+            //var loadImagesButton = view.FindViewById<CheckBox>(Resource.Id.DownloadAllImagesButton);
             
-            checkItems.Checked = isShowItems;
-            checkpq.Checked = isShowPQ;
-            checkscenarios.Checked = isShowScenarios;
-            activateFCCheck.Checked = isFCActivated;
-            showOldAbilitySheetCheck.Checked = isShowOldAbilitySheet;
-            showTreasuresCheck.Checked = isShowTreasure;
+            checkItems.Checked = GCTContext.Settings.IsShowItems;
+            checkpq.Checked = GCTContext.Settings.IsShowPq;
+            checkscenarios.Checked = GCTContext.Settings.IsShowScenarios;
+            activateFCCheck.Checked = GCTContext.Settings.IsFCActivated;
+            showOldAbilitySheetCheck.Checked = GCTContext.Settings.IsShowOldAbilitySheet;
+            showTreasuresCheck.Checked = GCTContext.Settings.IsShowTreasure;
+            //loadImagesCheck.Checked = GCTContext.Settings.IsDownloadImages;
 
             checkItems.CheckedChange += CheckItems_CheckedChange;
             checkpq.CheckedChange += Checkpq_CheckedChange;
@@ -56,7 +52,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
 
             if (!btnCheckItems.HasOnClickListeners)
                 btnCheckItems.Click += BtnCheckItems_Click;
+
+            //if(!loadImagesButton.HasOnClickListeners)
+            //    loadImagesButton.Click += LoadImagesButton_Click;
+
             return view;
+        }
+
+        private void LoadImagesButton_Click(object sender, System.EventArgs e)
+        {
+            
         }
 
         private void ShowTreasuresCheck_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
@@ -92,8 +97,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
 
         private void showOldAbilitySheetCheck_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            if (e.IsChecked == GCTContext.Settings.IsShowOldAbilitySheet) return;
-            GCTContext.Settings.IsShowOldAbilitySheet = e.IsChecked;
+            return;
         }
 
         private void Checkscenarios_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
