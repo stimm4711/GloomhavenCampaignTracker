@@ -35,6 +35,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             base.OnCreate(savedInstanceState);           
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+            SetTotalCheckmarks();
+            SetTotalGold();
+            SetTotalXP();
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -72,8 +80,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         private void _check_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
+            SetTotalCheckmarks();
+        }
+
+        private void SetTotalCheckmarks()
+        {
             var newChecks = 0;
-            
+
             if (_check1.Checked) newChecks += 1;
             if (_check2.Checked) newChecks += 1;
 
@@ -84,8 +97,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         {
             if (e.HasFocus) return;
             if (string.IsNullOrEmpty(_goldEditText.Text)) return;
-            if (!int.TryParse(_goldEditText.Text, out int newGoldp)) return;
+            SetTotalGold();
+        }
 
+        private void SetTotalGold()
+        {            
+            if (!int.TryParse(_goldEditText.Text, out int newGoldp)) return;
             _goldTotalText.Text = (Character.Gold + newGoldp).ToString();
         }
 
@@ -93,11 +110,15 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         {
             if (e.HasFocus) return;
             if (string.IsNullOrEmpty(_xpEditText.Text)) return;
-            if (!int.TryParse(_xpEditText.Text, out int newXp)) return;
+            SetTotalXP();
+        }
 
+        private void SetTotalXP()
+        {
+            if (!int.TryParse(_xpEditText.Text, out int newXp)) return;
             _xpTotalText.Text = (Character.Experience + newXp).ToString();
         }
-        
+
         internal int NewTotalXP()
         {
             if (!int.TryParse(_xpEditText.Text, out int newXp)) return Character.Experience;

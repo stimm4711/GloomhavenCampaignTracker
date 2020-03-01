@@ -56,6 +56,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             return campScenario;
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+
+
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
