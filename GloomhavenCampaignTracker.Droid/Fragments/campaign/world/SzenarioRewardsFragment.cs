@@ -89,7 +89,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _lstviewScenariosUnlocked = _view.FindViewById<ListView>(Resource.Id.lstviewScenariosUnlocked);
 
             var characters = CharacterRepository.GetPartymembers(GCTContext.CurrentCampaign.CurrentParty.Id);
-            GCTContext.CharacterCollection = characters;
+            GCTContext.CharacterCollection = characters.Where(x=>!x.Retired).ToList();
             _adapter = new ScenarioRewardsCharacterViewPagerAdapter(Context, ChildFragmentManager, characters);
             _viewPager.Adapter = _adapter;
             _tabLayout.SetupWithViewPager(_viewPager);
