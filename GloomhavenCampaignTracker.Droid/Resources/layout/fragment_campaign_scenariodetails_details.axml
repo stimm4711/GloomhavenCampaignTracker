@@ -33,11 +33,23 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:text="@string/Completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-             android:layout_marginRight="5dp"
+                android:layout_marginRight="5dp"
                 android:id="@+id/scenariostatuscheckbox"                
                 android:layout_below="@+id/scenarionametextview"
                 android:layout_alignParentRight="true"
-            app:buttonTint="@color/gloom_primaryLight"  />           
+                app:buttonTint="@color/gloom_primaryLight"  />
+            <Button
+                android:text="Completed in Casual Mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borderbuttons"
+                android:layout_below="@+id/scenarionametextview"
+                android:layout_toLeftOf="@id/scenariostatuscheckbox"
+                android:id="@+id/completedCasual"
+                android:padding="5dp"
+                android:layout_alignParentRight="true"
+                android:visibility="gone" 
+                android:layout_marginRight="5dp"/>           
         </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

@@ -37,10 +37,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         private int _reputaionModifier = 0;
         private int _prospertityModifier = 0;
 
-        internal static SzenarioRewardsFragment NewInstance(int scenarioId)
+        internal static SzenarioRewardsFragment NewInstance(int scenarioId, bool casual)
         {
             var frag = new SzenarioRewardsFragment { Arguments = new Bundle() };
             frag.Arguments.PutInt(DetailsActivity.SelectedScenarioId, scenarioId);
+            frag.Arguments.PutBoolean(DetailsActivity.CasualMode, casual);
             return frag;
         }
 
@@ -56,11 +57,17 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             return campScenario;
         }
 
+        private bool IsCasualMode()
+        {
+            if (Arguments == null) return false;
+
+            var casual = Arguments.GetBoolean(DetailsActivity.CasualMode, false);
+            return casual;
+        }
+
         public override void OnResume()
         {
             base.OnResume();
-
-
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -129,10 +136,24 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 _achievementPAButton.Click += _achievementPAButton_Click; ;
             }
 
-            var unlockedScenarioNumbers = _campaignScenario.GetUnlockedScenarios().Where(x => !GCTContext.CurrentCampaign.IsScenarioUnlocked(x));
+            if(IsCasualMode())
+            {
+                var prospRepLayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_ProspRep);
+                prospRepLayout.Visibility = ViewStates.Gone;
 
-            _listAdapter = new ArrayAdapter<string>(Context,Resource.Layout.listviewitem_singleitem, unlockedScenarioNumbers.Select(x=> DataServiceCollection.ScenarioDataService.Get(x).Name).ToList());
-            _lstviewScenariosUnlocked.Adapter = _listAdapter;
+                var achievementLayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_achievements);
+                achievementLayout.Visibility = ViewStates.Gone;
+
+                var scenarioLayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_scenario);
+                scenarioLayout.Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                var unlockedScenarioNumbers = _campaignScenario.GetUnlockedScenarios().Where(x => !GCTContext.CurrentCampaign.IsScenarioUnlocked(x));
+
+                _listAdapter = new ArrayAdapter<string>(Context, Resource.Layout.listviewitem_singleitem, unlockedScenarioNumbers.Select(x => DataServiceCollection.ScenarioDataService.Get(x).Name).ToList());
+                _lstviewScenariosUnlocked.Adapter = _listAdapter;
+            }         
 
             return _view;
         }
@@ -182,12 +203,15 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         {
             _adapter.SaveCharacterRewards();
 
-            if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
-            if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
+            if(!IsCasualMode())
+            {
+                if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
+                if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
 
-            GCTContext.CurrentCampaign.Save();
+                ScenarioHelper.SetScenarioCompleted(Context, LayoutInflater, _campaignScenario);
+            }          
 
-            ScenarioHelper.SetScenarioCompleted(Context, LayoutInflater, _campaignScenario);
+            GCTContext.CurrentCampaign.Save();            
 
             Activity.Finish();
         }

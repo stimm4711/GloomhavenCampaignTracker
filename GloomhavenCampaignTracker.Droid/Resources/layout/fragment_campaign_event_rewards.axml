@@ -43,8 +43,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/layout_ProspRep">
+                android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -63,7 +62,7 @@
                         android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:gravity="center"
-                        android:textColor="@color/gloom_secondaryText" />
+                        android:textColor="@color/gloom_secondaryText" />            
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -96,7 +95,7 @@
                             android:focusable="false"
                             android:layout_centerInParent="true"
                             android:layout_centerVertical="true"
-                            android:textColor="@color/gloom_secondaryText" />
+                            android:textColor="@color/gloom_secondaryText" />                
                     </RelativeLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -122,7 +121,7 @@
                             android:focusable="false"
                             android:textStyle="bold"
                             android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/gloom_secondaryText"
+                            android:textColor="@color/gloom_secondaryText"          
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
@@ -164,83 +163,75 @@
                                 android:layout_centerInParent="true"
                                 android:layout_below="@id/partyfrag_ReputationTextView" />
                         </RelativeLayout>
-                    </RelativeLayout>
+                    </RelativeLayout>                
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:orientation="vertical"
-                android:minWidth="25px"
-                android:minHeight="25px"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/borderSheet"
-                android:padding="5dp"
-                android:layout_marginTop="10dp"
-                android:id="@+id/layout_achievements">
-                <TextView
-                    android:text="@string/Achievements"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/AchievementsTextView"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/gloom_secondaryText"
-                    android:gravity="left"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:textStyle="bold" />
+                android:layout_height="wrap_content">
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.1"
-                    android:layout_marginTop="10dp"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp">
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/borderSheet"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:text="@string/Achievements"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/AchievementsTextView"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/gloom_secondaryText"
+                        android:gravity="left"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:textStyle="bold" />
                     <Button
                         android:text="Global"
-                        android:layout_weight="0.4"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/btnGA"
-                        android:background="@drawable/borderbuttons" />
+                        android:background="@drawable/borderbuttons"
+                        android:layout_marginTop="10dp" />
                     <Button
                         android:text="Party"
-                        android:layout_weight="0.4"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/btnPA"
                         android:background="@drawable/borderbuttons"
-                        android:layout_marginLeft="20dp" />
+                        android:layout_marginTop="10dp"  />
+                </LinearLayout>            
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/borderSheet"
+                    android:padding="5dp"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:text="@string/Scenarios"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ScenariosTextView"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/gloom_secondaryText"
+                        android:gravity="left"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:textStyle="bold" />
+                    <Button
+                        android:text="Add Scenarios"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnAddScenario"
+                        android:background="@drawable/borderbuttons"
+                        android:layout_marginTop="10dp" />         
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/borderSheet"
-                android:padding="5dp"
-                android:layout_marginTop="10dp"
-                android:id="@+id/layout_scenario">
-                <TextView
-                    android:text="@string/Scenarios"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ScenariosTextView"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/gloom_secondaryText"
-                    android:gravity="left"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:textStyle="bold" />
-                <ListView
-                    android:minWidth="25px"
-                    android:minHeight="25px"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/lstviewScenariosUnlocked" />
-            </LinearLayout>            
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

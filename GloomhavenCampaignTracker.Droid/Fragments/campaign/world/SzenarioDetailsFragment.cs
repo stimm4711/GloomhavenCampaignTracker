@@ -50,8 +50,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _scenarioname = _view.FindViewById<TextView>(Resource.Id.scenarionametextview);
             _scenarionumber = _view.FindViewById<TextView>(Resource.Id.scenarionumbertextview);
             _scenariostatus = _view.FindViewById<CheckBox>(Resource.Id.scenariostatuscheckbox);
-            _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);           
-
+            _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
+            var casualButton = _view.FindViewById<Button>(Resource.Id.completedCasual);
+            
             _campaignScenario = GetUnlockedScenario();
 
             var txt_treasures = _view.FindViewById<TextView>(Resource.Id.txt_treasures);
@@ -64,6 +65,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                     _scenarioname.Text = _campaignScenario.ScenarioName;
                     _scenarionumber.Text = $"# {_campaignScenario.Scenarionumber}";
                     _scenariostatus.Checked = _campaignScenario.Completed;
+
+                    if (!_campaignScenario.Completed && (_campaignScenario.IsBlocked() || !_campaignScenario.IsAvailable()))
+                    {
+                        _scenariostatus.Visibility = ViewStates.Gone;
+                        casualButton.Visibility = ViewStates.Visible;
+                    }
 
                     if (_campaignScenario.Scenario.ScenarioData.Treasures.Any())
                     {
@@ -98,6 +105,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                           var intent = new Intent();
                           intent.SetClass(Activity, typeof(DetailsActivity));
                           intent.PutExtra(DetailsActivity.SelectedScenarioId, _campaignScenario.ScenarioId);
+                          intent.PutExtra(DetailsActivity.CasualMode, false);
                           intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.ScenarioRewards);
                           StartActivity(intent);
                       })
@@ -113,9 +121,35 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 }
             };
 
+            if (!casualButton.HasOnClickListeners)
+            {
+                casualButton.Click += CasualButton_Click;
+            }
+
             _grid.Adapter = new CampaignScenarioTreasureAdapter(Context, _campaignScenario.UnlockedScenarioData);
 
             return _view;
+        }
+
+        private void CasualButton_Click(object sender, EventArgs e)
+        {
+            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                      .SetTitle("Scenarios completed in Casual Mode!")
+                      .SetMessage($"You've completed the scenarion in Casual Mode. Do you want to enter rewards now?")
+                      .SetPositiveButton(Context.Resources.GetString(Resource.String.Yes), (senderAlert, AssemblyLoadEventArgs) =>
+                      {
+                          var intent = new Intent();
+                          intent.SetClass(Activity, typeof(DetailsActivity));
+                          intent.PutExtra(DetailsActivity.SelectedScenarioId, _campaignScenario.ScenarioId);
+                          intent.PutExtra(DetailsActivity.CasualMode, true);
+                          intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.ScenarioRewards);
+                          StartActivity(intent);
+                      })
+                      .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
+                      {
+                          ScenarioCompletion();
+                      })
+                      .Show();
         }
 
         private void ScenarioCompletion()

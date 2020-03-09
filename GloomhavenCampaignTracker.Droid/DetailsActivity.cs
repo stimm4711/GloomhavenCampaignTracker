@@ -23,6 +23,7 @@ namespace GloomhavenCampaignTracker.Droid
         public static string SelectedFragId = "selected_fragid";
         public static string SelectedCharacterId = "selected_character_id";
         public static string SelectedScenarioId = "selected_scenario_id";
+        public static string CasualMode = "casual_mode";
         public static string JustParty = "JustParty";
         public static string ProsperityLevel = "ProsperityLevel";
 
@@ -57,6 +58,7 @@ namespace GloomhavenCampaignTracker.Droid
         private void SetFragment(int campId, int fragId)
         {
             var scenarioID = 0;
+            var casualMode = false;
 
             switch (fragId)
             {
@@ -133,7 +135,8 @@ namespace GloomhavenCampaignTracker.Droid
                 case (int)DetailFragmentTypes.ScenarioRewards:
                     SupportActionBar.Title = "Scenario Rewards";
                     scenarioID = Intent.Extras.GetInt(SelectedScenarioId, 0);
-                    _detailsFrag = SzenarioRewardsFragment.NewInstance(scenarioID);
+                    casualMode = Intent.Extras.GetBoolean(CasualMode, false);
+                    _detailsFrag = SzenarioRewardsFragment.NewInstance(scenarioID, casualMode);
                     break;
             }
 

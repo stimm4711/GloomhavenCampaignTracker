@@ -46,7 +46,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            _view = inflater.Inflate(Resource.Layout.fragment_scenariorewards_character, container, false);
+            _view = inflater.Inflate(Resource.Layout.fragment_campaign_scenario_rewards_character, container, false);
             _charactername = _view.FindViewById<TextView>(Resource.Id.charactername);
             _xpEditText = _view.FindViewById<EditText>(Resource.Id.xp);
             _goldEditText = _view.FindViewById<EditText>(Resource.Id.gold);
