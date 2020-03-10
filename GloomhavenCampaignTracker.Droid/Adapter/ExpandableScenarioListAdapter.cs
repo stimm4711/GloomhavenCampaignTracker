@@ -243,6 +243,32 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
         private void SetScenarioCompletedStatus(CampaignUnlockedScenario campScenario, bool status, CheckBox checkb)
         {
+            //if (!campScenario.Completed)
+            //{
+            //    new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+            //      .SetTitle("Scenarios completed!")
+            //      //.SetMessage($"You've completed the scenarion and unlocked scenario(s) # {string.Join(", # ", unlockedScenarioNumbers.ToArray())}. Do you want to enter rewards now?")
+            //      .SetMessage($"You've completed the scenarion. Do you want to enter rewards now?")
+            //      .SetPositiveButton(Context.Resources.GetString(Resource.String.Yes), (senderAlert, AssemblyLoadEventArgs) =>
+            //      {
+            //          var intent = new Intent();
+            //          intent.SetClass(Activity, typeof(DetailsActivity));
+            //          intent.PutExtra(DetailsActivity.SelectedScenarioId, _campaignScenario.ScenarioId);
+            //          intent.PutExtra(DetailsActivity.CasualMode, false);
+            //          intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.ScenarioRewards);
+            //          StartActivity(intent);
+            //      })
+            //      .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
+            //      {
+            //          ScenarioCompletion();
+            //      })
+            //      .Show();
+            //}
+            //else
+            //{
+            //    ScenarioCompletion();
+            //}
+
             if (status)
             {
                 _isCompleting = true;
