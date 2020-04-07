@@ -222,6 +222,60 @@
                 android:background="@drawable/borderSheet"
                 android:padding="5dp"
                 android:layout_marginTop="10dp"
+                android:id="@+id/layout_events">
+                <TextView
+                    android:text="@string/Events"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EventsTextView"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/gloom_secondaryText"
+                    android:gravity="left"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+                    <Button
+                        android:text="Road"
+                        android:layout_weight="0.4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnRoadE"
+                        android:background="@drawable/borderbuttons" />
+                    <Button
+                        android:text="City"
+                        android:layout_weight="0.4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnCityE"
+                        android:background="@drawable/borderbuttons"
+                        android:layout_marginLeft="20dp" />
+                    <Button
+                        android:text="Rift"
+                        android:layout_weight="0.4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnRiftE"
+                        android:background="@drawable/borderbuttons"
+                        android:layout_marginLeft="20dp" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borderSheet"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/layout_scenario">
                 <TextView
                     android:text="@string/Scenarios"

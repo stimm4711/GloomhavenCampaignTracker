@@ -13,14 +13,12 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
-    public class SzenarioRewardsFragment : CampaignDetailsFragmentBase
+    public class EventOutcomeFragment : CampaignDetailsFragmentBase
     {
-        private CampaignUnlockedScenario _campaignScenario;
-
         private View _view;
         private TabLayout _tabLayout;
         private ViewPager _viewPager;
-        private ScenarioRewardsCharacterViewPagerAdapter _adapter;
+        private EvenOutcomeCharacterViewPagerAdapter _adapter;
         private Button _save;
         private Button _decreaseprospButton;
         private Button _raiseprospbutton;
@@ -28,43 +26,49 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         private Button _raiseReputationButton;
         private Button _achievementGAButton;
         private Button _achievementPAButton;
-        private Button _roadeventsButton;
-        private Button _cityEventsButton;
-        private Button _RIftEventsButton;
         private TextView _prospLevelText;
         private TextView _reputationTextView;
-        private ListView _lstviewScenariosUnlocked;
-        private ScenarioListviewtAdapter _listAdapter;
+        private Button _btnAddScenario;
+        private EventTypes _eventType;
+        private int _cardId;
+        private int _cardOption;
 
         private int _reputaionModifier = 0;
         private int _prospertityModifier = 0;
 
-        internal static SzenarioRewardsFragment NewInstance(int scenarioId, bool casual)
+        internal static EventOutcomeFragment NewInstance(int cardnumber, int selectedOption, int eventtype)
         {
-            var frag = new SzenarioRewardsFragment { Arguments = new Bundle() };
-            frag.Arguments.PutInt(DetailsActivity.SelectedScenarioId, scenarioId);
-            frag.Arguments.PutBoolean(DetailsActivity.CasualMode, casual);
+            var frag = new EventOutcomeFragment { Arguments = new Bundle() };
+            frag.Arguments.PutInt(DetailsActivity.EventTypeString, eventtype);
+            frag.Arguments.PutInt(DetailsActivity.EventCardNumber, cardnumber);
+            frag.Arguments.PutInt(DetailsActivity.EventCardOption, selectedOption);
             return frag;
         }
 
-        private CampaignUnlockedScenario GetUnlockedScenario()
+        public EventTypes EventType
         {
-            if (Arguments == null) return null;
+            get
+            {
+                if (Arguments == null) return _eventType;
+                var eventTypeId = Arguments.GetInt(DetailsActivity.EventTypeString, 1);
+                _eventType = (EventTypes)eventTypeId;
 
-            var id = Arguments.GetInt(DetailsActivity.SelectedScenarioId, 0);
-            if (id <= 0) return null;
-
-            var campScenario = GCTContext.CurrentCampaign.GetUnlockedScenario(id);
-
-            return campScenario;
+                return _eventType;
+            }
         }
 
-        private bool IsCasualMode()
+        public int CardNumber()
         {
-            if (Arguments == null) return false;
+            if (Arguments == null) return _cardId;
+            _cardId = Arguments.GetInt(DetailsActivity.EventCardNumber, 1);
+            return _cardId;
+        }
 
-            var casual = Arguments.GetBoolean(DetailsActivity.CasualMode, false);
-            return casual;
+        public int SelectedOption()
+        {
+            if (Arguments == null) return _cardOption;
+            _cardOption = Arguments.GetInt(DetailsActivity.EventCardOption, 1);
+            return _cardOption;
         }
 
         public override void OnResume()
@@ -75,7 +79,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            _view = inflater.Inflate(Resource.Layout.fragment_campaign_scenario_rewards, container, false);
+            _view = inflater.Inflate(Resource.Layout.fragment_campaign_event_rewards, container, false);
             _viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
             _tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
             _save = _view.FindViewById<Button>(Resource.Id.btnSave);
@@ -85,20 +89,19 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _raiseReputationButton = _view.FindViewById<Button>(Resource.Id.raiseReputationButton);
             _achievementGAButton = _view.FindViewById<Button>(Resource.Id.btnGA);
             _achievementPAButton = _view.FindViewById<Button>(Resource.Id.btnPA);
-
             _prospLevelText = _view.FindViewById<TextView>(Resource.Id.prospLevelText);
             _reputationTextView = _view.FindViewById<TextView>(Resource.Id.reputationTextView);
-            _lstviewScenariosUnlocked = _view.FindViewById<ListView>(Resource.Id.lstviewScenariosUnlocked);
+            _btnAddScenario = _view.FindViewById<Button>(Resource.Id.btnAddScenario);
 
             var characters = CharacterRepository.GetPartymembersFlat(GCTContext.CurrentCampaign.CurrentParty.Id).Where(x => !x.Retired).ToList();
             GCTContext.CharacterCollection = characters;
-            _adapter = new ScenarioRewardsCharacterViewPagerAdapter(Context, ChildFragmentManager, characters);
+            _adapter = new EvenOutcomeCharacterViewPagerAdapter(Context, ChildFragmentManager, characters);
             _viewPager.Adapter = _adapter;
             _tabLayout.SetupWithViewPager(_viewPager);
 
-            _campaignScenario = GetUnlockedScenario();
+            GetEventDecisionBackImageAndSetImageView(EventType, SelectedOption(), CardNumber());
 
-            if(!_save.HasOnClickListeners)
+            if (!_save.HasOnClickListeners)
             {
                 _save.Click += _save_Click;
             }
@@ -133,26 +136,37 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 _achievementPAButton.Click += _achievementPAButton_Click; ;
             }
 
-            if(IsCasualMode())
+            if (!_btnAddScenario.HasOnClickListeners)
             {
-                var prospRepLayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_ProspRep);
-                prospRepLayout.Visibility = ViewStates.Gone;
-
-                var achievementLayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_achievements);
-                achievementLayout.Visibility = ViewStates.Gone;
-
-                var scenarioLayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_scenario);
-                scenarioLayout.Visibility = ViewStates.Gone;
+                _btnAddScenario.Click += _btnAddScenario_Click;
             }
-            else
-            {
-                var unlockedScenarioNumbers = _campaignScenario.GetUnlockedScenarios().Where(x => !GCTContext.CurrentCampaign.IsScenarioUnlocked(x));
-
-                _listAdapter = new ScenarioListviewtAdapter(Context, unlockedScenarioNumbers.Select(x => DataServiceCollection.ScenarioDataService.Get(x)).ToList());
-                _lstviewScenariosUnlocked.Adapter = _listAdapter;
-            }         
 
             return _view;
+        }
+
+        private async void GetEventDecisionBackImageAndSetImageView(EventTypes eventType, int decision, int cardId)
+        {
+            var pqimage = _view.FindViewById<ImageView>(Resource.Id.itemimage);
+
+            string cardIdText = _cardId.ToString();
+            if (cardId < 10)
+            {
+                cardIdText = $"0{cardId}";
+            }
+
+            string eventtypeurl = Helper.GetEventFrontURL(eventType);
+
+            var eventback = await Helper.GetImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png");
+
+            pqimage.SetImageBitmap(Helper.GetEventBackScaleBitmap(eventback, decision));
+        }
+
+        private void _btnAddScenario_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent();
+            intent.SetClass(Activity, typeof(DetailsActivity));
+            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.UnlockedScenarios);
+            StartActivity(intent);
         }
 
         private void _achievementPAButton_Click(object sender, EventArgs e)
@@ -195,13 +209,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         {
             _adapter.SaveCharacterRewards();
 
-            if(!IsCasualMode())
-            {
-                if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
-                if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
-
-                ScenarioHelper.SetScenarioCompleted(Context, LayoutInflater, _campaignScenario);
-            }          
+            if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
+            if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
 
             GCTContext.CurrentCampaign.Save();            
 

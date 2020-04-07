@@ -9,58 +9,74 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="20px"
-        android:paddingLeft="10px"
-        android:paddingRight="10px">
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/event_layout">        
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="5dp">
+                <ImageView
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="20%"
+                    android:id="@+id/itemimage"/>
+            </android.support.percent.PercentRelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.design.widget.TabLayout
+                android:id="@+id/rewards_characters_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMaxWidth="0dp"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                android:background="@color/gloom_primaryLight"
+                app:tabIndicatorColor="@color/gloom_secondary"
+                app:tabIndicatorHeight="10px" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/characterrewardsviewpager"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="vertical"
-                android:minWidth="25px"
-                android:minHeight="0dp"
-                android:layout_weight="0.5"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/rewards_characters_tabs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:tabMaxWidth="0dp"
-                    app:tabGravity="fill"
-                    app:tabMode="fixed"
-                    android:background="@color/gloom_primaryLight"
-                    app:tabIndicatorColor="@color/gloom_secondary"
-                    app:tabIndicatorHeight="10px" />
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/characterrewardsviewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp" />
-            </LinearLayout>
+            android:layout_height="wrap_content">          
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="0.5"
-                    android:background="@drawable/bordersheet"
-                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bordersheet"                  
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:paddingTop="5dp">
+                    android:paddingTop="2dp">
                     <TextView
                         android:id="@+id/prosperityText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/Prosperity"
                         android:textStyle="bold"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:gravity="center"
                         android:textColor="@color/gloom_secondaryText" />            
                     <RelativeLayout
@@ -71,22 +87,22 @@
                             android:background="@drawable/ic_remove_circle_white_24dp"
                             android:alpha="0.7"
                             android:gravity="right"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:layout_marginLeft="20dp"
                             app:backgroundTint="#ff000000" />
                         <Button
                             android:id="@+id/raiseprospbutton"
                             android:background="@drawable/ic_add_circle_white_24dp"
                             android:alpha="0.7"
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="20dp"
                             app:backgroundTint="#ff000000" />
                         <TextView
                             android:text="0"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:id="@+id/prospLevelText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -103,10 +119,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@drawable/borderSheet"
-                    android:layout_marginTop="10dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:paddingTop="5dp"
+                    android:paddingTop="2dp"
                     android:layout_weight="0.5">
                     <RelativeLayout
                         android:minWidth="25px"
@@ -120,7 +135,7 @@
                             android:editable="false"
                             android:focusable="false"
                             android:textStyle="bold"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/gloom_secondaryText"          
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -135,8 +150,8 @@
                                 android:background="@drawable/ic_remove_circle_white_24dp"
                                 android:alpha="0.7"
                                 android:gravity="right"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
                                 android:layout_marginLeft="20dp"
                                 android:layout_below="@id/partyfrag_ReputationTextView"
                                 app:backgroundTint="#ff000000" />
@@ -144,15 +159,15 @@
                                 android:id="@+id/raiseReputationButton"
                                 android:background="@drawable/ic_add_circle_white_24dp"
                                 android:alpha="0.7"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
                                 android:layout_alignParentRight="true"
                                 android:layout_below="@id/partyfrag_ReputationTextView"
                                 app:backgroundTint="#ff000000"
                                 android:layout_marginRight="20dp" />
                             <TextView
                                 android:text="0"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:id="@+id/reputationTextView"
                                 android:gravity="center"
                                 android:editable="false"
@@ -177,13 +192,13 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/borderSheet"
                     android:padding="5dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="5dp">
                     <TextView
                         android:text="@string/Achievements"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/AchievementsTextView"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/gloom_secondaryText"
                         android:gravity="left"
                         android:editable="false"
@@ -195,14 +210,14 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/btnGA"
                         android:background="@drawable/borderbuttons"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="5dp" />
                     <Button
                         android:text="Party"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/btnPA"
                         android:background="@drawable/borderbuttons"
-                        android:layout_marginTop="10dp"  />
+                        android:layout_marginTop="5dp"  />
                 </LinearLayout>            
                 <LinearLayout
                     android:orientation="vertical"
@@ -211,13 +226,13 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/borderSheet"
                     android:padding="5dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="5dp">
                     <TextView
                         android:text="@string/Scenarios"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/ScenariosTextView"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/gloom_secondaryText"
                         android:gravity="left"
                         android:editable="false"
@@ -229,7 +244,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/btnAddScenario"
                         android:background="@drawable/borderbuttons"
-                        android:layout_marginTop="10dp" />         
+                        android:layout_marginTop="5dp" />         
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -237,7 +252,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.1"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="5dp">
                 <Button
                     android:text="Cancel"
                     android:layout_weight="0.4"

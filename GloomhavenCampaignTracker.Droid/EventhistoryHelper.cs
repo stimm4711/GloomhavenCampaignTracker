@@ -20,7 +20,7 @@ namespace GloomhavenCampaignTracker.Droid
             return position;
         }
 
-        public static void DrawnEventHistory(Context context, int eventnumber, int eventtype, string outcome, int selectedOption)
+        public static void DrawnEventHistory(Context context, int eventnumber, int eventtype, int selectedOption, string outcome = "No effect")
         {
             if(GCTContext.CurrentCampaign != null)
             {

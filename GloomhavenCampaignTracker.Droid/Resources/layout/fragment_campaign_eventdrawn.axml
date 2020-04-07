@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mytheme_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:orientation="vertical"
+        android:id="@+id/event_layout">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:id="@+id/loadingPanel"
+            android:foregroundGravity="center"
+            android:layout_gravity="center" />
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="5dp">
+            <ImageView
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="100%"
+                android:id="@+id/itemimage"/>
+        </android.support.percent.PercentRelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:orientation="vertical"
+        android:id="@+id/deciscion_layout"
+        android:visibility="gone">
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/optionsgroup"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal|bottom"
+            android:layout_gravity="bottom"
+            android:showDividers="middle">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/OptionA"
+                android:id="@+id/optionA"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/gloom_primaryText" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/OptionB"
+                android:id="@+id/optionB"
+                android:textColor="@color/gloom_primaryText" />
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/result_layout"
+        android:visibility="visible"
+        android:soundEffectsEnabled="true"
+        android:gravity="bottom">
+        <Button
+            android:text="Enter Outcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/enterOutcome"
+            android:background="@drawable/borderbuttons"
+            android:textColor="@color/gloom_primaryText"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="5dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="bottom|center"
+            android:visibility="visible">
+            <Button
+                android:text="@string/RemoveEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/remove_button"
+                android:background="@drawable/borderbuttons"
+                android:textColor="@color/gloom_primaryText"
+                android:layout_gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginRight="10dp" />
+            <Button
+                android:text="@string/PutUnder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/putunder"
+                android:background="@drawable/borderbuttons"
+                android:textColor="@color/gloom_primaryText"
+                android:layout_gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:orientation="vertical"
+        android:id="@+id/turnbutton_layout"
+        android:visibility="visible">
+        <Button
+            android:text="@string/TurnCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/turn"
+            android:background="@drawable/borderbuttons"
+            android:textColor="@color/gloom_primaryText"
+            android:layout_gravity="center|bottom"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginTop="15dp" />
+    </LinearLayout>
+
+</LinearLayout>

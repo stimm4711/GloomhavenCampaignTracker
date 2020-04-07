@@ -121,6 +121,7 @@
   <string name="JustOneCharacterOfEachClass">You can select just one character of each class.</string>
   
   <!-- Events -->
+  <string name="Events">Events</string>
   <string name="AddEvents">Add Event</string>
   <string name="EventAlreadyAdded">An event with the same type and number is already added.</string>
   <string name="RoadEvents">Road Events</string>

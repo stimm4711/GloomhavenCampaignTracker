@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/scenariViewItem_numberTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15px"
+            android:layout_marginLeft="10px"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:text="123"
+            android:layout_marginTop="5dp" />
+        <TextView
+            android:id="@+id/scenariViewItem_nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/scenariViewItem_numberTextView"
+            android:layout_toLeftOf="@id/optionsButton"
+            android:text=" a very long scenario name xx"
+            android:gravity="center"
+            android:layout_alignParentBottom="false"
+            android:layout_marginTop="5dp" />       
+    </RelativeLayout>
+</LinearLayout>

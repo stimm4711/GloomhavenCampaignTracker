@@ -208,8 +208,10 @@
     <Compile Include="Adapter\AbilitiesEnhancementDeleteableAdapter.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementSelectableAdapter.cs" />
     <Compile Include="Adapter\BackupAdapter.cs" />
+    <Compile Include="Adapter\ScenarioListviewtAdapter.cs" />
     <Compile Include="Adapter\ChangeAwareAdapter.cs" />
     <Compile Include="Adapter\CampaignScenarioTreasureAdapter.cs" />
+    <Compile Include="Adapter\EvenOutcomeCharacterViewPagerAdapter.cs" />
     <Compile Include="Adapter\ScenarioRewardsCharacterViewPagerAdapter.cs" />
     <Compile Include="Adapter\ScenarioRewardsViewPagerAdapter.cs" />
     <Compile Include="Adapter\CharacterWrapper.cs" />
@@ -390,6 +392,7 @@
     <Compile Include="DetailsActivity.cs" />
     <Compile Include="EventhistoryHelper.cs" />
     <Compile Include="Exceptions\CampaignLoadingException.cs" />
+    <Compile Include="Fragments\campaign\CampaignEventsDrawnFragment.cs" />
     <Compile Include="Fragments\campaign\city\CampaigntemsFragment.cs" />
     <Compile Include="Fragments\campaign\city\ItemstoreViewPagerTabs.cs" />
     <Compile Include="Fragments\campaign\EventWrapper.cs" />
@@ -397,8 +400,9 @@
     <Compile Include="Fragments\campaign\CampaignSelectionFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyNotesFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyAchievementsFragment.cs" />
+    <Compile Include="Fragments\campaign\EventOutcomeFragment.cs" />
+    <Compile Include="Fragments\campaign\EventCharacterOutcomeFragment.cs" />
     <Compile Include="Fragments\campaign\unlocks\CampaignUnlocksEnvelopeXFragment.cs" />
-    <Compile Include="Fragments\campaign\world\ScenarioRewardsViewPagerTabs.cs" />
     <Compile Include="Fragments\campaign\world\SzenarioCharacterRewardsFragment.cs" />
     <Compile Include="Fragments\campaign\world\SzenarioRewardsFragment.cs" />
     <Compile Include="Fragments\campaign\world\SzenarioDetailsUnlocksFragment.cs" />
@@ -2762,7 +2766,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\alertdialog_drawnevent_withImage.axml">
+    <AndroidResource Include="Resources\layout\fragment_campaign_eventdrawn.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -3029,6 +3033,15 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_campaignscenario_numberAndName.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_eventdrawn.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
