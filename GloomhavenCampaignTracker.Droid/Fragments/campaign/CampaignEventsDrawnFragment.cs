@@ -73,13 +73,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             // Show eventcard if there is internet connection
             _view = inflater.Inflate(Resource.Layout.fragment_campaign_eventdrawn, container, false);
             var pqimage = _view.FindViewById<ImageView>(Resource.Id.itemimage);
-            var turnButton = _view.FindViewById<Button>(Resource.Id.turn);
+            var turnButton = _view.FindViewById<ImageButton>(Resource.Id.ibuttonTurnCard);
             var deciscion_layout = _view.FindViewById<LinearLayout>(Resource.Id.deciscion_layout);
             var result_layout = _view.FindViewById<LinearLayout>(Resource.Id.result_layout);
-            var removeButton = _view.FindViewById<Button>(Resource.Id.remove_button);
-            var putUnderButton = _view.FindViewById<Button>(Resource.Id.putunder);
+            var removeButton = _view.FindViewById<ImageButton>(Resource.Id.ibutton_removeevent);
+            var putUnderButton = _view.FindViewById<ImageButton>(Resource.Id.ibutton_putunder);
             var radiooptionA = _view.FindViewById<RadioButton>(Resource.Id.optionA);
-            var enterOutcomeButton = _view.FindViewById<Button>(Resource.Id.enterOutcome);
+            var enterOutcomeButton = _view.FindViewById<ImageButton>(Resource.Id.ibuttonOutcome);
 
             deciscion_layout.Visibility = ViewStates.Visible;
             result_layout.Visibility = ViewStates.Gone;

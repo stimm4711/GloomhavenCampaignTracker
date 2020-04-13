@@ -12,9 +12,10 @@ namespace GloomhavenCampaignTracker.Droid.Business
 {
     public class ScenarioHelper
     {
-        internal static void SetScenarioCompleted(Context context, LayoutInflater inflater, CampaignUnlockedScenario campScenario)
+        internal static List<CampaignUnlockedScenario> SetScenarioCompleted(Context context, LayoutInflater inflater, CampaignUnlockedScenario campScenario)
         {
-            if (campScenario.Completed) return;
+            var lstUnlockedScenarios = new List<CampaignUnlockedScenario>();
+            if (campScenario.Completed) return lstUnlockedScenarios;
 
             List<CampaignUnlockedScenario> unlockedScenarios = new List<CampaignUnlockedScenario>();
             campScenario.Completed = true;
@@ -80,7 +81,7 @@ namespace GloomhavenCampaignTracker.Droid.Business
 
                         if (scenario == null) return;
 
-                        currentCampaign.AddUnlockedScenario(scenario.ScenarioNumber);
+                        lstUnlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenario.ScenarioNumber));
                     })
                     .Show();
             }
@@ -88,20 +89,22 @@ namespace GloomhavenCampaignTracker.Droid.Business
             {
                 foreach (var scenarioNumber in unlockedScenarioNumbers)
                 {
-                    _ = currentCampaign.AddUnlockedScenario(scenarioNumber);
+                    lstUnlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenarioNumber));
                 }
             }
 
             campScenario.Save();
+
+            return lstUnlockedScenarios;
         }
 
-        public static void SetScenarioIncomplete(Context context, LayoutInflater inflater, CampaignUnlockedScenario campScenario, CheckBox checkb)
+        public static void SetScenarioIncomplete(Context context, LayoutInflater inflater, CampaignUnlockedScenario campScenario, CheckBox checkb = null)
         {
             var removecampScenarios = SetIncomplete(campScenario.UnlockedScenarioData);
 
             var alertView = inflater.Inflate(Resource.Layout.alertdialog_listview, null);
             var lv = alertView.FindViewById<ListView>(Resource.Id.listView);
-            lv.Adapter = new ArrayAdapter<string>(context, Android.Resource.Layout.SimpleListItem1, removecampScenarios.Select(x => $"# {x.Scenario.Scenarionumber}   {x.Scenario.Name}").ToArray());
+            lv.Adapter = new ArrayAdapter<string>(context, Android.Resource.Layout.SimpleListItem1, removecampScenarios.Select(x => $"# {x.Scenario.ScenarioNumber}   {x.Scenario.ScenarioName}").ToArray());
 
             new CustomDialogBuilder(context, Resource.Style.MyDialogTheme)
                 .SetCustomView(alertView)
@@ -109,13 +112,13 @@ namespace GloomhavenCampaignTracker.Droid.Business
                 .SetMessage(context.Resources.GetString(Resource.String.ScenariosWillBeRemoved))
                 .SetNegativeButton(context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
                 {
-                    checkb.Checked = true;
+                    if(checkb != null)  checkb.Checked = true;
                 })
                 .SetPositiveButton(context.Resources.GetString(Resource.String.OK), (senderAlert, args) =>
                 {
                     foreach (var cus in removecampScenarios)
                     {
-                        GCTContext.CurrentCampaign.CampaignData.UnlockedScenarios.Remove(cus);
+                        GCTContext.CurrentCampaign.RemoveScenario(cus.UnlockedScenarioData);
                     }
 
                     campScenario.Completed = false;
@@ -170,9 +173,9 @@ namespace GloomhavenCampaignTracker.Droid.Business
             }
         }
 
-        internal static HashSet<DL_CampaignUnlockedScenario> SetIncomplete(DL_CampaignUnlockedScenario cs, HashSet<DL_CampaignUnlockedScenario> removededScenarios = null)
+        internal static HashSet<CampaignUnlockedScenario> SetIncomplete(DL_CampaignUnlockedScenario cs, HashSet<CampaignUnlockedScenario> removededScenarios = null)
         {
-            if (removededScenarios == null) removededScenarios = new HashSet<DL_CampaignUnlockedScenario>();
+            if (removededScenarios == null) removededScenarios = new HashSet<CampaignUnlockedScenario>();
 
             if (!cs.Completed) return removededScenarios;
 
@@ -184,18 +187,21 @@ namespace GloomhavenCampaignTracker.Droid.Business
             {
                 // Check if the scenario was unlocked by any other completed scenario
                 if (GCTContext.CurrentCampaign.CampaignData.UnlockedScenarios.Any(x => x.Completed && x.Scenario.Scenarionumber != cs.Scenario.Scenarionumber &&
-                                                        !removededScenarios.Contains(x) &&
                                                         GetUnlockedScenarios(x).Contains(scenarioNumber))) continue;
 
                 var campScenario = GCTContext.CurrentCampaign.CampaignData.UnlockedScenarios.FirstOrDefault(x => x.Scenario.Scenarionumber == scenarioNumber);
                 if (campScenario != null)
                 {
-                    removededScenarios.Add(campScenario);
-
-                    foreach (var cus in SetIncomplete(campScenario, removededScenarios))
+                    var scenario = GCTContext.CurrentCampaign.GetUnlockedScenario(campScenario.ID_Scenario);
+                    if (!removededScenarios.Contains(scenario))
                     {
-                        removededScenarios.Add(cus);
-                    }
+                        removededScenarios.Add(scenario);
+
+                        foreach (var cus in SetIncomplete(campScenario, removededScenarios))
+                        {
+                            removededScenarios.Add(cus);
+                        }
+                    }                   
                 }
             }
 

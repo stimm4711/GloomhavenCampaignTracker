@@ -55,18 +55,18 @@
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">          
+            android:layout_height="wrap_content"
+            android:background="@drawable/bordersheet" >          
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="5dp">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/bordersheet"                  
+                    android:layout_weight="0.5"                  
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:paddingTop="2dp">
@@ -118,7 +118,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="@drawable/borderSheet"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:paddingTop="2dp"
@@ -190,7 +189,6 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/borderSheet"
                     android:padding="5dp"
                     android:layout_marginTop="5dp">
                     <TextView
@@ -224,7 +222,6 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="match_parent"
-                    android:background="@drawable/borderSheet"
                     android:padding="5dp"
                     android:layout_marginTop="5dp">
                     <TextView
@@ -248,6 +245,61 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/layout_events">
+                <TextView
+                    android:text="@string/Events"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EventsTextView"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/gloom_secondaryText"
+                    android:gravity="left"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+                    <Button
+                        android:text="Road"
+                        android:layout_weight="0.4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnRoadE"
+                        android:background="@drawable/borderbuttons" />
+                    <Button
+                        android:text="City"
+                        android:layout_weight="0.4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnCityE"
+                        android:background="@drawable/borderbuttons"
+                        android:layout_marginLeft="20dp" />
+                    <Button
+                        android:text="Rift"
+                        android:layout_weight="0.4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnRiftE"
+                        android:background="@drawable/borderbuttons"
+                        android:layout_marginLeft="20dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>            
+        </LinearLayout>
+        <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -270,6 +322,5 @@
                     android:background="@drawable/borderbuttons"
                     android:layout_marginLeft="20dp" />
             </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

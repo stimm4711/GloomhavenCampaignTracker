@@ -88,7 +88,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
             _prospLevelText = _view.FindViewById<TextView>(Resource.Id.prospLevelText);
             _reputationTextView = _view.FindViewById<TextView>(Resource.Id.reputationTextView);
-            _lstviewScenariosUnlocked = _view.FindViewById<ListView>(Resource.Id.lstviewScenariosUnlocked);
+            _lstviewScenariosUnlocked = _view.FindViewById<ListView>(Resource.Id.lstviewScenariosUnlocked);           
 
             var characters = CharacterRepository.GetPartymembersFlat(GCTContext.CurrentCampaign.CurrentParty.Id).Where(x => !x.Retired).ToList();
             GCTContext.CharacterCollection = characters;
@@ -143,6 +143,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
                 var scenarioLayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_scenario);
                 scenarioLayout.Visibility = ViewStates.Gone;
+
+                var eventlayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_events);
+                eventlayout.Visibility = ViewStates.Gone;
             }
             else
             {

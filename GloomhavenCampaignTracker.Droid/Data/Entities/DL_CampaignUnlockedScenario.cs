@@ -20,6 +20,8 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         public int ID_Scenario { get; set; }
 
         public bool Completed { get; set; }
+                
+        public string ScenarioNotes { get; set; }
 
         public DateTime LastSync { get; set; }
 

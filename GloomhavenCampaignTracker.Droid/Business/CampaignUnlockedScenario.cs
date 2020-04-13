@@ -160,7 +160,8 @@ namespace GloomhavenCampaignTracker.Business
                 neededAchievementNames.Add($"Not gained {GCTContext.AchievementCollectiom.PartyAchievementInternalNumberToName(blockPartyAch)} (party)");
             }
 
-           
+            if (neededAchievementNames.Count == 0) neededAchievementNames.Add("None");
+
             return neededAchievementNames;
         }
 

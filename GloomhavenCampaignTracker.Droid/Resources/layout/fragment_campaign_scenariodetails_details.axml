@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
-    <RelativeLayout
+    android:layout_height="match_parent">
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layout_top"
-            android:focusableInTouchMode="true">          
+            android:focusableInTouchMode="true">
             <TextView
                 android:text="Scenarioname"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -18,7 +23,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12.0dp"
-                android:layout_marginRight="5dp" />            
+                android:layout_marginRight="5dp" />
             <TextView
                 android:text="#123"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -29,174 +34,130 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_marginLeft="12.0dp"
                 android:layout_marginRight="5dp"
                 android:layout_below="@+id/scenarionametextview"/>
-            <CheckBox
-                android:text="@string/Completed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:id="@+id/scenariostatuscheckbox"                
-                android:layout_below="@+id/scenarionametextview"
-                android:layout_alignParentRight="true"
-                app:buttonTint="@color/gloom_primaryLight"  />
-            <Button
-                android:text="Completed in Casual Mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/borderbuttons"
-                android:layout_below="@+id/scenarionametextview"
-                android:layout_toLeftOf="@id/scenariostatuscheckbox"
-                android:id="@+id/completedCasual"
-                android:padding="5dp"
-                android:layout_alignParentRight="true"
-                android:visibility="gone" 
-                android:layout_marginRight="5dp"/>           
         </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         android:layout_marginTop="5dp"
-        android:id="@+id/rl_region">
-        <TextView
-            android:text="@string/Requirements"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txt_requirementsCaption"
-            android:textColor="@color/gloom_primaryText" />
-        <ListView
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lv_requirements"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="2dp"
-            android:layout_below="@+id/txt_requirementsCaption"
-            android:layout_centerHorizontal="true" />        
-        <TextView
-            android:text="@string/Region"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_regionCaption"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="2dp"
-            android:layout_below="@+id/lv_requirements"/>
-        <TextView
-            android:text="Dagger Forrest"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_region"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="2dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/lv_requirements"/>
-        <TextView
-            android:text="Unlocked By:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_unlockByCaption"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_below="@+id/txt_regionCaption"
-            android:visibility="gone" />
-        <TextView
-            android:text="#122"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_unlockedBy"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_marginLeft="30dp"
-            android:layout_below="@+id/txt_region"
-            android:layout_alignParentRight="true"
-            android:visibility="gone"/>
-        <TextView
-            android:text="Unlocked At:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_unlockAtCaption"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_below="@+id/txt_unlockByCaption"
-            android:visibility="gone"/>
-        <TextView
-            android:text="2019-09-20"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_unlockedAt"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_marginLeft="30dp"
-            android:layout_below="@+id/txt_unlockedBy"
-            android:layout_alignParentRight="true"
-            android:visibility="gone"/>       
-        <TextView
-            android:text="Completed At:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_completedAtCaption"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_below="@+id/txt_unlockAtCaption"
-            android:visibility="gone"/>
-        <TextView
-            android:text="2019-09-20"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_completedAt"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_marginLeft="30dp"
-            android:layout_below="@+id/txt_unlockAtCaption"
-            android:layout_alignParentRight="true"
-            android:visibility="gone"/>
-        <TextView
-            android:text="@string/TreasuresCaption"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_treasures"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_below="@+id/txt_completedAt"
-            android:layout_alignParentLeft="true"
-            android:visibility="gone" />       
-        <GridView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:verticalSpacing="2dp"
-				android:horizontalSpacing="2dp"
-				android:stretchMode="spacingWidthUniform"              
-				android:gravity="center"
-				android:id="@+id/imagesGridView"
-				android:layout_marginTop="15px"
-				android:numColumns="3"
-				android:columnWidth="120dp"
-				android:layout_marginBottom="10px"            
+            android:layout_marginTop="5dp"
+            android:id="@+id/rl_region">
+            <TextView
+                android:text="@string/Requirements"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_requirementsCaption"
+                android:textColor="@color/gloom_primaryText" />
+            <ListView
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lv_requirements"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/txt_requirementsCaption"
+                android:layout_centerHorizontal="true" />
+            <TextView
+                android:text="@string/Region"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_regionCaption"
+                android:textColor="@color/gloom_primaryText"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/lv_requirements"/>
+            <TextView
+                android:text="Dagger Forrest"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_region"
+                android:textColor="@color/gloom_primaryText"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/lv_requirements"/>        
+            <TextView
+                android:text="@string/TreasuresCaption"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_treasures"
+                android:textColor="@color/gloom_primaryText"
+                android:layout_below="@+id/txt_region"
+                android:layout_alignParentLeft="true"
+                android:visibility="gone" />
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:verticalSpacing="2dp"
+                android:horizontalSpacing="2dp"
+                android:stretchMode="spacingWidthUniform"
+                android:gravity="center"
+                android:id="@+id/imagesGridView"
+                android:layout_marginTop="15px"
+                android:numColumns="3"
+                android:columnWidth="120dp"
+                android:layout_marginBottom="10px"
                 android:layout_marginLeft="30dp"
                 android:layout_below="@+id/txt_treasures"
-                android:layout_centerHorizontal="true" />  
-         <TextView
-            android:text="Scenario Rewards"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_rewards"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/imagesGridView"
-            android:layout_marginTop="20dp"
-            android:visibility="gone"/>
+                android:layout_centerHorizontal="true" />       
         </RelativeLayout>
-        <Button            
-            android:text="Open in Scenario Viewer"
+        <RelativeLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cmd_openInScenarioViewer"            
-            android:background="@drawable/borderbuttons"
-            android:layout_margin="20dp"
-            android:visibility="gone"/>  
+            android:id="@+id/linearLayout1"
+            android:paddingTop="5dp">
+            <Button
+                android:text="Completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/greenButtton"
+                android:id="@+id/completed"
+                android:layout_marginRight="5dp"/>
+            <Button
+                android:text="Completed (Casual)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/greenButtton"
+                android:id="@+id/completedCasual"
+                android:layout_marginRight="5dp"
+                android:visibility="gone"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp" />           
+            <Button
+                    android:text="Lost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/borderbuttons"
+                    android:id="@+id/lost"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"/>    
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1"
+            android:paddingTop="5dp">
+            <TextView
+                android:text="@string/CharacterNotes"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ScenarioNotes"
+                android:textColor="@color/gloom_primaryText" />
+            <EditText
+                android:inputType="textMultiLine"
+                android:id="@+id/notestext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gloom_primaryLighter"
+                android:textColor="@color/gloom_popupmenuBackground"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="5dp" />
+        </LinearLayout>        
     </LinearLayout>
+</ScrollView>

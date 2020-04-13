@@ -125,7 +125,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             if (!int.TryParse(_goldEditText.Text, out int newGold)) return Character.Gold;           
 
             if (newGold < 0) _goldEditText.SetTextColor(Android.Graphics.Color.Red);
-            if (newGold >= 0) _goldEditText.SetTextColor(new Android.Graphics.Color(ContextCompat.GetColor(Context, Resource.Color.gloom_primaryText)));
+
+            if (newGold >= 0 && Context != null) _goldEditText.SetTextColor(new Android.Graphics.Color(ContextCompat.GetColor(Context, Resource.Color.gloom_primaryText)));
 
             return Math.Max(0, Character.Gold + newGold);
         }

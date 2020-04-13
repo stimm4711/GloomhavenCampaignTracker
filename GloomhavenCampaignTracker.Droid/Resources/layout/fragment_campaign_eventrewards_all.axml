@@ -8,7 +8,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:focusable="true"
         android:id="@+id/characterreardslayout"
         android:focusableInTouchMode="true"
@@ -61,7 +61,7 @@
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="0.3"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/xplayout">
                 <ImageView
                     android:src="@drawable/ic_xpiconwhite"
@@ -97,7 +97,7 @@
                 android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="0.3"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/goldlayout">
                 <ImageView
                     android:src="@drawable/ic_coins_white"

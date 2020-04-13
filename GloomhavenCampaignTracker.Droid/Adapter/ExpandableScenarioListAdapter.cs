@@ -88,20 +88,20 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         public void Remove(CampaignUnlockedScenario s)
         {
             if (s.Completed)
-            {
-                _listDataChild[_completed].Remove(s);
+            {                
+                _listDataChild[_completed].Remove(_listDataChild[_completed].FirstOrDefault(x => x.ScenarioId == s.ScenarioId));
             }
             if (s.IsAvailable())
             {
-                _listDataChild[_unlocked].Remove(s);
+                _listDataChild[_unlocked].Remove(_listDataChild[_unlocked].FirstOrDefault(x => x.ScenarioId == s.ScenarioId));
             }
             else if (s.IsBlocked())
             {
-                _listDataChild[_blocked].Remove(s);
+                _listDataChild[_blocked].Remove(_listDataChild[_blocked].FirstOrDefault(x => x.ScenarioId == s.ScenarioId));
             }
             else if (!s.IsAvailable())
             {
-                _listDataChild[_unavailable].Remove(s);
+                _listDataChild[_unavailable].Remove(_listDataChild[_unavailable].FirstOrDefault(x => x.ScenarioId == s.ScenarioId));
             }
         }
 
@@ -246,18 +246,59 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             if (status.Checked)
             {
-                ScenarioHelper.SetScenarioCompleted(_context, _context.LayoutInflater, campScenario);
+                foreach(var cus in ScenarioHelper.SetScenarioCompleted(_context, _context.LayoutInflater, campScenario))
+                {
+                    Add(cus);
+                }
+
+                _isCompleting = false;
             }
             else
             {
-                ScenarioHelper.SetScenarioIncomplete(_context, _context.LayoutInflater, campScenario, status);
+                var removecampScenarios = ScenarioHelper.SetIncomplete(campScenario.UnlockedScenarioData);
+
+                var alertView = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                var lv = alertView.FindViewById<ListView>(Resource.Id.listView);
+                lv.Adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItem1, removecampScenarios.Select(x => $"# {x.Scenario.ScenarioNumber}   {x.Scenario.ScenarioName}").ToArray());
+
+                new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                    .SetCustomView(alertView)
+                    .SetTitle(String.Format(_context.Resources.GetString(Resource.String.SetScenarioIncomplete), campScenario.ScenarioName))
+                    .SetMessage(_context.Resources.GetString(Resource.String.ScenariosWillBeRemoved))
+                    .SetNegativeButton(_context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
+                    {
+                        if (status != null) status.Checked = true;
+                        _isCompleting = false;
+                    })
+                    .SetPositiveButton(_context.Resources.GetString(Resource.String.OK), (senderAlert, args) =>
+                    {
+                        if (status != null) status.Checked = false;
+
+                        foreach (var cus in removecampScenarios)
+                        {
+                            GCTContext.CurrentCampaign.RemoveScenario(cus.UnlockedScenarioData);
+                            Remove(cus);
+                        }
+
+                        campScenario.Completed = false;
+                        campScenario.Save();
+
+                        NotifyDataSetChanged();
+                        _isCompleting = false;
+                    })
+                    .Show();
             }
         }
 
         private void SetScenarioCompletedStatus(CampaignUnlockedScenario campScenario, bool status, CheckBox checkb)
         {
+            _isCompleting = true;
+
             if (!campScenario.Completed)
             {
+                _listDataChild[_unlocked].Remove(campScenario);
+                _listDataChild[_completed].Add(campScenario);    
+
                 new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                   .SetTitle("Scenarios completed!")
                   .SetMessage($"You've completed the scenarion. Do you want to enter rewards now?")
@@ -271,13 +312,20 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                   })
                   .SetNegativeButton(_context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
                   {
-                      ScenarioCompletion(checkb, campScenario);
+                      ScenarioCompletion(checkb, campScenario);                     
+                      NotifyDataSetChanged();
                   })
                   .Show();
             }
             else
             {
+                _listDataChild[_completed].Remove(campScenario);
+                _listDataChild[_unlocked].Add(campScenario);
+
                 ScenarioCompletion(checkb, campScenario);
+                SetIncomplete(campScenario);
+                NotifyDataSetChanged();
+
             }
 
             //if (status)
