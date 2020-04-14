@@ -5,11 +5,12 @@
     android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -77,7 +78,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="2dp"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/lv_requirements"/>        
+                android:layout_below="@+id/lv_requirements"/>
             <TextView
                 android:text="@string/TreasuresCaption"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -102,7 +103,7 @@
                 android:layout_marginBottom="10px"
                 android:layout_marginLeft="30dp"
                 android:layout_below="@+id/txt_treasures"
-                android:layout_centerHorizontal="true" />       
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
         <RelativeLayout
             android:orientation="horizontal"
@@ -116,31 +117,26 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/greenButtton"
                 android:id="@+id/completed"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
             <Button
-                android:text="Completed (Casual)"
+                android:text="Casual / Lost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/greenButtton"
-                android:id="@+id/completedCasual"
+                android:background="@drawable/borderbuttons"
+                android:id="@+id/lost"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
-                android:visibility="gone"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp" />           
-            <Button
-                    android:text="Lost"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/borderbuttons"
-                    android:id="@+id/lost"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"/>    
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginLeft="5dp" />
         </RelativeLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout1"
+            android:id="@+id/linearLayout10"
             android:paddingTop="5dp">
             <TextView
                 android:text="@string/CharacterNotes"
@@ -158,6 +154,6 @@
                 android:textColor="@color/gloom_popupmenuBackground"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="5dp" />
-        </LinearLayout>        
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

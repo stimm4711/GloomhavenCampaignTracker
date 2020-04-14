@@ -138,6 +138,23 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 }
             };
 
+            var _uiLayout = _view.FindViewById<LinearLayout>(Resource.Id.event_ui_layout);
+            if (_eventType == EventTypes.CityEvent)
+            {
+                _uiLayout.SetBackgroundResource(Resource.Drawable.bg_cityevent);
+                putUnderButton.SetImageResource(Resource.Drawable.ic_event_putunder_white);
+                removeButton.SetImageResource(Resource.Drawable.ic_event_remove_white);
+            }
+            else if (_eventType == EventTypes.RoadEvent)
+            {
+                _uiLayout.SetBackgroundResource(Resource.Drawable.bg_roadevent);
+            }
+            else if (_eventType == EventTypes.RiftEvent)
+            {
+                _uiLayout.SetBackgroundResource(Resource.Drawable.bg_riftevent);
+            }
+
+
             return _view;
         }
 

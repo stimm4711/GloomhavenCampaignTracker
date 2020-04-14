@@ -3,8 +3,8 @@
   <!-- use this for transparent -->
   <!-- <solid android:color="#00000000" /> -->
   <!-- use this for a background colour -->
-  <solid android:color="@color/gloom_greenbutton" />
-  <stroke android:width="2dip" android:color="#49e060" />
+  <solid android:color="@color/gloom_secondaryDark" />
+  <stroke android:width="2dip" android:color="@color/gloom_secondaryLight" />
   <corners
        android:radius="10dp" />
 

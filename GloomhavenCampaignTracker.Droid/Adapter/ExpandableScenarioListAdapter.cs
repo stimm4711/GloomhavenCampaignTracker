@@ -35,9 +35,9 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         /// <summary>
         /// child data in format of header title, child title
         /// </summary>
-        private readonly Dictionary<string, List<CampaignUnlockedScenario>> _listDataChild;
+        private readonly Dictionary<string, SortedList<int,CampaignUnlockedScenario>> _listDataChild;
 
-        public ExpandableScenarioListAdapter(Activity context, List<string> listDataHeader, Dictionary<string, List<CampaignUnlockedScenario>> listChildData)
+        public ExpandableScenarioListAdapter(Activity context, List<string> listDataHeader, Dictionary<string, SortedList<int, CampaignUnlockedScenario>> listChildData)
         {
             _context = context;
             _listDataHeader = listDataHeader;
@@ -57,7 +57,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         /// <returns></returns>
         public override Object GetChild(int groupPosition, int childPosition)
         {
-            return _listDataChild[_listDataHeader[groupPosition]][childPosition];
+            return _listDataChild[_listDataHeader[groupPosition]].ElementAt(childPosition).Value;
         }
 
         public override long GetChildId(int groupPosition, int childPosition)
@@ -69,19 +69,19 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             if(s.Completed)
             {
-                _listDataChild[_completed].Add(s);
+                _listDataChild[_completed].Add(s.Scenarionumber, s);
             }
             if (s.IsAvailable())
             {
-                _listDataChild[_unlocked].Add(s);
+                _listDataChild[_unlocked].Add(s.Scenarionumber, s);
             }
             else if (s.IsBlocked())
             {
-                _listDataChild[_blocked].Add(s);
+                _listDataChild[_blocked].Add(s.Scenarionumber, s);
             }
             else if (!s.IsAvailable())
             {
-                _listDataChild[_unavailable].Add(s);
+                _listDataChild[_unavailable].Add(s.Scenarionumber, s);
             }
         }
 
@@ -89,19 +89,19 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             if (s.Completed)
             {                
-                _listDataChild[_completed].Remove(_listDataChild[_completed].FirstOrDefault(x => x.ScenarioId == s.ScenarioId));
+                _listDataChild[_completed].Remove(s.Scenarionumber);
             }
             if (s.IsAvailable())
             {
-                _listDataChild[_unlocked].Remove(_listDataChild[_unlocked].FirstOrDefault(x => x.ScenarioId == s.ScenarioId));
+                _listDataChild[_unlocked].Remove(s.Scenarionumber);
             }
             else if (s.IsBlocked())
             {
-                _listDataChild[_blocked].Remove(_listDataChild[_blocked].FirstOrDefault(x => x.ScenarioId == s.ScenarioId));
+                _listDataChild[_blocked].Remove(s.Scenarionumber);
             }
             else if (!s.IsAvailable())
             {
-                _listDataChild[_unavailable].Remove(_listDataChild[_unavailable].FirstOrDefault(x => x.ScenarioId == s.ScenarioId));
+                _listDataChild[_unavailable].Remove(s.Scenarionumber);
             }
         }
 
@@ -296,8 +296,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
             if (!campScenario.Completed)
             {
-                _listDataChild[_unlocked].Remove(campScenario);
-                _listDataChild[_completed].Add(campScenario);    
+                _listDataChild[_unlocked].Remove(campScenario.Scenarionumber);
+                _listDataChild[_completed].Add(campScenario.Scenarionumber, campScenario);    
 
                 new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                   .SetTitle("Scenarios completed!")
@@ -319,8 +319,8 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             }
             else
             {
-                _listDataChild[_completed].Remove(campScenario);
-                _listDataChild[_unlocked].Add(campScenario);
+                _listDataChild[_completed].Remove(campScenario.Scenarionumber);
+                _listDataChild[_unlocked].Add(campScenario.Scenarionumber, campScenario);
 
                 ScenarioCompletion(checkb, campScenario);
                 SetIncomplete(campScenario);
@@ -587,20 +587,20 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             foreach (var scenarioNumber in unlockedScenarioNumbers)
             {
                 // Check if the scenario was unlocked by any other completed scenario
-                if (_listDataChild[_completed].Any(x => x.Scenarionumber != cs.Scenarionumber && 
-                                                        !removededScenarios.Contains(x) && 
-                                                        x.GetUnlockedScenarios().Contains(scenarioNumber))) continue;
+                if (_listDataChild[_completed].Any(x => x.Value.Scenarionumber != cs.Scenarionumber && 
+                                                        !removededScenarios.Contains(x.Value) && 
+                                                        x.Value.GetUnlockedScenarios().Contains(scenarioNumber))) continue;
 
-                var campScenarioList = _listDataChild.Values.FirstOrDefault(x=>x.Any(y=>y.Scenarionumber == scenarioNumber));
+                var campScenarioList = _listDataChild.Values.FirstOrDefault(x=>x.Any(y=>y.Value.Scenarionumber == scenarioNumber));
                 if(campScenarioList != null)
                 {
-                    var campScenario = campScenarioList.FirstOrDefault(y => y.Scenarionumber == scenarioNumber);
+                    var campScenario = campScenarioList.FirstOrDefault(y => y.Value.Scenarionumber == scenarioNumber);
 
-                    if (campScenario != null)
+                    if (campScenario.Value != null)
                     {
-                        removededScenarios.Add(campScenario);
+                        removededScenarios.Add(campScenario.Value);
 
-                        foreach (var cus in SetIncomplete(campScenario, removededScenarios))
+                        foreach (var cus in SetIncomplete(campScenario.Value, removededScenarios))
                         {
                             removededScenarios.Add(cus);
                         }

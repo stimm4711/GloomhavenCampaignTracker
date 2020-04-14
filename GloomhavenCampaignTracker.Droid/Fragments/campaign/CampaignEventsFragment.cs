@@ -67,7 +67,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             base.OnCreate(savedInstanceState);
             _dataChanged = false;
 
-            _eventType = GetEventType;
+            _eventType = GetEventType;                      
 
             if (GCTContext.CampaignCollection.CurrentCampaign != null)
             {
@@ -146,7 +146,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             }
 
             InitHistoryAdapter();
-
+            
             return _view;
         }
 

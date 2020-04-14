@@ -8,18 +8,15 @@ using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.Adapter;
-using GloomhavenCampaignTracker.Droid.Business;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
     public class EventOutcomeFragment : CampaignDetailsFragmentBase
     {
-        private View _view;
         private TabLayout _tabLayout;
         private ViewPager _viewPager;
         private EvenOutcomeCharacterViewPagerAdapter _adapter;
-        private Button _save;
         private Button _decreaseprospButton;
         private Button _raiseprospbutton;
         private Button _decreaseReputationButton;
@@ -76,13 +73,35 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             base.OnResume();
         }
 
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.saveMenu, menu);
+            base.OnCreateOptionsMenu(menu, inflater);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            try
+            {
+                if (item.ItemId == Resource.Id.men_save)
+                {
+                    Save();
+                }
+            }
+            catch
+            {
+                return base.OnOptionsItemSelected(item);
+            }
+
+            return base.OnOptionsItemSelected(item);
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             _view = inflater.Inflate(Resource.Layout.fragment_campaign_event_rewards, container, false);
             _viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
             _tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
-            _save = _view.FindViewById<Button>(Resource.Id.btnSave);
             _decreaseprospButton = _view.FindViewById<Button>(Resource.Id.decreaseprospButton);
             _raiseprospbutton = _view.FindViewById<Button>(Resource.Id.raiseprospbutton);
             _decreaseReputationButton = _view.FindViewById<Button>(Resource.Id.decreaseReputationButton);
@@ -100,11 +119,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _tabLayout.SetupWithViewPager(_viewPager);
 
             GetEventDecisionBackImageAndSetImageView(EventType, SelectedOption(), CardNumber());
-
-            if (!_save.HasOnClickListeners)
-            {
-                _save.Click += _save_Click;
-            }
 
             if (!_decreaseprospButton.HasOnClickListeners)
             {
@@ -139,6 +153,22 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             if (!_btnAddScenario.HasOnClickListeners)
             {
                 _btnAddScenario.Click += _btnAddScenario_Click;
+            }
+
+            HasOptionsMenu = true;
+
+            var uiLayout = _view.FindViewById<LinearLayout>(Resource.Id.uiLayout);
+            if (EventType == EventTypes.RoadEvent)
+            {                
+                uiLayout.SetBackgroundResource(Resource.Drawable.bg_roadevent);
+            }
+            else if(EventType == EventTypes.CityEvent)
+            {
+                uiLayout.SetBackgroundResource(Resource.Drawable.bg_cityevent);
+            }
+            else if (EventType == EventTypes.RiftEvent)
+            {
+                uiLayout.SetBackgroundResource(Resource.Drawable.bg_riftevent);
             }
 
             return _view;
@@ -205,14 +235,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _prospLevelText.Text = (_prospertityModifier -= 1).ToString();
         }
 
-        private void _save_Click(object sender, EventArgs e)
+        private void Save()
         {
             _adapter.SaveCharacterRewards();
 
             if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
             if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
 
-            GCTContext.CurrentCampaign.Save();            
+            GCTContext.CurrentCampaign.Save();
 
             Activity.Finish();
         }

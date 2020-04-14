@@ -16,21 +16,15 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
     public class SzenarioRewardsFragment : CampaignDetailsFragmentBase
     {
         private CampaignUnlockedScenario _campaignScenario;
-
-        private View _view;
         private TabLayout _tabLayout;
         private ViewPager _viewPager;
         private ScenarioRewardsCharacterViewPagerAdapter _adapter;
-        private Button _save;
         private Button _decreaseprospButton;
         private Button _raiseprospbutton;
         private Button _decreaseReputationButton;
         private Button _raiseReputationButton;
         private Button _achievementGAButton;
         private Button _achievementPAButton;
-        private Button _roadeventsButton;
-        private Button _cityEventsButton;
-        private Button _RIftEventsButton;
         private TextView _prospLevelText;
         private TextView _reputationTextView;
         private ListView _lstviewScenariosUnlocked;
@@ -72,13 +66,36 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             base.OnResume();
         }
 
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.saveMenu, menu);
+            base.OnCreateOptionsMenu(menu, inflater);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            try
+            {
+                if (item.ItemId == Resource.Id.men_save)
+                {
+                    Save();
+                }
+            }
+            catch
+            {
+                return base.OnOptionsItemSelected(item);
+            }
+
+            return base.OnOptionsItemSelected(item);
+        }
+
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             _view = inflater.Inflate(Resource.Layout.fragment_campaign_scenario_rewards, container, false);
             _viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
             _tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
-            _save = _view.FindViewById<Button>(Resource.Id.btnSave);
             _decreaseprospButton = _view.FindViewById<Button>(Resource.Id.decreaseprospButton);
             _raiseprospbutton = _view.FindViewById<Button>(Resource.Id.raiseprospbutton);
             _decreaseReputationButton = _view.FindViewById<Button>(Resource.Id.decreaseReputationButton);
@@ -97,11 +114,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _tabLayout.SetupWithViewPager(_viewPager);
 
             _campaignScenario = GetUnlockedScenario();
-
-            if(!_save.HasOnClickListeners)
-            {
-                _save.Click += _save_Click;
-            }
 
             if (!_decreaseprospButton.HasOnClickListeners)
             {
@@ -153,7 +165,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
                 _listAdapter = new ScenarioListviewtAdapter(Context, unlockedScenarioNumbers.Select(x => DataServiceCollection.ScenarioDataService.Get(x)).ToList());
                 _lstviewScenariosUnlocked.Adapter = _listAdapter;
-            }         
+            }
+
+            HasOptionsMenu = true;
 
             return _view;
         }
@@ -194,19 +208,19 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _prospLevelText.Text = (_prospertityModifier -= 1).ToString();
         }
 
-        private void _save_Click(object sender, EventArgs e)
+        private void Save()
         {
             _adapter.SaveCharacterRewards();
 
-            if(!IsCasualMode())
+            if (!IsCasualMode())
             {
                 if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
                 if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
 
                 ScenarioHelper.SetScenarioCompleted(Context, LayoutInflater, _campaignScenario);
-            }          
+            }
 
-            GCTContext.CurrentCampaign.Save();            
+            GCTContext.CurrentCampaign.Save();
 
             Activity.Finish();
         }

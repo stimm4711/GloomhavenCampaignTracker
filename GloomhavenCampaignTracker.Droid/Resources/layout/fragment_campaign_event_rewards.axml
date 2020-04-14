@@ -9,14 +9,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/event_layout">        
+            android:id="@+id/event_layout">
             <android.support.percent.PercentRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +55,9 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bordersheet" >          
+            android:background="@drawable/bordersheet"
+            android:layout_marginTop="10dp"
+            android:id="@+id/uiLayout">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -66,7 +67,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight="0.5"                  
+                    android:layout_weight="0.5"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:paddingTop="2dp">
@@ -78,7 +79,7 @@
                         android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:gravity="center"
-                        android:textColor="@color/gloom_secondaryText" />            
+                        android:textColor="@color/gloom_secondaryText" />
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -111,7 +112,7 @@
                             android:focusable="false"
                             android:layout_centerInParent="true"
                             android:layout_centerVertical="true"
-                            android:textColor="@color/gloom_secondaryText" />                
+                            android:textColor="@color/gloom_secondaryText" />
                     </RelativeLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -135,7 +136,7 @@
                             android:focusable="false"
                             android:textStyle="bold"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="@color/gloom_secondaryText"          
+                            android:textColor="@color/gloom_secondaryText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
@@ -177,7 +178,7 @@
                                 android:layout_centerInParent="true"
                                 android:layout_below="@id/partyfrag_ReputationTextView" />
                         </RelativeLayout>
-                    </RelativeLayout>                
+                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -216,7 +217,7 @@
                         android:id="@+id/btnPA"
                         android:background="@drawable/borderbuttons"
                         android:layout_marginTop="5dp"  />
-                </LinearLayout>            
+                </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="0dp"
@@ -241,7 +242,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/btnAddScenario"
                         android:background="@drawable/borderbuttons"
-                        android:layout_marginTop="5dp" />         
+                        android:layout_marginTop="5dp" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -297,30 +298,7 @@
                         android:layout_marginLeft="20dp"
                         android:visibility="gone" />
                 </LinearLayout>
-            </LinearLayout>            
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.1"
-                android:layout_marginTop="5dp">
-                <Button
-                    android:text="Cancel"
-                    android:layout_weight="0.4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnCancel"
-                    android:background="@drawable/borderbuttons"
-                    android:visibility="invisible" />
-                <Button
-                    android:text="Save"
-                    android:layout_weight="0.4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btnSave"
-                    android:background="@drawable/borderbuttons"
-                    android:layout_marginLeft="20dp" />
             </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

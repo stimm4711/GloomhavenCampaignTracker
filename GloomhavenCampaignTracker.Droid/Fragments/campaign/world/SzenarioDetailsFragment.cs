@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
 using Android.Graphics;
@@ -11,8 +10,6 @@ using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.Business;
 using GloomhavenCampaignTracker.Droid.CustomControls;
-using GloomhavenCampaignTracker.Shared.Data.Entities;
-using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
@@ -24,7 +21,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         private GridView _grid;
         private EditText _notes;
         private Button _completed;
-        private Button _completedCasual;
         private Button _lostButton;
 
         internal static ScenarioDetailsFragment NewInstance(int scenarioId)
@@ -32,6 +28,21 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             var frag = new ScenarioDetailsFragment { Arguments = new Bundle() };
             frag.Arguments.PutInt(DetailsActivity.SelectedScenarioId, scenarioId);
             return frag;
+        }
+
+        public override void OnResume()
+        {
+            SetBackgroundOfTopLayout();
+
+            if (_campaignScenario.Completed)
+            {
+                _completed.Text = "Incomplete";
+                var back = Context.GetDrawable(Resource.Drawable.yellowButtton);
+                _completed.Background = back;
+                _completed.SetTextColor(new Color(ContextCompat.GetColor(Context, Resource.Color.gloom_secondaryText)));
+            }
+
+            base.OnResume();
         }
 
         private CampaignUnlockedScenario GetUnlockedScenario()
@@ -55,7 +66,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _completed = _view.FindViewById<Button>(Resource.Id.completed);
             _grid = _view.FindViewById<GridView>(Resource.Id.imagesGridView);
             _notes = _view.FindViewById<EditText>(Resource.Id.notestext);
-            _completedCasual = _view.FindViewById<Button>(Resource.Id.completedCasual);
             _lostButton = _view.FindViewById<Button>(Resource.Id.lost);
 
             _campaignScenario = GetUnlockedScenario();
@@ -73,7 +83,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
                     if (!_campaignScenario.Completed && (_campaignScenario.IsBlocked() || !_campaignScenario.IsAvailable()))
                     {
-                        _completedCasual.Visibility = ViewStates.Visible;
                         _completed.Visibility = ViewStates.Gone;
                     }
 
@@ -81,11 +90,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                     {
                         txt_treasures.Visibility = ViewStates.Visible;
                         txt_region.Text = Helper.GetRegionName(_campaignScenario.UnlockedScenarioData.Scenario.Region_ID);
-                    }
-
-                    if(_campaignScenario.Completed)
-                    {
-                        _completed.Text = "Incomplete";
                     }
                 }
             }
@@ -105,11 +109,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 _completed.Click += _completed_Click;
             }
 
-            if (!_completedCasual.HasOnClickListeners)
-            {
-                _completedCasual.Click += CasualButton_Click;
-            }
-
             if (!_lostButton.HasOnClickListeners)
             {
                 _lostButton.Click += _lostButton_Click; ;
@@ -124,23 +123,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         private void _lostButton_Click(object sender, EventArgs e)
         {
-            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-                      .SetTitle("Scenario lost")
-                      .SetMessage($"You've lost the scenarion. Do you want to enter rewards now?")
-                      .SetPositiveButton(Context.Resources.GetString(Resource.String.Yes), (senderAlert, AssemblyLoadEventArgs) =>
-                      {
-                          var intent = new Intent();
-                          intent.SetClass(Activity, typeof(DetailsActivity));
-                          intent.PutExtra(DetailsActivity.SelectedScenarioId, _campaignScenario.ScenarioId);
-                          intent.PutExtra(DetailsActivity.CasualMode, true);
-                          intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.ScenarioRewards);
-                          StartActivity(intent);
-                      })
-                      .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
-                      {
-                          ScenarioCompletion();
-                      })
-                      .Show();
+            var intent = new Intent();
+            intent.SetClass(Activity, typeof(DetailsActivity));
+            intent.PutExtra(DetailsActivity.SelectedScenarioId, _campaignScenario.ScenarioId);
+            intent.PutExtra(DetailsActivity.CasualMode, true);
+            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.ScenarioRewards);
+            StartActivity(intent);
         }
 
         private void _completed_Click(object sender, EventArgs e)
@@ -223,16 +211,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         private void SetBackgroundOfTopLayout()
         {
-            var enableCheckbox = true;
             var color = ContextCompat.GetColor(Context, Resource.Color.gloom_primaryLighter);
             if (_campaignScenario.IsBlocked())
-            {
-                enableCheckbox = false;
+            {                
                 color = ContextCompat.GetColor(Context, Resource.Color.gloom_scenarioBlockedItemBackground);
             }
             else if (!_campaignScenario.Completed && !_campaignScenario.IsAvailable())
             {
-                enableCheckbox = false;
                 color = ContextCompat.GetColor(Context, Resource.Color.gloom_scenarioUnavailableItemBackground);
             }
             else if (_campaignScenario.Completed)
@@ -242,7 +227,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
             var layoutTop = _view.FindViewById<RelativeLayout>(Resource.Id.layout_top);
             layoutTop.SetBackgroundColor(new Color(color));
-
         }
     }
 }

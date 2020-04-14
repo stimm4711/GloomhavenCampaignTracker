@@ -34,8 +34,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/borderSheet"
-            android:orientation="vertical">
+        android:background="@drawable/bg_roadevent"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:id="@+id/event_ui_layout">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,20 +84,6 @@
                 android:layout_gravity="center"
                 android:gravity="bottom|center"
                 android:visibility="visible">
-                <Button
-                android:text="Enter Outcome"
-                android:layout_width="0dp"
-                android:layout_weight="0.33"
-                android:layout_height="wrap_content"
-                android:id="@+id/enterOutcome"
-                android:background="@drawable/borderbuttons"
-                android:textColor="@color/gloom_primaryText"
-                android:layout_gravity="left"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="5dp"
-                    android:visibility="gone" />
                 <ImageButton
                     android:src="@drawable/ic_event_enteroutcome_sec"
                     android:layout_height="96dp"
@@ -113,30 +101,6 @@
                     android:id="@+id/ibutton_removeevent"
                     app:backgroundTint="@android:color/transparent"
                     android:scaleType="centerInside" />
-                <Button
-                    android:text="@string/RemoveEvent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/remove_button"
-                    android:background="@drawable/borderbuttons"
-                    android:textColor="@color/gloom_primaryText"
-                    android:layout_gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:layout_marginRight="10dp"
-                    android:visibility="gone" />
-                <Button
-                    android:text="@string/PutUnder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/putunder"
-                    android:background="@drawable/borderbuttons"
-                    android:textColor="@color/gloom_primaryText"
-                    android:layout_gravity="center"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:visibility="gone" />
                 <ImageButton
                     android:src="@drawable/ic_event_putunder_black"
                     android:layout_height="96dp"
@@ -150,31 +114,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
             android:orientation="vertical"
             android:id="@+id/turnbutton_layout"
             android:visibility="visible">
-            <Button
-                android:text="@string/TurnCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/turn"
-                android:background="@drawable/borderbuttons"
-                android:textColor="@color/gloom_primaryText"
-                android:layout_gravity="center|bottom"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_marginTop="15dp"
-                    android:visibility="gone"                />
             <ImageButton
                 android:src="@drawable/ic_event_turncard_black"
                 android:layout_gravity="center|bottom"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:id="@+id/ibuttonTurnCard"
                 app:backgroundTint="@android:color/transparent"
-                android:scaleType="centerInside" />
+                android:scaleType="centerCrop" />
         </LinearLayout>
-    </LinearLayout>>
-
+    </LinearLayout>
 </LinearLayout>
