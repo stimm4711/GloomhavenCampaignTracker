@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 18);
+        public static Version Dbversion { get; } = new Version(1, 4, 19);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -164,11 +164,40 @@ namespace Data
                     MigrateScenarioTreasures();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 19)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.19"));
+                    FixTypoDivinerCard578();
+                }
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
 
                 OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished databaseupdates"));
             }
+        }
+
+        private static void FixTypoDivinerCard578()
+        {
+            var clas = ClassRepository.Get(19);
+            var ability578 = clas.Abilities.FirstOrDefault(x => x.ReferenceNumber == 578);
+
+            if (ability578 != null)
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                   ability578.AbilityName = "Otherworldly Journey";
+                    ClassAbilitiesRepository.InsertOrReplace(ability578);
+
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
+            }           
         }
 
         private static void FixingTyposInPersonalQuestCounters()
