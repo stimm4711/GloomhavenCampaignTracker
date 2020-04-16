@@ -62,18 +62,11 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
                     if (thisItem == null) return;
                         
-                    var sd = Android.OS.Environment.ExternalStorageDirectory;
+                    var dbfile = thisItem.BackupFile;
 
-                    if (Android.OS.Environment.MediaMounted.Equals(Android.OS.Environment.ExternalStorageState))
-                    {
-                        var dbfile = thisItem.BackupFile;
+                    if (dbfile == null) return;
 
-                        if (dbfile == null) return;
-
-                        BackupConfirmDialog(sd, dbfile);
-
-                    }
-
+                    BackupConfirmDialog(dbfile);
                 };               
 
                 convertView.Tag = holder;
@@ -105,14 +98,14 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             return convertView;
         }
 
-        private void BackupConfirmDialog(IDisposable sd, Java.IO.File dbfile)
+        private void BackupConfirmDialog(Java.IO.File dbfile)
         {
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
                 .SetTitle("Confirm Restore")
                 .SetMessage("WARNING: This will replace the current database. All changes will be lost!")
                 .SetPositiveButton("Confirm", (sender, a) =>
                 {
-                    if (BackupHandler.RestoreBackup(sd, dbfile))
+                    if (BackupHandler.RestoreBackup(dbfile.AbsolutePath))
                     {
                         Toast.MakeText(_context, "Databasebackup restored! Application will restart now", ToastLength.Short).Show();
                     }

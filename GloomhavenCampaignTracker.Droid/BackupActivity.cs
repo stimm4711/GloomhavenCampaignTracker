@@ -1,9 +1,6 @@
-﻿using Android;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Support.V4.App;
-using Android.Support.V4.Content;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -13,9 +10,9 @@ using System.Linq;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using System.Collections.Generic;
-using Plugin.FilePicker;
-using Plugin.FilePicker.Abstractions;
 using Java.IO;
+using System.IO;
+using Android.Provider;
 
 namespace GloomhavenCampaignTracker.Droid
 {
@@ -24,11 +21,10 @@ namespace GloomhavenCampaignTracker.Droid
     {
         private string _backupfilepath = "ghcampaigntracker/backup/";
         private ListView _listviewbackups;
-        //private SelectableBackupAdapter _listviewbackupadapter;
         private BackupAdapter _listviewbackupadapter;
-        private File _sd;
-        private bool _hasValidFilePath;
         private EditText _filepath;
+
+        private const int LOAD_BACKUPFILE_CODE = 42;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -46,14 +42,14 @@ namespace GloomhavenCampaignTracker.Droid
 
             _listviewbackups = FindViewById<ListView>(Resource.Id.listviewbackups);
             _filepath = FindViewById<EditText>(Resource.Id.textViewbackuppath);
-            var selectbackuppathbutton = FindViewById<Button>(Resource.Id.button_select_bu_path);
             var createbackupbutton = FindViewById<Button>(Resource.Id.button_create_backup);
             var loadbackupbutton = FindViewById<Button>(Resource.Id.button_load_backup);
 
             _listviewbackups.ItemsCanFocus = true;
             _listviewbackups.ChoiceMode = ChoiceMode.Single;
 
-            _hasValidFilePath = GetFilePath();           
+            _backupfilepath = GetExternalFilesDir(null).AbsolutePath;
+            _filepath.Text = _backupfilepath;
 
             SetListviewAdapter();
 
@@ -65,29 +61,7 @@ namespace GloomhavenCampaignTracker.Droid
             if (!loadbackupbutton.HasOnClickListeners)
             {
                 loadbackupbutton.Click += Loadbackupbutton_Click; ;
-            }
-
-            if (!selectbackuppathbutton.HasOnClickListeners)
-            {
-                selectbackuppathbutton.Click += Selectbackuppathbutton_Click; ; ;
-            }
-               
-        }
-
-        private Boolean GetFilePath()
-        {
-            if (GetExternalStorageWritePermission())
-            {
-                _sd = Android.OS.Environment.ExternalStorageDirectory;
-
-                if (Android.OS.Environment.MediaMounted.Equals(Android.OS.Environment.ExternalStorageState))
-                {
-                    _backupfilepath = GCTContext.Settings.Backuppath;
-                    _filepath.Text = _backupfilepath;
-                    return true;
-                }
-            }
-            return false;
+            }              
         }
 
         /// <summary>
@@ -111,101 +85,116 @@ namespace GloomhavenCampaignTracker.Droid
 
         private void _listviewbackupadapter_RestartApplication(object sender, EventArgs e)
         {
-            RestartApp();
+            var i = BaseContext.PackageManager.GetLaunchIntentForPackage(BaseContext.PackageName);
+            i.AddFlags(ActivityFlags.ClearTop);
+            StartActivity(i);
         }
 
-        private void Selectbackuppathbutton_Click(object sender, EventArgs e)
-        {
-            Toast.MakeText(this, "Ignore this button. Just for now. Please.", ToastLength.Short).Show();
-        }
-
-        private void Loadbackupbutton_Click(object sender, System.EventArgs e)
-        {
-            PickFileAsync();              
-        }
-
-        /// <summary>
-        /// Pick a file and copy it to the backup path
-        /// </summary>
-        private async void PickFileAsync()
+        private void Loadbackupbutton_Click(object sender, EventArgs e)
         {
             try
             {
-                FileData fileData = await CrossFilePicker.Current.PickFile();
-                if (fileData == null)
-                    return; // user canceled file picking
-
-                if (GetExternalStorageWritePermission())
-                {
-                    var filename = BackupHandler.CopyFileToBackupStorage(fileData);
-                    var file = new File(filename);
-                    if (file == null) return;
-
-                }
-
-                SetListviewAdapter();
-
+                // start a file picker
+                Intent intent = new Intent(Intent.ActionOpenDocument);
+                intent.AddCategory(Intent.CategoryOpenable);
+                intent.SetType("application/db3");
+                StartActivityForResult(intent, LOAD_BACKUPFILE_CODE);
             }
             catch (Exception ex)
             {
                 System.Console.WriteLine("Exception choosing file: " + ex.ToString());
             }
         }
-        
 
-        private File[] GetBackupFiles()
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            if(_hasValidFilePath)
+           Android.Net.Uri currentUri;
+
+            if (requestCode == LOAD_BACKUPFILE_CODE)
             {
-                var path = new File(_backupfilepath);
-                if (!path.Exists()) return new File[0];
-                return path.ListFiles().Where(x => x != null && x.IsFile).ToArray();
+                // User picked a file
+                if (data != null)
+                {
+                    // uri of file
+                    currentUri = data.Data;
+
+                    try
+                    {                
+                        // make sure backupfolder exists
+                        var backupfolder = new Java.IO.File(_backupfilepath);
+                        if (!backupfolder.Exists()) backupfolder.Mkdirs();
+
+                        // get the name of the selected file
+                        var returnCursor = ContentResolver.Query(currentUri, null, null, null, null);
+                        int nameIndex = returnCursor.GetColumnIndex(OpenableColumns.DisplayName);
+                        returnCursor.MoveToFirst();
+                        var name = returnCursor.GetString(nameIndex);
+
+                        // create the destination file in the backupfolder
+                        var filename = Path.Combine(backupfolder.Path, name);
+                        var destFile = new Java.IO.File(filename);     
+
+                        // Get the Filedescriptor and transfer the selected file to the destination file
+                        ParcelFileDescriptor pfd = ContentResolver.OpenFileDescriptor(currentUri, "r");
+                        FileDescriptor fd = pfd.FileDescriptor;
+
+                        BackupHandler.TransferFileStreams(fd, destFile);
+                        var src = new FileInputStream(fd).Channel;
+                        var dst = new FileOutputStream(destFile).Channel;
+                        dst.TransferFrom(src, 0, src.Size());
+                        src.Close();
+                        dst.Close();                      
+
+                        pfd.Close();
+
+                        // Update the llist
+                        SetListviewAdapter();
+
+                    }
+                    catch (Java.IO.IOException e)
+                    {
+                        // do nothing
+                    }
+                }
             }
 
-            return new File[] { };
+            base.OnActivityResult(requestCode, resultCode, data);
         }
 
-        private void RestartApp()
+        private Java.IO.File[] GetBackupFiles()
         {
-            var i = BaseContext.PackageManager.GetLaunchIntentForPackage(BaseContext.PackageName);
-            i.AddFlags(ActivityFlags.ClearTop);
-            StartActivity(i);
+            try
+            {
+                var path = new Java.IO.File(_backupfilepath);
+                if (!path.Exists()) return new Java.IO.File[0];
+                return path.ListFiles().Where(x => x != null && x.IsFile).ToArray();
+            }
+            catch
+            {
+                return new Java.IO.File[0];
+            }            
         }
 
         private void Createbackupbutton_Click(object sender, System.EventArgs e)
         {
-            if (GetExternalStorageWritePermission())
+            var buname = "";
+            var success = BackupHandler.CreateDBBackup(ref buname, _backupfilepath);
+            if (success.HasValue)
             {
-                var buname = "";
-                var success = BackupHandler.CreateDBBackup(ref buname);
-                if (success.HasValue)
+                if (success.Value)
                 {
-                    if (success.Value)
-                    {
-                        Toast.
-                        MakeText(this, $"Databasebackup {buname} created!", ToastLength.Long).
-                        Show();
-                        SetListviewAdapter();
-                    }
-                    else
-                    {
-                        Toast.
-                        MakeText(this, "Databasebackup failed!", ToastLength.Long).
-                        Show();
-                    }
+                    Toast.
+                    MakeText(this, $"Databasebackup {buname} created!", ToastLength.Long).
+                    Show();
+                    SetListviewAdapter();
+                }
+                else
+                {
+                    Toast.
+                    MakeText(this, "Databasebackup failed!", ToastLength.Long).
+                    Show();
                 }
             }
-        }
-
-        private bool GetExternalStorageWritePermission()
-        {
-            var hasPermission = (ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == Android.Content.PM.Permission.Granted);
-            if (!hasPermission)
-            {
-                ActivityCompat.RequestPermissions(this, new[] { Manifest.Permission.WriteExternalStorage }, 521);
-            }
-
-            return (ContextCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) == Android.Content.PM.Permission.Granted);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
