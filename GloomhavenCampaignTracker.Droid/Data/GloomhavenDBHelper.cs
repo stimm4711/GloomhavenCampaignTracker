@@ -605,7 +605,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             }
         }
 
-        private static void InsertEnhancement(string enhancementCode, int basecosts)
+        internal static void InsertEnhancement(string enhancementCode, int basecosts)
         {
             var item = new DL_Enhancement
             {

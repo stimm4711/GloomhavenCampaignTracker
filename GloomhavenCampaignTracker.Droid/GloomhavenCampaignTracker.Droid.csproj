@@ -2880,7 +2880,7 @@
     <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_regenerate.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_regenerate.png" />
+    <AndroidResource Include="Resources\drawable\ic_regenerate_self.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_regenerate.png" />
@@ -3201,6 +3201,9 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_regenerate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

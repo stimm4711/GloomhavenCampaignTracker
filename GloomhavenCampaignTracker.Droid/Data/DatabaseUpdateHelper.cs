@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 19);
+        public static Version Dbversion { get; } = new Version(1, 4, 20);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -170,10 +170,35 @@ namespace Data
                     FixTypoDivinerCard578();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 20)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.20"));
+                    AddRegenerateEnhancement();
+                }
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
 
                 OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished databaseupdates"));
+            }
+        }
+
+        private static void AddRegenerateEnhancement()
+        {
+            var enhancement = EnhancementRepository.Get().FirstOrDefault(x=>x.EnhancementCode == "[RE2]");
+            if(enhancement == null)
+            {
+                Connection.BeginTransaction();
+                try
+                {
+                    GloomhavenDbHelper.InsertEnhancement("[RE2]", 50);    
+                    Connection.Commit();
+                }
+                catch
+                {
+                    Connection.Rollback();
+                    throw;
+                }
             }
         }
 

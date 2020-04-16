@@ -32,8 +32,8 @@ namespace GloomhavenCampaignTracker.Droid
                 {"[C]", Resource.Drawable.ic_status_curse },
                 {"[B]", Resource.Drawable.ic_status_bless },
                 {"[IN]", Resource.Drawable.ic_status_invisible },
-                {"[RE]", Resource.Drawable.ic_regenerate },
-
+                {"[RE]", Resource.Drawable.ic_regenerate_self },
+                {"[RE2]", Resource.Drawable.ic_regenerate },
 
                 {"[-1]", Resource.Drawable.ic_effect_minus_one},
                 {"[-2]", Resource.Drawable.ic_effect_minus_two},
