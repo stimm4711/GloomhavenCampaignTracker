@@ -68,6 +68,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             {
                 
                 DatabaseUpdateHelper.CheckIfAllPerksExists();
+                DatabaseUpdateHelper.CheckIfPASunnblessedExists();
                 DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);               
             }
         }

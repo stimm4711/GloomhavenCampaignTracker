@@ -183,6 +183,11 @@ namespace Data
             }
         }
 
+        internal static void CheckIfPASunnblessedExists()
+        {
+            AddPartyAchievementSunblessed();
+        }
+
         private static void AddRegenerateEnhancement()
         {
             var enhancement = EnhancementRepository.Get().FirstOrDefault(x=>x.EnhancementCode == "[RE2]");
@@ -2004,9 +2009,9 @@ namespace Data
 
         private static void AddPartyAchievementSunblessed()
         {
-            var partyachievements = PartyAchievementRepository.Get().Where(x => x.InternalNumber == 28 && x.Name == "Sun Blessed");
+            var partyachievement = PartyAchievementRepository.Get().FirstOrDefault(x => x.InternalNumber == 28 && x.Name == "Sun Blessed");
 
-            if (!partyachievements.Any())
+            if (partyachievement == null)
             {
                 Connection.BeginTransaction();
                 try
@@ -2022,6 +2027,14 @@ namespace Data
                 {
                     Connection.Rollback();
                     throw;
+                }
+            }
+            else
+            {
+                if(partyachievement.ContentOfPack == 2)
+                {
+                    partyachievement.ContentOfPack = 1;
+                    PartyAchievementRepository.InsertOrReplace(partyachievement);
                 }
             }
         }
