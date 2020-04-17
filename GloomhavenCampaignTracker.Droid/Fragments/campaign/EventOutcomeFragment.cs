@@ -184,9 +184,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 cardIdText = $"0{cardId}";
             }
 
-            string eventtypeurl = Helper.GetEventFrontURL(eventType);
-
-            var eventback = await Helper.GetImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png");
+            string eventURL = Helper.GetEventBackURL(eventType, cardIdText);
+            var eventback = await Helper.GetImageBitmapFromUrlAsync(eventURL);
 
             pqimage.SetImageBitmap(Helper.GetEventBackScaleBitmap(eventback, decision));
         }

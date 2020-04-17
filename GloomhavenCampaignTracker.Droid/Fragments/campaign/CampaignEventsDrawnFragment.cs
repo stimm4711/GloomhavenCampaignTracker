@@ -41,7 +41,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         public override void OnStop()
         {
-            //GCTContext.CampaignCollection.CurrentCampaign.SetEventDeckString(_eventType);
             base.OnStop();
         }
 
@@ -162,9 +161,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         {
             int decision = radiooptionA.Checked ? 0 : 1;
 
-            string eventtypeurl = Helper.GetEventFrontURL(_eventType);
-
-            var eventback = await Helper.GetImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png");
+            string eventurl = Helper.GetEventBackURL(_eventType, cardIdText);
+            var eventback = await Helper.GetImageBitmapFromUrlAsync(eventurl);
 
             pqimage.SetImageBitmap(Helper.GetEventBackScaleBitmap(eventback, decision));
 
@@ -173,9 +171,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         private async void GetEventFrontAndSetImage(ImageView pqimage, string cardIdText)
         {
-            string eventtypeurl = Helper.GetEventFrontURL(_eventType);
-            string eventFrontURI = eventtypeurl + cardIdText + "-f.png";
-            var eventFront = await Helper.GetImageBitmapFromUrlAsync(eventFrontURI);
+            string eventurl = Helper.GetEventFrontURL(_eventType, cardIdText);
+            var eventFront = await Helper.GetImageBitmapFromUrlAsync(eventurl);
+
             pqimage.SetImageBitmap(eventFront);
             _view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
         }

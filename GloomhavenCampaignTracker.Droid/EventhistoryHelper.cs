@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Android.Content;
 using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Shared.Data.Entities;

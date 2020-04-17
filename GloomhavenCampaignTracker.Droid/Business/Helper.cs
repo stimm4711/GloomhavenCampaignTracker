@@ -95,7 +95,7 @@ namespace GloomhavenCampaignTracker.Business
             ProsperityLevelSteps.Add(8, 51);
             ProsperityLevelSteps.Add(9, 65);
         }
-
+       
         private static void InitRegions()
         {
             RegionIdToShortyAndName.Add(1, new Tuple<string, string>("GLO", "Gloomhaven"));
@@ -361,25 +361,91 @@ namespace GloomhavenCampaignTracker.Business
             return "";
         }
 
-        /*
-         * Get Event Images online
-         * 
-         */
+        /// <summary>
+        /// Get Images online base url
+        /// </summary>
+        private static readonly string baseimageURL = "https://raw.githubusercontent.com/stimm4711/gloomhaven/gloomimages_v1/images";
 
-        public static string GetEventFrontURL(EventTypes eventtype)
+        /// <summary>
+        /// Get treasure image URL
+        /// </summary>
+        /// <param name="treasurename"></param>
+        /// <returns></returns>
+        internal static string GetTreasureUrl(string treasurename)
         {
-            string eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/road/re-";
+            return $"{baseimageURL}/treasure-chests/{treasurename}";
+        }
+
+        private static string GetEventTypeURL(EventTypes eventtype)
+        {
+            string eventtypeurl = $"{baseimageURL}/events/base/road/re-";
             if (eventtype == EventTypes.CityEvent)
             {
-                eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";
+                eventtypeurl = $"{baseimageURL}/events/base/city/ce-";
             }
             else if (eventtype == EventTypes.RiftEvent)
             {
-                eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/rift/rf-";
+                eventtypeurl = $"{baseimageURL}/events/base/rift/rf-";
             }
+
             return eventtypeurl;
         }
-       
+
+        /// <summary>
+        /// Get event front images URL
+        /// </summary>
+        /// <param name="eventtype"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static string GetEventFrontURL(EventTypes eventtype, string number)
+        {
+            string eventtypeurl = GetEventTypeURL(eventtype);
+            return $"{eventtypeurl}{number}-f.png";
+        }
+
+        /// <summary>
+        /// Get event back images URL
+        /// </summary>
+        /// <param name="eventtype"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        internal static string GetEventBackURL(EventTypes eventtype, string number)
+        {
+            string eventtypeurl = GetEventTypeURL(eventtype);
+            return $"{eventtypeurl}{number}-b.png";
+        }
+
+        /// <summary>
+        /// Get ability cards images
+        /// </summary>
+        /// <param name="classShorty"></param>
+        /// <param name="abilityname"></param>
+        /// <returns></returns>
+        internal static string GetClassAbilityURL(string classShorty, string abilityname)
+        {
+            return $"{baseimageURL}/character-ability-cards/{classShorty}/{abilityname}.png";
+        }
+
+        /// <summary>
+        /// Get item image url
+        /// </summary>
+        /// <param name="itemnumber"></param>
+        /// <returns></returns>
+        internal static string GetItemImageURL(string itemnumber)
+        {
+            return $"{baseimageURL}/items/{itemnumber}.png";
+        }
+
+        /// <summary>
+        /// Get personal quest image url
+        /// </summary>
+        /// <param name="questNumber"></param>
+        /// <returns></returns>
+        internal static string GetPersonalQuestURL(int questNumber)
+        {
+            return $"{baseimageURL}/personal-goals/pg-{questNumber}.png";
+        }
+
         public static async Task<Bitmap> GetImageBitmapFromUrlAsync(string url)
         {
             Bitmap imageBitmap = null;

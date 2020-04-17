@@ -80,11 +80,10 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 var side = t.Looted ? "front" : "back";
                 var number = t.ScenarioTreasure.TreasureNumber < 10 ? $"0{t.ScenarioTreasure.TreasureNumber}" : $"{t.ScenarioTreasure.TreasureNumber}";
                 var treasurename = $"{side}-{number}.jpg";
-                var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/" + $"{treasurename}";
+                var url = Helper.GetTreasureUrl(treasurename); 
 
-                var imageBitmap = GetImageBitmapFromUrlAsync(url, holder.TreasureImageView, holder.ProgBar);
+                GetImageBitmapFromUrlAsync(url, holder.TreasureImageView, holder.ProgBar);
             }
-
 
             if (!holder.TreasureImageView.HasOnClickListeners)
             {
@@ -100,100 +99,19 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                     var side = t.Looted ? "front" : "back";
                     var number = t.ScenarioTreasure.TreasureNumber < 10 ? $"0{t.ScenarioTreasure.TreasureNumber}" : $"{t.ScenarioTreasure.TreasureNumber}";
                     var treasurename = $"{side}-{number}.jpg";
-                    var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/" + $"{treasurename}";
-                    var imageBitmap = GetImageBitmapFromUrlAsync(url, holder.TreasureImageView, holder.ProgBar);
+                    var url = Helper.GetTreasureUrl(treasurename);
+
+                    GetImageBitmapFromUrlAsync(url, holder.TreasureImageView, holder.ProgBar);
                 };
             }
             return convertView;
         }
 
-
-        //public override View GetView(int position, View convertView, ViewGroup parent)
-        //{
-        //    ImageView imageView;
-        //    if (convertView == null)
-        //    {
-        //        // if it's not recycled, initialize some attributes
-        //        float scale = _context.Resources.DisplayMetrics.Density;
-        //        int pixelsHeight = (int)(164 * scale + 0.5f);
-        //        int pixelsWidth = (int)(110 * scale + 0.5f);
-        //        imageView = new ImageView(_context) { LayoutParameters = new AbsListView.LayoutParams(pixelsWidth, pixelsHeight) };
-        //        // fixed image size
-        //        imageView.SetScaleType(ImageView.ScaleType.FitCenter); // fit cell
-        //    }
-        //    else
-        //    {
-        //        imageView = (ImageView)convertView;
-        //    }
-
-        //    var t = _scenarioTreasures[position];
-
-        //    if (CrossConnectivity.Current.IsConnected)
-        //    {
-        //        var side = t.Looted ? "front" : "back";
-        //        var number = t.ScenarioTreasure.TreasureNumber < 10 ? $"0{t.ScenarioTreasure.TreasureNumber}" : $"{t.ScenarioTreasure.TreasureNumber}";
-        //        var treasurename = $"{side}-{number}.jpg";
-        //        var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/" + $"{treasurename}";
-        //        var imageBitmap = GetImageBitmapFromUrlAsync(url, imageView);
-        //    }
-
-        //    if (!imageView.HasOnClickListeners)
-        //    {
-        //        imageView.Click += (sender, e) =>
-        //        {
-        //            t.Looted = !t.Looted;
-
-        //            CampaignUnlockedScenarioRepository.InsertOrReplace(_campaignScenario);
-
-        //            var side = t.Looted ? "front" : "back";
-        //            var number = t.ScenarioTreasure.TreasureNumber < 10 ? $"0{t.ScenarioTreasure.TreasureNumber}" : $"{t.ScenarioTreasure.TreasureNumber}";
-        //            var treasurename = $"{side}-{number}.jpg";
-        //            var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/treasure-chests/" + $"{treasurename}";
-        //            var imageBitmap = GetImageBitmapFromUrlAsync(url, imageView);
-        //        };
-        //    }
-        //    return imageView;
-        //}
-
-        //private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen)
-        //{
-        //    Bitmap imageBitmap = null;
-
-        //    using (var httpClient = new HttpClient())
-        //    {
-        //        var imageBytes = await httpClient.GetByteArrayAsync(url);
-        //        if (imageBytes != null && imageBytes.Length > 0)
-        //        {
-        //            imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-        //        }
-        //    }
-
-        //    imagen.SetImageBitmap(imageBitmap);
-
-        //    NotifyDataSetChanged();
-        //    return imageBitmap;
-        //}
-
-        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
+        private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
         {
-            Bitmap imageBitmap = null;
-
-            using (var httpClient = new HttpClient())
-            {
-                var imageBytes = await httpClient.GetByteArrayAsync(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            imagen.SetImageBitmap(imageBitmap);
-
-            ((ProgressBar)view).Visibility = ViewStates.Gone;
-
-  
-
-            return imageBitmap;                   
+            var image = await Helper.GetImageBitmapFromUrlAsync(url);
+            imagen.SetImageBitmap(image);
+            ((ProgressBar)view).Visibility = ViewStates.Gone;                 
         }
 
         public override int Count => _scenarioTreasures.Count;

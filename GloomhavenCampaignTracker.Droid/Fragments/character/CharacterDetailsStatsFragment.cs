@@ -642,7 +642,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
                 if (connected)
                 {
-                    var imageBitmap = GetImageBitmapFromUrlAsync("https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/personal-goals/pg-" + pq.QuestNumber + ".png", pqimage, view);
+                    var url = Helper.GetPersonalQuestURL(pq.QuestNumber);
+                    GetImageBitmapFromUrlAsync(url, pqimage, view);
                 }
                 else
                 {
@@ -663,24 +664,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             };    
         }
 
-        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
+        private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
         {
-            Bitmap imageBitmap = null;
-
-            using (var httpClient = new HttpClient())
-            {
-                var imageBytes = await httpClient.GetByteArrayAsync(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            imagen.SetImageBitmap(imageBitmap);
-
+            var image = await Helper.GetImageBitmapFromUrlAsync(url);  
+            imagen.SetImageBitmap(image);
             view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
-
-            return imageBitmap;
         }
 
         private void SetPqSpinnerData(Spinner spinner, bool showDetails, bool init)

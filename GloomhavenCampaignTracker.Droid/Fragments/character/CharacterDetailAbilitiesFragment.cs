@@ -15,6 +15,7 @@ using Plugin.Connectivity;
 using System.Threading.Tasks;
 using Android.Graphics;
 using System.Net.Http;
+using GloomhavenCampaignTracker.Business;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.character
 {
@@ -88,13 +89,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                var abilityname = ability.Ability.GetAbilitynameForURL(); ;
-
-                var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/character-ability-cards/" +
-               $"{Character.DL_Class.ClassShorty}/" +
-               $"{abilityname}" +
-               ".png";
-                var imageBitmap = GetImageBitmapFromUrlAsync(url, img);
+                var abilityname = ability.Ability.GetAbilitynameForURL(); 
+                var url = Helper.GetClassAbilityURL(Character.DL_Class.ClassShorty, abilityname);
+                GetImageBitmapFromUrlAsync(url, img);
             }
 
             enhancementListTop.Adapter = new AbilitiesEnhancementDeleteableAdapter(Context, ability, true);
@@ -160,22 +157,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                 .Show();
         }
 
-        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen)
+        private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen)
         {
-            Bitmap imageBitmap = null;
-
-            using (var httpClient = new HttpClient())
-            {
-                var imageBytes = await httpClient.GetByteArrayAsync(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            imagen.SetImageBitmap(imageBitmap);
-
-            return imageBitmap;
+            var image = await Helper.GetImageBitmapFromUrlAsync(url);  
+            imagen.SetImageBitmap(image);
         }
 
         private void AddEnhancement(LayoutInflater inflater, ListView enhancementListTop, DL_CharacterAbility ability, bool isTop)

@@ -239,16 +239,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                     cardIdText = $"0{ev.ReferenceNumber}";
                 }
 
-                string eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/road/re-";
-                if (_eventType == EventTypes.CityEvent)
-                {
-                    eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";
-                }
-                else if(_eventType == EventTypes.RiftEvent)
-                {
-                    eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/rift/rf-";
-                }
-
                 showEventButton.Click += (s, args) =>
                 {
                     var diag = new EventFrontImageViewDialogBuilder(Context, Resource.Style.MyTransparentDialogTheme, _eventType)
@@ -258,14 +248,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
                 radiooptionA.CheckedChange += (s, args) =>
                 {
-                   var x = GetEventBackImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png", pqimage, convertView, radiooptionA);
+                    GetEventBackImage(convertView, radiooptionA, pqimage, cardIdText);
                 };
 
                 outcome.Text = ev.Outcome;
                 radiooptionA.Checked = ev.Decision == 1;
                 radiooptionB.Checked = ev.Decision != 1;
                 eventnumbertext.Text = $"{Resources.GetString(Resource.String.EventNumber)}: {ev.ReferenceNumber}";
-                var eventback = GetEventBackImageBitmapFromUrlAsync(eventtypeurl + cardIdText + "-b.png", pqimage, convertView, radiooptionA);
+                GetEventBackImage(convertView, radiooptionA, pqimage, cardIdText);
 
                 new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                     .SetTitle($"{Resources.GetString(Resource.String.EditDrawnEvent)} {ev.ReferenceNumber}")
@@ -278,7 +268,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                         CampaignEventHistoryLogItemRepository.InsertOrReplace(ev.Item);
                         InitHistoryAdapter();
                     })
-                    .SetNegativeButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>  { })
+                    .SetNegativeButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
                     .Show();
             }
             else
@@ -314,6 +304,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                     })
                     .Show();
             }            
+        }
+
+        private void GetEventBackImage(View convertView, RadioButton radiooptionA, ImageView pqimage, string cardIdText)
+        {
+            var eventurl = Helper.GetEventBackURL(_eventType, cardIdText);
+            GetEventBackImageBitmapFromUrlAsync(eventurl, pqimage, convertView, radiooptionA);
         }
 
         private void RemoveEvent()
@@ -505,26 +501,15 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             return cardId;
         }
 
-        private async Task<Bitmap> GetEventBackImageBitmapFromUrlAsync(string url, ImageView imagen, View view, RadioButton radiooptionA)
+        private async void GetEventBackImageBitmapFromUrlAsync(string url, ImageView imagen, View view, RadioButton radiooptionA)
         {
+            var image = await Helper.GetImageBitmapFromUrlAsync(url);
+            
             int decision = radiooptionA.Checked ? 0 : 1;
 
-            Bitmap imageBitmap = null;
-
-            using (var httpClient = new HttpClient())
-            {
-                var imageBytes = await httpClient.GetByteArrayAsync(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }       
-
-            imagen.SetImageBitmap(GetScaleBitmap(imageBitmap, decision));
+            imagen.SetImageBitmap(GetScaleBitmap(image, decision));
 
             view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
-
-            return imageBitmap;
         }
 
         private Bitmap GetScaleBitmap(Bitmap bitmap, int decision)
