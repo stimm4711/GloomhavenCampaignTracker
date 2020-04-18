@@ -64,7 +64,7 @@ namespace GloomhavenCampaignTracker.Droid
 
         public bool IsFCActivated
         {
-            get => isFCActivated;
+            get => true;// isFCActivated;
             set
             {
                 isFCActivated = value;

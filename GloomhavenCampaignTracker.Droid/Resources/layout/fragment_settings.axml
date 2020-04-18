@@ -115,7 +115,8 @@
         android:paddingLeft="8dp"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
         <TextView
             android:text="@string/ActivateFC"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -142,107 +143,5 @@
             android:textColor="@color/gloom_secondaryLight"
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
-        </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1"
-        android:background="@drawable/borderwhite"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="10dp"
-        android:visibility="gone">
-        <TextView
-            android:text="Check items"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/checkitemstitle"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <TextView
-            android:text="If you have problems adding items to a character by the 123 button, tap the button below to check the items in the database."
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/checkitemsDescription"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <Button
-            android:text="Check items"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkitemsButton"
-            android:background="@drawable/borderbuttons"
-            android:textColor="@color/gloom_primaryText"/>
     </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/showOldabilitiesSheet"
-        android:background="@drawable/borderwhite"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="10dp"
-        android:visibility="gone">
-        <TextView
-            android:text="Enable old ability sheet"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/enableOldAbilitiesSheet"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <CheckBox
-            android:text="Show the old ability sheet in the character details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/isShowOldAbilitySheet"
-            android:textColor="@color/gloom_primaryText"
-            app:buttonTint="#ffffffff"
-            android:checked="false"
-            fontPath="fonts/Roboto-Regular.ttf" />        
-        </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/downloadImages"
-        android:background="@drawable/borderwhite"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="10dp"
-        android:visibility="gone">
-        <TextView
-            android:text="@string/DownloadAllImagesCaption"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/enableOldAbilitiesSheet"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <CheckBox
-            android:text="@string/DownloadAllImagesCheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/DownloadAllImagesCheck"
-            android:textColor="@color/gloom_primaryText"
-            app:buttonTint="#ffffffff"
-            android:checked="false"
-            fontPath="fonts/Roboto-Regular.ttf" />
-        <Button
-            android:text="@string/DownloadAllImagesButton"
-            android:background="@drawable/borderbuttons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnLoadImages" 
-            android:visibility="gone"/>        
-        </LinearLayout>
-
 </LinearLayout>
