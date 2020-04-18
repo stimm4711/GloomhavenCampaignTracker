@@ -10,23 +10,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/mytheme_background">
-        <TextView
+         <TextView
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
-            android:textColor="@color/gloom_primaryText"
+            android:textColor="@color/gloom_secondaryLight"
             android:padding="5dp"
-            android:text="New features (of this and the last release)"
+            android:text="Thank you!"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView1"
+            android:id="@+id/textView17"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="5dp"
+            android:text="First, I want to say thank you for using my app and supporting me. When I started working on it in May 2017 I never thought this project would be used so much. Over 50000 downloads and over 34000 acive installations now. And I've got so much positive feedback. That's amazing! Thank you! "
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView18"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="5dp"
+            android:text="This will be the last update with new features. I'll stop working on the Gloomhaven Campaign Tracker and start working on a new app.\nThe Frosthaven Campaign Tracker :) (I still need to get the permission from Isaac Childres but I hope that will be no problem). You can still report bugs. I'll try to fix them. \n"
+            fontPath="fonts/Roboto-Regular.ttf"  />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView20"
+            android:textColor="@color/gloom_primaryText"
+            android:padding="5dp"
+            android:text="New features"
+            fontPath="fonts/Roboto-Regular.ttf" />
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView19"
             android:textColor="@color/gloom_secondaryLight"
             android:padding="5dp"
-            android:text="Selectable abilities"
+            android:text="New scenario management"
             fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -34,11 +61,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/eventnumbertext"
             android:textColor="@color/gloom_primaryText"
-            android:text="You can select the abilities for the characters now. The update has migrated your added abilities if you entered the correct reference numbers. You can activate the old characterabilities tab in the settings to compare new and old characterabilities. And you can see the card when you tap on the cardname in the character abilities list and the selection. Thanks to Nick 'Entropy42' Jordan for the cardnames!"
+            android:text="When you click on a scenario it will open the scenario details view. There is a section with some information about the scenario, the treasures, a notes field and buttons to set the scenario completed / incomplete and a button for casual and lost plays. Furthermore, if you completed a scenario in the scenario list view, the scenario will be sorted by number automatically. In the scenario list and the scenario details you will see how many treasures you can find in a scenario. If you consider this a spoiler, you can deactivate the treasures in the spoiler settings."
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Splashscreen"
+            android:text="Scenario rewards"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,17 +77,17 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/eventnumbertext"
+            android:id="@+id/textView3"
             android:textColor="@color/gloom_primaryText"
-            android:text="The app has a splashscreen now as you might have noticed. "
+            android:text="If you completed a scenario and check the box in the scenario list or click the button in the scenario details view you will be asked to enter the rewards. A click on yes will open a new view where you can enter the rewards for each character and other rewards like prosperity, achievements and events without jumping through all the menus. If you click casual/lost in the scenario details it will open a similar view but just for the character rewards."
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Show event deck"
+            android:text="Redesign of the event view"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textView4"
             android:textColor="@color/gloom_secondaryLight"
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
@@ -68,17 +95,17 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/eventnumbertext"
+            android:id="@+id/textView5"
             android:textColor="@color/gloom_primaryText"
-            android:text="You can look into the event decks when you tap on the eye icon."
+            android:text="I've changed the design of the events a little bit. Instead of buttons with text there are buttons with symbols now. And there is a new button (the orange one on the result page of the event). You can click it to get to a event rewards menu. Like the scenario rewards view you can enter character and other rewards."
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Share backups"
+            android:text="Changed backup menu"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textView6"
             android:textColor="@color/gloom_secondaryLight"
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
@@ -86,17 +113,17 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/eventnumbertext"
+            android:id="@+id/textView7"
             android:textColor="@color/gloom_primaryText"
-            android:text="I've changed the backup layout and you can share and delete your backups now."
+            android:text="I made some changes to backup. I wanted to remove the need of write to storage permission and therefore I moved the backup location to the apps external storage. You will see the path on top of the backup menu. Your old backups are not moved automatically. You can copy and paste them on your phone or you use the new load backup button. It lets you copy a backup from any available location (local on the phone ore cloud shares) to the backup folder. To recover a backup you can click the circle image."
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
          <TextView
-            android:text="Item filters"
+            android:text="Undo reputation unlocks"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textView8"
             android:textColor="@color/gloom_secondaryLight"
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
@@ -104,17 +131,17 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/eventnumbertext"
+            android:id="@+id/textView9"
             android:textColor="@color/gloom_primaryText"
-            android:text="I've added item filters to the item shop and the character item screens to filter the items by category."
+            android:text="Now it is possible to uncheck the reputation unlocks if you accidently unlocked something and after that changed the reputation and you don't meet the condition anymore. All other unlocks can be unchecked already. But for all unlocks you will have to undo what you have unlocked manually."
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Playername in characterlist"
+            android:text="Changed settings"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textView10"
             android:textColor="@color/gloom_secondaryLight"
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
@@ -122,17 +149,17 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/eventnumbertext"
+            android:id="@+id/textView11"
             android:textColor="@color/gloom_primaryText"
-            android:text="I've added the playername to the characterlist."
+            android:text="I removed all settings options except the spoiler settings. As mentioned in the new scenario management part, there is a new option to hide the treasure information. The Forgotten Circles expansion content is always active now."
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Forgotten Circles expansion"
+            android:text="Regenerate enhancement"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textView12"
             android:textColor="@color/gloom_secondaryLight"
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf"  />
@@ -140,71 +167,44 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/eventnumbertext"
+            android:id="@+id/textView13"
             android:textColor="@color/gloom_primaryText"
-            android:text="The expansion is integrated since the last update but I've got may requests if I will add the expansion. Well, yes and it is already in here. You just have to go to the settings menu and activate it. After that you can unlock the diviner class on the unlocks screen. To play the scenarios you will have to finish the campaign of the base game."
+            android:text="The regenerate enhancement from the Forgotten Circles expansion is available for card enhancements now."
             android:padding="5dp"
-            fontPath="fonts/Roboto-Regular.ttf" />
-        <TextView
-            android:text="Changed personal quest counter 525"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:textColor="@color/gloom_secondaryLight"
-            android:padding="5dp"
-            fontPath="fonts/Roboto-Regular.ttf"  />
-        <TextView
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/eventnumbertext"
-            android:textColor="@color/gloom_primaryText"
-            android:text="Changed the behavior of the quest counter 525. It will count 10 on one press instead of 1. It will round up to the next 10 if it is not a nuber dividable by 10."
-            android:padding="5dp"
-            fontPath="fonts/Roboto-Regular.ttf" />
+            fontPath="fonts/Roboto-Regular.ttf" />        
         <TextView
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView1"
+            android:id="@+id/textView14"
             android:textColor="@color/gloom_secondaryLight"
             android:padding="5dp"
-            android:text="Bugfixes (some of them)"
+            android:text="Bugfixes"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Fixed a layout bug on the unlock screen that prevents unlocking of some classes"
+            android:text="Fixed the sunblessed party achievement (It is selectable now)"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textView15"
             android:textColor="@color/gloom_primaryText"
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Changed the appname to Campaign Tracker"
+            android:text="Fixed some typos of ability cards - you can see the image now"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textView21"
             android:textColor="@color/gloom_primaryText"
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Decrase of prosperity didn't work properly"
+            android:text="Fixed button show envelope x progress doesn't work on some"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:textColor="@color/gloom_primaryText"
-            android:padding="5dp"
-            fontPath="fonts/Roboto-Regular.ttf" />
-        <TextView
-            android:text="Fixed some typos in the personal quest counters"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/textView22"
             android:textColor="@color/gloom_primaryText"
             android:padding="5dp"
             fontPath="fonts/Roboto-Regular.ttf" />

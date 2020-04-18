@@ -12,6 +12,7 @@ namespace GloomhavenCampaignTracker.Droid
         private const string _activateFC = "activateFC";
         private const string _showTreasures = "showTreasures";
         private const string _showReleaseNotes = "showReleaenotes";
+        private const string _showReleaseNotes144 = "showReleaenotes144";
         private const string _backuppath = "Backuppath";
         private const string _lastloadedParty = "lastloadedparty";
         private const string _filterRetired = "FilterRetired";
@@ -23,6 +24,7 @@ namespace GloomhavenCampaignTracker.Droid
         private bool isShowPq;
         private bool isFCActivated;
         private bool isShowReleasenotes;
+        private bool isShowReleasenotes144;
         private bool isShowScenarios;
         private bool isShowTreasure;
         private string backuppath;
@@ -79,6 +81,16 @@ namespace GloomhavenCampaignTracker.Droid
             {
                 isShowReleasenotes = value;
                 SetSettingBoolean(_showReleaseNotes, value);
+            }
+        }
+
+        public bool IsShowReleasenotes144
+        {
+            get => isShowReleasenotes144;
+            set
+            {
+                isShowReleasenotes144 = value;
+                SetSettingBoolean(_showReleaseNotes144, value);
             }
         }
 

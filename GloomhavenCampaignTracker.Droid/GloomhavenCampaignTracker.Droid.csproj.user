@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SelectedDevice>pixel_xl_1</SelectedDevice>
-    <DefaultDevice>pixel_xl_1</DefaultDevice>
+    <SelectedDevice>LGE LG-H930</SelectedDevice>
+    <DefaultDevice>tablet_m-dpi_10_1in_pie_9_0_-_api_28</DefaultDevice>
     <AndroidDesignerPreferredTheme>MyTheme</AndroidDesignerPreferredTheme>
     <AndroidDesignerPreferredDevice>5.4in FWVGA</AndroidDesignerPreferredDevice>
   </PropertyGroup>

@@ -67,7 +67,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
         {
             Campaign.CampaignData.CampaignUnlocks.EnvelopeXSolution = _theirnameEditText.Text;
 
-            if (_theirnameEditText.Text == Resources.GetString(Resource.String.classes_bladeswarmname))
+            if (_theirnameEditText.Text.ToLower() == Resources.GetString(Resource.String.classes_bladeswarmname).ToLower())
             {
                 GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked = true;
                 GCTContext.CurrentCampaign.AddUnlockedClass(18);

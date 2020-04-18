@@ -107,15 +107,15 @@ namespace GloomhavenCampaignTracker.Droid
 
             _navigationView.NavigationItemSelected += NavigationItemSelected;
 
-            if (GCTContext.Settings.IsShowReleasenotes)
+            if (GCTContext.Settings.IsShowReleasenotes144)
             {
                 var convertView = this.LayoutInflater.Inflate(Resource.Layout.alertdialog_release_notes, null);
                 new CustomDialogBuilder(this, Resource.Style.MyDialogTheme)
                     .SetCustomView(convertView)
-                    .SetTitle("Releasenotes 1.4.3")                   
+                    .SetTitle("Releasenotes 1.4.4")                   
                     .SetPositiveButton("Do not show again", (senderAlert, args) =>
                     {
-                        GCTContext.Settings.IsShowReleasenotes = false;
+                        GCTContext.Settings.IsShowReleasenotes144 = false;
                     })
                      .SetNegativeButton("Cancel", (senderAlert, args) => { })
                     .Show();

@@ -3813,20 +3813,20 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F090105
 			public const int goldicon = 2131296517;
 			
-			// aapt resource value: 0x7F090106
-			public const int goldimage = 2131296518;
-			
 			// aapt resource value: 0x7F090103
 			public const int goldImage = 2131296515;
+			
+			// aapt resource value: 0x7F090106
+			public const int goldimage = 2131296518;
 			
 			// aapt resource value: 0x7F090107
 			public const int goldlayout = 2131296519;
 			
-			// aapt resource value: 0x7F090108
-			public const int goldtext = 2131296520;
-			
 			// aapt resource value: 0x7F090104
 			public const int goldText = 2131296516;
+			
+			// aapt resource value: 0x7F090108
+			public const int goldtext = 2131296520;
 			
 			// aapt resource value: 0x7F090109
 			public const int goldtextinputlayout = 2131296521;
@@ -4071,11 +4071,11 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F090156
 			public const int listMode = 2131296598;
 			
-			// aapt resource value: 0x7F090009
-			public const int ListView = 2131296265;
-			
 			// aapt resource value: 0x7F090157
 			public const int listView = 2131296599;
+			
+			// aapt resource value: 0x7F090009
+			public const int ListView = 2131296265;
 			
 			// aapt resource value: 0x7F09015B
 			public const int listviewbackups = 2131296603;
@@ -4725,11 +4725,11 @@ namespace GloomhavenCampaignTracker.Droid
 			// aapt resource value: 0x7F090228
 			public const int textInputLayout2 = 2131296808;
 			
-			// aapt resource value: 0x7F090236
-			public const int textinput_counter = 2131296822;
+			// aapt resource value: 0x7F090242
+			public const int textinput_counter = 2131296834;
 			
-			// aapt resource value: 0x7F090237
-			public const int textinput_error = 2131296823;
+			// aapt resource value: 0x7F090243
+			public const int textinput_error = 2131296835;
 			
 			// aapt resource value: 0x7F090229
 			public const int textSpacerNoButtons = 2131296809;
@@ -4741,229 +4741,265 @@ namespace GloomhavenCampaignTracker.Droid
 			public const int textView1 = 2131296811;
 			
 			// aapt resource value: 0x7F09022C
-			public const int textView2 = 2131296812;
+			public const int textView10 = 2131296812;
 			
 			// aapt resource value: 0x7F09022D
-			public const int textView3 = 2131296813;
+			public const int textView11 = 2131296813;
 			
 			// aapt resource value: 0x7F09022E
-			public const int textView4 = 2131296814;
+			public const int textView12 = 2131296814;
 			
 			// aapt resource value: 0x7F09022F
-			public const int textView5 = 2131296815;
+			public const int textView13 = 2131296815;
 			
 			// aapt resource value: 0x7F090230
-			public const int textView6 = 2131296816;
+			public const int textView14 = 2131296816;
 			
 			// aapt resource value: 0x7F090231
-			public const int textView7 = 2131296817;
+			public const int textView15 = 2131296817;
 			
 			// aapt resource value: 0x7F090232
-			public const int textView8 = 2131296818;
+			public const int textView17 = 2131296818;
 			
 			// aapt resource value: 0x7F090233
-			public const int textView9 = 2131296819;
+			public const int textView18 = 2131296819;
 			
 			// aapt resource value: 0x7F090234
-			public const int textViewbackuppath = 2131296820;
+			public const int textView19 = 2131296820;
 			
 			// aapt resource value: 0x7F090235
-			public const int text_input_password_toggle = 2131296821;
+			public const int textView2 = 2131296821;
+			
+			// aapt resource value: 0x7F090236
+			public const int textView20 = 2131296822;
+			
+			// aapt resource value: 0x7F090237
+			public const int textView21 = 2131296823;
 			
 			// aapt resource value: 0x7F090238
-			public const int theirnameEditText = 2131296824;
+			public const int textView22 = 2131296824;
 			
 			// aapt resource value: 0x7F090239
-			public const int time = 2131296825;
+			public const int textView3 = 2131296825;
 			
 			// aapt resource value: 0x7F09023A
-			public const int title = 2131296826;
+			public const int textView4 = 2131296826;
 			
 			// aapt resource value: 0x7F09023B
-			public const int titleDividerNoCustom = 2131296827;
+			public const int textView5 = 2131296827;
 			
 			// aapt resource value: 0x7F09023C
-			public const int title_template = 2131296828;
+			public const int textView6 = 2131296828;
 			
 			// aapt resource value: 0x7F09023D
-			public const int toolbar = 2131296829;
+			public const int textView7 = 2131296829;
 			
 			// aapt resource value: 0x7F09023E
-			public const int toolbarDetails = 2131296830;
+			public const int textView8 = 2131296830;
 			
 			// aapt resource value: 0x7F09023F
-			public const int top = 2131296831;
-			
-			// aapt resource value: 0x7F090241
-			public const int topenhancementstext = 2131296833;
+			public const int textView9 = 2131296831;
 			
 			// aapt resource value: 0x7F090240
-			public const int topPanel = 2131296832;
+			public const int textViewbackuppath = 2131296832;
 			
-			// aapt resource value: 0x7F090242
-			public const int totalChecks = 2131296834;
-			
-			// aapt resource value: 0x7F090243
-			public const int totalgold = 2131296835;
+			// aapt resource value: 0x7F090241
+			public const int text_input_password_toggle = 2131296833;
 			
 			// aapt resource value: 0x7F090244
-			public const int totalxp = 2131296836;
+			public const int theirnameEditText = 2131296836;
 			
 			// aapt resource value: 0x7F090245
-			public const int touch_outside = 2131296837;
+			public const int time = 2131296837;
 			
 			// aapt resource value: 0x7F090246
-			public const int transition_current_scene = 2131296838;
+			public const int title = 2131296838;
 			
 			// aapt resource value: 0x7F090247
-			public const int transition_layout_save = 2131296839;
+			public const int titleDividerNoCustom = 2131296839;
 			
 			// aapt resource value: 0x7F090248
-			public const int transition_position = 2131296840;
+			public const int title_template = 2131296840;
 			
 			// aapt resource value: 0x7F090249
-			public const int transition_scene_layoutid_cache = 2131296841;
+			public const int toolbar = 2131296841;
 			
 			// aapt resource value: 0x7F09024A
-			public const int transition_transform = 2131296842;
+			public const int toolbarDetails = 2131296842;
 			
 			// aapt resource value: 0x7F09024B
-			public const int trapdamage = 2131296843;
-			
-			// aapt resource value: 0x7F09024C
-			public const int trapimage = 2131296844;
+			public const int top = 2131296843;
 			
 			// aapt resource value: 0x7F09024D
-			public const int treasureContent = 2131296845;
+			public const int topenhancementstext = 2131296845;
 			
-			// aapt resource value: 0x7F090253
-			public const int treasurecontentinput = 2131296851;
+			// aapt resource value: 0x7F09024C
+			public const int topPanel = 2131296844;
 			
 			// aapt resource value: 0x7F09024E
-			public const int treasureImage = 2131296846;
+			public const int totalChecks = 2131296846;
 			
 			// aapt resource value: 0x7F09024F
-			public const int treasureLootedCheck = 2131296847;
-			
-			// aapt resource value: 0x7F090254
-			public const int treasurenumberinput = 2131296852;
+			public const int totalgold = 2131296847;
 			
 			// aapt resource value: 0x7F090250
-			public const int treasureTileTextView = 2131296848;
+			public const int totalxp = 2131296848;
 			
 			// aapt resource value: 0x7F090251
-			public const int treasure_content = 2131296849;
+			public const int touch_outside = 2131296849;
 			
 			// aapt resource value: 0x7F090252
-			public const int treasure_ref_number = 2131296850;
+			public const int transition_current_scene = 2131296850;
+			
+			// aapt resource value: 0x7F090253
+			public const int transition_layout_save = 2131296851;
+			
+			// aapt resource value: 0x7F090254
+			public const int transition_position = 2131296852;
 			
 			// aapt resource value: 0x7F090255
-			public const int turnbutton_layout = 2131296853;
+			public const int transition_scene_layoutid_cache = 2131296853;
 			
 			// aapt resource value: 0x7F090256
-			public const int twohandweaponImageView = 2131296854;
+			public const int transition_transform = 2131296854;
 			
 			// aapt resource value: 0x7F090257
-			public const int txtAppVersion = 2131296855;
+			public const int trapdamage = 2131296855;
 			
 			// aapt resource value: 0x7F090258
-			public const int txtLoading = 2131296856;
+			public const int trapimage = 2131296856;
 			
 			// aapt resource value: 0x7F090259
-			public const int txtLoadingDetails = 2131296857;
-			
-			// aapt resource value: 0x7F09025A
-			public const int txt_classunlocks = 2131296858;
-			
-			// aapt resource value: 0x7F09025B
-			public const int txt_clientlabel = 2131296859;
-			
-			// aapt resource value: 0x7F09025C
-			public const int txt_enterserveriplabel = 2131296860;
-			
-			// aapt resource value: 0x7F09025D
-			public const int txt_ipaddresslabel = 2131296861;
-			
-			// aapt resource value: 0x7F09025E
-			public const int txt_region = 2131296862;
+			public const int treasureContent = 2131296857;
 			
 			// aapt resource value: 0x7F09025F
-			public const int txt_regionCaption = 2131296863;
+			public const int treasurecontentinput = 2131296863;
+			
+			// aapt resource value: 0x7F09025A
+			public const int treasureImage = 2131296858;
+			
+			// aapt resource value: 0x7F09025B
+			public const int treasureLootedCheck = 2131296859;
 			
 			// aapt resource value: 0x7F090260
-			public const int txt_requirementsCaption = 2131296864;
+			public const int treasurenumberinput = 2131296864;
+			
+			// aapt resource value: 0x7F09025C
+			public const int treasureTileTextView = 2131296860;
+			
+			// aapt resource value: 0x7F09025D
+			public const int treasure_content = 2131296861;
+			
+			// aapt resource value: 0x7F09025E
+			public const int treasure_ref_number = 2131296862;
 			
 			// aapt resource value: 0x7F090261
-			public const int txt_serveripadress = 2131296865;
+			public const int turnbutton_layout = 2131296865;
 			
 			// aapt resource value: 0x7F090262
-			public const int txt_serverstatus = 2131296866;
+			public const int twohandweaponImageView = 2131296866;
 			
 			// aapt resource value: 0x7F090263
-			public const int txt_treasures = 2131296867;
+			public const int txtAppVersion = 2131296867;
 			
 			// aapt resource value: 0x7F090264
-			public const int uiLayout = 2131296868;
+			public const int txtLoading = 2131296868;
 			
 			// aapt resource value: 0x7F090265
-			public const int uniform = 2131296869;
+			public const int txtLoadingDetails = 2131296869;
 			
 			// aapt resource value: 0x7F090266
-			public const int unlockedItemDesign_ReferenceNumber = 2131296870;
+			public const int txt_classunlocks = 2131296870;
 			
 			// aapt resource value: 0x7F090267
-			public const int unlockedScenariosButton = 2131296871;
+			public const int txt_clientlabel = 2131296871;
 			
 			// aapt resource value: 0x7F090268
-			public const int up = 2131296872;
+			public const int txt_enterserveriplabel = 2131296872;
 			
 			// aapt resource value: 0x7F090269
-			public const int useLogo = 2131296873;
+			public const int txt_ipaddresslabel = 2131296873;
 			
 			// aapt resource value: 0x7F09026A
-			public const int version = 2131296874;
-			
-			// aapt resource value: 0x7F09026C
-			public const int viewpager = 2131296876;
+			public const int txt_region = 2131296874;
 			
 			// aapt resource value: 0x7F09026B
-			public const int view_offset_helper = 2131296875;
+			public const int txt_regionCaption = 2131296875;
+			
+			// aapt resource value: 0x7F09026C
+			public const int txt_requirementsCaption = 2131296876;
 			
 			// aapt resource value: 0x7F09026D
-			public const int visible = 2131296877;
+			public const int txt_serveripadress = 2131296877;
 			
 			// aapt resource value: 0x7F09026E
-			public const int webimageloader = 2131296878;
+			public const int txt_serverstatus = 2131296878;
 			
 			// aapt resource value: 0x7F09026F
-			public const int withText = 2131296879;
+			public const int txt_treasures = 2131296879;
 			
 			// aapt resource value: 0x7F090270
-			public const int wrap_content = 2131296880;
+			public const int uiLayout = 2131296880;
 			
 			// aapt resource value: 0x7F090271
-			public const int xp = 2131296881;
+			public const int uniform = 2131296881;
 			
 			// aapt resource value: 0x7F090272
-			public const int xpIconImage = 2131296882;
+			public const int unlockedItemDesign_ReferenceNumber = 2131296882;
 			
 			// aapt resource value: 0x7F090273
-			public const int xpimage = 2131296883;
+			public const int unlockedScenariosButton = 2131296883;
 			
 			// aapt resource value: 0x7F090274
-			public const int xpincon = 2131296884;
+			public const int up = 2131296884;
 			
 			// aapt resource value: 0x7F090275
-			public const int xpinputlayout = 2131296885;
+			public const int useLogo = 2131296885;
 			
 			// aapt resource value: 0x7F090276
-			public const int xplayout = 2131296886;
-			
-			// aapt resource value: 0x7F090277
-			public const int xptext = 2131296887;
+			public const int version = 2131296886;
 			
 			// aapt resource value: 0x7F090278
-			public const int xptonextlevel = 2131296888;
+			public const int viewpager = 2131296888;
+			
+			// aapt resource value: 0x7F090277
+			public const int view_offset_helper = 2131296887;
+			
+			// aapt resource value: 0x7F090279
+			public const int visible = 2131296889;
+			
+			// aapt resource value: 0x7F09027A
+			public const int webimageloader = 2131296890;
+			
+			// aapt resource value: 0x7F09027B
+			public const int withText = 2131296891;
+			
+			// aapt resource value: 0x7F09027C
+			public const int wrap_content = 2131296892;
+			
+			// aapt resource value: 0x7F09027D
+			public const int xp = 2131296893;
+			
+			// aapt resource value: 0x7F09027E
+			public const int xpIconImage = 2131296894;
+			
+			// aapt resource value: 0x7F09027F
+			public const int xpimage = 2131296895;
+			
+			// aapt resource value: 0x7F090280
+			public const int xpincon = 2131296896;
+			
+			// aapt resource value: 0x7F090281
+			public const int xpinputlayout = 2131296897;
+			
+			// aapt resource value: 0x7F090282
+			public const int xplayout = 2131296898;
+			
+			// aapt resource value: 0x7F090283
+			public const int xptext = 2131296899;
+			
+			// aapt resource value: 0x7F090284
+			public const int xptonextlevel = 2131296900;
 			
 			static Id()
 			{

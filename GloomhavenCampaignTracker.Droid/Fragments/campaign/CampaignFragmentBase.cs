@@ -8,6 +8,7 @@ using GloomhavenCampaignTracker.Droid.Fragments.campaign.world;
 using GloomhavenCampaignTracker.Droid.Fragments.character;
 using GloomhavenCampaignTracker.Shared;
 using GloomhavenCampaignTracker.Business;
+using GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
@@ -119,6 +120,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                         fragTrans = _fragmentManager.BeginTransaction().Replace(Resource.Id.frame_details_party, detailsFrag);
                         fragTrans.Commit();
                         break;
+                    case DetailFragmentTypes.EnvelopeXUnlock:
+                        var inte = new Intent();
+                        inte.SetClass(Activity, typeof(DetailsActivity));
+                        inte.PutExtra(DetailsActivity.SelectedFragId, (int)fragType);
+                        StartActivity(inte);
+                        return null;
                 }
 
                 return detailsFrag;
