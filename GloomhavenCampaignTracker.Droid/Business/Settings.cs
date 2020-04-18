@@ -11,28 +11,21 @@ namespace GloomhavenCampaignTracker.Droid
         private const string _showScenarioNames = "showScenarioNames";
         private const string _activateFC = "activateFC";
         private const string _showTreasures = "showTreasures";
-        private const string _showReleaseNotes = "showReleaenotes";
         private const string _showReleaseNotes144 = "showReleaenotes144";
-        private const string _backuppath = "Backuppath";
         private const string _lastloadedParty = "lastloadedparty";
         private const string _filterRetired = "FilterRetired";
         private const string _lastloadedcampaign = "lastloadedcampaign";
         private const string _username = "username";
-        private const string _downloadImages = "downloadImages";
 
         private bool isShowItems;
         private bool isShowPq;
-        private bool isFCActivated;
-        private bool isShowReleasenotes;
-        private bool isShowReleasenotes144;
+        private bool isShowReleasenotes144 = true;
         private bool isShowScenarios;
         private bool isShowTreasure;
-        private string backuppath;
         private int lastLoadedParty;
         private bool isFilterRetired;
         private int lastloadedcampaign;
         private string username;
-        private bool isDownloadImages;
 
         public Settings()
         {
@@ -69,18 +62,7 @@ namespace GloomhavenCampaignTracker.Droid
             get => true;// isFCActivated;
             set
             {
-                isFCActivated = value;
                 SetSettingBoolean(_activateFC, value);
-            }
-        }
-
-        public bool IsShowReleasenotes
-        {
-            get => isShowReleasenotes;
-            set
-            {
-                isShowReleasenotes = value;
-                SetSettingBoolean(_showReleaseNotes, value);
             }
         }
 
@@ -111,16 +93,6 @@ namespace GloomhavenCampaignTracker.Droid
             {
                 isShowTreasure = value;
                 SetSettingBoolean(_showTreasures, value);
-            }
-        }
-
-        public string Backuppath
-        {
-            get => backuppath;
-            set
-            {
-                backuppath = value;
-                SetSettingString(_backuppath, value);
             }
         }
 
@@ -163,16 +135,6 @@ namespace GloomhavenCampaignTracker.Droid
                 SetSettingString(_username, value);
             }
         }
-
-        public bool IsDownloadImages
-        {
-            get => isDownloadImages;
-            set
-            {
-                isDownloadImages = value;
-                SetSettingBoolean(_downloadImages, value);
-            }
-        }
  
 
         public void ReadSettings()
@@ -180,16 +142,13 @@ namespace GloomhavenCampaignTracker.Droid
             var prefs = PreferenceManager.GetDefaultSharedPreferences(Application.Context);
             IsShowItems = prefs.GetBoolean(_showItemnames, true);
             IsShowPq = prefs.GetBoolean(_showPQNames, true);
-            IsFCActivated = prefs.GetBoolean(_activateFC, false);
-            IsShowReleasenotes = prefs.GetBoolean(_showReleaseNotes, true);
+            isShowReleasenotes144 = prefs.GetBoolean(_showReleaseNotes144, true);
             IsShowScenarios = prefs.GetBoolean(_showScenarioNames, false);
             IsShowTreasure = prefs.GetBoolean(_showTreasures, true);
-            Backuppath = prefs.GetString(_backuppath, $"{Android.OS.Environment.ExternalStorageDirectory}/ghcampaigntracker/backup/");
             LastLoadedParty = prefs.GetInt(_lastloadedParty, -1);
             IsFilterRetired = prefs.GetBoolean(_filterRetired, true);
             LastLoadedCampaign = prefs.GetInt(_lastloadedcampaign, -1);
             Username = prefs.GetString(_username, "");
-            IsDownloadImages = prefs.GetBoolean(_downloadImages, false);
         }
 
         public void SetSettingBoolean(string settingname, bool value)

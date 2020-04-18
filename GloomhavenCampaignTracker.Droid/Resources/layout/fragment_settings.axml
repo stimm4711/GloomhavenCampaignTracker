@@ -105,43 +105,4 @@
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
     </RelativeLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/forgottenCircles"
-        android:background="@drawable/borderwhite"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="10dp"
-        android:visibility="gone">
-        <TextView
-            android:text="@string/ActivateFC"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/enableFCtext"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <CheckBox
-            android:text="Activates the content of the expansion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/activateFCCheck"
-            android:textColor="@color/gloom_primaryText"
-            app:buttonTint="#ffffffff"
-            android:checked="false"
-            fontPath="fonts/Roboto-Regular.ttf" />
-        <TextView
-            android:text="@string/ActivateFCDexription"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hideitemnamestext"
-            android:layout_below="@+id/chkShowItemnames"
-            android:textColor="@color/gloom_secondaryLight"
-            android:layout_marginLeft="40dp"
-            fontPath="fonts/Roboto-Regular.ttf" />
-    </LinearLayout>
 </LinearLayout>
