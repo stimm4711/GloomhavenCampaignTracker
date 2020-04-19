@@ -6,6 +6,7 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Views;
 using Android.Widget;
+using GloomhavenCampaignTracker.Business;
 using Java.Lang;
 using Plugin.Connectivity;
 
@@ -112,14 +113,11 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
             Button pbutton = alert.GetButton((int)DialogButtonType.Positive);
             pbutton.SetTextSize(Android.Util.ComplexUnitType.Dip, 20);
 
-            var url = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/character-ability-cards/" +
-               $"{_classShorty}/" +
-               $"{_abilityname}" +
-               ".png";
+            var url = Helper.GetClassAbilityURL(_classShorty, _abilityname);
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                var imageBitmap = GetImageBitmapFromUrlAsync(url, _imagen, _itemview);
+                GetImageBitmapFromUrlAsync(url, _imagen, _itemview);
             }      
             else
             {
@@ -129,24 +127,11 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
             return alert;
         }
 
-        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
-        {           
-            Bitmap imageBitmap = null;
-
-            using (var httpClient = new HttpClient())
-            {
-                var imageBytes = await httpClient.GetByteArrayAsync(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            imagen.SetImageBitmap(imageBitmap);
-
+        private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
+        {
+            var image = await Helper.GetImageBitmapFromUrlAsync(url);   
+            imagen.SetImageBitmap(image);
             view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
-
-            return imageBitmap;
         }
 
         public AbilityImageViewDialogBuilder SetAbilityName(string abilityName)

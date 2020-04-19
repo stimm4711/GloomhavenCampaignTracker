@@ -9,12 +9,9 @@ using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.party;
 using System.Collections.Generic;
 using Android.Content;
-using GloomhavenCampaignTracker.Shared;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
-using System;
 using System.Linq;
-using Android.Preferences;
 using GloomhavenCampaignTracker.Shared.Data.Entities.Classdesign;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments
@@ -96,8 +93,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             var view = inflater.Inflate(Resource.Layout.listview_floatingactionbutton, container, false);
             _fab = view.FindViewById<FloatingActionButton>(Resource.Id.fab);
 
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            _hideRetired = prefs.GetBoolean("FilterRetired", true);
+            _hideRetired = GCTContext.Settings.IsFilterRetired; 
 
             return view;
         }
@@ -253,12 +249,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
 
             if (item != null)
             {
-                var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-                var isFilterRetired = prefs.GetBoolean("FilterRetired", true);
-
-                item.SetIcon(isFilterRetired ? Resource.Drawable.ic_filter_retired : Resource.Drawable.ic_show_retired);
-
-                _showRetired = !isFilterRetired;
+                item.SetIcon(GCTContext.Settings.IsFilterRetired ? Resource.Drawable.ic_filter_retired : Resource.Drawable.ic_show_retired);
+                _showRetired = !GCTContext.Settings.IsFilterRetired;
             }
 
             base.OnCreateOptionsMenu(menu, inflater);
@@ -281,11 +273,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
                     _showRetired = true;
                 }
 
-                var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-                var editor = prefs.Edit();
-                editor.PutBoolean("FilterRetired", !_showRetired);
-                editor.Apply();
-
+                GCTContext.Settings.IsFilterRetired = !_showRetired;                
                 return base.OnOptionsItemSelected(item);
             }
             return base.OnOptionsItemSelected(item);

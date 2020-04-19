@@ -12,7 +12,7 @@
         android:padding="5dp"
         android:background="@drawable/borderwhite">
         <TextView
-            android:text="Feedback"
+            android:text="@string/Feedback"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:textColor="@color/gloom_primaryText"
             android:layout_marginBottom="10dp" />
         <TextView
-            android:text="I would appreciate your feedback on boardgamegeek.com"
+            android:text="@string/FeedbackBGG"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/feedbackText"
             android:textSize="14dp"
@@ -41,7 +41,7 @@
             android:textColor="@color/gloom_primaryText"
             android:layout_marginTop="5dp" />
         <TextView
-            android:text="Or email me: stimm@outlook.com"
+            android:text="@string/FeedbackEmail"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,14 +59,14 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/borderwhite">
         <TextView
-            android:text="Rate the app"
+            android:text="@string/RateApp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView8"
             android:textColor="@color/gloom_primaryText" />
         <TextView
-            android:text="Leave a rating in the play store"
+            android:text="@string/RateInPLayStore"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
         android:padding="5dp"
         android:layout_marginTop="10dp">
         <TextView
-            android:text="Support"
+            android:text="@string/Support"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
             android:textColor="@color/gloom_primaryText"
             android:layout_marginBottom="10dp" />
         <TextView
-            android:text="And If you find this app useful and you want to do more than give me your feedback, the author would be grateful for a few coins that fall into his helmet (click it)."
+            android:text="@string/CoinsInHelmet"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/textView4"
             android:textSize="14dp"
@@ -121,7 +121,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout10"
         android:padding="5dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
         <Space
             android:layout_width="0dp"
             android:layout_height="match_parent"

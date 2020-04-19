@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.timmcode.ghcampaigntracker.droid" android:versionCode="19090901" android:installLocation="preferExternal" android:versionName="1.4.3">
-	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.timmcode.ghcampaigntracker.droid" android:installLocation="auto" android:versionName="1.4.4" android:versionCode="2020041802">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<application android:label="Gloomhaven Campaign Tracker" android:theme="@style/MyTheme" android:icon="@drawable/ic_launcher">
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="de.timmcode.ghcampaigntracker.droid.provider" android:exported="false" android:grantUriPermissions="true">
 			<!-- ressource file to create -->

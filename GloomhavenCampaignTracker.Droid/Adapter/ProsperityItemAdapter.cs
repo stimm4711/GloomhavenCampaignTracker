@@ -73,7 +73,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             // Set Data
             holder.ItemName.Text = item.Itemname;
             holder.ItemNumber.Text = $"# {item.Itemnumber}";
-            holder.ItemPrice.Text = $"{item.Itemprice} Gold";
+            holder.ItemPrice.Text = $"{item.Itemprice} {_context.Resources.GetString(Resource.String.CharacterGold)}";
             holder.ItemCategoryImage.SetImageResource(ResourceHelper.GetItemCategorieIconRessourceId(item.Itemcategorie));
             holder.ItemNumber.Tag = item;
 

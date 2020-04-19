@@ -60,7 +60,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                     if (thisItem == null || thisItem.Character.IsSelected == chkBx.Checked) return;
                     if (GetSelected().Any(x=>x.ClassId == thisItem.Character.ClassId && x.Id != thisItem.Character.Id))
                     {
-                        Toast.MakeText(_context, "You can select just one character of each class.", ToastLength.Short).Show();
+                        Toast.MakeText(_context, _context.Resources.GetString(Resource.String.JustOneCharacterOfEachClass), ToastLength.Short).Show();
                         chkBx.Checked = false;
                     }
                     else

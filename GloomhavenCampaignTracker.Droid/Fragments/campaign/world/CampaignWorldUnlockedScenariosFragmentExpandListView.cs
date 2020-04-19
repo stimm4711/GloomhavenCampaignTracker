@@ -22,12 +22,19 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
         private ExpandableScenarioListAdapter _listAdapter;
         private ExpandableListView _expListView;
         private List<string> _listDataHeader;
-        private Dictionary<string, List<CampaignUnlockedScenario>> _listDataChild;
+        private Dictionary<string, SortedList<int, CampaignUnlockedScenario>> _listDataChild;
 
         public static CampaignWorldUnlockedScenariosFragmentExpandListView NewInstance(int campId)
         {
             var frag = new CampaignWorldUnlockedScenariosFragmentExpandListView { Arguments = new Bundle() };
             return frag;
+        }
+
+        public override void OnResume()
+        {
+            base.OnResume();
+            InitListData();
+            BindListToAdapter();
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -55,9 +62,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                 {
                     ShowAssignScenarioDialog(inflater);
                 };
-            }
-
-            BindListToAdapter();
+            }            
 
             return _view;
         }
@@ -103,7 +108,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
         private void FillListHeaderAndChilds(List<CampaignUnlockedScenario> scenarios)
         {
             _listDataHeader = new List<string>();
-            _listDataChild = new Dictionary<string, List<CampaignUnlockedScenario>>();
+            _listDataChild = new Dictionary<string, SortedList<int, CampaignUnlockedScenario>>();
 
             // Adding child data
             _listDataHeader.Add(Resources.GetString(Resource.String.Unlocked));
@@ -117,13 +122,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
                 var campaignScenarioSearch = new CampaignScenarioSearch();
 
-                var lstUnlocked = scenarios.FindAll(campaignScenarioSearch.FindAvailable);
+                var lstUnlocked = new SortedList<int, CampaignUnlockedScenario>(scenarios.FindAll(campaignScenarioSearch.FindAvailable).ToDictionary(x=>x.Scenarionumber));
 
-                var lstUnavailable = scenarios.FindAll(campaignScenarioSearch.FindUnAvailable);
+                var lstUnavailable = new SortedList<int, CampaignUnlockedScenario>(scenarios.FindAll(campaignScenarioSearch.FindUnAvailable).ToDictionary(x => x.Scenarionumber));
 
-                var lstCompleted = scenarios.FindAll(campaignScenarioSearch.FindCompleted);
+                var lstCompleted = new SortedList<int, CampaignUnlockedScenario>(scenarios.FindAll(campaignScenarioSearch.FindCompleted).ToDictionary(x => x.Scenarionumber));  
 
-                var lstBlocked = scenarios.FindAll(campaignScenarioSearch.FindBlocked);
+                var lstBlocked = new SortedList<int, CampaignUnlockedScenario>(scenarios.FindAll(campaignScenarioSearch.FindBlocked).ToDictionary(x => x.Scenarionumber)); 
 
                 // Header, Child data
                 _listDataChild.Add(_listDataHeader[0], lstUnlocked);
@@ -133,10 +138,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             }
             else
             {
-                _listDataChild.Add(_listDataHeader[0], new List<CampaignUnlockedScenario>());
-                _listDataChild.Add(_listDataHeader[1], new List<CampaignUnlockedScenario>());
-                _listDataChild.Add(_listDataHeader[2], new List<CampaignUnlockedScenario>());
-                _listDataChild.Add(_listDataHeader[3], new List<CampaignUnlockedScenario>());
+                _listDataChild.Add(_listDataHeader[0], new SortedList<int, CampaignUnlockedScenario>());
+                _listDataChild.Add(_listDataHeader[1], new SortedList<int, CampaignUnlockedScenario>());
+                _listDataChild.Add(_listDataHeader[2], new SortedList<int, CampaignUnlockedScenario>());
+                _listDataChild.Add(_listDataHeader[3], new SortedList<int, CampaignUnlockedScenario>());
             }
         }
 
@@ -173,7 +178,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
             var scenarios = DataServiceCollection.ScenarioDataService.Get();
 
-            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.ActivateForgottenCiclesContent)
+            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.Settings.IsFCActivated)
                 scenarios = scenarios.Where(x => x.ContentOfPack == 1).ToList();
 
             //IEnumerable<Scenario> selectableScenarios = GCTContext.ScenarioCollection.Items;

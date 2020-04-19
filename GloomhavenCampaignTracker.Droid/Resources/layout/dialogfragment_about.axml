@@ -6,7 +6,7 @@
     android:padding="10dp"
     android:background="@drawable/border">
     <TextView
-        android:text="This application is used for tracking campaign progress in the board card game Gloomhaven."
+        android:text="@string/AppUse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/appdescription"
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/permissionText"
-                android:text="It is published with permisson of Isaac Chidres, creator and publisher of Gloomhaven."
+                android:text="@string/AppPublishedWithPermission"
                 android:gravity="top"
                 android:textColor="@color/gloom_primaryText"
                 android:textSize="16dp"
@@ -78,7 +78,7 @@
 			fontPath="fonts/Roboto-Regular.ttf" />
     </LinearLayout>
     <TextView
-        android:text="Created with Icons from Icons8"
+        android:text="@string/Icons8"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

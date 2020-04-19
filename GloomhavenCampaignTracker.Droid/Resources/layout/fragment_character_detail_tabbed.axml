@@ -28,7 +28,7 @@
                 android:layout_height="24dp"
                 android:id="@+id/playerimgview" />
             <TextView
-                android:text="Playername"
+                android:text="@string/Playername"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/playernametextview"
                 android:textColor="@color/gloom_primaryText"
@@ -51,7 +51,7 @@
                 android:layout_height="24dp"
                 android:id="@+id/partyimgview" />
             <TextView
-                android:text="Partyname"
+                android:text="@string/Partyname"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/partynametextview"
                 android:textColor="@color/gloom_primaryText"

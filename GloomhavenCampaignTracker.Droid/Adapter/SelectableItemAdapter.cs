@@ -80,7 +80,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             var item = _items[position];            
 
             // Set Data
-            holder.ItemName.Text = (_isCharacterDetailView || GCTContext.ShowItemNames) ? item.Itemname : "";
+            holder.ItemName.Text = (_isCharacterDetailView || GCTContext.Settings.IsShowItems) ? item.Itemname : "";
             holder.ItemNumber.Text = $"# {item.Itemnumber}";
             holder.Selected.Tag = item;
             holder.Selected.Checked = item.IsSelected;

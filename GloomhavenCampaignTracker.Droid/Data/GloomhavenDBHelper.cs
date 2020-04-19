@@ -68,6 +68,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             {
                 
                 DatabaseUpdateHelper.CheckIfAllPerksExists();
+                DatabaseUpdateHelper.CheckIfPASunnblessedExists();
                 DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);               
             }
         }
@@ -108,6 +109,9 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             Connection.CreateTable<DL_CharacterAbility>();
             Connection.CreateTable<DL_CharacterAbilityEnhancement>();
             Connection.CreateTable<DL_CharacterPerks>();
+
+            Connection.CreateTable<DL_ScenarioTreasure>();
+            Connection.CreateTable<DL_CampaignScenarioTreasure>();
         }
 
         private static DL_GlommhavenSettings CreateNewDB()
@@ -391,12 +395,18 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             AddRegionsToScenarios();
             FillClasses();
             FillClassAbilities();
+            FillScenarioTreasures();
             DatabaseUpdateHelper.CheckIfAllPerksExists();
         }
 
         private static void FillClassAbilities()
         {
             DatabaseUpdateHelper.AddClassAblities();
+        }
+
+        private static void FillScenarioTreasures()
+        {
+            DatabaseUpdateHelper.AddScenarioTreasures();
         }
 
         private static void FillClasses()
@@ -596,7 +606,7 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             }
         }
 
-        private static void InsertEnhancement(string enhancementCode, int basecosts)
+        internal static void InsertEnhancement(string enhancementCode, int basecosts)
         {
             var item = new DL_Enhancement
             {

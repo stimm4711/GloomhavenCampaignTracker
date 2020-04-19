@@ -16,7 +16,7 @@
         android:id="@+id/itemInputLayout"
         android:theme="@style/TextLabel"
         app:hintTextAppearance="@style/HintTextLabel"
-      android:hint="Enter item number">
+      android:hint="@string/EnterItemNumber">
       <android.support.design.widget.TextInputEditText
           android:id="@+id/item_ref_number"
             android:layout_width="fill_parent"

@@ -22,7 +22,7 @@
           android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edittext"
-            android:hint="Enter event reference number"
+            android:hint="@string/AddEventEnterRefNumber"
             android:inputType="number"
             android:maxLength="3"
             android:numeric="integer" />

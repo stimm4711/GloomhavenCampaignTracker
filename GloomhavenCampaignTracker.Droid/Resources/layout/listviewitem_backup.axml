@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    android:background="@color/gloom_primaryLighter">
+    <ImageView
+        android:id="@+id/img_load_backup"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/baseline_restore_black_24dp"
+        android:scaleType="centerInside"
+        android:layout_alignParentRight="true"/>
+    <Button
+        android:text="@string/RestoreBackupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_load_backup"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/borderbuttons"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
+    <TextView
+        android:text="Backupbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/backupnameTextView"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/img_load_backup"
+        android:layout_marginTop="3dp"/>
+    <TextView
+        android:text="28.08.2019 11:34"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/backupTimeTextView"
+        android:textStyle="bold"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/selected"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/img_load_backup"
+        android:layout_marginBottom="3dp"
+        android:gravity="bottom" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/img_load_backup"
+        android:gravity="bottom">
+        <ImageView
+            android:id="@+id/shareButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_share_24px_black"
+            android:scaleType="centerInside"
+            android:layout_marginBottom="0.0dp" />
+        <ImageView
+            android:id="@+id/deleteButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:scaleType="centerInside" />
+    </LinearLayout>
+    
+
+</RelativeLayout>

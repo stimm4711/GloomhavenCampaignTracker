@@ -5,6 +5,11 @@ using Math = System.Math;
 using Java.Lang.Reflect;
 using Android.Widget;
 using System;
+using System.Threading.Tasks;
+using Android.Graphics;
+using Android.Views;
+using System.Net.Http;
+using GloomhavenCampaignTracker.Droid;
 
 namespace GloomhavenCampaignTracker.Business
 {
@@ -36,7 +41,11 @@ namespace GloomhavenCampaignTracker.Business
         Support = 15,
         Releasenotes = 16,
         EnvelopeXUnlock = 17,
-        Riftevents = 18
+        Riftevents = 18,
+        ScenarioDetails = 19,
+        ScenarioRewards = 20,
+        EventDrawnOnline = 21,
+        EventOutcome = 22
     }
     
     public class Helper
@@ -86,7 +95,7 @@ namespace GloomhavenCampaignTracker.Business
             ProsperityLevelSteps.Add(8, 51);
             ProsperityLevelSteps.Add(9, 65);
         }
-
+       
         private static void InitRegions()
         {
             RegionIdToShortyAndName.Add(1, new Tuple<string, string>("GLO", "Gloomhaven"));
@@ -350,6 +359,127 @@ namespace GloomhavenCampaignTracker.Business
                 return name.Item1;
             }
             return "";
+        }
+
+        /// <summary>
+        /// Get Images online base url
+        /// </summary>
+        private static readonly string baseimageURL = "https://raw.githubusercontent.com/stimm4711/gloomhaven/gloomimages_v1/images";
+
+        /// <summary>
+        /// Get treasure image URL
+        /// </summary>
+        /// <param name="treasurename"></param>
+        /// <returns></returns>
+        internal static string GetTreasureUrl(string treasurename)
+        {
+            return $"{baseimageURL}/treasure-chests/{treasurename}";
+        }
+
+        private static string GetEventTypeURL(EventTypes eventtype)
+        {
+            string eventtypeurl = $"{baseimageURL}/events/base/road/re-";
+            if (eventtype == EventTypes.CityEvent)
+            {
+                eventtypeurl = $"{baseimageURL}/events/base/city/ce-";
+            }
+            else if (eventtype == EventTypes.RiftEvent)
+            {
+                eventtypeurl = $"{baseimageURL}/events/base/rift/rf-";
+            }
+
+            return eventtypeurl;
+        }
+
+        /// <summary>
+        /// Get event front images URL
+        /// </summary>
+        /// <param name="eventtype"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static string GetEventFrontURL(EventTypes eventtype, string number)
+        {
+            string eventtypeurl = GetEventTypeURL(eventtype);
+            return $"{eventtypeurl}{number}-f.png";
+        }
+
+        /// <summary>
+        /// Get event back images URL
+        /// </summary>
+        /// <param name="eventtype"></param>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        internal static string GetEventBackURL(EventTypes eventtype, string number)
+        {
+            string eventtypeurl = GetEventTypeURL(eventtype);
+            return $"{eventtypeurl}{number}-b.png";
+        }
+
+        /// <summary>
+        /// Get ability cards images
+        /// </summary>
+        /// <param name="classShorty"></param>
+        /// <param name="abilityname"></param>
+        /// <returns></returns>
+        internal static string GetClassAbilityURL(string classShorty, string abilityname)
+        {
+            return $"{baseimageURL}/character-ability-cards/{classShorty}/{abilityname}.png";
+        }
+
+        /// <summary>
+        /// Get item image url
+        /// </summary>
+        /// <param name="itemnumber"></param>
+        /// <returns></returns>
+        internal static string GetItemImageURL(string itemnumber)
+        {
+            return $"{baseimageURL}/items/{itemnumber}.png";
+        }
+
+        /// <summary>
+        /// Get personal quest image url
+        /// </summary>
+        /// <param name="questNumber"></param>
+        /// <returns></returns>
+        internal static string GetPersonalQuestURL(int questNumber)
+        {
+            return $"{baseimageURL}/personal-goals/pg-{questNumber}.png";
+        }
+
+        public static async Task<Bitmap> GetImageBitmapFromUrlAsync(string url)
+        {
+            Bitmap imageBitmap = null;
+
+            using (var httpClient = new HttpClient())
+            {
+                var imageBytes = await httpClient.GetByteArrayAsync(url);
+                if (imageBytes != null && imageBytes.Length > 0)
+                {
+                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                }
+            }
+
+            return imageBitmap;
+        }
+
+        public static Bitmap GetEventBackScaleBitmap(Bitmap bitmap, int decision)
+        {
+            Bitmap output = Bitmap.CreateBitmap(bitmap.Width, (bitmap.Height / 2), Bitmap.Config.Argb8888);
+            Canvas canvas = new Canvas(output);
+
+            Paint paint = new Paint();
+            Rect rectS = new Rect(0, decision * (bitmap.Height / 2), bitmap.Width, bitmap.Height / 2 + (decision * (bitmap.Height / 2)));
+            Rect rectD = new Rect(0, 0, bitmap.Width, bitmap.Height / 2);
+            RectF rectF = new RectF(rectD);
+            float roundPx = 0;
+
+            paint.AntiAlias = true;
+            canvas.DrawARGB(0, 0, 0, 0);
+            canvas.DrawRoundRect(rectF, roundPx, roundPx, paint);
+            paint.SetXfermode(new PorterDuffXfermode(PorterDuff.Mode.SrcIn));
+            canvas.DrawBitmap(bitmap, rectS, rectD, paint);
+
+            return output;
         }
     }
 }

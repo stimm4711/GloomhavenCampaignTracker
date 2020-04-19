@@ -19,11 +19,16 @@ namespace GloomhavenCampaignTracker.Droid
     [Activity(Label = "DetailsActivity")]
     public class DetailsActivity : AppCompatActivity
     {
-        public static string CurrentCampaignId = "current_campaign_id";
-        public static string SelectedFragId = "selected_fragid";
-        public static string SelectedCharacterId = "selected_character_id";
-        public static string JustParty = "JustParty";
-        public static string ProsperityLevel = "ProsperityLevel";
+        public static readonly string CurrentCampaignId = "current_campaign_id";
+        public static readonly string SelectedFragId = "selected_fragid";
+        public static readonly string SelectedCharacterId = "selected_character_id";
+        public static readonly string SelectedScenarioId = "selected_scenario_id";
+        public static readonly string CasualMode = "casual_mode";
+        public static readonly string JustParty = "JustParty";
+        public static readonly string ProsperityLevel = "ProsperityLevel";
+        public static readonly string EventTypeString = "current_eventtype";
+        public static readonly string EventCardNumber = "EventCardNumber";
+        public static readonly string EventCardOption = "EventCardOption";
 
         private bool _justPartyCharacterView;
 
@@ -55,6 +60,9 @@ namespace GloomhavenCampaignTracker.Droid
 
         private void SetFragment(int campId, int fragId)
         {
+            var scenarioID = 0;
+            var casualMode = false;
+
             switch (fragId)
             {
                 case (int)DetailFragmentTypes.GlobalAchievements:
@@ -96,7 +104,6 @@ namespace GloomhavenCampaignTracker.Droid
                 case (int)DetailFragmentTypes.PartyMember:
                     SupportActionBar.Title = Resources.GetString(Resource.String.PartyMember);
                     _detailsFrag = CharacterListFragment.NewInstance(true);
-                    //_detailsFrag = CharacterExpandableListFragment.NewInstance(true);
                     break;
                 case (int)DetailFragmentTypes.CharacterDetail:
                     var characterId = Intent.Extras.GetInt(SelectedCharacterId, 0);
@@ -105,7 +112,6 @@ namespace GloomhavenCampaignTracker.Droid
                     break;
                 case (int)DetailFragmentTypes.Characters:
                     SupportActionBar.Title = "Characters";
-                    //_detailsFrag = CharacterExpandableListFragment.NewInstance(false);
                     _detailsFrag = CharacterListFragment.NewInstance(false);
                     break;
                 case (int)DetailFragmentTypes.Settings:
@@ -123,6 +129,26 @@ namespace GloomhavenCampaignTracker.Droid
                 case (int)DetailFragmentTypes.EnvelopeXUnlock:
                     SupportActionBar.Title = "Envelope X";
                     _detailsFrag = CampaignUnlocksEnvelopeXFragment.NewInstance();
+                    break;
+                case (int)DetailFragmentTypes.ScenarioDetails:
+                    SupportActionBar.Title = "Scenario Details";
+                    scenarioID = Intent.Extras.GetInt(SelectedScenarioId, 0); 
+                    _detailsFrag = ScenarioDetailsFragment.NewInstance(scenarioID);
+                    break;
+                case (int)DetailFragmentTypes.ScenarioRewards:
+                    SupportActionBar.Title = "Scenario Rewards";
+                    scenarioID = Intent.Extras.GetInt(SelectedScenarioId, 0);
+                    casualMode = Intent.Extras.GetBoolean(CasualMode, false);
+                    _detailsFrag = SzenarioRewardsFragment.NewInstance(scenarioID, casualMode);
+                    break;
+                case (int)DetailFragmentTypes.EventDrawnOnline:
+                    var cardnummer = Intent.Extras.GetInt(EventCardNumber, 0);
+                    SupportActionBar.Title = $"Event Number: {cardnummer}";
+                    _detailsFrag = CampaignEventsDrawnFragment.NewInstance(cardnummer, Intent.Extras.GetInt(EventTypeString, 0));
+                    break;
+                case (int)DetailFragmentTypes.EventOutcome:
+                    SupportActionBar.Title = "Event Outcome";
+                    _detailsFrag = EventOutcomeFragment.NewInstance(Intent.Extras.GetInt(EventCardNumber, 0), Intent.Extras.GetInt(EventCardOption, 0), Intent.Extras.GetInt(EventTypeString, 0));
                     break;
             }
 

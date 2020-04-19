@@ -79,7 +79,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
 
             IEnumerable<DL_AchievementType> selectableAchievements = DataServiceCollection.CampaignDataService.GetAchievementTypesFlat();
 
-            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.ActivateForgottenCiclesContent)
+            if (!Campaign.HasGlobalAchievement(GlobalAchievementsInternalNumbers.EndOfGloom) || !GCTContext.Settings.IsFCActivated)
                 selectableAchievements = selectableAchievements.Where(x => x.ContentOfPack == 1);
 
             if (Campaign.GlobalAchievements != null)

@@ -1,6 +1,5 @@
 ﻿using Android.Content;
 using Android.OS;
-using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
@@ -8,7 +7,6 @@ using Data.ViewEntities;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Business;
-using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +16,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
     public class PartySelectionFragment : ListFragment
     {
-        private const string lastloadedparty = "lastloadedparty";
         private View _view;
 
         public static PartySelectionFragment NewInstance()
@@ -56,11 +53,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         private void PartySelected()
         {
-            var prefs = PreferenceManager.GetDefaultSharedPreferences(Context);
-            var editor = prefs.Edit();
-            editor.PutInt(lastloadedparty, GCTContext.CurrentCampaign.CurrentParty.Id);
-            editor.Apply();
-
+            GCTContext.Settings.LastLoadedParty = GCTContext.CurrentCampaign.CurrentParty.Id;
+           
             if (Activity.GetType() == typeof(DetailsActivity))
             {
                 Activity.Finish();

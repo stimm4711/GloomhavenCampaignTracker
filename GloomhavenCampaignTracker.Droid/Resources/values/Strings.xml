@@ -32,7 +32,7 @@
   <string name="Assign">Assign</string>
   <string name="Assigned">Assigned</string>
   <string name="Add">Add</string>
-  <string name="Added">Added!</string>
+  <string name="Added">Added</string>
   <string name="NotSaved">Something went wrong. Data was not saved.</string>
   <string name="Saved">Saved!</string>
   <string name="Confirm">Confirm</string>
@@ -50,6 +50,8 @@
   <string name="Initialize">Initialize</string>
   <string name="Removed">Removed</string>
   <string name="Option">Option</string>
+  <string name="Items">Items</string>
+  <string name="Yes">Yes</string>
   
   <!-- Unlocks -->
   <string name="Congratulation">Congratulation!</string>
@@ -60,6 +62,24 @@
   <string name="SpoilerWarningMessage">The following contains heavy spoilers! Just proceed if you unlocked and opened envelope X!</string>
   <string name="Proceed">Proceed</string>
   <string name="ShowEnvelopeXProgress">Show Envelope X progress</string>
+  <string name="UnlockedClasses">Unlocked Classes</string>
+  <string name="OpenEnvelopeXButton">Open Envelope X</string>
+  <string name="FiveAncientTechnologyCheck">Gain 5 “Ancient Technology” global achievements</string>
+  <string name="FiveAncientTechnologyCheckReward">Unlocked envelope A</string>
+  <string name="DrakesCommandTreasure">Have a party gain both “The Drake’s Command” and “The Drake’s Treasure” party achievements</string>
+  <string name="DrakesCommandTreasureReward">City Event 75 and Road Event 66 added, and “The Drake Aided” global achievement gained</string>
+  <string name="Donate100Gold">Donate a total of 100 gold to the Sanctuary of the Great Oak</string>
+  <string name="Donate100GoldReward">Unlocked envelope B</string>
+  <string name="Reputation10">Have a party reputation of 10 or higher</string>
+  <string name="Reputation10Reward">Unlocked Sun Class</string>
+  <string name="Reputation20">Have a party reputation of 20</string>
+  <string name="Reputation20Reward">City Event 76 and Road Event 67 added</string>
+  <string name="ReputationMinus10">Have a party reputation of -10 or lower</string>
+  <string name="ReputationMinus10Reward">Unlocked Moon Class</string>
+  <string name="ReputationMinus20">Have a party reputation of -20</string>
+  <string name="ReputationMinus20Reward">City Event 77 and Road Event 68 added</string>
+  <string name="RetireFirstCharacter">Retire a character</string>
+  <string name="RetireFirstCharacterReward">Open the Town Records Book</string>
   
   <!-- Unlocks - Envelope X-->
   <string name="unlocks_envelopex_majorspoilers">WARNING! MAJOR SPOILERS!</string>
@@ -69,7 +89,6 @@
   <string name="classes_bladeswarmname">Bladeswarm</string>
   <string name="unlocks_envelopex_congratulations">Congratulations!\nYou have unlocked the content of envelope X!</string>
   <string name="unlocks_envelopex_completeddialogmessage">Select Reward to open a website with your reward for completing the quest!</string>
-  <string name="Reward">Reward</string>
   <string name="unlocks_envelopex_speakthenamebutton">Speak the name</string>
   <string name="unlocks_envelopex_nothinghappens">You speak out the name but nothing happens.</string>
   
@@ -84,13 +103,23 @@
   <string name="CampaignnameExist">Campaignname already exists</string>
   <string name="DeleteCampaign">Delete Campaign?</string>
   <string name="CampaignDeleted">Campaign deleted.</string>
+  <string name="EnterCampaignname">Enter Campaignname</string>
+  <string name="World">World</string>
+  <string name="City">City</string>
+  <string name="CamapignParty">Party</string>
+  <string name="CampaignUnlocks">Unlocks</string>
+
+  <!-- Scenariolevel calculation -->
+  <string name="ScenariolevelForChars">Scenariolevel for characters:</string>
+  <string name="SelectCharacters">Select Characters</string>
+  <string name="JustOneCharacterOfEachClass">You can select just one character of each class.</string>
   
   <!-- Events -->
+  <string name="Events">Events</string>
   <string name="AddEvents">Add Event</string>
   <string name="EventAlreadyAdded">An event with the same type and number is already added.</string>
   <string name="RoadEvents">Road Events</string>
   <string name="RemoveAddEventTitle">Enter Eventnumber</string>
-  <string name="RemoveEvent">Remove Event</string>
   <string name="AddEvent">Add Event</string>
   <string name="DrawnEventNumber">Event number {0}</string>
   <string name="DrawnEventMessage">Play the Event {0}.\nSelect what to do with the Event.</string>
@@ -107,17 +136,26 @@
   <string name="AddedShuffled">Added, Shuffled</string>
   <string name="DeleteEventhistoryEntry">Delete eventhistory entry?</string>
   <string name="RiftEvents">Rift Events</string>
+  <string name="AddEventEnterRefNumber">Enter event number</string>
+  <string name="Shuffle">Shuffle</string>
+  <string name="OptionA">Option A</string>
+  <string name="OptionB">Option B</string>
+  <string name="Outcome">Outcome</string>
+  <string name="NoEffect">No effect</string>
+  <string name="RemoveEvent">Remove Event</string>
+  <string name="PutUnder">Put under pile</string>
+  <string name="TurnCard">Turn card</string>
+  <string name="ShowEventcard">Show eventcard</string>
+  <string name="DrawCard">Draw Card</string>
+  <string name="AddCard">Add Card</string>
+  <string name="RemoveCard">Remove Card</string>
+  <string name="EventdeckHistory">Eventdeck History</string>
 
   <!-- Global Achievements -->
   <string name="GlobalAchievements">Global Achievements</string>
   <string name="AssignGlobalAchievement">Assign Global Achievement</string>
   <string name="AchievementAlreadyAssigned">An achievement with the same type is already assigned.</string>
   <string name="Achievementtypes">Achievement Types</string>
-  <string name="AchievementNameMissing">Achievementtype Name can\'t be empty.</string>
-  <string name="AchievementTypeExists">Achievement Type already exists.</string>
-  <string name="AddAchievement">Add Achievement</string>
-  <string name="AchievementNeedsName">Achievement needs a name.</string>
-  <string name="AchievementAdded">Achievement added</string>
   <string name="Achievements">Achievements</string>
   <string name="AchievementTypes">Achievement Types</string>
   <string name="AchievementType">Achievement Type</string>
@@ -131,9 +169,6 @@
   <string name="ScenarioAlreadyAssigned">The scenario is already assigned.</string>
   <string name="Scenarios">Scenarios</string>
   <string name="Scenario">Scenario</string>
-  <string name="ScenarioNumberMissing">Scenario Number can\'t be empty.</string>
-  <string name="ScenarioNumberExists">Scenario Number already exists.</string>
-  <string name="TreasuresPartOf">Treasures: {0}/{1}</string>
   <string name="BlockingAchievement">{0} \n is blocked by</string>
   <string name="RequiredAchievements">{0}\n requires</string>
   <string name="AddTreasureAlertTitle">Add Treasure</string>
@@ -145,14 +180,37 @@
   <string name="Treasures">{0} Treasures</string>
   <string name="AddTreasure">Add new treasure</string>
   <string name="DeleteUnlockedScenario">Delete {0}?</string>
+  <string name="EnterTreasureNumber">Enter treasure number</string>
+  <string name="EnterTreasureContent">Enter treasure content</string>
+  <string name="SelectSection">Select section</string>
+  <string name="SelectSectionNumber">Select the sectionnumber with your conclusion.</string>
+  <string name="Select">Select</string>
+  <string name="SelectUnlockedScenario">Select unlocked scenario</string>
+  <string name="ChooseScenarioToUnlock">Choose the scenario you want to unlock.</string>
+  <string name="UnlockScenario">Unlock scenario</string>
+  <string name="SetScenarioIncomplete">Set the scenario {0} incomplete?</string>
+  <string name="ScenariosWillBeRemoved">The following scenarios will be removed from the list</string>
+  <string name="EditTreasure">Edit Treasure</string>
+  <string name="Requirements">Requirements</string>
+  <string name="Region">Region</string>
+  <string name="TreasuresCaption">Treasures</string>
   
   <!-- Party -->
-  <string name="Party">Party:</string>
+  <string name="PartyDP">Party:</string>
   <string name="PartySelection">Party Selection</string>
   <string name="DeleteParty">Delete Party?</string>
   <string name="PartyCantbeDeletedIsLastOfCampaign">Each Campaign needs at least one Party. Can\'t delete this party.</string>
   <string name="AddParty">Add Party</string>
   <string name="PartynameAlreadyExists">Party already exists</string>
+  <string name="EnterPartyname">Enter Partyname</string>
+  <string name="Partyname">Partyname</string>
+  <string name="PartyMembers">Party Members</string>
+  <string name="PAchievements">P. Achievements</string>
+  <string name="PartyReputation">Party Reputation</string>
+  <string name="ShopPriceModifier">Shop Price Modifier</string>
+  <string name="CurrentLocation">Current Location</string>
+  <string name="PartyNotes">Notes</string>
+  <string name="Reputation">Reputation</string>
   
   <!-- Party Achievement -->
   <string name="PartyAchievements">Party Achievements</string>
@@ -173,7 +231,11 @@
   <string name="SelectItemDesignHint">Select an Itemdesign reference number</string>
   <string name="SelectItemDesignTitle">Add unlocked Itemdesign</string>
   <string name="ItemDesignAlreadyAssigned">The Itemdesign is already assigned.</string>
-
+  <string name="GloomhavenProsperity">Gloomhaven Prosperity</string>
+  <string name="SanctuaryDonations">Sanctuary Donations</string>
+  <string name="NextProsperity">Next prosperity:</string>
+  <string name="Prosperity">Prosperity</string>
+  
   <!-- Character -->
   <string name="AddCharacter">Add Character</string>
   <string name="DeleteAbility">Delete Ability?</string>
@@ -200,4 +262,74 @@
   <string name="CharacterStat_NeedsTenGold">The character needs at least 10 gold to donate.</string>
   <string name="CharacterStat_donated">{0} donated 10 gold to the sanctuary of the great oak.</string>
   <string name="CharacterStat_ProsperityRaised">\r\n\r\nThe city of Gloomhaven gained one prosperity point.</string>
+  <string name="AbilityName">Ability Name</string>
+  <string name="AddAbilityReferenceNumber">Ref. nr. (opt)</string>
+  <string name="AbilityLevel">Ability level</string>
+  <string name="SelectEnhancement">Enhancement (Click)</string>
+  <string name="EnhancementSlotNUmber">Slotnumber</string>
+  <string name="EnterItemNumber">Enter item number</string>
+  <string name="Charactername">Charactername</string>
+  <string name="CharacterClass">Class</string>
+  <string name="TopEnhancements">Top Enhancements</string>
+  <string name="BottomEnhancements">Bottom Enhancements</string>
+  <string name="Playername">Playername</string>
+  <string name="PersonalQuestGoal">Personal Quest Goal</string>
+  <string name="Reward">Reward</string>
+  <string name="CharacterLevel">Level</string>
+  <string name="CharacterExperience">XP</string>
+  <string name="CharacterGold">Gold</string>
+  <string name="CharacterNotes">Notes</string>
+  <string name="DeleteEnhancementCommit">Delete Enhancement?</string>
+  <string name="DeleteCharacterCommit">Delete Character</string>
+  <string name="Character">Character</string>
+  <string name="Abilities">Abilities</string>
+  <string name="Perks">Perks</string>
+  <string name="SellItemCommit">Sell Item for {0} gold?</string>
+  <string name="Sell">Sell</string>
+  <string name="DeleteItemCommit">Delete Item?</string>
+  <string name="DeletePerkCommit">Delete Perk?</string>
+  
+  
+  <!-- Backup-->
+  <string name="SelectDir">Select backup path</string>
+  <string name="PathToBackupFolder_placeHolder">path to backup folder</string>
+  <string name="CreateBackupButton">Create</string>
+  <string name="RestoreBackupButton">Restore selected</string>
+  <string name="LoadBackupButton">Load Backup</string>
+  <string name="DeleteBackupCommit">Delete Backup?</string>
+  <string name="DatabaseBackupsTitle">Database Backups</string>
+
+  <!-- Splashscreen -->
+  <string name="Loading">Loading...</string>
+
+  <!-- About -->
+  <string name="AppUse">This application is used for tracking campaign progress in the board card game Gloomhaven.</string>
+  <string name="AppPublishedWithPermission">It is published with permisson of Isaac Chidres, creator and publisher of Gloomhaven.</string>
+  <string name="Icons8">Created with Icons from Icons8</string>
+
+  <!-- Settings -->
+  <string name="SpoilerSettings">Spoiler settings</string>
+  <string name="ShowItemNames">Show item names</string>
+  <string name="ShowItemNamesDecription">Show names of locked items in itemdesign selection.</string>
+  <string name="ShowPersonalQuest">Show personal quest name and details</string>
+  <string name="ShowPersonalQuestDescription">Show names and details of personal quests. If not checked, you have to tap a button to see the names and details.</string>
+  <string name="ShowScenarioNames">Show scenarionames in unlocked scenario selection</string>
+  <string name="ShowScenarioNamesDescription">Show names of locked scenarios in unlocked scenario selection.</string>
+  <string name="ActivateFC">Activate Forgotten Circles</string>
+  <string name="ActivateFCDexription">This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion.</string>
+  <string name="ShowTreasures">Show treasures</string>
+  <string name="ShowTreasuresDescription">Show treasure count in scenario list and treasure images in scenario details</string>
+  <string name="DownloadAllImagesButton">Download all images now</string>
+  <string name="DownloadAllImagesCheckbox">Cache images of cards to the apps storage</string>
+  <string name="DownloadAllImagesCaption">Download Images to app storage</string>
+
+  <!-- Support Dev -->
+  <string name="Feedback">Feedback</string>
+  <string name="FeedbackBGG">I would appreciate your feedback on boardgamegeek.com</string>
+  <string name="FeedbackEmail">Or email me: stimm@outlook.com</string>
+  <string name="RateApp">Rate the app</string>
+  <string name="RateInPLayStore">Leave a rating in the play store</string>
+  <string name="Support">Support</string>
+  <string name="CoinsInHelmet">And If you find this app useful and you want to do more than give me your feedback, the author would be grateful for a few coins that fall into his helmet (click it).</string>
+  
 </resources>

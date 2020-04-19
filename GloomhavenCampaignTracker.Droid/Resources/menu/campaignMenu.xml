@@ -16,5 +16,5 @@
        android:id="@+id/partySelection"
        android:icon="@drawable/ic_group_white_24dp"
        android:title="Parties"
-       app:showAsAction="always" />  
+       app:showAsAction="always" /> 
 </menu>

@@ -32,13 +32,16 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         [ManyToMany(typeof(DL_CampaignUnlockedScenario), CascadeOperations = CascadeOperation.None)]
         public List<DL_Campaign> Campaigns { get; set; }
 
+        [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
+        public List<DL_ScenarioTreasure> Treasures { get; set; }
+
         public int ContentOfPack { get; set; } // 1 = gloomhaven, 2 = forgotten circles
 
         public string Spinnerdisplayvalue
         {
             get
             {
-                if (GCTContext.ShowScenarioNames)
+                if (GCTContext.Settings.IsShowScenarios)
                 {
                     return $"# {Scenarionumber}   {Name}";
                 }

@@ -20,7 +20,7 @@
         android:paddingLeft="5dp"
         android:paddingBottom="5dp">
         <TextView
-            android:text="Notes"
+            android:text="@string/PartyNotes"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

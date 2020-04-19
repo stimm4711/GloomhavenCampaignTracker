@@ -15,7 +15,7 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -40,6 +40,7 @@
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>PdbOnly</DebugType>
@@ -56,6 +57,10 @@
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -66,6 +71,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -81,6 +87,7 @@
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidSupportedAbis>x86_64;arm64-v8a</AndroidSupportedAbis>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Calligraphy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -99,6 +106,9 @@
     </Reference>
     <Reference Include="Plugin.Connectivity.Abstractions, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugin.Connectivity.3.2.0\lib\MonoAndroid10\Plugin.Connectivity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.FilePicker, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Plugin.FilePicker.2.1.34\lib\monoandroid81\Plugin.FilePicker.dll</HintPath>
     </Reference>
     <Reference Include="Sockets.Plugin, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sharpcaster.SocketsForPCL.2.0.4\lib\MonoAndroid10\Sockets.Plugin.dll</HintPath>
@@ -197,7 +207,13 @@
     <Compile Include="Adapter\AbilitiesAdapterOld.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementDeleteableAdapter.cs" />
     <Compile Include="Adapter\AbilitiesEnhancementSelectableAdapter.cs" />
+    <Compile Include="Adapter\BackupAdapter.cs" />
+    <Compile Include="Adapter\ScenarioListviewtAdapter.cs" />
     <Compile Include="Adapter\ChangeAwareAdapter.cs" />
+    <Compile Include="Adapter\CampaignScenarioTreasureAdapter.cs" />
+    <Compile Include="Adapter\EvenOutcomeCharacterViewPagerAdapter.cs" />
+    <Compile Include="Adapter\ScenarioRewardsCharacterViewPagerAdapter.cs" />
+    <Compile Include="Adapter\ScenarioRewardsViewPagerAdapter.cs" />
     <Compile Include="Adapter\CharacterWrapper.cs" />
     <Compile Include="Adapter\SelectableCampaignAdapter.cs" />
     <Compile Include="Adapter\CharacterDetailsAdapterBase.cs" />
@@ -241,6 +257,7 @@
     <Compile Include="Business\EventDeck.cs" />
     <Compile Include="Business\GCTContext.cs" />
     <Compile Include="Business\Helper.cs" />
+    <Compile Include="Business\ImageCacher.cs" />
     <Compile Include="Business\IResourceContainer.cs" />
     <Compile Include="Business\ISpinneritem.cs" />
     <Compile Include="Business\Network\Abstract\Client.cs" />
@@ -259,6 +276,7 @@
     <Compile Include="Business\PartyAchievement.cs" />
     <Compile Include="Business\Scenario.cs" />
     <Compile Include="Business\ScenarioCollection.cs" />
+    <Compile Include="Business\ScenarioHelper.cs" />
     <Compile Include="CustomControls\CustomDialogBuilder.cs" />
     <Compile Include="CustomControls\DraggableListView.cs" />
     <Compile Include="CustomControls\IDraggableListAdapter.cs" />
@@ -271,6 +289,7 @@
     <Compile Include="CustomControls\ProsperityMeter.cs" />
     <Compile Include="Data\ConversionClasses\JSONConverter.cs" />
     <Compile Include="Data\DatabaseAccess\AbilityDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\CampaignScenarioTreasureDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\AchievementDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\AchievementTypeDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\CampaignDBAccess.cs" />
@@ -283,6 +302,7 @@
     <Compile Include="Data\DatabaseAccess\CharacterDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\CharacterPersonalQuestCounterDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\CharacterAbilitiesDBAccess.cs" />
+    <Compile Include="Data\DatabaseAccess\ScenarioTreasureDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\ClassAbilitiesDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\ClassDBAccess.cs" />
     <Compile Include="Data\DatabaseAccess\ClassPerkDBAccess.cs" />
@@ -335,11 +355,14 @@
     <Compile Include="Data\Entities\DL_PersonalQuest.cs" />
     <Compile Include="Data\Entities\DL_PersonalQuestCounter.cs" />
     <Compile Include="Data\Entities\DL_Scenario.cs" />
+    <Compile Include="Data\Entities\DL_ScenarioTreasure.cs" />
+    <Compile Include="Data\Entities\DL_CampaignScenarioTreasure.cs" />
     <Compile Include="Data\Entities\DL_Treasure.cs" />
     <Compile Include="Data\Entities\IEntity.cs" />
     <Compile Include="Data\EntityCollection.cs" />
     <Compile Include="Data\GloomhavenDBHelper.cs" />
     <Compile Include="Data\Repositories\AbilityRepository.cs" />
+    <Compile Include="Data\Repositories\CampaignScenarioTreasureRepository.cs" />
     <Compile Include="Data\Repositories\AchievementRepository.cs" />
     <Compile Include="Data\Repositories\AchievementTypeRepository.cs" />
     <Compile Include="Data\Repositories\CampaignEventHistoryLogItemRepository.cs" />
@@ -352,6 +375,7 @@
     <Compile Include="Data\Repositories\CharacterPersonalQuestCountersRepository.cs" />
     <Compile Include="Data\Repositories\CharacterRepository.cs" />
     <Compile Include="Data\Repositories\CharacterAbilitiesRepository.cs" />
+    <Compile Include="Data\Repositories\ScenarioTreasuresRepository.cs" />
     <Compile Include="Data\Repositories\ClassPerkRepository.cs" />
     <Compile Include="Data\Repositories\ClassAbilitiesRepository.cs" />
     <Compile Include="Data\Repositories\ClassRepository.cs" />
@@ -368,6 +392,7 @@
     <Compile Include="DetailsActivity.cs" />
     <Compile Include="EventhistoryHelper.cs" />
     <Compile Include="Exceptions\CampaignLoadingException.cs" />
+    <Compile Include="Fragments\campaign\CampaignEventsDrawnFragment.cs" />
     <Compile Include="Fragments\campaign\city\CampaigntemsFragment.cs" />
     <Compile Include="Fragments\campaign\city\ItemstoreViewPagerTabs.cs" />
     <Compile Include="Fragments\campaign\EventWrapper.cs" />
@@ -375,7 +400,13 @@
     <Compile Include="Fragments\campaign\CampaignSelectionFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyNotesFragment.cs" />
     <Compile Include="Fragments\campaign\party\CampaignPartyAchievementsFragment.cs" />
+    <Compile Include="Fragments\campaign\EventOutcomeFragment.cs" />
+    <Compile Include="Fragments\campaign\EventCharacterOutcomeFragment.cs" />
     <Compile Include="Fragments\campaign\unlocks\CampaignUnlocksEnvelopeXFragment.cs" />
+    <Compile Include="Fragments\campaign\world\SzenarioCharacterRewardsFragment.cs" />
+    <Compile Include="Fragments\campaign\world\SzenarioRewardsFragment.cs" />
+    <Compile Include="Fragments\campaign\world\SzenarioDetailsUnlocksFragment.cs" />
+    <Compile Include="Fragments\campaign\world\SzenarioDetailsFragment.cs" />
     <Compile Include="Fragments\character\CharacterDetailAbilitiesFragmentOld.cs" />
     <Compile Include="Fragments\character\CharacterDetailFragmentBase.cs" />
     <Compile Include="Fragments\character\CharacterDetailPerks2Fragment.cs" />
@@ -400,6 +431,7 @@
     <Compile Include="Fragments\SupportDevFragment.cs" />
     <Compile Include="Fragments\SettingsFragment.cs" />
     <Compile Include="GloomhavenCampaignTrackerApplication.cs" />
+    <Compile Include="Business\Settings.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Utils\ResourceHelper.cs" />
@@ -414,6 +446,9 @@
     <None Include="app.config" />
     <AndroidAsset Include="Assets\fonts\Roboto-Regular.ttf" />
     <AndroidAsset Include="Assets\raw_data\Classabilities.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\raw_data\ScenarioTreaures.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidAsset>
     <None Include="GloomhavenCampaignTracker.Droid.csproj.vspscc" />
@@ -457,9 +492,6 @@
     <AndroidResource Include="Resources\layout\listviewitem_campaignachievement_with_achievements.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\fragment_campaign_itemstore.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\listviewitem_optionsbutton.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -497,9 +529,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\itemview_imagespinner.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\alertdialog_character_edit.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_campaign_unlocks.axml">
@@ -590,9 +619,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_support_developer.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\fragment_campaign_itemstore_new.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\listviewitem_item.axml">
@@ -2740,7 +2766,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\alertdialog_drawnevent_withImage.axml">
+    <AndroidResource Include="Resources\layout\fragment_campaign_eventdrawn.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -2854,7 +2880,7 @@
     <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_regenerate.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_regenerate.png" />
+    <AndroidResource Include="Resources\drawable\ic_regenerate_self.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_regenerate.png" />
@@ -2871,7 +2897,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <AndroidResource Include="Resources\layout\listviewitem_classability_selectable.axml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -2933,6 +2958,249 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_scenario_rewards.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_scenariodetails_details.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_scenariodetails_unlocks.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_singleitem.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_backup.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\baseline_restore_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\item_view2.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\back_40.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_event_rewards_character.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_partyachievement.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_event_rewards.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_scenario_rewards_character.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_campaign_eventrewards_all.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\listviewitem_campaignscenario_numberAndName.axml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\greenButtton.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-hdpi\ic_event_putunder_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-hdpi\ic_event_removed_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-mdpi\ic_event_putunder_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-mdpi\ic_event_removed_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xhdpi\ic_event_putunder_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xhdpi\ic_event_removed_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_event_putunder_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_event_removed_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_event_putunder_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_event_removed_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_event_putunder_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_event_removed_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-hdpi\ic_event_putunder_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-hdpi\ic_event_remove_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-mdpi\ic_event_putunder_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-mdpi\ic_event_remove_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xhdpi\ic_event_putunder_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xhdpi\ic_event_remove_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_event_putunder_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_event_remove_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_event_putunder_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_event_remove_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_event_putunder_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_event_remove_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-hdpi\ic_event_turncard_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-mdpi\ic_event_turncard_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xhdpi\ic_event_turncard_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_event_turncard_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_event_turncard_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_event_turncard_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-hdpi\ic_event_enteroutcome_sec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-mdpi\ic_event_enteroutcome_sec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xhdpi\ic_event_enteroutcome_sec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_event_enteroutcome_sec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_event_enteroutcome_sec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_event_enteroutcome_sec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-hdpi\t_roadevent_bkg.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-mdpi\t_roadevent_bkg.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xhdpi\t_roadevent_bkg.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxhdpi\t_roadevent_bkg.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\t_roadevent_bkg.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\t_roadevent_bkg.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bg_roadevent.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\saveMenu.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bg_cityevent.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bg_riftevent.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\yellowButtton.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_regenerate.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

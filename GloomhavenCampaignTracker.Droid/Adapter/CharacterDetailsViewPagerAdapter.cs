@@ -20,7 +20,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             _context = context;
             FragManager = fm;
-            if (GCTContext.ShowAbilitySheet) PageCount = 5;
+            if (GCTContext.Settings.IsShowOldAbilitySheet) PageCount = 5;
             frags = new Fragment[PageCount];
             _character = character;
         }
@@ -37,25 +37,25 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         
         private string GetTitle(int position)
         {
-            var title = "Character";
+            var title = _context.Resources.GetString(Resource.String.Character);
             switch (position)
             {
                 case 0:
-                    title = "Character";
+                    title = _context.Resources.GetString(Resource.String.Character);
                     if (PageCount == 5) title = "Char";
                     break;
                 case 1:
-                    title = "Items";
+                    title = _context.Resources.GetString(Resource.String.Items);
                     break;
                 case 2:
-                    title = "Abilities";
-                    if (PageCount == 5) title = "Abilities 2.0"; ;
+                    title = _context.Resources.GetString(Resource.String.Abilities);
+                    if (PageCount == 5) title = $"{_context.Resources.GetString(Resource.String.Abilities)} 2.0"; ;
                     break;                
                 case 3:
-                    title = "Perks";                   
+                    title = _context.Resources.GetString(Resource.String.Perks);                   
                     break;
                 case 4:
-                    title = "Abilities 1.0";
+                    title = $"{_context.Resources.GetString(Resource.String.Abilities)} 1.0";
                     break;
             }
             return title;

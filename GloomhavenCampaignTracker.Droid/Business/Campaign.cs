@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
 using GloomhavenCampaignTracker.Droid;
@@ -45,6 +44,12 @@ namespace GloomhavenCampaignTracker.Business
             Campaign campaign = null;
             campaign = new Campaign(camp);           
             return campaign;
+        }
+
+        internal CampaignUnlockedScenario GetUnlockedScenario(int id)
+        {
+            var scen = CampaignData.UnlockedScenarios.FirstOrDefault(x => x.ID_Scenario == id);
+            return new CampaignUnlockedScenario(scen);
         }
 
         /// <summary>
@@ -442,13 +447,29 @@ namespace GloomhavenCampaignTracker.Business
         #region "Unlocked Scenarios"
 
         /// <summary>
+        /// Check is a scenario with the given number is already unlocked
+        /// </summary>
+        /// <param name="scenarioNumber"></param>
+        /// <returns></returns>
+        internal bool IsScenarioUnlocked(int scenarioNumber)
+        {
+            if(CampaignData.UnlockedScenarios.FirstOrDefault(x => x.Scenario.Scenarionumber == scenarioNumber) == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Adds an unlocked scenario
         /// </summary>
         /// <param name="scenario"></param>
         /// <returns></returns>
-        public CampaignUnlockedScenario AddUnlockedScenario(int scenarionumber)
+        public CampaignUnlockedScenario AddUnlockedScenario(int scenario_id)
         {
-            var scenario = DataServiceCollection.ScenarioDataService.GetScenarioByScenarioNumber(scenarionumber);
+            var scenario = DataServiceCollection.ScenarioDataService.Get(scenario_id);
+
+            if (scenario == null) return null;
 
             // Create Data Object of link table
             var unlockedScenarioData = new DL_CampaignUnlockedScenario
@@ -458,8 +479,19 @@ namespace GloomhavenCampaignTracker.Business
                 ID_Scenario = scenario.Id,
                 ID_Campaign = CampaignData.Id,
                 Completed = false,
-                ScenarioTreasures = new List<DL_Treasure>()
+                ScenarioTreasures = new List<DL_Treasure>(),
+                CampaignScenarioTreasures = new List<DL_CampaignScenarioTreasure>()
             };
+
+            foreach(var t in scenario.Treasures)
+            {
+                unlockedScenarioData.CampaignScenarioTreasures.Add(new DL_CampaignScenarioTreasure()
+                {
+                    ScenarioTreasure = t,
+                    ScenarioTreasure_ID = t.Id,
+                    UnlockedScenario = unlockedScenarioData
+                });
+            }
 
             // add data object to campaign data
             CampaignData.UnlockedScenarios.Add(unlockedScenarioData);

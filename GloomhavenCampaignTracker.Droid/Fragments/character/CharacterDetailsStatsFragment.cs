@@ -228,9 +228,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
         private void ShowPersonalQuest()
         {
             if (Character?.PersonalQuest == null) return;
-            _lifegoalnumber.Text = GCTContext.ShowPersonalQuestDetails ? $"# {Character.PersonalQuest.QuestNumber}   {Character.PersonalQuest.QuestName}" : $"# {Character.PersonalQuest.QuestNumber}";
+            _lifegoalnumber.Text = GCTContext.Settings.IsShowPq ? $"# {Character.PersonalQuest.QuestNumber}   {Character.PersonalQuest.QuestName}" : $"# {Character.PersonalQuest.QuestNumber}";
 
-            if(GCTContext.ShowPersonalQuestDetails)
+            if(GCTContext.Settings.IsShowPq)
             {
                 _linearLayoutPersonalQuest.RemoveAllViews();
 
@@ -521,9 +521,9 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             var rewardtext = view.FindViewById<TextView>(Resource.Id.rewardtextview);
             var classImageView = view.FindViewById<ImageView>(Resource.Id.classImageView);
 
-            SetPqSpinnerData(spinner, GCTContext.ShowPersonalQuestDetails, true);
+            SetPqSpinnerData(spinner, GCTContext.Settings.IsShowPq, true);
 
-            if (!GCTContext.ShowPersonalQuestDetails)
+            if (!GCTContext.Settings.IsShowPq)
             {
                 if (connected)
                 {
@@ -642,14 +642,15 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
                 if (connected)
                 {
-                    var imageBitmap = GetImageBitmapFromUrlAsync("https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/personal-goals/pg-" + pq.QuestNumber + ".png", pqimage, view);
+                    var url = Helper.GetPersonalQuestURL(pq.QuestNumber);
+                    GetImageBitmapFromUrlAsync(url, pqimage, view);
                 }
                 else
                 {
                     goalText.Text = pq.QuestGoal;
                     if (pq.QuestReward == "class")
                     {
-                        if (GCTContext.ShowPersonalQuestDetails) classImageView.Visibility = ViewStates.Visible;
+                        if (GCTContext.Settings.IsShowPq) classImageView.Visibility = ViewStates.Visible;
 
                         classImageView.SetImageResource(ResourceHelper.GetClassIconWhiteSmallRessourceId(pq.QuestRewardClassId - 1));
                         rewardtext.Text = "Character";
@@ -663,24 +664,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             };    
         }
 
-        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
+        private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
         {
-            Bitmap imageBitmap = null;
-
-            using (var httpClient = new HttpClient())
-            {
-                var imageBytes = await httpClient.GetByteArrayAsync(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            imagen.SetImageBitmap(imageBitmap);
-
+            var image = await Helper.GetImageBitmapFromUrlAsync(url);  
+            imagen.SetImageBitmap(image);
             view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
-
-            return imageBitmap;
         }
 
         private void SetPqSpinnerData(Spinner spinner, bool showDetails, bool init)

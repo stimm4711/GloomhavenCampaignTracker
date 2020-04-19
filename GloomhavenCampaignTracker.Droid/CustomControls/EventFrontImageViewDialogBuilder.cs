@@ -114,39 +114,17 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
             Button pbutton = alert.GetButton((int)DialogButtonType.Positive);
             pbutton.SetTextSize(Android.Util.ComplexUnitType.Dip, 20);
 
-            string eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/road/re-";           
-            if (_eventtype == EventTypes.CityEvent)
-            {
-                eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/city/ce-";
-            }
-            else if(_eventtype == EventTypes.RiftEvent)
-            {
-                eventtypeurl = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images/events/base/rift/rf-";
-            }
-
-            var eventFront = GetImageBitmapFromUrlAsync(eventtypeurl + _eventnumber + "-f.png", _imagen, _eventview);
+            string eventurl = Helper.GetEventFrontURL(_eventtype, _eventnumber); 
+            GetImageBitmapFromUrlAsync(eventurl, _imagen, _eventview);
 
             return alert;
         }
 
-        private async Task<Bitmap> GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
-        {           
-            Bitmap imageBitmap = null;
-
-            using (var httpClient = new HttpClient())
-            {
-                var imageBytes = await httpClient.GetByteArrayAsync(url);
-                if (imageBytes != null && imageBytes.Length > 0)
-                {
-                    imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-                }
-            }
-
-            imagen.SetImageBitmap(imageBitmap);
-
+        private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
+        {
+            var image = await Helper.GetImageBitmapFromUrlAsync(url);     
+            imagen.SetImageBitmap(image);
             view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
-
-            return imageBitmap;
         }
 
         public EventFrontImageViewDialogBuilder SetEventNumber(string numbertext)

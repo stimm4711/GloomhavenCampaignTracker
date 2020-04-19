@@ -85,7 +85,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
                 ViewGroup.LayoutParams layoutParams = _grid.LayoutParameters;
                 var rows = 3;
 
-                if (GCTContext.ActivateForgottenCiclesContent && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
+                if (GCTContext.Settings.IsFCActivated && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
                 {
                     rows = 4;
                 }
@@ -119,22 +119,22 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
 
             if (!_partyRep10Check.HasOnClickListeners)
             {
-                _partyRep10Check.Click += CheckBoxClick;
+                _partyRep10Check.Click += CheckBoxRepPlus10Click;
             }
 
             if (!_partyRep20Check.HasOnClickListeners)
             {
-                _partyRep20Check.Click += CheckBoxClick;
+                _partyRep20Check.Click += CheckBoxRepPlus20Click;
             }
 
             if (!_partyRepMinus10Check.HasOnClickListeners)
             {
-                _partyRepMinus10Check.Click += CheckBoxClick;
+                _partyRepMinus10Check.Click += CheckBoxRepMinus10Click;
             }
 
             if (!_partyRepMinus20Check.HasOnClickListeners)
             {
-                _partyRepMinus20Check.Click += CheckBoxClick;
+                _partyRepMinus20Check.Click += CheckBoxRepMinus20Click;
             }
 
             if (!_retireCheck.HasOnClickListeners)
@@ -234,7 +234,51 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
         }
 
         private void CheckBoxClick(object sender, System.EventArgs e)
+        {           
+            SwitchViewStates();
+        }
+
+        private void CheckBoxRepMinus20Click(object sender, System.EventArgs e)
         {
+            if (CurrentCampaign.CurrentParty.Reputation > -20)
+            {
+                CurrentCampaign.CampaignData.CampaignUnlocks.ReputationMinus20Unlocked = false;
+                _dataChanged = true;
+            }
+
+            SwitchViewStates();
+        }
+
+        private void CheckBoxRepMinus10Click(object sender, System.EventArgs e)
+        {
+            if (CurrentCampaign.CurrentParty.Reputation > -10)
+            {
+                CurrentCampaign.CampaignData.CampaignUnlocks.ReputationMinus10Unlocked = false;
+                _dataChanged = true;
+            }
+
+            SwitchViewStates();
+        }
+
+        private void CheckBoxRepPlus20Click(object sender, System.EventArgs e)
+        {
+            if (CurrentCampaign.CurrentParty.Reputation < 20)
+            {
+                CurrentCampaign.CampaignData.CampaignUnlocks.ReputationPlus20Unlocked = false;
+                _dataChanged = true;
+            }
+
+            SwitchViewStates();
+        }
+
+        private void CheckBoxRepPlus10Click(object sender, System.EventArgs e)
+        {
+            if (CurrentCampaign.CurrentParty.Reputation < 10)
+            {
+                CurrentCampaign.CampaignData.CampaignUnlocks.ReputationPlus10Unlocked = false;
+                _dataChanged = true;
+            }
+            
             SwitchViewStates();
         }
 

@@ -125,7 +125,14 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             if (Character.Party?.Campaign != null)
             {
                 var prosp = Helper.GetProsperityLevel(Character.Party.Campaign.CityProsperity);
-                selectableItems = DataServiceCollection.ItemDataService.GetSelectableItems(prosp, Character.Party.Campaign.Id);
+                var items = DataServiceCollection.ItemDataService.GetSelectableItems(prosp, Character.Party.Campaign.Id);
+                foreach(var item in items)
+                {
+                    if(!selectableItems.Any(x=>x.Itemnumber == item.Itemnumber))
+                    {
+                        selectableItems.Add(item);
+                    }                    
+                }               
             }
             else
             {

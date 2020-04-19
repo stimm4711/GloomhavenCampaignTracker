@@ -2,17 +2,17 @@
 using System;
 using Java.IO;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using System.IO;
 using System.Diagnostics;
+using Java.Nio.Channels;
 
 namespace GloomhavenCampaignTracker.Business
 {
     internal class BackupHandler
     {
-        public static string backuppath = "ghcampaigntracker/backup/";
-
-        internal static bool RestoreBackup(IDisposable sd, Java.IO.File dbfile)
+        internal static bool RestoreBackup(string backuppath)
         {
-            if(RestoreDBBackup($"{sd}/{backuppath}{dbfile.Name}"))
+            if(RestoreDBBackup(backuppath))
             {
                 GCTContext.Clear();
                 GloomhavenDbHelper.ResetConnection();
@@ -31,16 +31,11 @@ namespace GloomhavenCampaignTracker.Business
             try
             {
                 var currentDBPath = GloomhavenDbHelper.DatabaseFilePath;
-                var currentDB = new File(currentDBPath);
-                var backupDB = new File(dbfilepath);
+                var currentDB = new Java.IO.File(currentDBPath);
+                var backupDB = new Java.IO.File(dbfilepath);
 
                 if (!backupDB.Exists()) return false;
-
-                var dst = new FileOutputStream(currentDB).Channel;
-                var src = new FileInputStream(backupDB).Channel;
-                dst.TransferFrom(src, 0, src.Size());
-                src.Close();
-                dst.Close();
+                TransferFileStreams(backupDB , currentDB);
 
                 return true;
             }
@@ -48,6 +43,27 @@ namespace GloomhavenCampaignTracker.Business
             {
                 return false;
             }
+        }
+
+        internal static void TransferFileStreams(Java.IO.File srcFile, Java.IO.File destFile)
+        {
+            var src = new FileInputStream(srcFile).Channel;
+            Transfer(destFile, src);
+        }
+
+        internal static void TransferFileStreams(FileDescriptor sourceFileDescriptor, Java.IO.File destFile)
+        {
+            var src = new FileInputStream(sourceFileDescriptor).Channel;
+            Transfer(destFile, src);
+        }
+
+        private static void Transfer(Java.IO.File destFile, FileChannel src)
+        {
+            var dst = new FileOutputStream(destFile).Channel;
+
+            dst.TransferFrom(src, 0, src.Size());
+            src.Close();
+            dst.Close();
         }
 
         internal static void InitReposAfterRestoreBackup()
@@ -76,7 +92,7 @@ namespace GloomhavenCampaignTracker.Business
             DataServiceCollection.Clear();
         }
 
-        public static bool? CreateDBBackup(ref string buname)
+        public static bool? CreateDBBackup(ref string buname, string backuppath)
         {
             try
             {
@@ -88,10 +104,10 @@ namespace GloomhavenCampaignTracker.Business
 
                 var currentDBPath = GloomhavenDbHelper.DatabaseFilePath;
                 var now = DateTime.Now.ToString("yyyyMMdd_H-mm-ss");
-                var backupDBPath = $"{backuppath}{now}_GHC_bak.db3";
-                var currentDB = new File(currentDBPath);
-                var backupDB = new File(sd, backupDBPath);
-                var backupfolder = new File(sd, backuppath);
+                var backupDBPath = Path.Combine(backuppath, $"{now}_GHC_bak.db3");
+                var currentDB = new Java.IO.File(currentDBPath);
+                var backupDB = new Java.IO.File(backupDBPath);
+                var backupfolder = new Java.IO.File(backuppath);
 
                 if (!currentDB.Exists()) return null;
 
@@ -100,12 +116,7 @@ namespace GloomhavenCampaignTracker.Business
                     backupfolder.Mkdirs();
                 }
 
-                var src = new FileInputStream(currentDB).Channel;
-                var dst = new FileOutputStream(backupDB).Channel;
-                dst.TransferFrom(src, 0, src.Size());
-                src.Close();
-                dst.Close();
-
+                TransferFileStreams(currentDB, backupDB);
 
                 if (backupDB.Exists())
                 {

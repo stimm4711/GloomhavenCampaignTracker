@@ -34,7 +34,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             var inflater = (LayoutInflater)_context.GetSystemService(Context.LayoutInflaterService);
             var partyAchievement = _partyachievements[position];
-            var view = inflater.Inflate(Resource.Layout.listviewitem_campaignachievement, null);
+            var view = inflater.Inflate(Resource.Layout.listviewitem_partyachievement, null);
 
             //Handle TextView and display string from your list
             var listItemText = (TextView)view.FindViewById(Resource.Id.campaignAchievement_name);

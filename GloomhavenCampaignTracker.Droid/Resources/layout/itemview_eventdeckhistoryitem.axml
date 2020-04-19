@@ -23,7 +23,7 @@
             android:textColor="@color/gloom_secondaryText"
             android:gravity="center_vertical" />
         <TextView
-            android:text="Added"
+            android:text="@string/Added"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

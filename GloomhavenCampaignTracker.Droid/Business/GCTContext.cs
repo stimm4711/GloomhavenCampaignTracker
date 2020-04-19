@@ -8,6 +8,9 @@ namespace GloomhavenCampaignTracker.Business
         private static CampaignCollection m_campaignCollection;
         private static ScenarioCollection m_scenarioCollection;
         private static AchievementCollection m_achievementCollection;
+        private static Droid.Settings m_settings;
+
+        public static Droid.Settings Settings => m_settings ?? (m_settings = new Droid.Settings());
 
         public static CampaignCollection CampaignCollection => m_campaignCollection ?? (m_campaignCollection = new CampaignCollection());
 
@@ -20,18 +23,9 @@ namespace GloomhavenCampaignTracker.Business
         public static Campaign CurrentCampaign
         {
             get => CampaignCollection.CurrentCampaign;
-        }
+        }        
 
-        public static bool ShowItemNames { get; set; } = true;
-
-        public static bool ShowPersonalQuestDetails { get; set; } = true;
-
-        public static bool ShowScenarioNames { get; set; } = false;
-
-        public static int LastSelectedCampaignTab { get; set; } = -1;
-        public static bool ShowAbilitySheet { get; internal set; }
-
-        public static bool ActivateForgottenCiclesContent { get; set; } = false;
+        public static int LastSelectedCampaignTab { get; set; } = -1;      
 
         public static void Clear()
         {

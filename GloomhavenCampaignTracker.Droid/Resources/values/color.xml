@@ -19,7 +19,11 @@
   <item name="gloom_scenarioCompletedItemBackground" type="color">#aed581</item>
   <item name="gloom_popupmenuBackground" type="color">#9e9e9e</item>
   <item name="gloom_invisibleBackground" type="color">#aec4c7</item>
-  
+  <item name="gloom_roadeventBackground" type="color">#e9d4a4</item>
+  <item name="gloom_cityeventBackground" type="color">#969688</item>
+  <item name="gloom_rifteventBackground" type="color">#dfd2e7</item>
+  <item name="gloom_greenbutton" type="color">#14703d</item>
+
   <integer-array name="androidcolors">
     <item>@color/gloom_accent</item>
     <item>@color/gloom_background</item>
@@ -40,6 +44,8 @@
     <item>@color/gloom_scenarioCompletedItemBackground</item>
     <item>@color/gloom_popupmenuBackground</item>
     <item>@color/gloom_invisibleBackground</item>
+    <item>@color/gloom_cityeventBackground</item>
+    <item>@color/gloom_rifteventBackground</item>
   </integer-array>
 
 </resources>

@@ -15,7 +15,7 @@
         android:layout_marginRight="10px"
         android:theme="@style/TextLabel"
         app:hintTextAppearance="@style/HintTextLabel"
-        android:hint="Playername">
+        android:hint="@string/Playername">
       <android.support.design.widget.TextInputEditText
           android:layout_width="match_parent"
             android:layout_height="wrap_content"

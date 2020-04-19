@@ -62,9 +62,9 @@ namespace GloomhavenCampaignTracker.Business
             set { UnlockedScenarioData.Completed = value; }
         }
 
-        public List<DL_Treasure> Treasures
+        public List<DL_CampaignScenarioTreasure> Treasures
         {
-            get { return UnlockedScenarioData?.ScenarioTreasures; }
+            get { return UnlockedScenarioData?.CampaignScenarioTreasures; }
         }
 
         public void AddTreasure(int treasureNumber, string content, bool isLooted = false)
@@ -132,6 +132,35 @@ namespace GloomhavenCampaignTracker.Business
                 if (!GCTContext.CurrentCampaign.HasGlobalAchievement(neededGlobAch))
                     neededAchievementNames.Add(GCTContext.AchievementCollectiom.GlobalAchievementInternalNumberToName(neededGlobAch) + " (global)");
             }
+
+            return neededAchievementNames;
+        }
+
+        public List<string> GetAllRequirements()
+        {
+            List<string> neededAchievementNames = new List<string>();
+
+            foreach (var neededGlobAch in Scenario.RequiredCompletedGlobalAchievements)
+            {
+                neededAchievementNames.Add($"Gained {GCTContext.AchievementCollectiom.GlobalAchievementInternalNumberToName(neededGlobAch)} (global)");
+            }
+
+            foreach (var neededPartyAch in Scenario.RequiredPartyAchievements)
+            {
+                neededAchievementNames.Add($"Gained {GCTContext.AchievementCollectiom.PartyAchievementInternalNumberToName(neededPartyAch)} (party)");
+            }
+
+            foreach (var blockGlobAch in Scenario.BlockingGlobalAchievements)
+            {
+                neededAchievementNames.Add($"Not gained {GCTContext.AchievementCollectiom.GlobalAchievementInternalNumberToName(blockGlobAch)} (global)");
+            }
+
+            foreach (var blockPartyAch in Scenario.BlockingPartyAchievements)
+            {
+                neededAchievementNames.Add($"Not gained {GCTContext.AchievementCollectiom.PartyAchievementInternalNumberToName(blockPartyAch)} (party)");
+            }
+
+            if (neededAchievementNames.Count == 0) neededAchievementNames.Add("None");
 
             return neededAchievementNames;
         }

@@ -18,14 +18,14 @@
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
         <TextView
-            android:text="Spoiler settings"
+            android:text="@string/SpoilerSettings"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spoilertitle"
             android:textColor="@color/gloom_primaryText" />
         <CheckBox
-            android:text="Show item names"
+            android:text="@string/ShowItemNames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/chkShowItemnames"
@@ -35,7 +35,7 @@
             android:checked="true"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Show names of locked items in itemdesign selection."
+            android:text="@string/ShowItemNamesDecription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <CheckBox
-            android:text="Show personal quest name and details"
+            android:text="@string/ShowPersonalQuest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/hideitemnamestext"
@@ -55,7 +55,7 @@
             android:checked="true"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Show names and details of personal quests. If not checked, you have to tap a button to see the names and details."
+            android:text="@string/ShowPersonalQuestDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
         <CheckBox
-            android:text="Show scenarionames in unlocked scenario selection"
+            android:text="@string/ShowScenarioNames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/hidepqtext"
@@ -75,7 +75,7 @@
             android:checked="false"
             fontPath="fonts/Roboto-Regular.ttf" />
         <TextView
-            android:text="Show names of locked scenarios in unlocked scenario selection."
+            android:text="@string/ShowScenarioNamesDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,108 +84,25 @@
             android:textColor="@color/gloom_secondaryLight"
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
-    </RelativeLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/forgottenCircles"
-        android:background="@drawable/borderwhite"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:text="Activate Forgotten Circles"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/enableFCtext"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
         <CheckBox
-            android:text="Activates the content of the expansion"
+            android:text="@string/ShowTreasures"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/activateFCCheck"
+            android:id="@+id/chkShowTreasures"
+            android:layout_below="@id/showscenatext"
             android:textColor="@color/gloom_primaryText"
             app:buttonTint="#ffffffff"
-            android:checked="false"
-            fontPath="fonts/Roboto-Regular.ttf" />
+            android:checked="true"
+            fontPath="fonts/Roboto-Regular.ttf"  />
         <TextView
-            android:text="This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion."
+            android:text="@string/ShowTreasuresDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/hideitemnamestext"
-            android:layout_below="@+id/chkShowItemnames"
+            android:id="@+id/hideTreasuresText"
+            android:layout_below="@+id/chkShowTreasures"
             android:textColor="@color/gloom_secondaryLight"
             android:layout_marginLeft="40dp"
             fontPath="fonts/Roboto-Regular.ttf" />
-        </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1"
-        android:background="@drawable/borderwhite"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="10dp"
-        android:visibility="gone">
-        <TextView
-            android:text="Check items"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/checkitemstitle"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <TextView
-            android:text="If you have problems adding items to a character by the 123 button, tap the button below to check the items in the database."
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/checkitemsDescription"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <Button
-            android:text="Check items"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkitemsButton"
-            android:background="@drawable/borderbuttons"
-            android:textColor="@color/gloom_primaryText"/>
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/showOldabilitiesSheet"
-        android:background="@drawable/borderwhite"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:text="Enable old ability sheet"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/enableOldAbilitiesSheet"
-            android:textColor="@color/gloom_primaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <CheckBox
-            android:text="Show the old ability sheet in the character details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/isShowOldAbilitySheet"
-            android:textColor="@color/gloom_primaryText"
-            app:buttonTint="#ffffffff"
-            android:checked="false"
-            fontPath="fonts/Roboto-Regular.ttf" />        
-        </LinearLayout>
-
+    </RelativeLayout>
 </LinearLayout>

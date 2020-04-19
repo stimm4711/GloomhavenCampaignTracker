@@ -39,7 +39,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         {
             var title = "";
 
-            if (position == 0) return "ALL";
+            if (position == 0) return "*";
             if (position > _prosperity) return "UL";
             if (position < 10) return position.ToString();
 

@@ -20,6 +20,8 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         public int ID_Scenario { get; set; }
 
         public bool Completed { get; set; }
+                
+        public string ScenarioNotes { get; set; }
 
         public DateTime LastSync { get; set; }
 
@@ -30,6 +32,11 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
         public DL_Scenario Scenario { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
-        public List<DL_Treasure> ScenarioTreasures { get; set; } 
+        public List<DL_Treasure> ScenarioTreasures { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All), JsonIgnore]
+        public List<DL_CampaignScenarioTreasure> CampaignScenarioTreasures { get; set; }
+
+        
     }
 }

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+  <!-- Application -->
+  <string name="ApplicationName">Gloomhaven Campaign Tracker</string>
+  <string name="open_drawer">Open</string>
+  <string name="close_drawer">Close</string>
+  
+  <!-- Links -->
+  <string name="cephalofair_web">
+    <a href="http://www.cephalofair.com/gloomhaven">Cephalofair</a>
+  </string>
+  <string name="bgg_web">
+    <a href="https://boardgamegeek.com/article/27046627#27046627">Boardgamegeeks</a>
+  </string>
+  <string name="icons8_web">
+    <a href="http://de.icons8.com">Icons8</a>
+  </string>
+  <string name="pp_web">
+    <a href="https://www.paypal.me/GHCampaignTracker">Hat</a>    
+  </string>
+  <string name="playstore_web">
+    <a href="https://play.google.com/store/apps/details?id=de.timmcode.ghcampaigntracker.droid">Google Play Store</a>
+  </string>
+  <string name="github_web">
+    <a href="https://github.com/stimm4711/GloomhavenCampaignTracker/wiki">GitHub Wiki</a>
+  </string>
+  <string name="Bladeswarm_web">
+    <a href="http://www.cephalofair.com/bladeswarm">http://www.cephalofair.com/bladeswarm</a>
+  </string>
+  
+  <!-- Common -->
+  <string name="Assign">Zuweisen</string>
+  <string name="Assigned">Zugewiesen</string>
+  <string name="Add">Hinzufügen</string>
+  <string name="Added">Hinzugefügt</string>
+  <string name="NotSaved">Etwas ist fehlgeschlagen. Es wurde nicht gespeichert.</string>
+  <string name="Saved">Gespeichert!</string>
+  <string name="Confirm">Bestätigen</string>
+  <string name="YesDelete">Löschen</string>
+  <string name="NoCancel">Abbrechen</string>
+  <string name="OK">OK</string>
+  <string name="PartsOf">{0} / {1}</string>
+  <string name="Empty">leer</string>
+  <string name="NameValue">{0}: {1}</string>
+  <string name="Close">Schließen</string>
+  <string name="Save">Speichern</string>
+  <string name="ItemDeleted">{0} gelöscht.</string>
+  <string name="NotNow">Nicht jetzt</string>
+  <string name="LoadingData">Lade Daten</string>
+  <string name="Initialize">Initialisieren</string>
+  <string name="Removed">Entfernt</string>
+  <string name="Option">Option</string>
+  <string name="Items">Gegenstände</string>
+  
+  <!-- Unlocks -->
+  <string name="Congratulation">Glückwunsch!</string>
+  <string name="UnlockedEnvelopeA">Ihr habt Umschlage A freigeschaltet</string>
+  <string name="UnlockedTownRecordBook">Öffnet das Stadtarchiv-Buch.</string>
+  <string name="UnlockedEnvelopeB">Ihr habt Umschlag B freigeschaltet</string>
+  <string name="WarningSpoilersAhead">Achtung! Spoiler voraus!</string>
+  <string name="SpoilerWarningMessage">Das Folgende beinhaltet große Spoiler! Macht nur weiter, wenn Ihr Umschlag X freigeschaltet und geöffnet habt!</string>
+  <string name="Proceed">Weiter</string>
+  <string name="ShowEnvelopeXProgress">Zeige Umschlag X Fortschritt</string>
+  <string name="UnlockedClasses">Freigeschaltete Klassen</string>
+  <string name="OpenEnvelopeXButton">Öffne Umschlag X</string>
+  <string name="FiveAncientTechnologyCheck">Insgesamt 5 globale Erfolge "Alte Technologie" erhalten</string>
+  <string name="FiveAncientTechnologyCheckReward">Öffnet Umschlag A</string>
+  <string name="DrakesCommandTreasure">Eine Gruppe hat die beiden Gruppenerfolge "Befehl des Draken" und "Der Schatz des Draken" erlangt.</string>
+  <string name="DrakesCommandTreasureReward">Stadt-Ereignis 75 und Wege-Ereignis 66 hinzugefügt und globalen Erfolg "Hilfe für den Draken" erhalten</string>
+  <string name="Donate100Gold">Insgesamt 100 Gold an den Tempel der Großen Eiche gespendet.</string>
+  <string name="Donate100GoldReward">Umschlag B geöffnet</string>
+  <string name="Reputation10">Gruppenansehen von 10 oder höher</string>
+  <string name="Reputation10Reward">Klasse Sonne freigeschaltet</string>
+  <string name="Reputation20">Gruppenansehen von 20</string>
+  <string name="Reputation20Reward">Stadt-Ereignis 76 und Weg-Ereignis 67 hinzugefpügt</string>
+  <string name="ReputationMinus10">Gruppenansehen von -10 oder weniger</string>
+  <string name="ReputationMinus10Reward">Klasse Mond freigeschaltet</string>
+  <string name="ReputationMinus20">Gruppenansehen von -20</string>
+  <string name="ReputationMinus20Reward">Stadt-Ereignis 77 und Weg-Ereignis 68 hinzugefügt</string>
+  <string name="RetireFirstCharacter">Einen Character in den Ruhestand geschickt</string>
+  <string name="RetireFirstCharacterReward">Öffnet das Stadtarchiv-Buch</string>
+  
+  <!-- Unlocks - Envelope X-->
+  <string name="unlocks_envelopex_majorspoilers">ACHTUNG! GROSSE SPOILER!</string>
+  <string name="unlocks_envelopex_decrypted">Wir rufen aus dem Staub - aus den gealterten Knochen derer, die Ihr getötet habt. Sprecht unseren Namen in sein Web und wir werden frei sein. 10 Hinweise, die Sie finden müssen / 10 Buchstaben zu unserem Namen. Hier ist unser erster: B</string>
+  <string name="unlocks_envelopex_openanddecryptedcommitment">Wir haben Umschlag X geöffnet und die Nachricht entschlüsselt</string>
+  <string name="unlocks_envelopex_theirname">Geben Sie die Buchstaben ihres Namens ein</string>
+  <string name="classes_bladeswarmname">Bladeswarm</string>
+  <string name="unlocks_envelopex_congratulations">Herzlichen Glückwunsch!\n Du hast den Inhalt von Umschlag X freigeschaltet!</string>
+  <string name="unlocks_envelopex_completeddialogmessage">Wählen Sie Belohnung, um eine Website mit Ihrer Belohnung für den Abschluss der Quest zu öffnen!</string>
+  <string name="Reward">Belohnung</string>
+  <string name="unlocks_envelopex_speakthenamebutton">Sprech den Namen</string>
+  <string name="unlocks_envelopex_nothinghappens">Du sprichst den Namen aus, aber nichts passiert.</string>
+  
+  <!-- Campaign -->
+  <string name="SelectCampaign">Kampagne auswählen</string>
+  <string name="Campaign">Kampagne</string>
+  <string name="camaignSelection">Kampagnenauswahl</string>
+  <string name="AddCampaign">Kampagne hinzufügen</string>
+  <string name="StartCampaign">Starte neue Kampagne</string>
+  <string name="CampaignNameMissing">Deine Kampagne braucht einen Namen</string>
+  <string name="PartyNameMissing">Deine Gruppe braucht einen Namen</string>
+  <string name="CampaignnameExist">Es gibt bereits eine Kampagne mit diesem Namen.</string>
+  <string name="DeleteCampaign">Kampagne löschen?</string>
+  <string name="CampaignDeleted">Kampagne gelöscht.</string>
+  <string name="EnterCampaignname">Kampagnennamen eingeben</string>
+  <string name="World">Welt</string>
+  <string name="City">Stadt</string>
+  <string name="CamapignParty">Gruppe</string>
+  <string name="CampaignUnlocks">Freigeschaltet</string>
+
+  <!-- Scenariolevel calculation -->
+  <string name="ScenariolevelForChars">Szenariostufe für Charactere:</string>
+  <string name="SelectCharacters">Charactere auswählen</string>
+  <string name="JustOneCharacterOfEachClass">Nur ein Character pro Klasse auswählbar.</string>
+
+  <!-- Events -->
+  <string name="AddEvents">Ereignisse hinzufügen</string>
+  <string name="EventAlreadyAdded">Ein Ereigniss mit der gleichen Nummer wurde bereits hinzugefügt.</string>
+  <string name="RoadEvents">Weg Ereignisse</string>
+  <string name="RemoveAddEventTitle">Ereignisnummer eingebenr</string>
+  <string name="AddEvent">Ereignis hinzufügen</string>
+  <string name="DrawnEventNumber">Ereignis Nummer {0}</string>
+  <string name="DrawnEventMessage">Spielt das Ereignis Nummer {0}.\nWählt aus, was mit dem Ereignis passiert.</string>
+  <string name="PutEventBack">Unter den Stapel legen</string>
+  <string name="InitializeEventDeck">Ereignisstapel zurücksetzen?</string>
+  <string name="AddEventToHistory">Gespieltes Ereignis zur Historie hinzufügen</string>
+  <string name="Drawn">Gezogen</string>
+  <string name="EventNumber">Ereignis Nummer</string>
+  <string name="EditDrawnEvent">Gezogenes Ereignis bearbeiten</string>
+  <string name="EventNotPresent">Ereignis ist nicht im Stapel vorhanden.</string>
+  <string name="EnterValidNumber">Eine gültige Nummer eingeben.</string>
+  <string name="EventAlreadyInEventdeck">Ereignis ist bereits im Stapel.</string>
+  <string name="EventdeckEmpty">Ereignisstapel ist leer</string>
+  <string name="AddedShuffled">Hinzugefügt, Gemischt</string>
+  <string name="DeleteEventhistoryEntry">Eintrag der Ereignishistorie löschen?</string>
+  <string name="RiftEvents">Riss Ereignisse</string>
+  <string name="AddEventEnterRefNumber">Ereignisnummer eingeben</string>
+  <string name="Shuffle">Mischen</string>
+  <string name="OptionA">Option A</string>
+  <string name="OptionB">Option B</string>
+  <string name="Outcome">Ergebnis</string>
+  <string name="NoEffect">Kein Effekt</string>
+  <string name="RemoveEvent">Ereignis entfernen</string>
+  <string name="PutUnder">Unter den Stapel legen</string>
+  <string name="TurnCard">Karte umdrehen</string>
+  <string name="ShowEventcard">Ereigniskarte anzeigen</string>
+  <string name="DrawCard">Karte ziehen</string>
+  <string name="AddCard">Karte hinzufügen</string>
+  <string name="RemoveCard">Karte entfernen</string>
+  <string name="EventdeckHistory">Ereignis Verlauf</string>
+
+  <!-- Global Achievements -->
+  <string name="GlobalAchievements">Global Erfolge</string>
+  <string name="AssignGlobalAchievement">Globalen Erfolg zuordnen</string>
+  <string name="AchievementAlreadyAssigned">Ein Erfolg vom gleichen Typ wurde bereits zugeordnet.</string>
+  <string name="Achievementtypes">Erfolgestypen</string>
+  <string name="Achievements">Erfolge</string>
+  <string name="AchievementType">Erfolgestyp</string>
+  <string name="SelectGlobalAchievement">Globalen Erfolg auswählen</string>
+  <string name="SelectedGlobalAchievement">Ausgewählter globaler Erfolg</string>
+  <string name="DeleteGlobalAchievement">Globalen Erfolg löschen?</string>
+  
+  <!-- Scenarios -->  
+  <string name="UnlockedScenarios">Freigeschaltete Szenarien</string>  
+  <string name="AssignScenario">Szenario zuordnen</string>
+  <string name="ScenarioAlreadyAssigned">Das Szenario wurde bereits zugeordnet.</string>
+  <string name="Scenarios">Szenarios</string>
+  <string name="Scenario">Szenario</string>
+  <string name="BlockingAchievement">{0} \n wird geblockt durch</string>
+  <string name="RequiredAchievements">{0}\n setzt voraus</string>
+  <string name="AddTreasureAlertTitle">Schatz hinzufügen</string>
+  <string name="Unlocked">Freigeschaltet</string>
+  <string name="Blocked">Blockiert</string>
+  <string name="Unavailable">Nicht verfügbar</string>
+  <string name="Completed">Abgeschlossen</string>
+  <string name="DeleteTreasure">Schatz löschen?</string>
+  <string name="Treasures">{0} Schätze</string>
+  <string name="AddTreasure">Schatz hinzufügen</string>
+  <string name="DeleteUnlockedScenario">{0} löschen?</string>
+  <string name="EnterTreasureNumber">Schatznummer eingeben</string>
+  <string name="EnterTreasureContent">Beute eingeben</string>
+  <string name="SelectSection">Bereich auswählen</string>
+  <string name="SelectSectionNumber">Wähle die Bereichsnummer deiner Auflösung aus.</string>
+  <string name="Select">Auswählen</string>
+  <string name="SelectUnlockedScenario">Freigeschaltetes Scenario auswählen</string>
+  <string name="ChooseScenarioToUnlock">Szenario auswählen, welches freigeschaltet werden soll.</string>
+  <string name="UnlockScenario">Szenario freischalten</string>
+  <string name="SetScenarioIncomplete">Szenario {0} auf nicht erledigt setzen?</string>
+  <string name="ScenariosWillBeRemoved">Diese Szenarien werden von der Liste entfernt</string>
+  <string name="EditTreasure">Schatz bearbeiten</string>
+  
+  <!-- Party -->
+  <string name="Party">Gruppe:</string>
+  <string name="PartySelection">Gruppenauswahl</string>
+  <string name="DeleteParty">Gruppe löschen?</string>
+  <string name="PartyCantbeDeletedIsLastOfCampaign">Jede Kampagne benötigt mindestens eine Gruppe. Kann diese Gruppe nicht löschen.</string>
+  <string name="AddParty">Gruppe hinzufügen</string>
+  <string name="PartynameAlreadyExists">Gruppenname gibt es bereits.</string>
+  <string name="EnterPartyname">Gruppenname eingeben</string>
+  <string name="Partyname">Gruppenname</string>
+  <string name="PartyMembers">Gruppenmitglieder</string>
+  <string name="PartyAchievements">Gruppen Erfolge</string>
+  <string name="PartyReputation">Ansehen</string>
+  <string name="ShopPriceModifier">Landenpreismodifikator</string>
+  <string name="CurrentLocation">Aktueller Standort</string>
+  <string name="PartyNotes">Notizen</string>
+  
+  <!-- Party Achievement -->
+  <string name="PartyAchievements">Gruppen Erfolge</string>
+  <string name="DeletePartyAchievement">Gruppen Erfolg löschen?</string>
+  <string name="PartyachievementsCount">Gruppen Erfolge: {0}</string>
+  <string name="SelectPartyAchievement">Gruppen Erfolg auswählen</string>
+  <string name="AssignPartyAchievement">Gruppen Erfolg zuordnen</string>
+  <string name="PartyAchievementsAlreadyAssigned">Dieser Gruppen Erfolg ist bereits zugeordnet</string>
+  <string name="DrakesPartyachievementsUnlockGained">Stadt Ereignis 75 und Weg Ereignis 66 hinzugefügt und globalen Erfolg "Hilfe für den Draken" erhalten</string>
+
+  <!-- Party member -->
+  <string name="PartyMember">Gruppen Mitglieder</string>
+  <string name="PartymemberCount">Charactere: {0}</string>
+
+  <!-- City -->
+  <string name="CityEvents">Stadt Ereignisse</string>
+  <string name="itemstore">Händler</string>
+  <string name="SelectItemDesignHint">Eine Gegenstandsnummer auswählen</string>
+  <string name="SelectItemDesignTitle">Einen Gegenstandsplan auswählen</string>
+  <string name="ItemDesignAlreadyAssigned">Der Gegenstandsplan wurde bereits zugewiesen.</string>
+  <string name="GloomhavenProsperity">Gloomhaven Wohlstand</string>
+  <string name="SanctuaryDonations">Heiligtum Spenden</string>
+  <string name="NextProsperity">Nächste Wohlstandsstufe:</string>
+
+  <!-- Character -->
+  <string name="AddCharacter">Character hinzufügen</string>
+  <string name="DeleteAbility">Fertigkeit löschen?</string>
+  <string name="CharacterRetired">{0} in den Ruhestand geschickt.</string>
+  <string name="CharacterLeveledUpTo">{0} ist jetzt Stufe {1}.</string>
+  <string name="NewAbilitySelectable">Du kannst eine neue Fertigkeitskarte auswählen.</string>
+  <string name="SetNewAbility">Neue Fertigkeit zuweisen</string>
+  <string name="EditCharacter">Character editieren</string>
+  <string name="CharacterNameMissing">Dein Character benötigt einen Namen!</string>
+  <string name="CharacterDeleted">{0} gelöscht.</string>
+  <string name="CharacterAbilities">{0}\'s Fertigkeiten</string>
+  <string name="AddAbility">Fertigkeit hinzufügen</string>
+  <string name="AddAbilityAlertTitle">Neue Fertigkeit hinzufügen</string>
+  <string name="CharacterItemsAlertTitle">{0}\'s Gegenstände</string>
+  <string name="AddItemToCharacter">Gegenstand hinzufügen</string>
+  <string name="WrongAbilityLevel">Die Fertigkeitsstufe muss zwische 2 und 9 liegen</string>
+  <string name="PersonalQuest">Persönliche Quest</string>
+  <string name="CharacterStat_DonateToTheSanctuary">An den Tempel der Großen Eiche spenden</string>
+  <string name="CharcaterStat_DonateAndGetBlesses">10 Gold an den Temepl der Großen Eiche spenden und zwei Segen für das nächste Szenario erhalten?</string>
+  <string name="CharacterStat_DonateTenGold">Spende 10 Gold</string>
+  <string name="CharacterStat_UnlockedENvelopeBByDonatingHundredGold">Ihr habt Umschlag B freigeschalten dadurch, dass Ihr nun însgesamt 100 Gold gespendet habt. Wählt freischalten um den Inhalt hinzuzufügen. Abbrechen, wenn Ihr den Umschlag nicht freigeschaltet habt.</string>
+  <string name="CharacterStat_DonateAndReveal">Spenden und freischalten</string>
+  <string name="CharacterStat_DontDonate">Nicht spenden</string>
+  <string name="CharacterStat_NeedsTenGold">Der Character benötigt mindestens 10 Gold um spenden zu können.</string>
+  <string name="CharacterStat_donated">{0} hat 10 Gold an den Tempel der Großen Eiche gespendet.</string>
+  <string name="CharacterStat_ProsperityRaised">\r\n\r\nDie Stadt Gloomhaven hat einen Wohlstandspunkt erhalten.</string>
+  <string name="AbilityName">Fertigkeitsname</string>
+  <string name="AddAbilityReferenceNumber">Ref. nr. (opt)</string>
+  <string name="AbilityLevel">Fertigkeitsstufe</string>
+  <string name="SelectEnhancement">Verbesserung (Klick)</string>
+  <string name="EnhancementSlotNUmber">Platznummer</string>
+  <string name="EnterItemNumber">Gegenstandsnummer eingeben</string>
+  <string name="Charactername">Charactername</string>
+  <string name="CharacterClass">Klasse</string>
+  <string name="TopEnhancements">Obere Verbesserungen</string>
+  <string name="BottomEnhancements">Untere Verbesserungen</string>
+  <string name="Playername">Spielername</string>
+  <string name="PersonalQuestGoal">Persönliche Quest Ziel</string>
+  <string name="Reward">Belohnung</string>
+  <string name="CharacterLevel">Stufe</string>
+  <string name="CharacterExperience">EP</string>
+  <string name="CharacterGold">Gold</string>
+  <string name="CharacterNotes">Notizen</string>
+  <string name="DeleteEnhancementCommit">Verbesserung löschen?</string>
+  <string name="DeleteCharacterCommit">Character löschen</string>
+  <string name="Character">Character</string>
+  <string name="Abilities">Fertigkeiten</string>
+  <string name="Perks">Verbesserungen</string>
+  <string name="SellItemCommit">Gegenstand für {0} Gold verkaufen?</string>
+  <string name="Sell">Verkaufen</string>
+  <string name="DeleteItemCommit">Gegenstand löschen?</string>
+  <string name="DeletePerkCommit">Verbesserung löschen?</string>
+
+  
+  <!-- Backup-->
+  <string name="SelectDir">Pfad für Sicherungen auswählen</string>
+  <string name="PathToBackupFolder_placeHolder">Sicherungsdateipfad</string>
+  <string name="CreateBackupButton">Erstellen</string>
+  <string name="LoadBackupButton">Laden</string>
+  <string name="RestoreBackupButton">Wiederherstellen</string>
+  <string name="DeleteBackupCommit">Sicherung löschen?</string>
+  <string name="DatabaseBackupsTitle">Datenbanksicherungen</string>
+
+  <!-- Splashscreen -->
+  <string name="Loading">Laden...</string>
+  
+  <!-- About -->
+  <string name="AppUse">Diese Anwendung wird zum Verfolgen des Kampagnenfortschritts im Brettspiel Gloomhaven verwendet.</string>
+  <string name="AppPublishedWithPermission">Es wird mit Genehmigung von Isaac Childres, dem Schöpfer und Herausgeber von Gloomhaven, veröffentlicht.</string>
+  <string name="Icons8">Erstellt mit Symbolen von Icons8</string>
+
+  <!-- Settings -->
+  <string name="SpoilerSettings">Spoiler Einstellungen</string>
+  <string name="ShowItemNames">Zeige Gegenstandsnamen</string>
+  <string name="ShowItemNamesDecription">Zeige die Namen von nicht freigeschalteten Gegenständen in der Auswahl der Gegenstandspläne.</string>
+  <string name="ShowPersonalQuest">Zeige die Namen und Details von persönlichen Quests</string>
+  <string name="ShowPersonalQuestDescription">Zeigt die Namen und Details von Persönlichen Quests. Wenn nicht gewählt, dann können diese Informationen auf Knopfdruck angezeigt werden.</string>
+  <string name="ShowScenarioNames">Zeige die Namen von nicht freigeschalteten Szenarien in der Szenario Auswahlliste</string>
+  <string name="ShowScenarioNamesDescription">Zeigt die Namen von nicht freigeschalteten Szenarien in der Szenario Auswahlliste.</string>
+  <string name="ActivateFC">Aktiviere Forgotten Circles</string>
+  <string name="ActivateFCDexription">This will add the diviner class, scenarios 96 to 115 and Achievements of the expansion.</string>
+
+  <!-- Support Dev -->
+  <string name="Feedback">Feedback</string>
+  <string name="FeedbackBGG">Ich freue mich über Eure Feedback auf boardgamegeek.com</string>
+  <string name="FeedbackEmail">Oder schickt mir eine E-Mail: stimm@outlook.com</string>
+  <string name="RateApp">Bewertet die App</string>
+  <string name="RateInPLayStore">Bewertet die App im Playstore</string>
+  <string name="Support">Support</string>
+  <string name="CoinsInHelmet">Und wenn Ihr diese App nützlich findet und mehr tun möchten, als mir Feedback zu geben, wäre der Autor dankbar für ein paar Münzen, die in seinen Helm fallen (klickt darauf).</string>
+
+</resources>
