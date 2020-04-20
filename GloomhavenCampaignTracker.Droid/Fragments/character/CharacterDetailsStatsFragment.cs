@@ -766,23 +766,24 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             for (var i = 0; i <= Character.Checkmarks; i++)
             {
                 if (i <= 0) continue;
+                if (!_checkmarks.ContainsKey(i)) continue;
                 _checkmarks[i].Checked = true;
                 _checkmarks[i].Enabled = false;
             }
 
             if (Character.Checkmarks > 0)
             {
-                _checkmarks[Character.Checkmarks].Enabled = true;
+                if (_checkmarks.ContainsKey(Character.Checkmarks))  _checkmarks[Character.Checkmarks].Enabled = true;
 
                 if (Character.Checkmarks < 18)
                 {
-                    _checkmarks[Character.Checkmarks+1].Enabled = true;
+                    if (_checkmarks.ContainsKey(Character.Checkmarks+1)) _checkmarks[Character.Checkmarks+1].Enabled = true;
                 }
             }                       
             
             if (Character.Checkmarks < 17 && Character.Checkmarks >= 0 && _checkmarks[Character.Checkmarks +2].Enabled)
             {
-                _checkmarks[Character.Checkmarks + 2].Enabled = false;
+                if (_checkmarks.ContainsKey(Character.Checkmarks+2))  _checkmarks[Character.Checkmarks + 2].Enabled = false;
             }
         }
 

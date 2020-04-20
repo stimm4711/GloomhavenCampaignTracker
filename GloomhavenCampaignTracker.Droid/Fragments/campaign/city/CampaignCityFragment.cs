@@ -123,16 +123,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.city
 
         internal void Update()
         {
-            Task.Run(async () =>
-            {
-                await GloomhavenClient.Instance.UpdateCity();
-
-                Activity.RunOnUiThread(() =>
-                {
-                    UpdateProsperityViews();
-                    UpdateHiddenRegion();
-                });                 
-            });
+            var prosperityLevel = CurrentCampaign.GetProsperityLevel();
+            _cityProsperityTextView.Text = (prosperityLevel).ToString();
+            UpdateHiddenRegion();
+            _campaignDonatedGold.Text = CurrentCampaign.CampaignData.DonatedGold.ToString();
         }
        
         private void ShowHiddenDonationRegion()

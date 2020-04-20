@@ -111,30 +111,15 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
             _listDataChild = new Dictionary<string, SortedList<int, CampaignUnlockedScenario>>();
 
             // Adding child data
-            _listDataHeader.Add(Resources.GetString(Resource.String.Unlocked));
-            _listDataHeader.Add(Resources.GetString(Resource.String.Unavailable));
-            _listDataHeader.Add(Resources.GetString(Resource.String.Completed));
-            _listDataHeader.Add(Resources.GetString(Resource.String.Blocked));
+            FillListHeader();
 
             if (scenarios.Any())
             {
-                // Adding child data
-
-                var campaignScenarioSearch = new CampaignScenarioSearch();
-
-                var lstUnlocked = new SortedList<int, CampaignUnlockedScenario>(scenarios.FindAll(campaignScenarioSearch.FindAvailable).ToDictionary(x=>x.Scenarionumber));
-
-                var lstUnavailable = new SortedList<int, CampaignUnlockedScenario>(scenarios.FindAll(campaignScenarioSearch.FindUnAvailable).ToDictionary(x => x.Scenarionumber));
-
-                var lstCompleted = new SortedList<int, CampaignUnlockedScenario>(scenarios.FindAll(campaignScenarioSearch.FindCompleted).ToDictionary(x => x.Scenarionumber));  
-
-                var lstBlocked = new SortedList<int, CampaignUnlockedScenario>(scenarios.FindAll(campaignScenarioSearch.FindBlocked).ToDictionary(x => x.Scenarionumber)); 
-
                 // Header, Child data
-                _listDataChild.Add(_listDataHeader[0], lstUnlocked);
-                _listDataChild.Add(_listDataHeader[1], lstUnavailable);
-                _listDataChild.Add(_listDataHeader[2], lstCompleted);
-                _listDataChild.Add(_listDataHeader[3], lstBlocked);
+                _listDataChild.Add(_listDataHeader[0], GetMatchingScenarios(scenarios, CampaignScenarioSearch.FindAvailable));
+                _listDataChild.Add(_listDataHeader[1], GetMatchingScenarios(scenarios, CampaignScenarioSearch.FindUnAvailable));
+                _listDataChild.Add(_listDataHeader[2], GetMatchingScenarios(scenarios, CampaignScenarioSearch.FindCompleted));
+                _listDataChild.Add(_listDataHeader[3], GetMatchingScenarios(scenarios, CampaignScenarioSearch.FindBlocked));
             }
             else
             {
@@ -143,6 +128,31 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                 _listDataChild.Add(_listDataHeader[2], new SortedList<int, CampaignUnlockedScenario>());
                 _listDataChild.Add(_listDataHeader[3], new SortedList<int, CampaignUnlockedScenario>());
             }
+        }
+
+        private static SortedList<int, CampaignUnlockedScenario> GetMatchingScenarios(List<CampaignUnlockedScenario> scenarios, System.Predicate<CampaignUnlockedScenario> match)
+        {
+            var lst = new SortedList<int, CampaignUnlockedScenario>();
+            foreach (var s in scenarios.FindAll(match))
+            {
+                try
+                {
+                    if (!lst.ContainsKey(s.Scenarionumber)) lst.Add(s.Scenarionumber, s);
+                }
+                catch
+                {
+                }
+            }
+
+            return lst;
+        }
+
+        private void FillListHeader()
+        {
+            _listDataHeader.Add(Resources.GetString(Resource.String.Unlocked));
+            _listDataHeader.Add(Resources.GetString(Resource.String.Unavailable));
+            _listDataHeader.Add(Resources.GetString(Resource.String.Completed));
+            _listDataHeader.Add(Resources.GetString(Resource.String.Blocked));
         }
 
         private List<CampaignUnlockedScenario> GetCampaignScenarios()

@@ -103,27 +103,14 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
 
         public override int GetItemPosition(Object frag)
         {
-            if (GloomhavenClient.IsClientRunning())
+            if (frag is CampaignCityFragment f)
             {
-                if (frag is CampaignCityFragment f)
+                if (f != null)
                 {
-                    if (f != null)
-                    {
-                        f.Update();
-                    }
-
-                    return PositionNone;
+                    f.Update();
                 }
 
-                if (frag is CampaignUnlocksFragment fu)
-                {
-                    if (fu != null)
-                    {
-                        fu.Update();
-                    }
-
-                    return PositionNone;
-                }
+                return PositionNone;
             }
 
             return base.GetItemPosition(frag);
