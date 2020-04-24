@@ -364,7 +364,7 @@ namespace GloomhavenCampaignTracker.Business
         /// <summary>
         /// Get Images online base url
         /// </summary>
-        private static readonly string baseimageURL = "https://raw.githubusercontent.com/stimm4711/gloomhaven/gloomimages_v1/images";
+        private static readonly string baseimageURL = "https://raw.githubusercontent.com/stimm4711/gloomhaven/master/images";
 
         /// <summary>
         /// Get treasure image URL
