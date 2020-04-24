@@ -13,25 +13,12 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
-    public class SzenarioRewardsFragment : CampaignDetailsFragmentBase
+    public class SzenarioRewardsFragment : RewardFragmentFragment
     {
         private CampaignUnlockedScenario _campaignScenario;
-        private TabLayout _tabLayout;
-        private ViewPager _viewPager;
         private ScenarioRewardsCharacterViewPagerAdapter _adapter;
-        private Button _decreaseprospButton;
-        private Button _raiseprospbutton;
-        private Button _decreaseReputationButton;
-        private Button _raiseReputationButton;
-        private Button _achievementGAButton;
-        private Button _achievementPAButton;
-        private TextView _prospLevelText;
-        private TextView _reputationTextView;
         private ListView _lstviewScenariosUnlocked;
         private ScenarioListviewtAdapter _listAdapter;
-
-        private int _reputaionModifier = 0;
-        private int _prospertityModifier = 0;
 
         internal static SzenarioRewardsFragment NewInstance(int scenarioId, bool casual)
         {
@@ -59,90 +46,61 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
             var casual = Arguments.GetBoolean(DetailsActivity.CasualMode, false);
             return casual;
-        }
-
-        public override void OnResume()
-        {
-            base.OnResume();
-        }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.saveMenu, menu);
-            base.OnCreateOptionsMenu(menu, inflater);
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            try
-            {
-                if (item.ItemId == Resource.Id.men_save)
-                {
-                    Save();
-                }
-            }
-            catch
-            {
-                return base.OnOptionsItemSelected(item);
-            }
-
-            return base.OnOptionsItemSelected(item);
-        }
-
+        }       
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             _view = inflater.Inflate(Resource.Layout.fragment_campaign_scenario_rewards, container, false);
-            _viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
-            _tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
             _decreaseprospButton = _view.FindViewById<Button>(Resource.Id.decreaseprospButton);
             _raiseprospbutton = _view.FindViewById<Button>(Resource.Id.raiseprospbutton);
             _decreaseReputationButton = _view.FindViewById<Button>(Resource.Id.decreaseReputationButton);
             _raiseReputationButton = _view.FindViewById<Button>(Resource.Id.raiseReputationButton);
             _achievementGAButton = _view.FindViewById<Button>(Resource.Id.btnGA);
             _achievementPAButton = _view.FindViewById<Button>(Resource.Id.btnPA);
-
             _prospLevelText = _view.FindViewById<TextView>(Resource.Id.prospLevelText);
             _reputationTextView = _view.FindViewById<TextView>(Resource.Id.reputationTextView);
-            _lstviewScenariosUnlocked = _view.FindViewById<ListView>(Resource.Id.lstviewScenariosUnlocked);           
+            _lstviewScenariosUnlocked = _view.FindViewById<ListView>(Resource.Id.lstviewScenariosUnlocked);
+
+            var viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
+            var tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
 
             var characters = CharacterRepository.GetPartymembersFlat(GCTContext.CurrentCampaign.CurrentParty.Id).Where(x => !x.Retired).ToList();
             GCTContext.CharacterCollection = characters;
             _adapter = new ScenarioRewardsCharacterViewPagerAdapter(Context, ChildFragmentManager, characters);
-            _viewPager.Adapter = _adapter;
-            _tabLayout.SetupWithViewPager(_viewPager);
+            viewPager.Adapter = _adapter;
+            tabLayout.SetupWithViewPager(viewPager);
 
             _campaignScenario = GetUnlockedScenario();
 
             if (!_decreaseprospButton.HasOnClickListeners)
             {
-                _decreaseprospButton.Click += _decreaseprospButton_Click; ;
+                _decreaseprospButton.Click += DecreaseprospButton_Click; ;
             }
 
             if (!_raiseprospbutton.HasOnClickListeners)
             {
-                _raiseprospbutton.Click += _raiseprospbutton_Click; ;
+                _raiseprospbutton.Click += Raiseprospbutton_Click; ;
             }
 
             if (!_decreaseReputationButton.HasOnClickListeners)
             {
-                _decreaseReputationButton.Click += _decreaseReputationButton_Click; ;
+                _decreaseReputationButton.Click += DecreaseReputationButton_Click; ;
             }
 
             if (!_raiseReputationButton.HasOnClickListeners)
             {
-                _raiseReputationButton.Click += _raiseReputationButton_Click; ;
+                _raiseReputationButton.Click += RaiseReputationButton_Click; ;
             }
 
             if (!_achievementGAButton.HasOnClickListeners)
             {
-                _achievementGAButton.Click += _achievementGAButton_Click; ;
+                _achievementGAButton.Click += AchievementGAButton_Click; ;
             }
 
             if (!_achievementPAButton.HasOnClickListeners)
             {
-                _achievementPAButton.Click += _achievementPAButton_Click; ;
+                _achievementPAButton.Click += AchievementPAButton_Click; ;
             }
 
             if(IsCasualMode())
@@ -167,48 +125,12 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 _lstviewScenariosUnlocked.Adapter = _listAdapter;
             }
 
-            HasOptionsMenu = true;
+            InitTextViews();
 
             return _view;
         }
-
-        private void _achievementPAButton_Click(object sender, EventArgs e)
-        {
-            var intent = new Intent();
-            intent.SetClass(Activity, typeof(DetailsActivity));
-            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.PartyAchievements);
-            StartActivity(intent);
-        }
-
-        private void _achievementGAButton_Click(object sender, EventArgs e)
-        {
-            var intent = new Intent();
-            intent.SetClass(Activity, typeof(DetailsActivity));
-            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.GlobalAchievements);
-            StartActivity(intent);
-        }
-
-        private void _raiseReputationButton_Click(object sender, EventArgs e)
-        {
-            _reputationTextView.Text = (_reputaionModifier += 1).ToString();
-        }
-
-        private void _decreaseReputationButton_Click(object sender, EventArgs e)
-        {
-            _reputationTextView.Text = (_reputaionModifier -= 1).ToString();
-        }
-
-        private void _raiseprospbutton_Click(object sender, EventArgs e)
-        {
-            _prospLevelText.Text = (_prospertityModifier += 1).ToString();
-        }
-
-        private void _decreaseprospButton_Click(object sender, EventArgs e)
-        {
-            _prospLevelText.Text = (_prospertityModifier -= 1).ToString();
-        }
-
-        private void Save()
+        
+        protected override void Save()
         {
             _adapter.SaveCharacterRewards();
 

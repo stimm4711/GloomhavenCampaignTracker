@@ -12,26 +12,13 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 {
-    public class EventOutcomeFragment : CampaignDetailsFragmentBase
+    public class EventOutcomeFragment : RewardFragmentFragment
     {
-        private TabLayout _tabLayout;
-        private ViewPager _viewPager;
         private EvenOutcomeCharacterViewPagerAdapter _adapter;
-        private Button _decreaseprospButton;
-        private Button _raiseprospbutton;
-        private Button _decreaseReputationButton;
-        private Button _raiseReputationButton;
-        private Button _achievementGAButton;
-        private Button _achievementPAButton;
-        private TextView _prospLevelText;
-        private TextView _reputationTextView;
         private Button _btnAddScenario;
         private EventTypes _eventType;
         private int _cardId;
         private int _cardOption;
-
-        private int _reputaionModifier = 0;
-        private int _prospertityModifier = 0;
 
         internal static EventOutcomeFragment NewInstance(int cardnumber, int selectedOption, int eventtype)
         {
@@ -68,40 +55,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             return _cardOption;
         }
 
-        public override void OnResume()
-        {
-            base.OnResume();
-        }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-        {
-            inflater.Inflate(Resource.Menu.saveMenu, menu);
-            base.OnCreateOptionsMenu(menu, inflater);
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            try
-            {
-                if (item.ItemId == Resource.Id.men_save)
-                {
-                    Save();
-                }
-            }
-            catch
-            {
-                return base.OnOptionsItemSelected(item);
-            }
-
-            return base.OnOptionsItemSelected(item);
-        }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             _view = inflater.Inflate(Resource.Layout.fragment_campaign_event_rewards, container, false);
-            _viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
-            _tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
+                     
             _decreaseprospButton = _view.FindViewById<Button>(Resource.Id.decreaseprospButton);
             _raiseprospbutton = _view.FindViewById<Button>(Resource.Id.raiseprospbutton);
             _decreaseReputationButton = _view.FindViewById<Button>(Resource.Id.decreaseReputationButton);
@@ -112,50 +70,52 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _reputationTextView = _view.FindViewById<TextView>(Resource.Id.reputationTextView);
             _btnAddScenario = _view.FindViewById<Button>(Resource.Id.btnAddScenario);
 
+            var viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
+            var tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
+
             var characters = CharacterRepository.GetPartymembersFlat(GCTContext.CurrentCampaign.CurrentParty.Id).Where(x => !x.Retired).ToList();
             GCTContext.CharacterCollection = characters;
+            
             _adapter = new EvenOutcomeCharacterViewPagerAdapter(Context, ChildFragmentManager, characters);
-            _viewPager.Adapter = _adapter;
-            _tabLayout.SetupWithViewPager(_viewPager);
+            viewPager.Adapter = _adapter;
+            tabLayout.SetupWithViewPager(viewPager);
 
             GetEventDecisionBackImageAndSetImageView(EventType, SelectedOption(), CardNumber());
 
             if (!_decreaseprospButton.HasOnClickListeners)
             {
-                _decreaseprospButton.Click += _decreaseprospButton_Click; ;
+                _decreaseprospButton.Click += DecreaseprospButton_Click; ;
             }
 
             if (!_raiseprospbutton.HasOnClickListeners)
             {
-                _raiseprospbutton.Click += _raiseprospbutton_Click; ;
+                _raiseprospbutton.Click += Raiseprospbutton_Click; ;
             }
 
             if (!_decreaseReputationButton.HasOnClickListeners)
             {
-                _decreaseReputationButton.Click += _decreaseReputationButton_Click; ;
+                _decreaseReputationButton.Click += DecreaseReputationButton_Click; ;
             }
 
             if (!_raiseReputationButton.HasOnClickListeners)
             {
-                _raiseReputationButton.Click += _raiseReputationButton_Click; ;
+                _raiseReputationButton.Click += RaiseReputationButton_Click; ;
             }
 
             if (!_achievementGAButton.HasOnClickListeners)
             {
-                _achievementGAButton.Click += _achievementGAButton_Click; ;
+                _achievementGAButton.Click += AchievementGAButton_Click; ;
             }
 
             if (!_achievementPAButton.HasOnClickListeners)
             {
-                _achievementPAButton.Click += _achievementPAButton_Click; ;
+                _achievementPAButton.Click += AchievementPAButton_Click; ;
             }
 
             if (!_btnAddScenario.HasOnClickListeners)
             {
-                _btnAddScenario.Click += _btnAddScenario_Click;
+                _btnAddScenario.Click += BtnAddScenario_Click;
             }
-
-            HasOptionsMenu = true;
 
             var uiLayout = _view.FindViewById<LinearLayout>(Resource.Id.uiLayout);
             if (EventType == EventTypes.RoadEvent)
@@ -170,6 +130,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             {
                 uiLayout.SetBackgroundResource(Resource.Drawable.bg_riftevent);
             }
+
+            InitTextViews();
 
             return _view;
         }
@@ -190,60 +152,18 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             pqimage.SetImageBitmap(Helper.GetEventBackScaleBitmap(eventback, decision));
         }
 
-        private void _btnAddScenario_Click(object sender, EventArgs e)
+        private void BtnAddScenario_Click(object sender, EventArgs e)
         {
             var intent = new Intent();
             intent.SetClass(Activity, typeof(DetailsActivity));
             intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.UnlockedScenarios);
             StartActivity(intent);
-        }
+        }            
 
-        private void _achievementPAButton_Click(object sender, EventArgs e)
-        {
-            var intent = new Intent();
-            intent.SetClass(Activity, typeof(DetailsActivity));
-            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.PartyAchievements);
-            StartActivity(intent);
-        }
-
-        private void _achievementGAButton_Click(object sender, EventArgs e)
-        {
-            var intent = new Intent();
-            intent.SetClass(Activity, typeof(DetailsActivity));
-            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.GlobalAchievements);
-            StartActivity(intent);
-        }
-
-        private void _raiseReputationButton_Click(object sender, EventArgs e)
-        {
-            _reputationTextView.Text = (_reputaionModifier += 1).ToString();
-        }
-
-        private void _decreaseReputationButton_Click(object sender, EventArgs e)
-        {
-            _reputationTextView.Text = (_reputaionModifier -= 1).ToString();
-        }
-
-        private void _raiseprospbutton_Click(object sender, EventArgs e)
-        {
-            _prospLevelText.Text = (_prospertityModifier += 1).ToString();
-        }
-
-        private void _decreaseprospButton_Click(object sender, EventArgs e)
-        {
-            _prospLevelText.Text = (_prospertityModifier -= 1).ToString();
-        }
-
-        private void Save()
+        protected override void Save()
         {
             _adapter.SaveCharacterRewards();
-
-            if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
-            if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
-
-            GCTContext.CurrentCampaign.Save();
-
-            Activity.Finish();
+            base.Save();
         }
     }
 }

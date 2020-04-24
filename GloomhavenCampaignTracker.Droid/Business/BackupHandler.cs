@@ -134,5 +134,20 @@ namespace GloomhavenCampaignTracker.Business
                 return false;
             }
         }
+
+        public static string CopyFileToBackupStorage(Plugin.FilePicker.Abstractions.FileData filedata, string backuppath)
+        {
+            var backupfolder = new Java.IO.File(backuppath);
+            if (!backupfolder.Exists()) backupfolder.Mkdirs();
+
+            var filename = Path.Combine(backupfolder.Path, filedata.FileName);
+
+            using (var fileStream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+            {
+                fileStream.Write(filedata.DataArray, 0, filedata.DataArray.Length);
+            }
+
+            return filename;
+        }
     }
 }

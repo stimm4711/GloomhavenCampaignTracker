@@ -10,9 +10,9 @@ using System.Linq;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using System.Collections.Generic;
-using Java.IO;
 using System.IO;
-using Android.Provider;
+using Plugin.FilePicker.Abstractions;
+using Plugin.FilePicker;
 
 namespace GloomhavenCampaignTracker.Droid
 {
@@ -89,76 +89,35 @@ namespace GloomhavenCampaignTracker.Droid
             i.AddFlags(ActivityFlags.ClearTop);
             StartActivity(i);
         }
+                
 
         private void Loadbackupbutton_Click(object sender, EventArgs e)
         {
+            PickFileAsync();           
+        }
+
+        /// <summary>
+        /// Pick a file and copy it to the backup path
+        /// </summary>
+        private async void PickFileAsync()
+        {
             try
             {
-                // start a file picker
-                Intent intent = new Intent(Intent.ActionOpenDocument);
-                intent.AddCategory(Intent.CategoryOpenable);
-                intent.SetType("application/db3");
-                StartActivityForResult(intent, LOAD_BACKUPFILE_CODE);
+                FileData fileData = await CrossFilePicker.Current.PickFile();
+                if (fileData == null)
+                    return; // user canceled file picking
+
+                var filename = BackupHandler.CopyFileToBackupStorage(fileData, _backupfilepath);
+                var file = new Java.IO.File(filename);
+                if (file == null) return;
+
+                SetListviewAdapter();
+
             }
             catch (Exception ex)
             {
                 System.Console.WriteLine("Exception choosing file: " + ex.ToString());
             }
-        }
-
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        {
-           Android.Net.Uri currentUri;
-
-            if (requestCode == LOAD_BACKUPFILE_CODE)
-            {
-                // User picked a file
-                if (data != null)
-                {
-                    // uri of file
-                    currentUri = data.Data;
-
-                    try
-                    {                
-                        // make sure backupfolder exists
-                        var backupfolder = new Java.IO.File(_backupfilepath);
-                        if (!backupfolder.Exists()) backupfolder.Mkdirs();
-
-                        // get the name of the selected file
-                        var returnCursor = ContentResolver.Query(currentUri, null, null, null, null);
-                        int nameIndex = returnCursor.GetColumnIndex(OpenableColumns.DisplayName);
-                        returnCursor.MoveToFirst();
-                        var name = returnCursor.GetString(nameIndex);
-
-                        // create the destination file in the backupfolder
-                        var filename = Path.Combine(backupfolder.Path, name);
-                        var destFile = new Java.IO.File(filename);     
-
-                        // Get the Filedescriptor and transfer the selected file to the destination file
-                        ParcelFileDescriptor pfd = ContentResolver.OpenFileDescriptor(currentUri, "r");
-                        FileDescriptor fd = pfd.FileDescriptor;
-
-                        BackupHandler.TransferFileStreams(fd, destFile);
-                        var src = new FileInputStream(fd).Channel;
-                        var dst = new FileOutputStream(destFile).Channel;
-                        dst.TransferFrom(src, 0, src.Size());
-                        src.Close();
-                        dst.Close();                      
-
-                        pfd.Close();
-
-                        // Update the llist
-                        SetListviewAdapter();
-
-                    }
-                    catch (Java.IO.IOException e)
-                    {
-                        // do nothing
-                    }
-                }
-            }
-
-            base.OnActivityResult(requestCode, resultCode, data);
         }
 
         private Java.IO.File[] GetBackupFiles()

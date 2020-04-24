@@ -82,7 +82,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
             var _partyNotesButton = _view.FindViewById<Button>(Resource.Id.partyNotesButton);
 
             if (_partynotes != null)
-                _partynotes.AfterTextChanged += _partynotes_AfterTextChanged;
+                _partynotes.AfterTextChanged += Partynotes_AfterTextChanged;
 
             if (_isDualPane)
             {
@@ -185,10 +185,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
             }
         }
 
-        private void _partynotes_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        private void Partynotes_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
-            CurrentCampaign.CurrentParty.Notes = _partynotes.Text;
-            DataServiceCollection.PartyDataService.InsertOrReplace(CurrentCampaign.CurrentParty);
+            if(CurrentCampaign != null && CurrentCampaign.CurrentParty != null && CurrentCampaign.CurrentParty.Notes != null && _partynotes != null)
+            {
+                CurrentCampaign.CurrentParty.Notes = _partynotes.Text;
+                DataServiceCollection.PartyDataService.InsertOrReplace(CurrentCampaign.CurrentParty);
+            }   
         }
 
         private void _partynameText_Click(object sender, EventArgs e)

@@ -395,6 +395,8 @@
     <Compile Include="Fragments\campaign\CampaignEventsDrawnFragment.cs" />
     <Compile Include="Fragments\campaign\city\CampaigntemsFragment.cs" />
     <Compile Include="Fragments\campaign\city\ItemstoreViewPagerTabs.cs" />
+    <Compile Include="Fragments\campaign\CharacterRewardsFragment.cs" />
+    <Compile Include="Fragments\campaign\RewardFragmentFragment.cs" />
     <Compile Include="Fragments\campaign\EventWrapper.cs" />
     <Compile Include="Fragments\campaign\PartySelectionFragment.cs" />
     <Compile Include="Fragments\campaign\CampaignSelectionFragment.cs" />

@@ -190,9 +190,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                     }
                     else
                     {
+                        var message = $"Buy items for {costs} gold? You have {Character.Gold}.";
                         new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
                            .SetTitle("Checkout")
-                           .SetMessage($"Buy items for {costs} gold?")
+                           .SetMessage(message)
                            .SetNegativeButton(Context.Resources.GetString(Resource.String.NoCancel), (s, a) => { })
                            .SetPositiveButton("Buy items", (s, a) =>
                            {                               

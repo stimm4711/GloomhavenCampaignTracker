@@ -86,12 +86,23 @@ namespace GloomhavenCampaignTracker.Droid
             var drawerToggle = new ActionBarDrawerToggle(this, _drawerLayout, toolbar, Resource.String.open_drawer, Resource.String.close_drawer);
             _drawerLayout.AddDrawerListener(drawerToggle);
             drawerToggle.SyncState();
-                        
+
+            LoadCampaign();
+
+            _navigationView.NavigationItemSelected += NavigationItemSelected;
+
+            ShowReleasenotes();
+
+            _drawerLayout.CloseDrawers();
+        }
+
+        private void LoadCampaign()
+        {
             try
             {
                 LoadLastCampaign();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 GCTContext.CampaignCollection.SetCurrentCampaign(-1);
                 new CustomDialogBuilder(this, Resource.Style.MyDialogTheme)
@@ -102,17 +113,18 @@ namespace GloomhavenCampaignTracker.Droid
                         throw ex;
                     })
                      .SetNegativeButton("Cancel", (senderAlert, args) => { })
-                    .Show();                
-            }          
+                    .Show();
+            }
+        }
 
-            _navigationView.NavigationItemSelected += NavigationItemSelected;
-
+        private void ShowReleasenotes()
+        {
             if (GCTContext.Settings.IsShowReleasenotes144)
             {
                 var convertView = this.LayoutInflater.Inflate(Resource.Layout.alertdialog_release_notes, null);
                 new CustomDialogBuilder(this, Resource.Style.MyDialogTheme)
                     .SetCustomView(convertView)
-                    .SetTitle("Releasenotes 1.4.4")                   
+                    .SetTitle("Releasenotes 1.4.4")
                     .SetPositiveButton("Do not show again", (senderAlert, args) =>
                     {
                         GCTContext.Settings.IsShowReleasenotes144 = false;
@@ -120,8 +132,6 @@ namespace GloomhavenCampaignTracker.Droid
                      .SetNegativeButton("Cancel", (senderAlert, args) => { })
                     .Show();
             }
-
-            _drawerLayout.CloseDrawers();
         }
 
         private void LoadLastCampaign()
