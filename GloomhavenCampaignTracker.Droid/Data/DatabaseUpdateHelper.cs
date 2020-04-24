@@ -216,26 +216,26 @@ namespace Data
 
         private static void FixTypoDivinerCard578()
         {
-            var clas = ClassRepository.Get(19);
-            if(clas != null)
+            var clas = ClassRepository.Get().FirstOrDefault(x => x.ClassId == 18);
+            if (clas == null)
             {
-                var ability578 = clas.Abilities.FirstOrDefault(x => x.ReferenceNumber == 578);
-
-                if (ability578 != null)
+                AddDivinerClass();
+                Connection.BeginTransaction();
+                try
                 {
-                    Connection.BeginTransaction();
-                    try
+                    var ability578 = clas.Abilities.FirstOrDefault(x => x.ReferenceNumber == 578);
+
+                    if (ability578 != null)
                     {
                         ability578.AbilityName = "Otherworldly Journey";
                         ClassAbilitiesRepository.InsertOrReplace(ability578);
 
                         Connection.Commit();
                     }
-                    catch
-                    {
-                        Connection.Rollback();
-                        throw;
-                    }
+                }
+                catch
+                {
+                    Connection.Rollback();
                 }
             }  
         }

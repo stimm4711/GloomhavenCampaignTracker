@@ -159,8 +159,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
         private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen)
         {
-            var image = await Helper.GetImageBitmapFromUrlAsync(url);  
-            imagen.SetImageBitmap(image);
+            try
+            {
+                var image = await Helper.GetImageBitmapFromUrlAsync(url);
+                imagen.SetImageBitmap(image);
+            }
+            catch
+            {
+                // do nothing
+            }
+            
         }
 
         private void AddEnhancement(LayoutInflater inflater, ListView enhancementListTop, DL_CharacterAbility ability, bool isTop)
