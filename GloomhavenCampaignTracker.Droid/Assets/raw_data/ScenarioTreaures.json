@@ -122,7 +122,7 @@
 		},
 		{  
 			"scenarionumber":25,
-			"treasurenumber":58,
+			"treasurenumber":54,
 			"content":""
 		},
 		{  
@@ -238,6 +238,11 @@
 		{  
 			"scenarionumber":53,
 			"treasurenumber":31,
+			"content":""
+		},
+		{  
+			"scenarionumber":54,
+			"treasurenumber":25,
 			"content":""
 		},
 		{  

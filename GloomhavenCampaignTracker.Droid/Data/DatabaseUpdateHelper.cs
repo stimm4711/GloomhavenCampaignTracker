@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 21);
+        public static Version Dbversion { get; } = new Version(1, 4, 22);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -176,17 +176,42 @@ namespace Data
                     AddRegenerateEnhancement();
                 }
 
-
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 21)) == VersionTime.Earlier)
                 {
                     OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.21"));
                     FixNameOfScenario(59, "Forgotten Grove");
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 22)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.22"));
+                    FixTreasureScenario54TreasureIsMissing();
+                }
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
 
                 OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished databaseupdates"));
+            }
+        }
+
+        private static void FixTreasureScenario54TreasureIsMissing()
+        {            
+            var treasure25 = ScenarioTreasuresRepository.Get().FirstOrDefault(x => x.TreasureNumber == 25);
+            if(treasure25 == null)
+            {
+                var scenario54 = ScenarioRepository.Get().FirstOrDefault(x => x.Scenarionumber == 54);
+                if (scenario54 != null)
+                {
+                    treasure25 = new DL_ScenarioTreasure
+                    {
+                        Scenario = scenario54,
+                        Scenario_ID = scenario54.Id,
+                        TreasureNumber = 25
+                    };
+
+                    ScenarioTreasuresRepository.InsertOrReplace(treasure25);                   
+                }                
             }
         }
 
