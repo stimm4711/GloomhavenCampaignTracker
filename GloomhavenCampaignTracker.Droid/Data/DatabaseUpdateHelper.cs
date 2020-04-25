@@ -210,7 +210,23 @@ namespace Data
                         TreasureNumber = 25
                     };
 
-                    ScenarioTreasuresRepository.InsertOrReplace(treasure25);                   
+                    ScenarioTreasuresRepository.InsertOrReplace(treasure25);             
+                    
+                    foreach(var s in CampaignUnlockedScenarioRepository.Get(recursive: false))
+                    {
+                        if (s.Scenario.Scenarionumber == 54)
+                        {
+                            var x = new DL_CampaignScenarioTreasure
+                            {
+                                Looted = false,
+                                ScenarioTreasure = treasure25,
+                                ScenarioTreasure_ID = treasure25.Id,
+                                UnlockedScenario = s
+                            };
+
+                            CampaignScenarioTreasureRepository.InsertOrReplace(x);
+                        }                        
+                    }
                 }                
             }
         }
