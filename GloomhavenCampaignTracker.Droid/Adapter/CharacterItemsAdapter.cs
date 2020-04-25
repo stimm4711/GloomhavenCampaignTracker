@@ -132,8 +132,10 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             var item = _character.Items[position];
             var sellvalue = (int) Math.Floor(item.Itemprice / 2);
 
+            var sellcommit = $"Sell Item for {sellvalue} gold?";
+
             new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-                .SetMessage(String.Format(_context.Resources.GetString(Resource.String.SellItemCommit), sellvalue))
+                .SetMessage(sellcommit)
                 .SetPositiveButton(_context.Resources.GetString(Resource.String.Sell), (senderAlert, args) =>
                 {
                     if (position >= Count) return;
