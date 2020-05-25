@@ -48,16 +48,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_requirementsCaption"
                 android:textColor="@color/gloom_primaryText" />
-            <ListView
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/lv_requirements"
+                android:orientation="vertical"                
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="2dp"
-                android:layout_below="@+id/txt_requirementsCaption"
-                android:layout_centerHorizontal="true" />
+                android:id="@+id/linearLayout_requirements"                
+                android:layout_below="@+id/txt_requirementsCaption"                
+                android:layout_centerHorizontal="true"/>            
             <TextView
                 android:text="@string/Region"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -67,7 +66,7 @@
                 android:textColor="@color/gloom_primaryText"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="2dp"
-                android:layout_below="@+id/lv_requirements"/>
+                android:layout_below="@+id/linearLayout_requirements"/>
             <TextView
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -78,7 +77,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="2dp"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/lv_requirements"/>
+                android:layout_below="@+id/linearLayout_requirements"/>
             <TextView
                 android:text="@string/TreasuresCaption"
                 android:textAppearance="?android:attr/textAppearanceMedium"

@@ -19,6 +19,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         private ScenarioRewardsCharacterViewPagerAdapter _adapter;
         private ListView _lstviewScenariosUnlocked;
         private ScenarioListviewtAdapter _listAdapter;
+        private bool _saved = false;
 
         internal static SzenarioRewardsFragment NewInstance(int scenarioId, bool casual)
         {
@@ -121,6 +122,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             {
                 var unlockedScenarioNumbers = _campaignScenario.GetUnlockedScenarios().Where(x => !GCTContext.CurrentCampaign.IsScenarioUnlocked(x));
 
+
                 _listAdapter = new ScenarioListviewtAdapter(Context, unlockedScenarioNumbers.Select(x => DataServiceCollection.ScenarioDataService.Get(x)).ToList());
                 _lstviewScenariosUnlocked.Adapter = _listAdapter;
             }
@@ -132,19 +134,27 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         
         protected override void Save()
         {
-            _adapter.SaveCharacterRewards();
-
-            if (!IsCasualMode())
+            if(!_saved)
             {
-                if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
-                if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
+                _saved = true;
+                _adapter.SaveCharacterRewards();
 
-                ScenarioHelper.SetScenarioCompleted(Context, LayoutInflater, _campaignScenario);
+                if (!IsCasualMode())
+                {
+                    if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
+                    if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
+
+                    ScenarioHelper.SetScenarioCompleted(Context, LayoutInflater, _campaignScenario);
+                }
+
+                GCTContext.CurrentCampaign.Save();
+
+                Activity.Finish();
             }
-
-            GCTContext.CurrentCampaign.Save();
-
-            Activity.Finish();
+            else
+            {
+                Toast.MakeText(Context, "Rewards were already saved!", ToastLength.Long).Show();
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 22);
+        public static Version Dbversion { get; } = new Version(1, 4, 25);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -188,11 +188,357 @@ namespace Data
                     FixTreasureScenario54TreasureIsMissing();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 23)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.23"));
+                    AddFCRift12PartyAchievementAndScenario();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 24)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.24"));
+                    AddFCTreasures();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 25)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.25"));
+                    AddMissingSawAbilityCard();
+                }
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
 
                 OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished databaseupdates"));
             }
+        }
+
+        private static void AddMissingSawAbilityCard()
+        {            
+            var saw = ClassRepository.Get().FirstOrDefault(x => x.ClassId == 15);
+
+            if (saw != null)
+            {
+                var mr = saw.Abilities.FirstOrDefault(x => x.ReferenceNumber == 416);
+
+                if (mr == null)
+                {
+                    var classAbility = new DL_ClassAbility()
+                    {
+                        AbilityName = "Mobile Response",
+                        DL_Class = saw,
+                        ID_Class = saw.Id,
+                        Level = 1,
+                        ReferenceNumber = 416
+                    };
+
+                    ClassAbilitiesRepository.InsertOrReplace(classAbility);
+                }
+            }                        
+        }
+
+        private static void AddFCTreasures()
+        {
+            Connection.BeginTransaction();
+            try
+            {  
+                var scenarios = ScenarioRepository.Get().Where(x => x.ContentOfPack == 2);
+                var scenTreasures = ScenarioTreasuresRepository.Get();
+
+                foreach(var scenario in scenarios)
+                {
+                    if(scenario.Scenarionumber == 96)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 91
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+
+                    if (scenario.Scenarionumber == 98)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 79
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+
+                    if (scenario.Scenarionumber == 99)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 95
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+
+                    if (scenario.Scenarionumber == 100)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 76
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+
+                        var treasure2 = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 85
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure2);
+                    }
+
+                    if (scenario.Scenarionumber == 101)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 93
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+
+                    if (scenario.Scenarionumber == 102)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 77
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+
+                        var treasure2 = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 86
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure2);
+                    }
+
+                    if (scenario.Scenarionumber == 103)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 81
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+
+                    if (scenario.Scenarionumber == 104)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 87
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+
+                    if (scenario.Scenarionumber == 105)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 88
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+
+                        var treasure2 = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 83
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure2);
+                    }
+
+                    if (scenario.Scenarionumber == 107)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 78
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+
+                        var treasure2 = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 90
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure2);
+                    }
+
+                    if (scenario.Scenarionumber == 109)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 80
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+
+                        var treasure2 = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 94
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure2);
+                    }
+
+                    if (scenario.Scenarionumber == 110)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 84
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+
+                    if (scenario.Scenarionumber == 111)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 82
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+
+                        var treasure2 = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 92
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure2);
+                    }
+
+                    if (scenario.Scenarionumber == 115)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 96
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+
+                    if (scenario.Scenarionumber == 117)
+                    {
+                        var treasure = new DL_ScenarioTreasure()
+                        {
+                            Scenario = scenario,
+                            Scenario_ID = scenario.Id,
+                            TreasureContent = "",
+                            TreasureNumber = 89
+                        };
+
+                        ScenarioTreasuresRepository.InsertOrReplace(treasure);
+                    }
+                }  
+                
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
+        }
+
+        private static void AddFCRift12PartyAchievementAndScenario()
+        {
+            var pa = PartyAchievementRepository.Get().FirstOrDefault(x => x.ContentOfPack == 2 && x.Name == "Beauty in Freedom");
+            if(pa == null)
+            {
+                var partyAchievement = new DL_PartyAchievement
+                {
+                    ContentOfPack = 2,
+                    Name = "Beauty in Freedom",
+                    InternalNumber = 40
+                };
+
+                PartyAchievementRepository.InsertOrReplace(partyAchievement);
+            }
+
+            var sc = ScenarioRepository.Get().FirstOrDefault(x => x.Name == "Tower to the Stars");
+            if(sc == null)
+            {
+                var scenario = new DL_Scenario
+                {
+                    ContentOfPack = 2,
+                    Name = "Tower to the Stars",
+                    Scenarionumber = 117
+                };
+
+                ScenarioRepository.InsertOrReplace(scenario);
+            }           
         }
 
         private static void FixTreasureScenario54TreasureIsMissing()

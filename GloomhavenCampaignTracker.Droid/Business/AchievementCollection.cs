@@ -89,7 +89,8 @@ namespace GloomhavenCampaignTracker.Business
         Saboteurs = 36,
         Custodians = 37,
         AStrongbox = 38,
-        Opportunists = 39
+        Opportunists = 39,
+        BeautyInFreedom = 40
 
     }
 

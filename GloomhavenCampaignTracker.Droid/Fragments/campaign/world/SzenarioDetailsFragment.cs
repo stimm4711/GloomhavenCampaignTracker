@@ -202,11 +202,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         private void UpdateRequirementsListView()
         {
-            var lv_requirements = _view.FindViewById<ListView>(Resource.Id.lv_requirements);
+            var linLay_requirements = _view.FindViewById<LinearLayout>(Resource.Id.linearLayout_requirements);
 
-            var adapter = new ArrayAdapter<string>(Context, Resource.Layout.listviewitem_singleitem, _campaignScenario.GetAllRequirements());
-
-            lv_requirements.Adapter = adapter;
+            foreach (var req in _campaignScenario.GetAllRequirements())
+            {
+                var reqView = new TextView(Context);
+                reqView.SetBackgroundColor(new Color(ContextCompat.GetColor(Context, Resource.Color.gloom_primaryLighter)));
+                reqView.SetPadding(10, 0, 10, 0);
+                reqView.Text = req;
+                linLay_requirements.AddView(reqView);
+            }
         }
 
         private void SetBackgroundOfTopLayout()
