@@ -28,10 +28,10 @@ namespace GloomhavenCampaignTracker.Shared.Data.Entities
 
         public int ContentOfPack { get; set; } // 1 = gloomhaven, 2 = forgotten circles
 
-        [ManyToMany(typeof(DL_CharacterItem))]
+        [ManyToMany(typeof(DL_CharacterItem),CascadeOperations = CascadeOperation.CascadeRead)]
         public List<DL_Character> Characters { get; set; }
 
-        [ManyToMany(typeof(DL_CampaignUnlockedItem))]
+        [ManyToMany(typeof(DL_CampaignUnlockedItem), CascadeOperations = CascadeOperation.CascadeRead)]
         public List<DL_Campaign> Campaign { get; set; }
 
 

@@ -98,36 +98,12 @@ namespace GloomhavenCampaignTracker.Droid.Business
             return lstUnlockedScenarios;
         }
 
-        public static void SetScenarioIncomplete(Context context, LayoutInflater inflater, CampaignUnlockedScenario campScenario, CheckBox checkb = null)
+        public static HashSet<CampaignUnlockedScenario> GetRemovedScenarios(CampaignUnlockedScenario campScenario)
         {
-            var removecampScenarios = SetIncomplete(campScenario.UnlockedScenarioData);
-
-            var alertView = inflater.Inflate(Resource.Layout.alertdialog_listview, null);
-            var lv = alertView.FindViewById<ListView>(Resource.Id.listView);
-            lv.Adapter = new ArrayAdapter<string>(context, Android.Resource.Layout.SimpleListItem1, removecampScenarios.Select(x => $"# {x.Scenario.ScenarioNumber}   {x.Scenario.ScenarioName}").ToArray());
-
-            new CustomDialogBuilder(context, Resource.Style.MyDialogTheme)
-                .SetCustomView(alertView)
-                .SetTitle(String.Format(context.Resources.GetString(Resource.String.SetScenarioIncomplete), campScenario.ScenarioName))
-                .SetMessage(context.Resources.GetString(Resource.String.ScenariosWillBeRemoved))
-                .SetNegativeButton(context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) =>
-                {
-                    if(checkb != null)  checkb.Checked = true;
-                })
-                .SetPositiveButton(context.Resources.GetString(Resource.String.OK), (senderAlert, args) =>
-                {
-                    foreach (var cus in removecampScenarios)
-                    {
-                        GCTContext.CurrentCampaign.RemoveScenario(cus.UnlockedScenarioData);
-                    }
-
-                    campScenario.Completed = false;
-                    campScenario.Save();
-                })
-                .Show();
+            return SetIncomplete(campScenario.UnlockedScenarioData);            
         }
 
-        private static List<int> GetSelectableSection(int scenarionumber)
+        public static List<int> GetSelectableSection(int scenarionumber)
         {
             switch (scenarionumber)
             {
@@ -142,35 +118,38 @@ namespace GloomhavenCampaignTracker.Droid.Business
             }
         }
 
-        private static void GetUnlockedScenarioBySection(int selectedSection)
+        public static List<CampaignUnlockedScenario> GetUnlockedScenarioBySection(int selectedSection)
         {
+            var lstCampaignUnlockedScenarios = new List<CampaignUnlockedScenario>();
             switch (selectedSection)
             {
                 case 59:
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(102);
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(102));
                     break;
                 case 82:
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(102);
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(103);
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(102));
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(103));
                     break;
                 case 55:
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(103);
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(103));
                     break;
                 case 36:
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(103);
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(103));
                     break;
                 case 80:
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(106);
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(107);
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(106));
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(107));
                     break;
                 case 16:
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(104);
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(105);
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(104));
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(105));
                     break;
                 case 25:
-                    _ = GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(104);
+                    lstCampaignUnlockedScenarios.Add(GCTContext.CampaignCollection.CurrentCampaign.AddUnlockedScenario(104));
                     break;
             }
+
+            return lstCampaignUnlockedScenarios;
         }
 
         internal static HashSet<CampaignUnlockedScenario> SetIncomplete(DL_CampaignUnlockedScenario cs, HashSet<CampaignUnlockedScenario> removededScenarios = null)
@@ -206,6 +185,40 @@ namespace GloomhavenCampaignTracker.Droid.Business
             }
 
             return removededScenarios;
+        }
+
+        internal static List<int> GetUnlockedScenarioNumbersOfSection(int selectedSection)
+        {
+            var lstCampaignUnlockedScenarios = new List<int>();
+            switch (selectedSection)
+            {
+                case 59:
+                    lstCampaignUnlockedScenarios.Add(102);
+                    break;
+                case 82:
+                    lstCampaignUnlockedScenarios.Add(102);
+                    lstCampaignUnlockedScenarios.Add(103);
+                    break;
+                case 55:
+                    lstCampaignUnlockedScenarios.Add(103);
+                    break;
+                case 36:
+                    lstCampaignUnlockedScenarios.Add(103);
+                    break;
+                case 80:
+                    lstCampaignUnlockedScenarios.Add(106);
+                    lstCampaignUnlockedScenarios.Add(107);
+                    break;
+                case 16:
+                    lstCampaignUnlockedScenarios.Add(104);
+                    lstCampaignUnlockedScenarios.Add(105);
+                    break;
+                case 25:
+                    lstCampaignUnlockedScenarios.Add(104);
+                    break;
+            }
+
+            return lstCampaignUnlockedScenarios;
         }
 
         private static List<int> GetUnlockedScenarios(DL_CampaignUnlockedScenario cs)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
 using Android.Graphics;
@@ -33,16 +34,25 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         public override void OnResume()
         {
             SetBackgroundOfTopLayout();
+            UpdateCompletedButton();
 
+            base.OnResume();
+        }
+
+        private void UpdateCompletedButton()
+        {
             if (_campaignScenario.Completed)
             {
                 _completed.Text = "Incomplete";
-                var back = Context.GetDrawable(Resource.Drawable.yellowButtton);
-                _completed.Background = back;
+                _completed.Background = Context.GetDrawable(Resource.Drawable.yellowButtton);
                 _completed.SetTextColor(new Color(ContextCompat.GetColor(Context, Resource.Color.gloom_secondaryText)));
             }
-
-            base.OnResume();
+            else
+            {
+                _completed.Text = "Completed";
+                _completed.Background = Context.GetDrawable(Resource.Drawable.greenButtton);
+                _completed.SetTextColor(new Color(ContextCompat.GetColor(Context, Resource.Color.gloom_primaryText)));
+            }
         }
 
         private CampaignUnlockedScenario GetUnlockedScenario()
@@ -136,7 +146,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             if (!_campaignScenario.Completed)
             {
                 new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-                  .SetTitle("Scenarios completed!")
+                  .SetTitle("Scenario completed!")
                   //.SetMessage($"You've completed the scenarion and unlocked scenario(s) # {string.Join(", # ", unlockedScenarioNumbers.ToArray())}. Do you want to enter rewards now?")
                   .SetMessage($"You've completed the scenarion. Do you want to enter rewards now?")
                   .SetPositiveButton(Context.Resources.GetString(Resource.String.Yes), (senderAlert, AssemblyLoadEventArgs) =>
@@ -190,13 +200,116 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         private void ScenarioCompletion()
         {
-            if (_campaignScenario.Completed)
+            if (!_campaignScenario.Completed)
             {
-                ScenarioHelper.SetScenarioIncomplete(Context, LayoutInflater, _campaignScenario); 
+                //ScenarioHelper.SetScenarioIncomplete(Context, LayoutInflater, _campaignScenario); 
+                _campaignScenario.Completed = true;
+                var lstUnlockedScenarios = new List<CampaignUnlockedScenario>();
+                var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;
+                var unlockedScenarioNumbers = _campaignScenario.GetUnlockedScenarios().Where(x => !currentCampaign.IsScenarioUnlocked(x));
+                var lstScenariosWithSection = new List<int>()
+                {
+                    98,100,99
+                };
+
+                if (lstScenariosWithSection.Contains(_campaignScenario.Scenario.ScenarioNumber))
+                {
+                    // Choose Section for scenario unlock
+                    var view = LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                    var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                    listview.ItemsCanFocus = true;
+                    listview.ChoiceMode = ChoiceMode.Single;
+                    var selectableSections = ScenarioHelper.GetSelectableSection(_campaignScenario.Scenario.ScenarioNumber);
+
+                    var adapter = new ArrayAdapter<string>(Context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
+                    listview.Adapter = adapter;
+
+                    new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                        .SetCustomView(view)
+                        .SetTitle(Context.Resources.GetString(Resource.String.SelectSection))
+                        .SetMessage(Context.Resources.GetString(Resource.String.SelectSectionNumber))
+                        .SetPositiveButton(Context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
+                        {
+                            if (listview.CheckedItemPosition == -1) return;
+
+                            var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition);
+
+                            lstUnlockedScenarios.AddRange(ScenarioHelper.GetUnlockedScenarioBySection(selectedSection));
+                            _campaignScenario.Save();
+                            SetBackgroundOfTopLayout();
+                        })
+                        .Show();
+                }
+                else if (_campaignScenario.Scenario.ScenarioNumber == 13)
+                {
+                    // Choose the Scenario to unlock
+
+                    // Show dialog with selectable scenarios and radio buttons
+                    var view = LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                    var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                    listview.ItemsCanFocus = true;
+                    listview.ChoiceMode = ChoiceMode.Single;
+
+                    IEnumerable<Scenario> selectableScenarios = GCTContext.ScenarioCollection.Items.Where(x => unlockedScenarioNumbers.Contains(x.ScenarioNumber));
+
+                    var adapter = new ArrayAdapter<string>(Context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableScenarios.Select(x => $"# {x.ScenarioNumber}   {x.ScenarioName}").ToArray());
+                    listview.Adapter = adapter;
+
+                    new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                        .SetCustomView(view)
+                        .SetTitle(Context.Resources.GetString(Resource.String.SelectUnlockedScenario))
+                        .SetMessage(Context.Resources.GetString(Resource.String.ChooseScenarioToUnlock))
+                        .SetPositiveButton(Context.Resources.GetString(Resource.String.UnlockScenario), (senderAlert, args) =>
+                        {
+                            if (listview.CheckedItemPosition == -1) return;
+
+                            var scenario = selectableScenarios.ElementAt(listview.CheckedItemPosition);
+
+                            if (scenario == null) return;
+
+                            lstUnlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenario.ScenarioNumber));
+
+                            _campaignScenario.Save();
+                            SetBackgroundOfTopLayout();
+                        })
+                        .Show();
+                }
+                else
+                {
+                    foreach (var scenarioNumber in unlockedScenarioNumbers)
+                    {
+                        lstUnlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenarioNumber));
+                    }
+
+                    _campaignScenario.Save();
+                    Activity.RunOnUiThread(()=> SetBackgroundOfTopLayout());
+                }
             }
             else
             {
-                ScenarioHelper.SetScenarioCompleted(Context, LayoutInflater, _campaignScenario);
+                var removecampScenarios = ScenarioHelper.GetRemovedScenarios(_campaignScenario);
+
+                var alertView = LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                var lv = alertView.FindViewById<ListView>(Resource.Id.listView);
+                lv.Adapter = new ArrayAdapter<string>(Context, Android.Resource.Layout.SimpleListItem1, removecampScenarios.Select(x => $"# {x.Scenario.ScenarioNumber}   {x.Scenario.ScenarioName}").ToArray());
+
+                new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                    .SetCustomView(alertView)
+                    .SetTitle(String.Format(Context.Resources.GetString(Resource.String.SetScenarioIncomplete), _campaignScenario.ScenarioName))
+                    .SetMessage(Context.Resources.GetString(Resource.String.ScenariosWillBeRemoved))
+                    .SetPositiveButton(Context.Resources.GetString(Resource.String.OK), (senderAlert, args) =>
+                    {
+                        foreach (var cus in removecampScenarios)
+                        {
+                            GCTContext.CurrentCampaign.RemoveScenario(cus.UnlockedScenarioData);
+                        }
+
+                        _campaignScenario.Completed = false;
+                        _campaignScenario.Save();
+
+                        SetBackgroundOfTopLayout();
+                    })
+                    .Show();                
             }
         }
 
@@ -232,6 +345,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
             var layoutTop = _view.FindViewById<RelativeLayout>(Resource.Id.layout_top);
             layoutTop.SetBackgroundColor(new Color(color));
+
+            UpdateCompletedButton();
         }
     }
 }

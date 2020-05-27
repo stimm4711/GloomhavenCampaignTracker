@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
@@ -9,6 +8,7 @@ using Android.Widget;
 using GloomhavenCampaignTracker.Business;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using GloomhavenCampaignTracker.Droid.Business;
+using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
@@ -19,6 +19,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         private ScenarioRewardsCharacterViewPagerAdapter _adapter;
         private ListView _lstviewScenariosUnlocked;
         private ScenarioListviewtAdapter _listAdapter;
+        private List<int> _unlockedScenarioNumbers;
         private bool _saved = false;
 
         internal static SzenarioRewardsFragment NewInstance(int scenarioId, bool casual)
@@ -120,33 +121,114 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             }
             else
             {
-                var unlockedScenarioNumbers = _campaignScenario.GetUnlockedScenarios().Where(x => !GCTContext.CurrentCampaign.IsScenarioUnlocked(x));
-
-
-                _listAdapter = new ScenarioListviewtAdapter(Context, unlockedScenarioNumbers.Select(x => DataServiceCollection.ScenarioDataService.Get(x)).ToList());
-                _lstviewScenariosUnlocked.Adapter = _listAdapter;
+                SetUnlockedScenarios();                
             }
 
             InitTextViews();
 
             return _view;
         }
-        
+
+        private void SetUnlockedScenarios()
+        {
+            var lstUnlockedScenarios = new List<CampaignUnlockedScenario>();
+            var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;
+            _unlockedScenarioNumbers = _campaignScenario.GetUnlockedScenarios().Where(x => !currentCampaign.IsScenarioUnlocked(x)).ToList();
+            var lstScenariosWithSection = new List<int>()
+                {
+                    98,100,99
+                };
+
+            if (lstScenariosWithSection.Contains(_campaignScenario.Scenario.ScenarioNumber))
+            {
+                // Choose Section for scenario unlock
+                var view = LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                listview.ItemsCanFocus = true;
+                listview.ChoiceMode = ChoiceMode.Single;
+                var selectableSections = ScenarioHelper.GetSelectableSection(_campaignScenario.Scenario.ScenarioNumber);
+
+                var adapter = new ArrayAdapter<string>(Context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
+                listview.Adapter = adapter;
+
+                new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                    .SetCustomView(view)
+                    .SetTitle(Context.Resources.GetString(Resource.String.SelectSection))
+                    .SetMessage(Context.Resources.GetString(Resource.String.SelectSectionNumber))
+                    .SetPositiveButton(Context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
+                    {
+                        if (listview.CheckedItemPosition == -1) return;
+
+                        var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition);
+
+                        _unlockedScenarioNumbers = ScenarioHelper.GetUnlockedScenarioNumbersOfSection(selectedSection);
+                        
+                        _listAdapter = new ScenarioListviewtAdapter(Context, _unlockedScenarioNumbers.Select(x => DataServiceCollection.ScenarioDataService.GetScenarioByScenarioNumber(x)).ToList());
+                        _lstviewScenariosUnlocked.Adapter = _listAdapter;
+                    })
+                    .Show();
+            }
+            else if (_campaignScenario.Scenario.ScenarioNumber == 13)
+            {
+                // Choose the Scenario to unlock
+
+                // Show dialog with selectable scenarios and radio buttons
+                var view = LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                listview.ItemsCanFocus = true;
+                listview.ChoiceMode = ChoiceMode.Single;
+
+                IEnumerable<Scenario> selectableScenarios = GCTContext.ScenarioCollection.Items.Where(x => _unlockedScenarioNumbers.Contains(x.ScenarioNumber));
+
+                var adapter = new ArrayAdapter<string>(Context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableScenarios.Select(x => $"# {x.ScenarioNumber}   {x.ScenarioName}").ToArray());
+                listview.Adapter = adapter;
+
+                new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+                    .SetCustomView(view)
+                    .SetTitle(Context.Resources.GetString(Resource.String.SelectUnlockedScenario))
+                    .SetMessage(Context.Resources.GetString(Resource.String.ChooseScenarioToUnlock))
+                    .SetPositiveButton(Context.Resources.GetString(Resource.String.UnlockScenario), (senderAlert, args) =>
+                    {
+                        if (listview.CheckedItemPosition == -1) return;
+
+                        var scenario = selectableScenarios.ElementAt(listview.CheckedItemPosition);
+
+                        if (scenario == null) return;
+
+                        _unlockedScenarioNumbers.Clear();
+                        _unlockedScenarioNumbers.Add(scenario.ScenarioNumber);
+
+                        _listAdapter = new ScenarioListviewtAdapter(Context, _unlockedScenarioNumbers.Select(x => DataServiceCollection.ScenarioDataService.GetScenarioByScenarioNumber(x)).ToList());
+                        _lstviewScenariosUnlocked.Adapter = _listAdapter;
+                    })
+                    .Show();
+            }
+            else
+            {
+                _listAdapter = new ScenarioListviewtAdapter(Context, _unlockedScenarioNumbers.Select(x => DataServiceCollection.ScenarioDataService.GetScenarioByScenarioNumber(x)).ToList());
+                _lstviewScenariosUnlocked.Adapter = _listAdapter;
+            }
+        }
+
         protected override void Save()
         {
             if(!_saved)
             {
                 _saved = true;
-                _adapter.SaveCharacterRewards();
-
+                
                 if (!IsCasualMode())
                 {
                     if (int.TryParse(_prospLevelText.Text, out int prospChange)) GCTContext.CurrentCampaign.CityProsperity += prospChange;
                     if (int.TryParse(_reputationTextView.Text, out int repChange)) GCTContext.CurrentCampaign.CurrentParty.Reputation += repChange;
 
-                    ScenarioHelper.SetScenarioCompleted(Context, LayoutInflater, _campaignScenario);
+                    _campaignScenario.Completed = true;
+                    foreach (var scenarioNumber in _unlockedScenarioNumbers)
+                    {
+                        GCTContext.CurrentCampaign.AddUnlockedScenario(scenarioNumber);
+                    }
                 }
 
+                _adapter.SaveCharacterRewards();
                 GCTContext.CurrentCampaign.Save();
 
                 Activity.Finish();
@@ -155,6 +237,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             {
                 Toast.MakeText(Context, "Rewards were already saved!", ToastLength.Long).Show();
             }
+        }
+
+        private void FinishSaving()
+        {
+
         }
     }
 }

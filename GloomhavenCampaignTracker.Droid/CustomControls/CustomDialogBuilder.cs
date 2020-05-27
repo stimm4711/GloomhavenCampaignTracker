@@ -6,6 +6,7 @@ using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using Java.Lang;
+using System.Threading.Tasks;
 
 namespace GloomhavenCampaignTracker.Droid.CustomControls
 {
@@ -94,7 +95,7 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
             pbutton.SetTextSize(Android.Util.ComplexUnitType.Dip,20);          
 
             return alert;
-        }
+        }       
 
     }
 }

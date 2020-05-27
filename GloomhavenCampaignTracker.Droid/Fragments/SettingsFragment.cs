@@ -3,6 +3,8 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using GloomhavenCampaignTracker.Business;
+using GloomhavenCampaignTracker.Shared.Data.DatabaseAccess;
+using GloomhavenCampaignTracker.Shared.Data.Repositories;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments
 {
@@ -26,7 +28,8 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             var checkpq = view.FindViewById<CheckBox>(Resource.Id.chkpersonalquest);
             var checkscenarios = view.FindViewById<CheckBox>(Resource.Id.chkunlockedscenarioname);
             var showTreasuresCheck = view.FindViewById<CheckBox>(Resource.Id.chkShowTreasures);
-            
+            var btnCheckItems = view.FindViewById<Button>(Resource.Id.checkitemsButton);
+
             checkItems.Checked = GCTContext.Settings.IsShowItems;
             checkpq.Checked = GCTContext.Settings.IsShowPq;
             checkscenarios.Checked = GCTContext.Settings.IsShowScenarios;
@@ -37,7 +40,29 @@ namespace GloomhavenCampaignTracker.Droid.Fragments
             checkscenarios.CheckedChange += Checkscenarios_CheckedChange;
             showTreasuresCheck.CheckedChange += ShowTreasuresCheck_CheckedChange;
 
+            if (!btnCheckItems.HasOnClickListeners)
+                btnCheckItems.Click += BtnCheckItems_Click;
+
             return view;
+        }
+
+        private void BtnCheckItems_Click(object sender, System.EventArgs e)
+        {
+            var items = ItemRepository.Get();
+
+            if (items.Count < 164)
+            {
+                var countBefore = items.Count;
+                GloomhavenDbHelper.UpdateMissingItems();
+
+                items = ItemRepository.Get();
+                var countAfter = items.Count;
+                Toast.MakeText(Context, $"Updated items. Added {countAfter - countBefore} items.", ToastLength.Short).Show();
+            }
+            else
+            {
+                Toast.MakeText(Context, "All items checked. No missing items found.", ToastLength.Short).Show();
+            }
         }
 
         private void ShowTreasuresCheck_CheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)

@@ -198,7 +198,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
         }
 
         /// <summary>
-        /// click on scenario item shows which achievements are blocking it or makeing it unavailable 
+        /// 
         /// </summary>
         /// <param name="campScenario"></param>
         private void ScenarioItemClick(CampaignUnlockedScenario campScenario)
@@ -208,50 +208,90 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
             intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.ScenarioDetails);
             intent.PutExtra(DetailsActivity.SelectedScenarioId, campScenario.UnlockedScenarioData.ID_Scenario);
             _context.StartActivity(intent);
-
-            //if (campScenario.IsAvailable() || campScenario.Completed) return;
-
-            //// collect achievement names
-            //List<string> achievementNames;
-            //var alerttitle = "";
-
-            //if (campScenario.IsBlocked())
-            //{
-            //    // blocking achievements
-            //    alerttitle = (string.Format(_context.Resources.GetString(Resource.String.BlockingAchievement), campScenario.ScenarioName));
-            //    achievementNames = campScenario.GetBlockingGlobalAchievements();
-            //    achievementNames.AddRange(campScenario.GetBlockingPartyAchievements());
-            //}
-            //else
-            //{
-            //    // required achievements
-            //    alerttitle = (string.Format(_context.Resources.GetString(Resource.String.RequiredAchievements), campScenario.ScenarioName));
-            //    achievementNames = campScenario.GetNeededGlobalAchievements();
-            //    achievementNames.AddRange(campScenario.GetNeededPartyAchievements());
-            //}
-
-            //var sb = new StringBuilder();
-            //foreach (var achievementname in achievementNames)
-            //{
-            //    sb.Append(achievementname + "\n");
-            //}
-
-            //new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-            //    .SetTitle(alerttitle)
-            //    .SetMessage(sb.ToString())
-            //    .Show();
         }
 
         private void ScenarioCompletion(CheckBox status, CampaignUnlockedScenario campScenario)
         {
             if (status.Checked)
             {
-                foreach(var cus in ScenarioHelper.SetScenarioCompleted(_context, _context.LayoutInflater, campScenario))
+                campScenario.Completed = true;
+                var lstUnlockedScenarios = new List<CampaignUnlockedScenario>();
+                var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;
+                var unlockedScenarioNumbers = campScenario.GetUnlockedScenarios().Where(x => !currentCampaign.IsScenarioUnlocked(x));
+                var lstScenariosWithSection = new List<int>()
                 {
-                    Add(cus);
-                }
+                    98,100,99
+                };
 
-                _isCompleting = false;
+                if (lstScenariosWithSection.Contains(campScenario.Scenario.ScenarioNumber))
+                {
+                    // Choose Section for scenario unlock
+                    var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                    var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                    listview.ItemsCanFocus = true;
+                    listview.ChoiceMode = ChoiceMode.Single;
+                    var selectableSections = ScenarioHelper.GetSelectableSection(campScenario.Scenario.ScenarioNumber);
+
+                    var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
+                    listview.Adapter = adapter;
+
+                    new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                        .SetCustomView(view)
+                        .SetTitle(_context.Resources.GetString(Resource.String.SelectSection))
+                        .SetMessage(_context.Resources.GetString(Resource.String.SelectSectionNumber))
+                        .SetPositiveButton(_context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
+                        {
+                            if (listview.CheckedItemPosition == -1) return;
+
+                            var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition);
+
+                            lstUnlockedScenarios.AddRange(ScenarioHelper.GetUnlockedScenarioBySection(selectedSection));
+                            UnlockScenarios(lstUnlockedScenarios, campScenario);
+                        })
+                        .Show();
+                }
+                else if (campScenario.Scenario.ScenarioNumber == 13)
+                {
+                    // Choose the Scenario to unlock
+
+                    // Show dialog with selectable scenarios and radio buttons
+                    var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
+                    var listview = view.FindViewById<ListView>(Resource.Id.listView);
+                    listview.ItemsCanFocus = true;
+                    listview.ChoiceMode = ChoiceMode.Single;
+
+                    IEnumerable<Scenario> selectableScenarios = GCTContext.ScenarioCollection.Items.Where(x => unlockedScenarioNumbers.Contains(x.ScenarioNumber));
+
+                    var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableScenarios.Select(x => $"# {x.ScenarioNumber}   {x.ScenarioName}").ToArray());
+                    listview.Adapter = adapter;
+
+                    new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
+                        .SetCustomView(view)
+                        .SetTitle(_context.Resources.GetString(Resource.String.SelectUnlockedScenario))
+                        .SetMessage(_context.Resources.GetString(Resource.String.ChooseScenarioToUnlock))
+                        .SetPositiveButton(_context.Resources.GetString(Resource.String.UnlockScenario), (senderAlert, args) =>
+                        {
+                            if (listview.CheckedItemPosition == -1) return;
+
+                            var scenario = selectableScenarios.ElementAt(listview.CheckedItemPosition);
+
+                            if (scenario == null) return;
+
+                            lstUnlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenario.ScenarioNumber));
+
+                            UnlockScenarios(lstUnlockedScenarios, campScenario);
+                        })
+                        .Show();
+                }
+                else 
+                {
+                    foreach (var scenarioNumber in unlockedScenarioNumbers)
+                    {
+                        lstUnlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenarioNumber));
+                    }
+
+                    UnlockScenarios(lstUnlockedScenarios, campScenario);
+                }
             }
             else
             {
@@ -287,7 +327,21 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                         _isCompleting = false;
                     })
                     .Show();
+            }  
+        }
+
+        private void UnlockScenarios(List<CampaignUnlockedScenario> lstUnlockedScenarios, CampaignUnlockedScenario campScenario)
+        {
+            foreach (var cus in lstUnlockedScenarios)
+            {
+                Add(cus);
             }
+
+            campScenario.Save();
+
+            NotifyDataSetChanged();
+
+            _isCompleting = false;
         }
 
         private void SetScenarioCompletedStatus(CampaignUnlockedScenario campScenario, bool status, CheckBox checkb)
@@ -325,253 +379,7 @@ namespace GloomhavenCampaignTracker.Droid.Adapter
                 ScenarioCompletion(checkb, campScenario);
                 SetIncomplete(campScenario);
                 NotifyDataSetChanged();
-
-            }
-
-            //if (status)
-            //{
-            //    _isCompleting = true;
-                               
-            //    List<CampaignUnlockedScenario> unlockedScenarios = new List<CampaignUnlockedScenario>();
-            //    if (campScenario.Completed) return;
-
-            //    campScenario.Completed = true;
-
-            //    var unlockedScenarioNumbers = campScenario.GetUnlockedScenarios();
-            //    var currentCampaign = GCTContext.CampaignCollection.CurrentCampaign;                                               
-
-            //    if (campScenario.Scenario.ScenarioNumber == 98)
-            //    {
-            //        // Choose Section for scenario unlock
-            //        var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
-            //        var listview = view.FindViewById<ListView>(Resource.Id.listView);
-            //        listview.ItemsCanFocus = true;
-            //        listview.ChoiceMode = ChoiceMode.Single;
-
-            //        var selectableSections = new List<int> { 59, 82, 55 };
-
-            //        var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
-            //        listview.Adapter = adapter;
-
-            //        new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-            //            .SetCustomView(view)
-            //            .SetTitle(_context.Resources.GetString(Resource.String.SelectSection))
-            //            .SetMessage(_context.Resources.GetString(Resource.String.SelectSectionNumber))
-            //            .SetPositiveButton(_context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
-            //            {
-            //                if (listview.CheckedItemPosition == -1) return;
-
-            //                var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition); 
-                            
-            //                if (selectedSection == 59)
-            //                {
-            //                    var unlockedcampscenario = currentCampaign.AddUnlockedScenario(102);
-            //                    Add(unlockedcampscenario);
-            //                }
-            //                else if (selectedSection == 82)
-            //                {
-            //                    var unlockedcampscenario = currentCampaign.AddUnlockedScenario(102);
-            //                    Add(unlockedcampscenario);
-            //                    unlockedcampscenario = currentCampaign.AddUnlockedScenario(103);
-            //                    Add(unlockedcampscenario);
-            //                }
-            //                else if (selectedSection == 55)
-            //                {
-            //                    var unlockedcampscenario = currentCampaign.AddUnlockedScenario(103);
-            //                    Add(unlockedcampscenario);
-            //                }
-
-            //                _listDataChild[_unlocked].Remove(campScenario);
-            //                _listDataChild[_completed].Add(campScenario);                                                      
-
-            //                NotifyDataSetChanged();
-
-            //                _isCompleting = false;
-            //            })
-            //            .Show();
-            //    }
-            //    else if (campScenario.Scenario.ScenarioNumber == 100)
-            //    {
-            //        // Choose Section for scenario unlock
-            //        var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
-            //        var listview = view.FindViewById<ListView>(Resource.Id.listView);
-            //        listview.ItemsCanFocus = true;
-            //        listview.ChoiceMode = ChoiceMode.Single;
-
-            //        var selectableSections = new List<int> { 36, 80 };
-
-            //        var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
-            //        listview.Adapter = adapter;
-
-            //        new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-            //            .SetCustomView(view)
-            //             .SetTitle(_context.Resources.GetString(Resource.String.SelectSection))
-            //            .SetMessage(_context.Resources.GetString(Resource.String.SelectSectionNumber))
-            //            .SetPositiveButton(_context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
-            //            {
-            //                if (listview.CheckedItemPosition == -1) return;
-
-            //                var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition);
-                                                       
-            //                if (selectedSection == 80)
-            //                {
-            //                    var unlockedcampscenario = currentCampaign.AddUnlockedScenario(106);
-            //                    Add(unlockedcampscenario);
-            //                    unlockedcampscenario = currentCampaign.AddUnlockedScenario(107);
-            //                    Add(unlockedcampscenario);
-            //                }
-
-            //                _listDataChild[_unlocked].Remove(campScenario);
-            //                _listDataChild[_completed].Add(campScenario);
-
-            //                NotifyDataSetChanged();
-
-            //                _isCompleting = false;
-            //            })
-            //            .Show();
-            //    }
-            //    else if (campScenario.Scenario.ScenarioNumber == 99)
-            //    {
-            //        // Choose Section for scenario unlock
-            //        var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
-            //        var listview = view.FindViewById<ListView>(Resource.Id.listView);
-            //        listview.ItemsCanFocus = true;
-            //        listview.ChoiceMode = ChoiceMode.Single;
-
-            //        var selectableSections = new List<int> { 16, 25 };
-
-            //        var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableSections.Select(x => $"Section {x}").ToArray());
-            //        listview.Adapter = adapter;
-
-            //        new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-            //            .SetCustomView(view)
-            //             .SetTitle(_context.Resources.GetString(Resource.String.SelectSection))
-            //            .SetMessage(_context.Resources.GetString(Resource.String.SelectSectionNumber))
-            //            .SetPositiveButton(_context.Resources.GetString(Resource.String.Select), (senderAlert, args) =>
-            //            {
-            //                if (listview.CheckedItemPosition == -1) return;
-
-            //                var selectedSection = selectableSections.ElementAt(listview.CheckedItemPosition);
-
-            //                var unlockedcampscenario = currentCampaign.AddUnlockedScenario(104);
-            //                Add(unlockedcampscenario);
-
-            //                if (selectedSection == 16)
-            //                {
-            //                    unlockedcampscenario = currentCampaign.AddUnlockedScenario(105);
-            //                    Add(unlockedcampscenario);
-            //                }                          
-
-            //                _listDataChild[_unlocked].Remove(campScenario);
-            //                _listDataChild[_completed].Add(campScenario);
-
-            //                NotifyDataSetChanged();
-
-            //                _isCompleting = false;
-            //            })
-            //            .Show();
-            //    }
-            //    else if (campScenario.Scenario.ScenarioNumber == 13)
-            //    {
-            //        // Choose the Scenario to unlock
-
-            //        // Show dialog with selectable scenarios and radio buttons
-            //        var view = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
-            //        var listview = view.FindViewById<ListView>(Resource.Id.listView);
-            //        listview.ItemsCanFocus = true;
-            //        listview.ChoiceMode = ChoiceMode.Single;
-
-            //        IEnumerable<Scenario> selectableScenarios = GCTContext.ScenarioCollection.Items.Where(x=> unlockedScenarioNumbers.Contains(x.ScenarioNumber));
-
-            //        var adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItemSingleChoice, selectableScenarios.Select(x => $"# {x.ScenarioNumber}   {x.ScenarioName}").ToArray());
-            //        listview.Adapter = adapter;
-
-            //        new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-            //            .SetCustomView(view)
-            //            .SetTitle(_context.Resources.GetString(Resource.String.SelectUnlockedScenario))
-            //            .SetMessage(_context.Resources.GetString(Resource.String.ChooseScenarioToUnlock))
-            //            .SetPositiveButton(_context.Resources.GetString(Resource.String.UnlockScenario), (senderAlert, args) =>
-            //            {
-            //                if (listview.CheckedItemPosition == -1) return;
-
-            //                var scenario = selectableScenarios.ElementAt(listview.CheckedItemPosition);
-
-            //                if (scenario == null) return;
-
-            //                if (_listDataChild.Values.Any(x =>x.Any(y=>y.Scenarionumber == scenario.ScenarioNumber))) return;
-
-            //                var unlockedcampscenario = currentCampaign.AddUnlockedScenario(scenario.ScenarioNumber);                                   
-
-            //                _listDataChild[_unlocked].Remove(campScenario);
-            //                _listDataChild[_completed].Add(campScenario);
-
-            //                Add(unlockedcampscenario);
-
-            //                NotifyDataSetChanged();
-
-            //                _isCompleting = false;
-            //            })
-            //            .Show();
-            //    }
-            //    else
-            //    {
-            //        foreach (var scenarioNumber in unlockedScenarioNumbers)
-            //        {
-            //            if (_listDataChild.Values.Any(x => x.Any(y => y.Scenarionumber == scenarioNumber))) continue;
-            //            unlockedScenarios.Add(currentCampaign.AddUnlockedScenario(scenarioNumber));
-            //        }
-
-            //        _listDataChild[_unlocked].Remove(campScenario);
-            //        _listDataChild[_completed].Add(campScenario);
-
-            //        // add unlocked scenarios
-            //        foreach (var s in unlockedScenarios)
-            //        {
-            //            Add(s);
-            //        }
-
-            //        NotifyDataSetChanged();
-
-            //        _isCompleting = false;
-            //    }
-
-            //    campScenario.Save();
-            //}
-            //else
-            //{
-            //    var removecampScenarios = SetIncomplete(campScenario);
-
-            //    var alertView = _context.LayoutInflater.Inflate(Resource.Layout.alertdialog_listview, null);
-            //    var lv = alertView.FindViewById<ListView>(Resource.Id.listView);
-            //    lv.Adapter = new ArrayAdapter<string>(_context, Android.Resource.Layout.SimpleListItem1, removecampScenarios.Select(x=>$"# {x.Scenarionumber}   {x.ScenarioName}").ToArray());
-
-            //    new CustomDialogBuilder(_context, Resource.Style.MyDialogTheme)
-            //        .SetCustomView(alertView)
-            //        .SetTitle(String.Format(_context.Resources.GetString(Resource.String.SetScenarioIncomplete), campScenario.ScenarioName))
-            //        .SetMessage(_context.Resources.GetString(Resource.String.ScenariosWillBeRemoved))
-            //        .SetNegativeButton(_context.Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => {
-            //            checkb.Checked = true;
-            //        })
-            //        .SetPositiveButton(_context.Resources.GetString(Resource.String.OK), (senderAlert, args) =>
-            //        {
-            //            foreach (var cus in removecampScenarios)
-            //            {
-            //                GCTContext.CurrentCampaign.RemoveUnlockedScenario(cus);
-            //                Remove(cus);
-            //            }
-
-            //            campScenario.Completed = false;
-
-            //            _listDataChild[_completed].Remove(campScenario);
-            //            _listDataChild[_unlocked].Add(campScenario);
-
-            //            campScenario.Save();
-            //            NotifyDataSetChanged();
-            //        })
-            //        .Show();
-            //}
-
-            //GCTContext.CurrentCampaign.Save();
+            }           
         }
 
         internal HashSet<CampaignUnlockedScenario> SetIncomplete(CampaignUnlockedScenario cs, HashSet<CampaignUnlockedScenario> removededScenarios = null)
