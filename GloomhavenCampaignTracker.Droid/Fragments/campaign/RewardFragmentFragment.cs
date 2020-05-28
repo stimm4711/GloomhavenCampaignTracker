@@ -92,6 +92,30 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             StartActivity(intent);
         }
 
+        protected void RoadEventButton_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent();
+            intent.SetClass(Activity, typeof(DetailsActivity));
+            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.Roadevents);
+            StartActivity(intent);
+        }
+
+        protected void CityEventButton_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent();
+            intent.SetClass(Activity, typeof(DetailsActivity));
+            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.Cityevents);
+            StartActivity(intent);
+        }
+
+        protected void RiftEventButton_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent();
+            intent.SetClass(Activity, typeof(DetailsActivity));
+            intent.PutExtra(DetailsActivity.SelectedFragId, (int)DetailFragmentTypes.Riftevents);
+            StartActivity(intent);
+        }
+
         protected void RaiseReputationButton_Click(object sender, EventArgs e)
         {
             if (GCTContext.CurrentCampaign.CurrentParty.Reputation + _reputaionModifier >= 20)

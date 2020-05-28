@@ -64,6 +64,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             _reputationTextView = _view.FindViewById<TextView>(Resource.Id.reputationTextView);
             _lstviewScenariosUnlocked = _view.FindViewById<ListView>(Resource.Id.lstviewScenariosUnlocked);
 
+            var btnRoadEvent = _view.FindViewById<Button>(Resource.Id.btnRoadE);
+            var btnCityEvent = _view.FindViewById<Button>(Resource.Id.btnCityE);
+            var btnRiftEvent = _view.FindViewById<Button>(Resource.Id.btnRiftE);
+
             var viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
             var tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
 
@@ -105,7 +109,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 _achievementPAButton.Click += AchievementPAButton_Click; ;
             }
 
-            if(IsCasualMode())
+            btnRoadEvent.Click += RoadEventButton_Click;
+            btnCityEvent.Click += CityEventButton_Click;
+            btnRiftEvent.Click += RiftEventButton_Click;
+
+            if (IsCasualMode())
             {
                 var prospRepLayout = _view.FindViewById<LinearLayout>(Resource.Id.layout_ProspRep);
                 prospRepLayout.Visibility = ViewStates.Gone;

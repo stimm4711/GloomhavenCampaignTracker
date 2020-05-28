@@ -73,6 +73,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             var viewPager = _view.FindViewById<ViewPager>(Resource.Id.characterrewardsviewpager);
             var tabLayout = _view.FindViewById<TabLayout>(Resource.Id.rewards_characters_tabs);
 
+            var btnRoadEvent = _view.FindViewById<Button>(Resource.Id.btnRoadE);
+            var btnCityEvent = _view.FindViewById<Button>(Resource.Id.btnCityE);
+            var btnRiftEvent = _view.FindViewById<Button>(Resource.Id.btnRiftE);
+
             var characters = CharacterRepository.GetPartymembersFlat(GCTContext.CurrentCampaign.CurrentParty.Id).Where(x => !x.Retired).ToList();
             GCTContext.CharacterCollection = characters;
             
@@ -116,6 +120,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
             {
                 _btnAddScenario.Click += BtnAddScenario_Click;
             }
+
+            btnRoadEvent.Click += RoadEventButton_Click;
+            btnCityEvent.Click += CityEventButton_Click;
+            btnRiftEvent.Click += RiftEventButton_Click;
 
             var uiLayout = _view.FindViewById<LinearLayout>(Resource.Id.uiLayout);
             if (EventType == EventTypes.RoadEvent)

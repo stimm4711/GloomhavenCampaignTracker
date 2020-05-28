@@ -37,7 +37,7 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/characterrewardsviewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp" />
+                    android:layout_height="170dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
