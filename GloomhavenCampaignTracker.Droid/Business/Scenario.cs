@@ -12,14 +12,17 @@ namespace GloomhavenCampaignTracker.Business
 
         private void SetBlockingPartyAchievements()
         {
-            var blockPartyAchInternalNumbers = ScenarioData.BlockingPartyAchievements.Split(',');
-
-            m_blockingPartyAchievements.Clear();
-            foreach (var i in blockPartyAchInternalNumbers)
+            if(ScenarioData.BlockingPartyAchievements != null)
             {
-                if (int.TryParse(i, out int id))
+                var blockPartyAchInternalNumbers = ScenarioData.BlockingPartyAchievements.Split(',');
+
+                m_blockingPartyAchievements.Clear();
+                foreach (var i in blockPartyAchInternalNumbers)
                 {
-                    m_blockingPartyAchievements.Add(id);
+                    if (int.TryParse(i, out int id))
+                    {
+                        m_blockingPartyAchievements.Add(id);
+                    }
                 }
             }
         }

@@ -170,8 +170,16 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
         protected override void Save()
         {
-            _adapter.SaveCharacterRewards();
-            base.Save();
+            if (!_saved)
+            {
+                _saved = true;
+                _adapter.SaveCharacterRewards();
+                base.Save();
+            }
+            else
+            {
+                Toast.MakeText(Context, "Rewards were already saved!", ToastLength.Long).Show();
+            }
         }
     }
 }

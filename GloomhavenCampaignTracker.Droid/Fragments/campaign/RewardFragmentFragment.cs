@@ -17,9 +17,10 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         protected Button _achievementPAButton;
         protected TextView _prospLevelText;
         protected TextView _reputationTextView;
+        protected bool _saved = false;
 
         private int _reputaionModifier = 0;
-        private int _prospertityModifier = 0;
+        private int _prospertityModifier = 0;        
 
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
         {
@@ -164,7 +165,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
 
             GCTContext.CurrentCampaign.Save();
 
-            Activity.Finish();
+            Activity.Finish();           
         }
     }
 }

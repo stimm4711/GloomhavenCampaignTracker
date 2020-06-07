@@ -19,8 +19,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
         private ScenarioRewardsCharacterViewPagerAdapter _adapter;
         private ListView _lstviewScenariosUnlocked;
         private ScenarioListviewtAdapter _listAdapter;
-        private List<int> _unlockedScenarioNumbers;
-        private bool _saved = false;
+        private List<int> _unlockedScenarioNumbers;       
 
         internal static SzenarioRewardsFragment NewInstance(int scenarioId, bool casual)
         {
@@ -234,10 +233,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                     {
                         GCTContext.CurrentCampaign.AddUnlockedScenario(scenarioNumber);
                     }
+
+                    _campaignScenario.Save();
                 }
 
                 _adapter.SaveCharacterRewards();
-                GCTContext.CurrentCampaign.Save();
+               
+                GCTContext.CurrentCampaign.Save();                
 
                 Activity.Finish();
             }

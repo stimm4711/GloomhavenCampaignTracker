@@ -40,7 +40,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             var frag = new CharacterDetailsStatsFragment() { Arguments = new Bundle() };
             frag.Arguments.PutInt(charID, character.Id);
             return frag;
-        }
+        }       
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -63,6 +63,56 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
             }
 
             base.OnCreate(savedInstanceState);
+        }
+
+        public override void OnPause()
+        {
+            base.OnPause();
+            SaveStats();                      
+        }
+
+        internal void SaveStats()
+        {
+            // save level
+            if (!string.IsNullOrEmpty(_levelEditText.Text))
+            {
+                if (int.TryParse(_levelEditText.Text, out int newLevel))
+                {
+                    if (newLevel >= 1 || newLevel <= 9)
+                    {
+                        Character.Level = newLevel;
+                    }
+                }
+            }
+
+            // save xp
+            if (!string.IsNullOrEmpty(_xpEditText.Text))
+            {
+                if (int.TryParse(_xpEditText.Text, out int newXp))
+                {
+                    if (newXp >= 0 || newXp <= 500)
+                    {
+                        Character.Experience = newXp;
+                    }
+                }
+            }
+
+            // save gold
+            if (!string.IsNullOrEmpty(_goldEditText.Text))
+            {
+                if (int.TryParse(_goldEditText.Text, out int newGold))
+                {
+                    if (newGold != Character.Gold && newGold >= 0)
+                    {
+                        Character.Gold = newGold;
+                    }
+                }
+            }
+
+            // save notes
+            Character.Notes = _notes.Text;
+
+            SaveCharacter();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
