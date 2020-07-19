@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 25);
+        public static Version Dbversion { get; } = new Version(1, 4, 26);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -206,10 +206,81 @@ namespace Data
                     AddMissingSawAbilityCard();
                 }
 
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 26)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.26"));
+                    AddJawsOfTheLionCharacters();
+                }
+
+
+
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
 
                 OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished databaseupdates"));
+            }
+        }
+
+        private static void AddJawsOfTheLionCharacters()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                // read from JSON
+                AssetManager assets = Android.App.Application.Context.Assets;
+                var asset = Android.App.Application.Context.Assets.Open("raw_data/CharacterClassesJawsOfTheLionComplete.json");
+                var classesJSON = JSONImporter.LoadJson<CLasses>(asset);
+                
+                var classes = ClassRepository.Get();
+
+                foreach (var classJSON in classesJSON.characterclasses)
+                {
+                    if (classes.Any(x => x.ClassId == classJSON.Classnumber)) continue;
+
+                    var newClass = new DL_Class
+                    {                        
+                        ClassName = classJSON.Classname,
+                        ClassShorty = classJSON.ClassnameShorty,
+                        ClassId = classJSON.Classnumber,
+                        Abilities = new List<DL_ClassAbility>(),
+                        Perks = new List<DL_ClassPerks>(),
+                        ContentOfPack = 3
+                    };
+
+                    foreach (var abilityJSON in classJSON.Abilities)
+                    {
+                        var classAbility = new DL_ClassAbility
+                        {
+                            AbilityName = abilityJSON.abilityName,
+                            DL_Class = newClass,
+                            Level = abilityJSON.level,
+                            ReferenceNumber = abilityJSON.referenceNumber
+                        };
+
+                        newClass.Abilities.Add(classAbility);
+                    }
+
+                    ClassRepository.InsertOrReplace(newClass);
+
+                    foreach (var perkJSON in classJSON.Perks)
+                    {
+                        var classPerk = new DL_ClassPerk()
+                        {
+                            Perktext = perkJSON.Perktext,
+                            ClassId = newClass.ClassId-1,
+                            Checkboxnumber = perkJSON.Checkboxnumber
+                        };
+
+                        ClassPerkRepository.InsertOrReplace(classPerk);
+                    }                   
+                }
+
+                Connection.Commit();
+            }
+            catch (Exception ex)
+            {
+                Connection.Rollback();
+                throw;
             }
         }
 

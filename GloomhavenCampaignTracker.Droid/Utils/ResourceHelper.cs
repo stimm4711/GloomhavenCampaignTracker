@@ -6,15 +6,15 @@ namespace GloomhavenCampaignTracker.Droid
     {
         public static int GetClassIconRessourceId(int classId)
         {
-            // classid index between 0 and 18
-            classId = Math.Max(Math.Min(classId, 18), 0);
+            // classid index between 0 and 22
+            classId = Math.Max(Math.Min(classId, 22), 0);
             return m_classIcons[classId];
         }
 
         public static int GetClassIconWhiteSmallRessourceId(int classId)
         {
-            // classid index between 0 and 18
-            classId = Math.Max(Math.Min(classId, 18), 0);
+            // classid index between 0 and 22
+            classId = Math.Max(Math.Min(classId, 22), 0);
             return m_classIconsWhiteSmall[classId];
         }
 
@@ -44,7 +44,11 @@ namespace GloomhavenCampaignTracker.Droid
             Resource.Drawable.ic_class16icon,
             Resource.Drawable.ic_class17icon,
             Resource.Drawable.ic_class18icon_b,
-            Resource.Drawable.ic_divinericon
+            Resource.Drawable.ic_divinericon,
+            Resource.Drawable.ic_class20icon,
+            Resource.Drawable.ic_class21icon,
+            Resource.Drawable.ic_class22icon,
+            Resource.Drawable.ic_class23icon
         };
 
         private static readonly int[] m_classIconsWhiteSmall =
@@ -67,7 +71,11 @@ namespace GloomhavenCampaignTracker.Droid
             Resource.Drawable.ic_class16icon_white_48,
             Resource.Drawable.ic_class17icon_white_48,
             Resource.Drawable.ic_class18icon_white,
-            Resource.Drawable.ic_diviner_white_48
+            Resource.Drawable.ic_diviner_white_48,
+            Resource.Drawable.ic_class20icon_white_48,
+            Resource.Drawable.ic_class21icon_white_48,
+            Resource.Drawable.ic_class22icon_white_48,
+            Resource.Drawable.ic_class23icon_white_48
 
         };
 

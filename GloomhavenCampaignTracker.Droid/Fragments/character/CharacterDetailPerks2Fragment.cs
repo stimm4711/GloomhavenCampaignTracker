@@ -10,6 +10,7 @@ using GloomhavenCampaignTracker.Shared.Data.Entities;
 using System;
 using System.Collections.Generic;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using System.Linq;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.character
 {

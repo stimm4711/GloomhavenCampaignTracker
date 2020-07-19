@@ -81,6 +81,11 @@ namespace GloomhavenCampaignTracker.Droid
                 { "[C17]", Resource.Drawable.ic_class17icon_white_48 },
                 { "[C18]", Resource.Drawable.ic_class18icon_white },
                 { "[C19]", Resource.Drawable.ic_diviner_white_48 },
+                { "[C20]", Resource.Drawable.ic_class20icon_white_48 },
+                { "[C21]", Resource.Drawable.ic_class21icon_white_48 },
+                { "[C22]", Resource.Drawable.ic_class22icon_white_48 },
+                { "[C23]", Resource.Drawable.ic_class23icon_white_48 },
+
 
                 { "[PROSP]", Resource.Drawable.prosperity }
             };

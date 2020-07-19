@@ -1,0 +1,857 @@
+{
+	"characterclasses":[
+		{
+			"Classname_long":"Inox Hatchet",
+			"Classnumber":20,
+			"Classname":"Hatchet",
+			"ClassnameShorty":"HA",
+			"Handsize":"10",
+			"Hitpoints":2,
+			"ID_Pack":3,
+			"Abilities":[  
+				{
+					"AbilityName": "The Favorite",
+					"Level": 1,
+					"ReferenceNumber": 10
+				},
+				{
+					"AbilityName": "Retrieval",
+					"Level": 1,
+					"ReferenceNumber": 11
+				},
+				{
+					"AbilityName": "Close Cuts",
+					"Level": 1,
+					"ReferenceNumber": 12
+				},
+				{
+					"AbilityName": "Center Mass",
+					"Level": 1,
+					"ReferenceNumber": 13
+				},
+				{
+					"AbilityName": "Stopping Power",
+					"Level": 1,
+					"ReferenceNumber": 14
+				},
+				{
+					"AbilityName": "Double Throw",
+					"Level": 1,
+					"ReferenceNumber": 15
+				},
+				{
+					"AbilityName": "Disorienting Barrage",
+					"Level": 1,
+					"ReferenceNumber": 16
+				},
+				{
+					"AbilityName": "Power Pitch",
+					"Level": 1,
+					"ReferenceNumber": 17
+				},
+				{
+					"AbilityName": "Follow Through",
+					"Level": 1,
+					"ReferenceNumber": 18 
+				},
+				{
+					"AbilityName": "Second Wind",
+					"Level": 1,
+					"ReferenceNumber": 19
+				},
+				{
+					"AbilityName": "Care Package",
+					"Level": 1,
+					"ReferenceNumber": 20
+				},
+				{
+					"AbilityName": "Extra Lift",
+					"Level": 1,
+					"ReferenceNumber": 21
+				},
+				{
+					"AbilityName": "Fancy Hat",
+					"Level": 1,
+					"ReferenceNumber": 22
+				},
+				{
+					"AbilityName": "Repeat Shot",
+					"Level": 2,
+					"ReferenceNumber": 23
+				},
+				{
+					"AbilityName": "Ricochet",
+					"Level": 2,
+					"ReferenceNumber": 24
+				},
+				{
+					"AbilityName": "Fearsome Efficiency",
+					"Level": 3,
+					"ReferenceNumber": 25
+				},
+				{
+					"AbilityName": "Sharpened Blades",
+					"Level": 3,
+					"ReferenceNumber": 26
+				},
+				{
+					"AbilityName": "Ripped from the Flesh",
+					"Level": 4,
+					"ReferenceNumber": 27
+				},
+				{
+					"AbilityName": "Overwatch",
+					"Level": 4,
+					"ReferenceNumber": 28
+				},
+				{
+					"AbilityName": "The New Favorite",
+					"Level": 5,
+					"ReferenceNumber": 30
+				},
+				{
+					"AbilityName": "Bombardment",
+					"Level": 6,
+					"ReferenceNumber": 31
+				},
+				{
+					"AbilityName": "Quick Turnaround",
+					"Level": 6,
+					"ReferenceNumber": 32
+				},
+				{
+					"AbilityName": "Excessive Force",
+					"Level": 7,
+					"ReferenceNumber": 33
+				},
+				{
+					"AbilityName": "Brutalize",
+					"Level": 7,
+					"ReferenceNumber": 34
+				},
+				{
+					"AbilityName": "Shrapnel",
+					"Level": 8,
+					"ReferenceNumber": 35
+				},
+				{
+					"AbilityName": "Camaraderie",
+					"Level": 8,
+					"ReferenceNumber": 36
+				},
+				{
+					"AbilityName": "Executioners Axe",
+					"Level": 9,
+					"ReferenceNumber": 37
+				},
+				{
+					"AbilityName": "Heart Seeker",
+					"Level": 9,
+					"ReferenceNumber": 38
+				}
+			],
+			"Perks":[
+				{
+					"Checkboxnumber": 1,
+					"Perktext": "Remove two [-1] cards"
+				},
+				{
+					"Checkboxnumber": 2,
+					"Perktext": "Remove two [-1] cards"
+				},
+				{
+					"Checkboxnumber": 3,
+					"Perktext": "Replace one [+0] card with one [+2] MUDDLE [M] card"
+				},
+				{
+					"Checkboxnumber": 4,
+					"Perktext": "Replace one [+0] card with one [+1] POISON [PO] card"
+				},
+				{
+					"Checkboxnumber": 5,
+					"Perktext": "Replace one [+0] card with one [+1] WOUND [W] card"
+				},
+				{
+					"Checkboxnumber": 6,
+					"Perktext": "Replace one [+0] card with one [+1] IMMOBILIZE [I] card"
+				},
+				{
+					"Checkboxnumber": 7,
+					"Perktext": "Replace one [+0] card with one [+1] PUSH [PU] 2 card"
+				},
+				{
+					"Checkboxnumber": 8,
+					"Perktext": "Replace one [+0] card with one [+0] STUN [S] card"
+				},
+				{
+					"Checkboxnumber": 9,
+					"Perktext": "Replace one [+1] card with one [+1] STUN [S] card"
+				},
+				{
+					"Checkboxnumber": 10,
+					"Perktext": "Add one [+2] [WIND] card"
+				},
+				{
+					"Checkboxnumber": 11,
+					"Perktext": "Add one [+2] [WIND] card"
+				},
+				{
+					"Checkboxnumber": 12,
+					"Perktext": "Add one [+2] [WIND] card"
+				},
+				{
+					"Checkboxnumber": 13,
+					"Perktext": "Replace one [+1] with one [+3] card"
+				},
+				{
+					"Checkboxnumber": 14,
+					"Perktext": "Replace one [+1] with one [+3] card"
+				},
+				{
+					"Checkboxnumber": 15,
+					"Perktext": "Replace one [+1] with one [+3] card"
+				}
+			]
+		},
+		{
+			"Classname_long":"Quatryl Demolitionist",
+			"Classnumber":21,
+			"Classname":"Demolitionist",
+			"ClassnameShorty":"DE",
+			"Handsize":"9",
+			"Hitpoints":2,
+			"ID_Pack":3,
+			"Abilities":[  
+				{
+					"AbilityName": "Windup",
+					"Level": 1,
+					"ReferenceNumber": 82
+				},
+				{
+					"AbilityName": "Crushing Weight",
+					"Level": 1,
+					"ReferenceNumber": 83
+				},
+				{
+					"AbilityName": "Knock Out the Support",
+					"Level": 1,
+					"ReferenceNumber": 84
+				},
+				{
+					"AbilityName": "Explode",
+					"Level": 1,
+					"ReferenceNumber": 85
+				},
+				{
+					"AbilityName": "Implode",
+					"Level": 1,
+					"ReferenceNumber": 86
+				},
+				{
+					"AbilityName": "Piston Punch",
+					"Level": 1,
+					"ReferenceNumber": 87
+				},
+				{
+					"AbilityName": "Explosive Blitz",
+					"Level": 1,
+					"ReferenceNumber": 88
+				},
+				{
+					"AbilityName": "The Big One",
+					"Level": 1,
+					"ReferenceNumber": 89
+				},
+				{
+					"AbilityName": "One-Two Punch",
+					"Level": 1,
+					"ReferenceNumber": 90
+				},
+				{
+					"AbilityName": "Rubble",
+					"Level": 1,
+					"ReferenceNumber": 91
+				},
+				{
+					"AbilityName": "Level",
+					"Level": 1,
+					"ReferenceNumber": 92
+				},
+				{
+					"AbilityName": "Lobbed Charge",
+					"Level": 1,
+					"ReferenceNumber": 93
+				},
+				{
+					"AbilityName": "Robotic Enhancement",
+					"Level": 2,
+					"ReferenceNumber": 94
+				},
+				{
+					"AbilityName": "Crash Protocol",
+					"Level": 2,
+					"ReferenceNumber": 95
+				},
+				{
+					"AbilityName": "Fire Bombs",
+					"Level": 3,
+					"ReferenceNumber": 96
+				},
+				{
+					"AbilityName": "Nowhere to Run",
+					"Level": 3,
+					"ReferenceNumber": 97
+				},
+				{
+					"AbilityName": "Remote Detonation",
+					"Level": 4,
+					"ReferenceNumber": 98
+				},
+				{
+					"AbilityName": "Extra Fuel",
+					"Level": 4,
+					"ReferenceNumber": 99
+				},
+				{
+					"AbilityName": "Mech Suit",
+					"Level": 5,
+					"ReferenceNumber": 101
+				},
+				{
+					"AbilityName": "Dust Cloud",
+					"Level": 6,
+					"ReferenceNumber": 102
+				},
+				{
+					"AbilityName": "Drill Fist",
+					"Level": 6,
+					"ReferenceNumber": 103
+				},
+				{
+					"AbilityName": "Micro Missiles",
+					"Level": 7,
+					"ReferenceNumber": 104
+				},
+				{
+					"AbilityName": "Insult to Injury",
+					"Level": 7,
+					"ReferenceNumber": 105
+				},
+				{
+					"AbilityName": "Gut Punch",
+					"Level": 8,
+					"ReferenceNumber": 106
+				},
+				{
+					"AbilityName": "The Bigger One",
+					"Level": 8,
+					"ReferenceNumber": 107
+				},
+				{
+					"AbilityName": "Collateral Damage",
+					"Level": 9,
+					"ReferenceNumber": 108
+				},
+				{
+					"AbilityName": "Wholesale Destruction",
+					"Level": 9,
+					"ReferenceNumber": 109
+				}
+			],
+			"Perks":[
+				{
+					"Checkboxnumber": 1,
+					"Perktext": "Remove four [+0] cards"
+				},
+				{
+					"Checkboxnumber": 2,
+					"Perktext": "Remove two [-1] cards"
+				},
+				{
+					"Checkboxnumber": 3,
+					"Perktext": "Remove two [-1] cards"
+				},
+				{
+					"Checkboxnumber": 4,
+					"Perktext": "Remove one [-2] card and one [+1] card"
+				},
+				{
+					"Checkboxnumber": 5,
+					"Perktext": "Replace one [+0] card with one [+2] MUDDLE [M] card"
+				},
+				{
+					"Checkboxnumber": 6,
+					"Perktext": "Replace one [+0] card with one [+2] MUDDLE [M] card"
+				},
+				{
+					"Checkboxnumber": 7,
+					"Perktext": "Replace one [-1] card with one [+0] POISON [PO] card"
+				},
+				{
+					"Checkboxnumber": 8,
+					"Perktext": "Add one [+2] card"
+				},
+				{
+					"Checkboxnumber": 9,
+					"Perktext": "Add one [+2] card"
+				},
+				{
+					"Checkboxnumber": 10,
+					"Perktext": "Replace one [+1] card with one [+2] [EARTH] card"
+				},
+				{
+					"Checkboxnumber": 11,
+					"Perktext": "Replace one [+1] card with one [+2] [EARTH] card"
+				},
+				{
+					"Checkboxnumber": 12,
+					"Perktext": "Replace one [+1] card with one [+2] [FIRE] card"
+				},
+				{
+					"Checkboxnumber": 13,
+					"Perktext": "Replace one [+1] card with one [+2] [FIRE] card"
+				},
+				{
+					"Checkboxnumber": 14,
+					"Perktext": "Add one [+0] All adjacent enemies suffer 1 damage card"
+				},
+				{
+					"Checkboxnumber": 15,
+					"Perktext": "Add one [+0] All adjacent enemies suffer 1 damage card"
+				}
+			]
+		},		
+		{
+			"Classname_long":"Human Voidwarden",
+			"Classnumber":22,
+			"Classname":"Voidwarden",
+			"ClassnameShorty":"VW",
+			"Handsize":"11",
+			"Hitpoints":1,
+			"ID_Pack":3,
+			"Abilities":[  
+				{
+					"AbilityName": "Signs of the Void",
+					"Level": 1,
+					"ReferenceNumber": 151
+				},
+				{
+					"AbilityName": "Close to the Abyss",
+					"Level": 1,
+					"ReferenceNumber": 152
+				},
+				{
+					"AbilityName": "Gift of the Void",
+					"Level": 1,
+					"ReferenceNumber": 153
+				},
+				{
+					"AbilityName": "Black Boon",
+					"Level": 1,
+					"ReferenceNumber": 154
+				},
+				{
+					"AbilityName": "Freeze the Soul",
+					"Level": 1,
+					"ReferenceNumber": 155
+				},
+				{
+					"AbilityName": "Wicked Scratch",
+					"Level": 1,
+					"ReferenceNumber": 156
+				},
+				{
+					"AbilityName": "Turn Out the Lights",
+					"Level": 1,
+					"ReferenceNumber": 157
+				},
+				{
+					"AbilityName": "Lure of the Void",
+					"Level": 1,
+					"ReferenceNumber": 158
+				},
+				{
+					"AbilityName": "Grasp of Doom",
+					"Level": 1,
+					"ReferenceNumber": 159
+				},
+				{
+					"AbilityName": "Master Influence",
+					"Level": 1,
+					"ReferenceNumber": 160
+				},
+				{
+					"AbilityName": "Suggestion",
+					"Level": 1,
+					"ReferenceNumber": 161
+				},
+				{
+					"AbilityName": "Resigned Frenzy",
+					"Level": 1,
+					"ReferenceNumber": 162
+				},
+				{
+					"AbilityName": "Cold Embrace",
+					"Level": 1,
+					"ReferenceNumber": 163
+				},
+				{
+					"AbilityName": "Sap Warmth",
+					"Level": 1,
+					"ReferenceNumber": 164
+				},
+				{
+					"AbilityName": "Give and Take",
+					"Level": 2,
+					"ReferenceNumber": 165
+				},
+				{
+					"AbilityName": "Crushing Cold",
+					"Level": 2,
+					"ReferenceNumber": 166
+				},
+				{
+					"AbilityName": "Taunting Fate",
+					"Level": 3,
+					"ReferenceNumber": 167
+				},
+				{
+					"AbilityName": "Commanding Presence",
+					"Level": 3,
+					"ReferenceNumber": 168
+				},
+				{
+					"AbilityName": "Savage Instinct",
+					"Level": 4,
+					"ReferenceNumber": 169
+				},
+				{
+					"AbilityName": "The last Journey",
+					"Level": 4,
+					"ReferenceNumber": 170
+				},
+				{
+					"AbilityName": "Stand Fast",
+					"Level": 5,
+					"ReferenceNumber": 172
+				},
+				{
+					"AbilityName": "Withering Conviction",
+					"Level": 6,
+					"ReferenceNumber": 173
+				},
+				{
+					"AbilityName": "Surge of Power",
+					"Level": 6,
+					"ReferenceNumber": 174
+				},
+				{
+					"AbilityName": "Hateful Blast",
+					"Level": 7,
+					"ReferenceNumber": 175
+				},
+				{
+					"AbilityName": "Spirit Hunger",
+					"Level": 7,
+					"ReferenceNumber": 176
+				},
+				{
+					"AbilityName": "Lull into Oblivion",
+					"Level": 8,
+					"ReferenceNumber": 177
+				},
+				{
+					"AbilityName": "Empowered Link",
+					"Level": 8,
+					"ReferenceNumber": 178
+				},
+				{
+					"AbilityName": "Eye of the Void",
+					"Level": 9,
+					"ReferenceNumber": 179
+				},
+				{
+					"AbilityName": "Possessed by Fate",
+					"Level": 9,
+					"ReferenceNumber": 180
+				}
+			],
+			"Perks":[
+				{
+					"Checkboxnumber": 1,
+					"Perktext": "Remove two [-1] cards"
+				},
+				{
+					"Checkboxnumber": 2,
+					"Perktext": "Remove one [-2] card"
+				},
+				{
+					"Checkboxnumber": 3,
+					"Perktext": "Replace one [+0] card with one [+1] [DARK] card"
+				},
+				{
+					"Checkboxnumber": 4,
+					"Perktext": "Replace one [+0] card with one [+1] [DARK] card"
+				},
+				{
+					"Checkboxnumber": 5,
+					"Perktext": "Replace one [+0] card with one [+1] [FROST] card"
+				},
+				{
+					"Checkboxnumber": 6,
+					"Perktext": "Replace one [+0] card with one [+1] [FROST] card"
+				},
+				{
+					"Checkboxnumber": 7,
+					"Perktext": "Replace one [-1] with one [+0] Heal [H] 1 (Ally) card"
+				},
+				{
+					"Checkboxnumber": 8,
+					"Perktext": "Replace one [-1] with one [+0] Heal [H] 1 (Ally) card"
+				},
+				{
+					"Checkboxnumber": 9,
+					"Perktext": "Add one [+1] Heal [H] 1 (Ally) card"
+				},
+				{
+					"Checkboxnumber": 10,
+					"Perktext": "Add one [+1] Heal [H] 1 (Ally) card"
+				},
+				{
+					"Checkboxnumber": 11,
+					"Perktext": "Add one [+1] Heal [H] 1 (Ally) card"
+				},
+				{
+					"Checkboxnumber": 12,
+					"Perktext": "Add one [+1] POISON [PO] card"
+				},
+				{
+					"Checkboxnumber": 13,
+					"Perktext": "Add one [+3] card"
+				},
+				{
+					"Checkboxnumber": 14,
+					"Perktext": "Add one [+1] CURSE [C] card"
+				},
+				{
+					"Checkboxnumber": 15,
+					"Perktext": "Add one [+1] CURSE [C] card"
+				}
+			]
+		},
+		{
+			"Classname_long":"Valrath Red Guard",
+			"Classnumber":23,
+			"Classname":"Red Guard",
+			"ClassnameShorty":"RG",
+			"Handsize":"10",
+			"Hitpoints":3,
+			"ID_Pack":3,
+			"Abilities":[  
+				{
+					"AbilityName": "Swift Strength",
+					"Level": 1,
+					"ReferenceNumber": 224
+				},
+				{
+					"AbilityName": "Healing Sands",
+					"Level": 1,
+					"ReferenceNumber": 225
+				},
+				{
+					"AbilityName": "Shield Spikes",
+					"Level": 1,
+					"ReferenceNumber": 226
+				},
+				{
+					"AbilityName": "Flaming Sickle",
+					"Level": 1,
+					"ReferenceNumber": 227
+				},
+				{
+					"AbilityName": "Blinding Sickle",
+					"Level": 1,
+					"ReferenceNumber": 228
+				},
+				{
+					"AbilityName": "Twirling Stabs",
+					"Level": 1,
+					"ReferenceNumber": 229
+				},
+				{
+					"AbilityName": "Flame Shroud",
+					"Level": 1,
+					"ReferenceNumber": 230
+				},
+				{
+					"AbilityName": "Shocking Advance",
+					"Level": 1,
+					"ReferenceNumber": 231
+				},
+				{
+					"AbilityName": "Shield of the Desert",
+					"Level": 1,
+					"ReferenceNumber": 232
+				},
+				{
+					"AbilityName": "Desert Night",
+					"Level": 1,
+					"ReferenceNumber": 233
+				},
+				{
+					"AbilityName": "Warrior of the Sun",
+					"Level": 1,
+					"ReferenceNumber": 234
+				},
+				{
+					"AbilityName": "Blade Dance",
+					"Level": 1,
+					"ReferenceNumber": 235
+				},
+				{
+					"AbilityName": "Precision Strike",
+					"Level": 1,
+					"ReferenceNumber": 236
+				},
+				{
+					"AbilityName": "Harvest Sickle",
+					"Level": 2,
+					"ReferenceNumber": 237
+				},
+				{
+					"AbilityName": "Barbaric Instincts",
+					"Level": 2,
+					"ReferenceNumber": 238
+				},
+				{
+					"AbilityName": "Warmth of the Sun",
+					"Level": 3,
+					"ReferenceNumber": 239
+				},
+				{
+					"AbilityName": "Strangling Chain",
+					"Level": 3,
+					"ReferenceNumber": 240
+				},
+				{
+					"AbilityName": "Radiant Sickle",
+					"Level": 4,
+					"ReferenceNumber": 241
+				},
+				{
+					"AbilityName": "Burn Away the Dark",
+					"Level": 4,
+					"ReferenceNumber": 242
+				},
+				{
+					"AbilityName": "Sand Devil",
+					"Level": 5,
+					"ReferenceNumber": 244
+				},
+				{
+					"AbilityName": "Fierce Brilliance",
+					"Level": 6,
+					"ReferenceNumber": 245
+				},
+				{
+					"AbilityName": "Flying Sickle",
+					"Level": 6,
+					"ReferenceNumber": 246
+				},
+				{
+					"AbilityName": "Vicious Ballet",
+					"Level": 7,
+					"ReferenceNumber": 247
+				},
+				{
+					"AbilityName": "Horns of the Beast",
+					"Level": 7,
+					"ReferenceNumber": 248
+				},
+				{
+					"AbilityName": "Prismatic Sickle",
+					"Level": 8,
+					"ReferenceNumber": 249
+				},
+				{
+					"AbilityName": "No Fear",
+					"Level": 8,
+					"ReferenceNumber": 250
+				},
+				{
+					"AbilityName": "Soaring Shield",
+					"Level": 9,
+					"ReferenceNumber": 251
+				},
+				{
+					"AbilityName": "Honorable Fury",
+					"Level": 9,
+					"ReferenceNumber": 252
+				}
+			],
+			"Perks":[
+				{
+					"Checkboxnumber": 1,
+					"Perktext": "Remove four [+0] cards"
+				},
+				{
+					"Checkboxnumber": 2,
+					"Perktext": "Remove two [-1] cards"
+				},
+				{
+					"Checkboxnumber": 3,
+					"Perktext": "Remove one [-2] card and one [+1] card"
+				},
+				{
+					"Checkboxnumber": 4,
+					"Perktext": "Replace one [-1] card with one [+1] card"
+				},
+				{
+					"Checkboxnumber": 5,
+					"Perktext": "Replace one [-1] card with one [+1] card"
+				},
+				{
+					"Checkboxnumber": 6,
+					"Perktext": "Replace one [+1] card with one [+2] [FIRE] card"
+				},
+				{
+					"Checkboxnumber": 7,
+					"Perktext": "Replace one [+1] card with one [+2] [FIRE] card"
+				},
+				{
+					"Checkboxnumber": 8,
+					"Perktext": "Replace one [+1] card with one [+2] [LIGHT] card"
+				},
+				{
+					"Checkboxnumber": 9,
+					"Perktext": "Replace one [+1] card with one [+2] [LIGHT] card"
+				},
+				{
+					"Checkboxnumber": 10,
+					"Perktext": "Add one [+2] [FIRE] [LIGHT] card"
+				},
+				{
+					"Checkboxnumber": 11,
+					"Perktext": "Add one [+2] [FIRE] [LIGHT] card"
+				},
+				{
+					"Checkboxnumber": 12,
+					"Perktext": "Add one [+1] Shield [SH] 1 card"
+				},
+				{
+					"Checkboxnumber": 13,
+					"Perktext": "Add one [+1] Shield [SH] 1 card"
+				},
+				{
+					"Checkboxnumber": 14,
+					"Perktext": "Replace one [+0] card with one [+1] IMMOBILIZE [I] card"
+				},
+				{
+					"Checkboxnumber": 15,
+					"Perktext": "Replace one [+0] card with one [+1] WOUND [W] card"
+				}
+			]
+		}
+	] 
+}
+	

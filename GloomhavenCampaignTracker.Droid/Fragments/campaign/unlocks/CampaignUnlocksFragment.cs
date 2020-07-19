@@ -83,12 +83,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.unlocks
             if (!_isDualPane)
             {
                 ViewGroup.LayoutParams layoutParams = _grid.LayoutParameters;
-                var rows = 3;
-
-                if (GCTContext.Settings.IsFCActivated && GCTContext.CurrentCampaign.CampaignData.CampaignUnlocks.HiddenClassUnlocked)
-                {
-                    rows = 4;
-                }
+                var rows = 4;
 
                 var dp = 50;
                 int pixel = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dp, Context.Resources.DisplayMetrics);

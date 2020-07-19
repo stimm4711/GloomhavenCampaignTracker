@@ -26,7 +26,7 @@
 				android:textColor="@color/gloom_primaryText"/>
 			  <GridView
 				android:layout_width="match_parent"
-				android:layout_height="210dp"
+				android:layout_height="280dp"
 				android:verticalSpacing="2dp"
 				android:horizontalSpacing="2dp"
 				android:stretchMode="spacingWidthUniform"              
