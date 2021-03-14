@@ -117,7 +117,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.world
                         if (achType.InternalNumber == (int)GlobalAchievementsInternalNumbers.EndOfGloom)
                         {
                             new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
-                                .SetMessage("Congratulatios! You have finished the campaign. Now you can play the expansion Forgotten Circles. Go to Settings to activate the content of the expansion.")
+                                .SetMessage("Congratulatios! You have finished the campaign.")
                                 .SetTitle("Campaign Finished!")
                                 .SetPositiveButton(Resources.GetString(Resource.String.OK), (s, a) => { })
                                 .Show();

@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 27);
+        public static Version Dbversion { get; } = new Version(1, 4, 28);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -217,6 +217,12 @@ namespace Data
                     OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.27"));
                     FixRedGuardPerk();
                 }
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 28)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.27"));
+                    AddFCRift12PartyAchievementAndScenario();
+                }                
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
@@ -936,6 +942,7 @@ namespace Data
             SavePartyAchievement(37, "Custodians", paments, contentOfPack: 2);
             SavePartyAchievement(38, "A Strongbox", paments, contentOfPack: 2);
             SavePartyAchievement(39, "Opportunists", paments, contentOfPack: 2);
+            SavePartyAchievement(40, "Beauty in Freedom", paments, contentOfPack: 2);
         }
 
         internal static void SavePartyAchievement(int number, string name, List<DL_PartyAchievement> existingPAAchievements = null, int contentOfPack = 1)
@@ -991,6 +998,7 @@ namespace Data
             SaveScenario("The Lost Thread", 113,  contentOfPack: 2, existingScenarios: scenarios);
             SaveScenario("Ink Not Yet Dry", 114,  unlockedScenarioIdsCommaSeparated: "115", contentOfPack: 2, existingScenarios: scenarios);
             SaveScenario("Future Uncertain", 115,  contentOfPack: 2, existingScenarios: scenarios);
+            SaveScenario("Tower to the Stars", 117, contentOfPack: 2, existingScenarios: scenarios);
         }
 
         internal static void SaveScenario(string name, int scenarionumber,
