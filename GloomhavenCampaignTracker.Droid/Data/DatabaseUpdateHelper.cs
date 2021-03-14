@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 28);
+        public static Version Dbversion { get; } = new Version(1, 4, 29);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -220,14 +220,51 @@ namespace Data
 
                 if ((VersionTime)old.CompareTo(new Version(1, 4, 28)) == VersionTime.Earlier)
                 {
-                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.27"));
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.28"));
                     AddFCRift12PartyAchievementAndScenario();
-                }                
+                }
+
+
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 29)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.29"));
+                    FixedTreasureOfScenario25();
+                }
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
 
                 OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished databaseupdates"));
+            }
+        }
+
+        private static void FixedTreasureOfScenario25()
+        {
+            var scenario25Treasures = ScenarioTreasuresRepository.Get().FirstOrDefault(x => x.Scenario.Scenarionumber == 25 && x.TreasureNumber == 54);
+            
+            if(scenario25Treasures != null)
+            {
+                var campaignScenariosWithwrongTreasure = CampaignScenarioTreasureRepository.Get().Where(x => x.ScenarioTreasure_ID == scenario25Treasures.Id);
+
+                var newTreasure = new DL_ScenarioTreasure
+                {
+                    Scenario = scenario25Treasures.Scenario,
+                    Scenario_ID = scenario25Treasures.Scenario_ID,
+                    TreasureContent = "",
+                    TreasureNumber = 58
+                };                               
+
+                ScenarioTreasuresRepository.Delete(scenario25Treasures);
+
+                ScenarioTreasuresRepository.InsertOrReplace(newTreasure);
+
+                foreach (var campscenarioTreasure in campaignScenariosWithwrongTreasure)
+                {
+                    campscenarioTreasure.ScenarioTreasure_ID = newTreasure.Id;
+                    campscenarioTreasure.ScenarioTreasure = newTreasure;
+
+                    CampaignScenarioTreasureRepository.InsertOrReplace(campscenarioTreasure);
+                }
             }
         }
 
