@@ -18,7 +18,8 @@
             android:layout_alignParentLeft="true"
             android:paddingLeft="8dp"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="asdlaskdskiduvcns"/>
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"

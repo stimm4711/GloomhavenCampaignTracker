@@ -20,9 +20,11 @@
             android:textStyle="bold"
             android:layout_alignParentLeft="true"
             android:text="123"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
-            android:id="@+id/scenariViewItem_nameTextView"
+            android:id="@+id/scenariViewItem_nameTextView"            
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"

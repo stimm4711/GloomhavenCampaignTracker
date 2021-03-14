@@ -65,10 +65,10 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
                 OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Finished creating database"));
             }
             else
-            {
-                
+            {                
                 DatabaseUpdateHelper.CheckIfAllPerksExists();
                 DatabaseUpdateHelper.CheckIfPASunnblessedExists();
+                DatabaseUpdateHelper.CheckJawsOfTheLionClasses();
                 DatabaseUpdateHelper.CheckForUpdates(currentDbVersion);               
             }
         }
@@ -396,6 +396,8 @@ namespace GloomhavenCampaignTracker.Shared.Data.DatabaseAccess
             FillClasses();
             FillClassAbilities();
             FillScenarioTreasures();
+            DatabaseUpdateHelper.AddJawsOfTheLionCharacters();
+
             DatabaseUpdateHelper.CheckIfAllPerksExists();
         }
 

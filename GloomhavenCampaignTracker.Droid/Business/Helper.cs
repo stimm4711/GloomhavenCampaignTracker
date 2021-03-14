@@ -100,10 +100,10 @@ namespace GloomhavenCampaignTracker.Business
         {
             RegionIdToShortyAndName.Add(1, new Tuple<string, string>("GLO", "Gloomhaven"));
             RegionIdToShortyAndName.Add(2, new Tuple<string, string>("DF", "Dagger Forest"));
-            RegionIdToShortyAndName.Add(3, new Tuple<string, string>("CM", "Copperneck Mount."));
+            RegionIdToShortyAndName.Add(3, new Tuple<string, string>("CM", "Copperneck Mount"));
             RegionIdToShortyAndName.Add(4, new Tuple<string, string>("LS", "Lingering Swamp"));
             RegionIdToShortyAndName.Add(5, new Tuple<string, string>("CW", "Corpsewood"));
-            RegionIdToShortyAndName.Add(6, new Tuple<string, string>("WM", "Watcher Mount."));
+            RegionIdToShortyAndName.Add(6, new Tuple<string, string>("WM", "Watcher Mount"));
             RegionIdToShortyAndName.Add(7, new Tuple<string, string>("MS", "Misty Sea"));
 
         }
@@ -423,6 +423,9 @@ namespace GloomhavenCampaignTracker.Business
         /// <returns></returns>
         internal static string GetClassAbilityURL(string classShorty, string abilityname)
         {
+            if (classShorty == "DR" && GCTContext.Settings.IsUseDRv2) classShorty = "DR_v2";
+            if (classShorty == "BS" && GCTContext.Settings.IsUseBSv2) classShorty = "BS_v2";
+
             return $"{baseimageURL}/character-ability-cards/{classShorty}/{abilityname}.png";
         }
 

@@ -16,6 +16,8 @@ namespace GloomhavenCampaignTracker.Droid
         private const string _filterRetired = "FilterRetired";
         private const string _lastloadedcampaign = "lastloadedcampaign";
         private const string _username = "username";
+        private const string _useDRv2 = "useDRv2";
+        private const string _useBSv2 = "useBSv2";
 
         private bool isShowItems;
         private bool isShowPq;
@@ -26,6 +28,8 @@ namespace GloomhavenCampaignTracker.Droid
         private bool isFilterRetired;
         private int lastloadedcampaign;
         private string username;
+        private bool isUseBSv2;
+        private bool isUseDRv2;
 
         public Settings()
         {
@@ -39,6 +43,26 @@ namespace GloomhavenCampaignTracker.Droid
             {
                 isShowItems = value;
                 SetSettingBoolean(_showItemnames, value);
+            }
+        }
+
+        public bool IsUseBSv2
+        {
+            get => isUseBSv2;
+            set
+            {
+                isUseBSv2 = value;
+                SetSettingBoolean(_useBSv2, value);
+            }
+        }
+
+        public bool IsUseDRv2
+        {
+            get => isUseDRv2;
+            set
+            {
+                isUseDRv2 = value;
+                SetSettingBoolean(_useDRv2, value);
             }
         }
 
@@ -149,6 +173,8 @@ namespace GloomhavenCampaignTracker.Droid
             IsFilterRetired = prefs.GetBoolean(_filterRetired, true);
             LastLoadedCampaign = prefs.GetInt(_lastloadedcampaign, -1);
             Username = prefs.GetString(_username, "");
+            IsUseBSv2 = prefs.GetBoolean(_useBSv2, false);
+            IsUseDRv2 = prefs.GetBoolean(_useDRv2, false);
         }
 
         public void SetSettingBoolean(string settingname, bool value)

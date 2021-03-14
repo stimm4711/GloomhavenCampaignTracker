@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 26);
+        public static Version Dbversion { get; } = new Version(1, 4, 27);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -212,7 +212,11 @@ namespace Data
                     AddJawsOfTheLionCharacters();
                 }
 
-
+                if ((VersionTime)old.CompareTo(new Version(1, 4, 27)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.27"));
+                    FixRedGuardPerk();
+                }
 
                 currentDbVersion.Value = Dbversion.ToString();
                 GloomhavenSettingsRepository.InsertOrReplace(currentDbVersion);
@@ -221,7 +225,43 @@ namespace Data
             }
         }
 
-        private static void AddJawsOfTheLionCharacters()
+        internal static void CheckJawsOfTheLionClasses()
+        {
+            var classes = ClassRepository.Get(recursive: false);
+
+            if (classes.Count < 23)
+            {
+                var charactersJaws = CharacterRepository.Get(recursive: false).Where(x => !classes.Any(y=>y.ClassId == x.ClassId)) ;
+
+                AddJawsOfTheLionCharacters();
+
+                foreach(var charJaw in charactersJaws)
+                {
+                    var charClass = ClassRepository.Get().FirstOrDefault(x => x.ClassId == charJaw.ClassId);
+
+                    if (charClass != null)
+                    {
+                        charJaw.DL_Class = charClass;
+                        charJaw.ID_Class = charClass.Id;
+                        var classAbilities = DataServiceCollection.ClassAbilityDataService.GetSelectableAbilities(charJaw.ID_Class, charJaw.Level);
+                        foreach (var ability in classAbilities)
+                        {
+                            charJaw.CharacterAbilities.Add(new DL_CharacterAbility()
+                            {
+                                Ability = ability,
+                                Character = charJaw,
+                                ID_Character = charJaw.Id,
+                                ID_ClassAbility = ability.Id
+                            });
+                        }
+                    }
+
+                    DataServiceCollection.CharacterDataService.InsertOrReplace(charJaw);
+                }
+            }  
+        }
+
+        public static void AddJawsOfTheLionCharacters()
         {
             Connection.BeginTransaction();
             try
@@ -1024,6 +1064,32 @@ namespace Data
             };
 
             AchievementTypeRepository.InsertOrReplace(achievement);
+        }
+
+        private static void FixRedGuardPerk()
+        {
+            Connection.BeginTransaction();
+            try
+            {
+                var perks = ClassPerkRepository.GetClassPerks(22).Where(x => x.Checkboxnumber == 10 || x.Checkboxnumber == 11);
+
+                if (perks != null && perks.Any())
+                {
+                    foreach(var perk in perks)
+                    {
+                        if (perk.Perktext == "Add one [+2] [FIRE] [LIGHT] card")
+                            perk.Perktext = "Add one [+1] [FIRE] [LIGHT] card";
+                        ClassPerkRepository.UpdatePerkText(perk);
+                    }                    
+                }
+
+                Connection.Commit();
+            }
+            catch
+            {
+                Connection.Rollback();
+                throw;
+            }
         }
 
         private static void FixSawHealPerk()

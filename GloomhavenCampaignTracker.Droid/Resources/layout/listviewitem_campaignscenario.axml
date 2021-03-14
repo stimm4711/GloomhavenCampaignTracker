@@ -21,8 +21,10 @@
             android:textStyle="bold"
             android:layout_alignParentLeft="true"
             android:text="123"
-            android:layout_marginTop="5px" />
+            android:layout_marginTop="5px"            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/scenariViewItem_nameTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -71,7 +73,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/scenarioTreasureStatus"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"            
+            android:textAppearance="?android:attr/textAppearanceMedium" />
         <ImageView
             android:src="@drawable/ic_treasurechest"
             android:layout_width="wrap_content"
