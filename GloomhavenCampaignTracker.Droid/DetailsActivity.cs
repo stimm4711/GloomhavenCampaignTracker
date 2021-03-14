@@ -7,7 +7,6 @@ using GloomhavenCampaignTracker.Droid.Fragments.campaign.world;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign;
 using GloomhavenCampaignTracker.Droid.Fragments.campaign.party;
 using Android.Views;
-using Calligraphy;
 using Android.Content;
 using GloomhavenCampaignTracker.Droid.Fragments;
 using GloomhavenCampaignTracker.Droid.Fragments.character;
@@ -34,10 +33,6 @@ namespace GloomhavenCampaignTracker.Droid
 
         private Fragment _detailsFrag;
 
-        protected override void AttachBaseContext(Context context)
-        {
-            base.AttachBaseContext(CalligraphyContextWrapper.Wrap(context));
-        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {

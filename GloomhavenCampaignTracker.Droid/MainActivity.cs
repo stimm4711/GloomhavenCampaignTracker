@@ -9,7 +9,6 @@ using GloomhavenCampaignTracker.Droid.Fragments.campaign;
 using GloomhavenCampaignTracker.Business;
 using Fragment = Android.Support.V4.App.Fragment;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
-using Calligraphy;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Support.V4.View;
@@ -59,11 +58,6 @@ namespace GloomhavenCampaignTracker.Droid
             }
 
             base.OnResume();
-        }
-
-        protected override void AttachBaseContext(Context context)
-        {
-            base.AttachBaseContext(CalligraphyContextWrapper.Wrap(context));
         }
 
         protected override void OnCreate(Bundle bundle)

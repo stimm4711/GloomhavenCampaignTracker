@@ -391,7 +391,13 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign
                 return;
             }
 
-            if (CrossConnectivity.Current.IsConnected)
+            var cardOnlinePossible = true;
+
+            if (_eventType == EventTypes.RoadEvent && cardId > 69 && (cardId != 82 || cardId != 83)) cardOnlinePossible = false;
+            if (_eventType == EventTypes.CityEvent && cardId > 90) cardOnlinePossible = false;
+            if (_eventType == EventTypes.RiftEvent && cardId > 20) cardOnlinePossible = false;
+
+            if (CrossConnectivity.Current.IsConnected && cardOnlinePossible)
             {
                 var intent = new Intent();
                 intent.SetClass(Activity, typeof(DetailsActivity));

@@ -7,13 +7,12 @@
     android:id="@+id/drawerLayout">
     <RelativeLayout
         android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/mainLayout">
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            android:layout_below="@id/drawerLayout" />
+            layout="@layout/toolbar"/>
         <FrameLayout
             android:minWidth="25px"
             android:minHeight="25px"

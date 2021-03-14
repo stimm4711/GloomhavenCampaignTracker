@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Runtime;
-using Calligraphy;
 using System;
 
 namespace GloomhavenCampaignTracker.Droid
@@ -16,16 +15,6 @@ namespace GloomhavenCampaignTracker.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-
-            // initalize Calligraphy
-            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
-            {
-                CalligraphyConfig.InitDefault(
-                    new CalligraphyConfig.Builder()
-                        .SetDefaultFontPath("fonts/PirataOne_Gloomhaven.ttf")
-                        .SetFontAttrId(Resource.Attribute.fontPath)                                
-                        .Build());
-            } 
         }
     }
 

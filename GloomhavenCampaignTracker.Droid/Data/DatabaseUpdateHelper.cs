@@ -360,7 +360,7 @@ namespace Data
 
                 Connection.Commit();
             }
-            catch (Exception ex)
+            catch
             {
                 Connection.Rollback();
                 throw;

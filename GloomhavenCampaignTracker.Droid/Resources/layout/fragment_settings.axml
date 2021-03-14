@@ -32,8 +32,7 @@
             android:layout_below="@id/spoilertitle"
             android:textColor="@color/gloom_primaryText"
             app:buttonTint="#ffffffff"
-            android:checked="true"
-            app:fontPath="fonts/Roboto-Regular.ttf" />
+            android:checked="true" />
         <TextView
             android:text="@string/ShowItemNamesDecription"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -42,8 +41,7 @@
             android:id="@+id/hideitemnamestext"
             android:layout_below="@+id/chkShowItemnames"
             android:textColor="@color/gloom_secondaryLight"
-            android:layout_marginLeft="40dp"
-             app:fontPath="fonts/Roboto-Regular.ttf" />
+            android:layout_marginLeft="40dp" />
         <CheckBox
             android:text="@string/ShowPersonalQuest"
             android:layout_width="wrap_content"
@@ -52,8 +50,7 @@
             android:id="@+id/chkpersonalquest"
             android:textColor="@color/gloom_primaryText"
             app:buttonTint="#ffffffff"
-            android:checked="true"
-            app:fontPath="fonts/Roboto-Regular.ttf" />
+            android:checked="true" />
         <TextView
             android:text="@string/ShowPersonalQuestDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -62,8 +59,7 @@
             android:layout_below="@id/chkpersonalquest"
             android:id="@+id/hidepqtext"
             android:textColor="@color/gloom_secondaryLight"
-            android:layout_marginLeft="40dp"
-            app:fontPath="fonts/Roboto-Regular.ttf" />
+            android:layout_marginLeft="40dp"/>
         <CheckBox
             android:text="@string/ShowScenarioNames"
             android:layout_width="wrap_content"
@@ -72,8 +68,7 @@
             android:id="@+id/chkunlockedscenarioname"
             android:textColor="@color/gloom_primaryText"
             app:buttonTint="#ffffffff"
-            android:checked="false"
-             app:fontPath="fonts/Roboto-Regular.ttf" />
+            android:checked="false" />
         <TextView
             android:text="@string/ShowScenarioNamesDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -82,8 +77,7 @@
             android:layout_below="@id/chkunlockedscenarioname"
             android:id="@+id/showscenatext"
             android:textColor="@color/gloom_secondaryLight"
-            android:layout_marginLeft="40dp"
-             app:fontPath="fonts/Roboto-Regular.ttf" />
+            android:layout_marginLeft="40dp"/>
         <CheckBox
             android:text="@string/ShowTreasures"
             android:layout_width="wrap_content"
@@ -92,8 +86,7 @@
             android:layout_below="@id/showscenatext"
             android:textColor="@color/gloom_primaryText"
             app:buttonTint="#ffffffff"
-            android:checked="true"
-             app:fontPath="fonts/Roboto-Regular.ttf"  />
+            android:checked="true" />
         <TextView
             android:text="@string/ShowTreasuresDescription"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -102,8 +95,7 @@
             android:id="@+id/hideTreasuresText"
             android:layout_below="@+id/chkShowTreasures"
             android:textColor="@color/gloom_secondaryLight"
-            android:layout_marginLeft="40dp"
-             app:fontPath="fonts/Roboto-Regular.ttf" />
+            android:layout_marginLeft="40dp" />
     </RelativeLayout>
     <LinearLayout
         android:orientation="vertical"
@@ -166,7 +158,6 @@
             android:id="@+id/cb_bs_v2Cards"
             android:textColor="@color/gloom_primaryText"
             app:buttonTint="#ffffffff"
-            app:fontPath="fonts/Roboto-Regular.ttf"
             android:visibility="gone"/>
         <CheckBox
             android:text="Use Diviner revised cards"
@@ -176,7 +167,6 @@
             android:minHeight="25px"
             android:id="@+id/cb_dr_v2Cards"
             android:textColor="@color/gloom_primaryText"
-            app:buttonTint="#ffffffff"
-            app:fontPath="fonts/Roboto-Regular.ttf"  />
+            app:buttonTint="#ffffffff" />
     </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.timmcode.ghcampaigntracker.droid" android:installLocation="auto" android:versionName="1.4.4" android:versionCode="2021031401">
-	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="de.timmcode.ghcampaigntracker.droid" android:installLocation="auto" android:versionName="1.4.4" android:versionCode="2021031402">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="29" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<application android:label="Gloomhaven Campaign Tracker" android:theme="@style/MyTheme" android:icon="@drawable/ic_launcher">
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="de.timmcode.ghcampaigntracker.droid.provider" android:exported="false" android:grantUriPermissions="true">
