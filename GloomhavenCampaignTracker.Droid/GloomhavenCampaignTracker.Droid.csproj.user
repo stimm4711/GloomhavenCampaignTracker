@@ -4,7 +4,7 @@
     <SelectedDevice>pixel_3_xl_q_10_0_-_api_29</SelectedDevice>
     <DefaultDevice>pixel_3_xl_q_10_0_-_api_29</DefaultDevice>
     <AndroidDesignerPreferredTheme>MyTheme</AndroidDesignerPreferredTheme>
-    <AndroidDesignerPreferredDevice>5.4in FWVGA</AndroidDesignerPreferredDevice>
+    <AndroidDesignerPreferredDevice>pixel_3_xl</AndroidDesignerPreferredDevice>
     <ActiveDebugProfile>pixel_3_xl_q_10_0_-_api_29</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

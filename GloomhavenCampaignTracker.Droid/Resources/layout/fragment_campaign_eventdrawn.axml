@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/result_layout"
-            android:visibility="gone"
+            android:visibility="visible"
             android:soundEffectsEnabled="true"
             android:gravity="bottom">
             <LinearLayout
@@ -87,28 +87,25 @@
                 <ImageButton
                     android:src="@drawable/ic_event_enteroutcome_sec"
                     android:layout_height="96dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.33"
+                    android:layout_width="96dp"
                     android:id="@+id/ibuttonOutcome"
                     app:backgroundTint="@android:color/transparent"
                     android:cropToPadding="false"
-                    android:scaleType="centerInside" />
+                    android:scaleType="fitXY" />
                 <ImageButton
                     android:src="@drawable/ic_event_removed_black"
                     android:layout_height="96dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.33"
+                    android:layout_width="96dp"
                     android:id="@+id/ibutton_removeevent"
                     app:backgroundTint="@android:color/transparent"
-                    android:scaleType="centerInside" />
+                    android:scaleType="fitXY" />
                 <ImageButton
                     android:src="@drawable/ic_event_putunder_black"
                     android:layout_height="96dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.33"
+                    android:layout_width="96dp"
                     android:id="@+id/ibutton_putunder"
                     app:backgroundTint="@android:color/transparent"
-                    android:scaleType="centerInside" />
+                    android:scaleType="fitXY" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

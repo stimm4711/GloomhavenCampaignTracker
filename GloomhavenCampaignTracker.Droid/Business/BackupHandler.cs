@@ -5,6 +5,8 @@ using GloomhavenCampaignTracker.Shared.Data.Repositories;
 using System.IO;
 using System.Diagnostics;
 using Java.Nio.Channels;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
 
 namespace GloomhavenCampaignTracker.Business
 {
@@ -135,16 +137,30 @@ namespace GloomhavenCampaignTracker.Business
             }
         }
 
-        public static string CopyFileToBackupStorage(Plugin.FilePicker.Abstractions.FileData filedata, string backuppath)
+        public static string CopyFileToBackupStorage(FileResult filedata, string backuppath)
         {
             var backupfolder = new Java.IO.File(backuppath);
             if (!backupfolder.Exists()) backupfolder.Mkdirs();
 
             var filename = Path.Combine(backupfolder.Path, filedata.FileName);
 
-            using (var fileStream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+            using (var fileOutputStream = new FileOutputStream(filename))
             {
-                fileStream.Write(filedata.DataArray, 0, filedata.DataArray.Length);
+                using var fileInputStream = new FileInputStream(filedata.FullPath);
+
+                while (true)
+                {
+                    int i = fileInputStream.Read();
+                    if (i != -1)
+                    {
+                        fileOutputStream.Write(i); 
+                    }
+                    else
+                    { break; }
+                }
+                fileOutputStream.Flush();
+                fileOutputStream.Close();
+                fileInputStream.Close();            
             }
 
             return filename;

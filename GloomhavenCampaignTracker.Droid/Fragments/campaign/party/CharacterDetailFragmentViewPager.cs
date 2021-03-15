@@ -10,6 +10,7 @@ using Android.Widget;
 using GloomhavenCampaignTracker.Droid.CustomControls;
 using GloomhavenCampaignTracker.Shared.Data.Entities;
 using GloomhavenCampaignTracker.Shared.Data.Repositories;
+using AndroidX.Core.Content.Resources;
 
 namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
 {
@@ -60,8 +61,6 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
             pagerTabStrip.DrawFullUnderline = true;
             pagerTabStrip.TabIndicatorColor = ContextCompat.GetColor(Context, Resource.Color.gloom_secondary);
 
-            var fontTypeFace = Typeface.CreateFromAsset(Context.Assets, "fonts/PirataOne_Gloomhaven.ttf");
-
             for (var i = 0; i < pagerTabStrip.ChildCount; ++i)
             {
                 var nextChild = pagerTabStrip.GetChildAt(i);
@@ -69,7 +68,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.campaign.party
                 if (view != null)
                 {
                     var textViewToConvert = view;
-                    textViewToConvert.Typeface = fontTypeFace;
+                    textViewToConvert.Typeface = ResourcesCompat.GetFont(Context,Resource.Font.pirata_one_font_family) ;
                 }
 
                 nextChild.LongClick += NextChild_LongClick;

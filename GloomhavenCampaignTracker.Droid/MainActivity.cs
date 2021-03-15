@@ -63,6 +63,7 @@ namespace GloomhavenCampaignTracker.Droid
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle);
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);

@@ -26,6 +26,7 @@
     <item name="colorAccent">@color/gloom_secondary</item>
     <item name="android:editTextStyle">@style/App_EditTextStyle</item>
     <item name="android:textColorPrimary">@color/gloom_primaryText</item>
+    <item name="android:fontFamily">@font/pirata_one_font_family</item>
   </style>
 
   <style name="PagerTabStripText">

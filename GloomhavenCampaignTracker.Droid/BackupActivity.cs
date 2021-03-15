@@ -11,8 +11,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 using GloomhavenCampaignTracker.Droid.Adapter;
 using System.Collections.Generic;
 using System.IO;
-using Plugin.FilePicker.Abstractions;
-using Plugin.FilePicker;
+using Xamarin.Essentials;
 
 namespace GloomhavenCampaignTracker.Droid
 {
@@ -103,8 +102,8 @@ namespace GloomhavenCampaignTracker.Droid
         {
             try
             {
-                FileData fileData = await CrossFilePicker.Current.PickFile();
-                if (fileData == null)
+                FileResult fileData = await FilePicker.PickAsync();
+                if (fileData == null || !fileData.FileName.EndsWith("db3"))
                     return; // user canceled file picking
 
                 var filename = BackupHandler.CopyFileToBackupStorage(fileData, _backupfilepath);
@@ -112,11 +111,10 @@ namespace GloomhavenCampaignTracker.Droid
                 if (file == null) return;
 
                 SetListviewAdapter();
-
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine("Exception choosing file: " + ex.ToString());
+                Console.WriteLine("Exception choosing file: " + ex.ToString());
             }
         }
 
