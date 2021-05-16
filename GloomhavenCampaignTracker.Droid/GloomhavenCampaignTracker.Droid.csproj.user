@@ -6,5 +6,6 @@
     <AndroidDesignerPreferredTheme>MyTheme</AndroidDesignerPreferredTheme>
     <AndroidDesignerPreferredDevice>pixel_3_xl</AndroidDesignerPreferredDevice>
     <ActiveDebugProfile>pixel_3_xl_q_10_0_-_api_29</ActiveDebugProfile>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
 </Project>
