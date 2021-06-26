@@ -298,44 +298,7 @@ namespace GloomhavenCampaignTracker.Business
             Java.Lang.Object menuPopupHelper = field.Get(menu);
             Method setForceIcons = menuPopupHelper.Class.GetDeclaredMethod("setForceShowIcon", Java.Lang.Boolean.Type);
             setForceIcons.Invoke(menuPopupHelper, true);
-        }
-
-        public static List<string> Patronnames()
-        {
-            var names = new List<string>()
-            {
-                "Guido \"Fox Andersson\" Marzucchi",
-                "Gonzalo Herreros",
-                "Jamie Cottrell",
-                "Marek Picha",
-                "Robert Sigrist",
-                "Brian Hazard (Game Spasm)",
-                "John Finch",
-                "Yong Siong Oon",
-                "Jonathan Robelia",
-                "Jim Flemming",
-                "Ryan Marriott",
-                "Christian Beaman",
-                "Carson Martinez",
-                "Anton Kuchman",
-                "Mihai Milea",
-                "Eric Lomas",
-                "Jan Andreas Krahl",
-                "David Klein",
-                "Kevin Alexander",
-                "Michael Street",
-                "Lorenz Lißeck",
-                "Kevin Pham",
-                "Jeffrey Hickey",
-                "Brainy Zombie Games",
-                "Rob Rivera",
-                "Andrew Stoute",
-                "Jan Brockmann",
-                "Ethan Chua"
-            };            
-
-            return names;
-        }
+        }        
 
         public static string GetRegionName(int scenarioRegionId)
         {

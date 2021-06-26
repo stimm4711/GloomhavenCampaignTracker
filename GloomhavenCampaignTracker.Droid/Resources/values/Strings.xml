@@ -15,9 +15,6 @@
   <string name="icons8_web">
     <a href="http://de.icons8.com">Icons8</a>
   </string>
-  <string name="pp_web">
-    <a href="https://www.paypal.me/GHCampaignTracker">Hat</a>    
-  </string>
   <string name="playstore_web">
     <a href="https://play.google.com/store/apps/details?id=de.timmcode.ghcampaigntracker.droid">Google Play Store</a>
   </string>
@@ -329,7 +326,4 @@
   <string name="FeedbackEmail">Or email me: stimm@outlook.com</string>
   <string name="RateApp">Rate the app</string>
   <string name="RateInPLayStore">Leave a rating in the play store</string>
-  <string name="Support">Support</string>
-  <string name="CoinsInHelmet">And If you find this app useful and you want to do more than give me your feedback, the author would be grateful for a few coins that fall into his helmet (click it).</string>
-  
 </resources>

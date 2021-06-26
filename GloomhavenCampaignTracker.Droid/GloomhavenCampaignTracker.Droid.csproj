@@ -2264,24 +2264,6 @@
     <AndroidResource Include="Resources\drawable\borderSheet.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\drawable-hdpi\ic_helmet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\drawable-mdpi\ic_helmet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\drawable-xhdpi\ic_helmet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\drawable-xxhdpi\ic_helmet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\drawable-xxxhdpi\ic_helmet.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_helmet.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\drawable-hdpi\ic_retired.png" />
   </ItemGroup>
   <ItemGroup>
