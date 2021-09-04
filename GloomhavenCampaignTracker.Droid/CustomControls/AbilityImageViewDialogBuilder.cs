@@ -117,7 +117,7 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                GetImageBitmapFromUrlAsync(url, _imagen, _itemview);
+                GetImageBitmapFromUrlAsync(url, _imagen, _itemview, alert);
             }      
             else
             {
@@ -127,11 +127,18 @@ namespace GloomhavenCampaignTracker.Droid.CustomControls
             return alert;
         }
 
-        private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view)
+        private async void GetImageBitmapFromUrlAsync(string url, ImageView imagen, View view, AlertDialog alert)
         {
-            var image = await Helper.GetImageBitmapFromUrlAsync(url);   
-            imagen.SetImageBitmap(image);
-            view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;
+            try
+            {
+                var image = await Helper.GetImageBitmapFromUrlAsync(url);
+                imagen.SetImageBitmap(image);                
+            }
+            catch
+            {
+                alert.Dismiss();
+            }
+            view.FindViewById<ProgressBar>(Resource.Id.loadingPanel).Visibility = ViewStates.Gone;          
         }
 
         public AbilityImageViewDialogBuilder SetAbilityName(string abilityName)

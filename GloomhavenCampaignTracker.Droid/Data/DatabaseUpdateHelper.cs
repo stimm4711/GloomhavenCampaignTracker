@@ -14,7 +14,7 @@ namespace Data
     internal class DatabaseUpdateHelper
     {
         private enum VersionTime { Earlier = -1 }
-        public static Version Dbversion { get; } = new Version(1, 4, 29);
+        public static Version Dbversion { get; } = new Version(1, 4, 30);
         public static SQLiteConnection Connection => GloomhavenDbHelper.Connection;
         public static event EventHandler<UpdateSplashScreenLoadingInfoEVentArgs> UpdateLoadingStep;
 
@@ -229,6 +229,12 @@ namespace Data
                 {
                     OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.29"));
                     FixedTreasureOfScenario25();
+                }
+
+                if ((VersionTime)old.CompareTo(new Version(1,4,30)) == VersionTime.Earlier)
+                {
+                    OnUpdateLoadingStep(new UpdateSplashScreenLoadingInfoEVentArgs("Database update 1.4.30"));
+                    FixTypoDoomstalkerCard395();
                 }
 
                 currentDbVersion.Value = Dbversion.ToString();
@@ -779,6 +785,31 @@ namespace Data
                     Connection.Rollback();
                 }
             }  
+        }
+
+        private static void FixTypoDoomstalkerCard395()
+        {
+            var clas = ClassRepository.Get().FirstOrDefault(x => x.ClassId == 14);
+            if (clas != null)
+            {               
+                Connection.BeginTransaction();
+                try
+                {
+                    var ability395 = clas.Abilities.FirstOrDefault(x => x.ReferenceNumber == 395);
+
+                    if (ability395 != null)
+                    {
+                        ability395.AbilityName = "Singular Focus";
+                        ClassAbilitiesRepository.InsertOrReplace(ability395);
+
+                        Connection.Commit();
+                    }
+                }
+                catch
+                {
+                    Connection.Rollback();
+                }
+            }
         }
 
         private static void FixingTyposInPersonalQuestCounters()
