@@ -95,7 +95,7 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
 
             playerNameEdit.Text = $"{Character.Playername}";
 
-            new CustomDialogBuilder(Context, Resource.Style.MyDialogTheme)
+            new CustomDialogBuilder(base.Context, Resource.Style.MyDialogTheme)
                 .SetCustomView(convertView)
                 .SetTitle("Edit Playername")
                 .SetNegativeButton(Resources.GetString(Resource.String.NoCancel), (senderAlert, args) => { })
@@ -105,10 +105,11 @@ namespace GloomhavenCampaignTracker.Droid.Fragments.character
                     Character.Playername = playerNameEdit.Text;
 
                     SaveCharacter();
-                    _adapter = new CharacterDetailsViewPagerAdapter(Context, ChildFragmentManager, Character);
+                    _adapter = new CharacterDetailsViewPagerAdapter(base.Context, ChildFragmentManager, Character);
 
-                    ((CharacterDetailFragmentViewPager)ParentFragment).UpdateAdapter();
-                    ((CharacterDetailFragmentViewPager)ParentFragment).SetPage(Character);
+                    CharacterDetailFragmentViewPager parentFragment = ((CharacterDetailFragmentViewPager)ParentFragment);
+                    parentFragment.UpdateAdapter();
+                    parentFragment.SetPage(Character);
                 })
                 .Show();
         }
